@@ -27,6 +27,10 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
+      .when('/two-col', {
+        templateUrl: 'views/two-col.html',
+        controller: 'TwoColCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
