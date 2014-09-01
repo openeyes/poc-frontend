@@ -1,0 +1,16 @@
+[
+	{
+		"id": 1,
+		"firstName": "Richard",
+		"surname": "Willis",
+		"gender": "Male",
+		"uri": "/patient/1"
+	},
+	{
+		"id": 2,
+		"firstName": "Lee",
+		"surname": "Briggs",
+		"gender": "Male",
+		"uri": "/patient/2"
+	}
+]
