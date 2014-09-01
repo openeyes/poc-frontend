@@ -10,7 +10,7 @@
 angular.module('openeyesApp')
   .controller('SearchCtrl', function ($scope, patientService) {
     
-
+  	$scope.patients = [];
 		$scope.searchValue = '';
 
 		$scope.getSearchResults = function(){
@@ -24,5 +24,9 @@ angular.module('openeyesApp')
 					console.log(data, status, headers, config);
 		    });
 		};
+
+		$scope.hasResults = function(){
+			return $scope.patients.length;
+		}
 
   });
