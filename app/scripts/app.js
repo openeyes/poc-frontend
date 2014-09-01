@@ -20,8 +20,11 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        redirectTo: '/search'
+      })
+      .when('/search', {
+        templateUrl: 'views/search.html',
+        controller: 'SearchCtrl'
       })
       .when('/about', {
         templateUrl: 'views/about.html',
@@ -32,6 +35,6 @@ angular
         controller: 'TwoColCtrl'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/search'
       });
   });
