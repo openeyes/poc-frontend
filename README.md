@@ -3,12 +3,12 @@ web-client
 
 The angular web client for the POC openeyes API
 
-##Dependencies:##
+###Dependencies:
 
 Sass (gem install sass --version 3.2.18)
 [Node / npm](http://nodejs.org/download/)
 
-##Install:##
+###Install:
 
 npm install
 bower install
