@@ -21,4 +21,4 @@ Sass (`gem install sass --version 3.2.18`)
 
 `grunt serve`
 
-This will launch the app at (http://localhost:9000)[http://localhost:9000]
+This will launch the app at [http://localhost:9000](http://localhost:9000)
