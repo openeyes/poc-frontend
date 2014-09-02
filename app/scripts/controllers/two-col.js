@@ -8,6 +8,6 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('TwoColCtrl', function ($scope) {
-
-  });
+	.controller('TwoColCtrl', function ($scope) {
+		$scope.foo = 'bar';
+	});
