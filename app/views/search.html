@@ -1,11 +1,14 @@
 <h2>Find a patient</h2>
-<form class="panel panel-default search-form" role="form">
+<form class="panel panel-default search-form" role="form" ng-submit="getSearchResults()">
 	<div class="form-group panel-body">
 		<label for="query">Query:</label>
 		<div class="input-group input-group-lg">
 			<input type="text" class="form-control" name="query" id="query" ng-model="searchValue" placeholder="Enter your search query.." />
 			<span class="input-group-btn">
-				<button class="btn btn-primary" ng-click="getSearchResults()"><span class="glyphicon glyphicon-search"></span> Search</button>
+				<button class="btn btn-primary" type="submit">
+					<span class="glyphicon glyphicon-search"></span>
+					Search
+				</button>
 			</span>
 		</div>
 	</div>
@@ -25,7 +28,7 @@
 				<td>{{ p.firstName }}</td>
 				<td>{{ p.surname }}</td>
 				<td>{{ p.gender }}</td>
-				<td><a href="/#{{ p.uri }}" class="btn btn-primary">View</a></td>
+				<td><a href="/#{{ p.uri }}">View</a></td>
 			</tr>
 		</table>
 	</div>
