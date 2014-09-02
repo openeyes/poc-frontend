@@ -1,0 +1,4 @@
+{
+  "patients": "/data/patients.json",
+  "patient": "/data/patient-<id>.json"
+}
