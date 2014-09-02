@@ -12,15 +12,13 @@ angular.module('openeyesApp')
 
     return {
       findPatients: function(searchTerm){
-        console.log('searching...', searchTerm);
-        console.log(ENV);
+        var apiCall = (ENV.name === 'dev') ? ENV.host + ENV.apiEndpoints.patients : ENV.apiEndpoints.patients + '=' + searchTerm;
         return $http({
           method: 'GET',
-          url: ENV.host + ENV.apiEndpoints.patients
+          url: apiCall
         });
       },
       getPatient: function(id){
-        console.log('retrieving...', id);
         var apiCall = (ENV.name === 'dev') ? ENV.host + ENV.apiEndpoints.patient.replace('<id>', id) : ENV.apiEndpoints.patient + id;
         return $http({
           method: 'GET',
