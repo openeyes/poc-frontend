@@ -8,7 +8,7 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .factory('patientSearch', ['$http', 'ENV', function($http, ENV) {
+  .factory('PatientSearch', ['$http', 'ENV', function($http, ENV) {
 
     return {
       findPatients: function(searchTerm){
