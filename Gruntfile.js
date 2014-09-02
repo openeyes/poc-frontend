@@ -389,7 +389,39 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
-    }
+    },
+
+    ngconstant: {
+      // Environment targets
+      dev: {
+        options: {
+          dest: '<%= yeoman.app %>/scripts/config.js',
+          name: 'config',
+          wrap: '"use strict";\n\n {%= __ngModule %}',
+        },
+        constants: {
+          ENV: {
+            name: 'dev',
+            host: 'http://localhost:9000',
+            apiEndpoints: grunt.file.readJSON('config/dev.endpoints.json')
+          }
+        }
+      },
+      dist: {
+        options: {
+          dest: '<%= yeoman.dist %>/scripts/config.js',
+          name: 'config',
+          wrap: '"use strict";\n\n {%= __ngModule %}',
+        },
+        constants: {
+          ENV: {
+            name: 'dist',
+            host: '',
+            apiEndpoints: grunt.file.readJSON('config/dist.endpoints.json')
+          }
+        }
+      }
+    },
   });
 
 
@@ -400,6 +432,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'ngconstant:dev',
       'wiredep',
       'concurrent:server',
       'autoprefixer',
@@ -423,6 +456,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'ngconstant:dist',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
