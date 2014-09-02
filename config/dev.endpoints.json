@@ -1,4 +1,7 @@
 {
   "patients": "/data/patients.json",
-  "patient": "/data/patient-<id>.json"
+  "patient": "/data/patient-<id>.json",
+  "sites": "/data/sites.json",
+  "siteLasers": "/data/lasers-site-<id>.json",
+  "laserOperators": "/data/laser-operators.json"
 }
