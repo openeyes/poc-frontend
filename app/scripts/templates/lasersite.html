@@ -1,0 +1,18 @@
+<div class="row">
+	<div class="col-md-12">
+		<label for="site">Site:</label> 
+		<select name="site" id="" ng-model="selectedSite" ng-change="siteSelected()" ng-options="site.name for site in sites">
+		</select>
+		<p>Please select a site to see the list of available lasers.</p>
+	</div>
+	<div class="col-md-12">
+		<label for="laser">Laser:</label> 
+		<select name="laser" id="" ng-model="selectedLaser" ng-change="laserSelected()" ng-options="laser.name for laser in lasers">
+		</select>
+	</div>
+	<div class="col-md-12">
+		<label for="laser">Laser operator:</label> 
+		<select name="laser" id="" ng-model="selectedOperator" ng-change="operatorSelected()" ng-options="operator.name for operator in operators">
+		</select>
+	</div>
+</div>
