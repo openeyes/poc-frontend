@@ -9,5 +9,5 @@
  */
 angular.module('openeyesApp')
   .controller('TwoColCtrl', function ($scope) {
-
+		console.log($scope);
   });

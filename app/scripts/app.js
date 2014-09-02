@@ -34,6 +34,10 @@ angular
         templateUrl: 'views/two-col.html',
         controller: 'TwoColCtrl'
       })
+      .when('/patient/:patientId', {
+        templateUrl: 'views/patient.html',
+        controller: 'PatientCtrl'
+      })
       .otherwise({
         redirectTo: '/search'
       });

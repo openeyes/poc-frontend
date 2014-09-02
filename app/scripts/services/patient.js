@@ -2,23 +2,12 @@
 
 /**
  * @ngdoc function
- * @name openeyesApp.service:patientService
+ * @name openeyesApp.service:patient
  * @description
  * # patientService
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .factory('patientService', ['$http', function($http) {
-
-    var patientSearch = function(searchTerm) {
-      console.log('searching...', searchTerm);
-      return $http({
-        method: 'GET',
-        url: 'http://localhost:9000/data/patients.json'
-      });
-    };
-
-    return {
-      findPatients: function(searchTerm) { return patientSearch(searchTerm); },
-    };
-  }]);
+	.factory('Patient', function($resource) {
+		return $resource('/api/entries/:id'); // Note the full endpoint address
+	});
