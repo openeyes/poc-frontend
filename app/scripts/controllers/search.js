@@ -14,8 +14,6 @@ angular.module('openeyesApp')
 		$scope.searchValue = '';
 
 		$scope.getSearchResults = function(){
-			console.log('getSearchResults called...', $scope.searchValue);
-
 			patientSearch.findPatients($scope.searchValue)
 				.success(function(data) {
 					$scope.patients = data;
