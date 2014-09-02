@@ -8,7 +8,7 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-	.controller('SearchCtrl', function ($scope, patientService) {
+	.controller('SearchCtrl', function ($scope, patientSearch) {
 
 		$scope.patients = [];
 		$scope.searchValue = '';
@@ -16,7 +16,7 @@ angular.module('openeyesApp')
 		$scope.getSearchResults = function(){
 			console.log('getSearchResults called...', $scope.searchValue);
 
-			patientService.findPatients($scope.searchValue)
+			patientSearch.findPatients($scope.searchValue)
 				.success(function(data) {
 					$scope.patients = data;
 				})
