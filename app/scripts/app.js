@@ -39,6 +39,10 @@ angular
         templateUrl: 'views/patient.html',
         controller: 'PatientCtrl'
       })
+      .when('/patient/:patientId/event/create', {
+        templateUrl: 'views/event.html',
+        controller: 'EventCtrl'
+      })
       .otherwise({
         redirectTo: '/search'
       });
