@@ -8,7 +8,7 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-	.controller('EventCtrl', function ($scope) {
+	.controller('EventCtrl', function ($scope, $window) {
 
 		var eyedrawOptions = {
 			doodles: [
@@ -48,6 +48,10 @@ angular.module('openeyesApp')
 					eye: 2
 				})
 			}
+		};
+
+		$scope.cancel = function() {
+			$window.history.back();
 		};
 	})
 	;
