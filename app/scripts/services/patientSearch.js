@@ -12,6 +12,7 @@ angular.module('openeyesApp')
 
     return {
       findPatients: function(searchTerm){
+        console.log(searchTerm);
         // var apiCall = (ENV.name === 'dev') ? ENV.host + ENV.apiEndpoints.patients : ENV.apiEndpoints.patients + '=' + searchTerm;
         var apiCall = ENV.host + ENV.apiEndpoints.patients;
         return $http({
