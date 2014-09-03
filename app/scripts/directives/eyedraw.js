@@ -25,23 +25,23 @@ angular.module('openeyesApp')
 			toImage: false
 		};
 
-		function link(scope) {
+		function link($scope) {
 
 			var id = ++c;
 
-			scope.canvasId = 'canvas-id-'+id;
-			scope.inputId = 'input-id-'+id;
-			scope.drawingName = 'drawing-name-'+id;
+			$scope.canvasId = 'canvas-id-'+id;
+			$scope.inputId = 'input-id-'+id;
+			$scope.drawingName = 'drawing-name-'+id;
 
-			var options = angular.extend({}, defaultOptions, scope.options, {
-				canvasId: scope.canvasId,
-				inputId: scope.inputId,
-				drawingName: scope.drawingName,
+			var options = angular.extend({}, defaultOptions, $scope.options, {
+				canvasId: $scope.canvasId,
+				inputId: $scope.inputId,
+				drawingName: $scope.drawingName,
 			});
 
-			// Only initiate the eyedraw once the scope has been applied.
-			// We could alternatively use scope.$apply() to immediately compile the template.
-			scope.$watch('canvasId', function() {
+			// Only initiate the eyedraw once the $scope has been applied.
+			// We could alternatively use $scope.$apply() to immediately compile the template.
+			$scope.$watch('canvasId', function() {
 				window.ED.init(options);
 			}, true);
 		}
