@@ -417,7 +417,7 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'dist',
-            host: '',
+            host: 'http://openeyes-uat.headlondon.com',
             apiEndpoints: grunt.file.readJSON('config/dist.endpoints.json')
           }
         }
