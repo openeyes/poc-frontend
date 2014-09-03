@@ -454,7 +454,8 @@ ED.Controller = (function() {
 	 * @return {Boolean}
 	 */
 	Controller.prototype.hasInputFieldData = function() {
-		return (this.hasInputField() && this.input.value.length > 0);
+		console.log(JSON.parse(this.input.value));
+		return (this.hasInputField() && JSON.parse(this.input.value).length > 0);
 	};
 
 	/**
