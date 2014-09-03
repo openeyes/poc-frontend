@@ -9,61 +9,63 @@
  */
 
 angular.module('openeyesApp')
-	.directive('eyedraw', function() {
-
-		var c = 0;
-		var defaultOptions = {
-			scale: 1,
-			toggleScale: 0,
-			idSuffix: '',
-			isEditable: false,
-			focus: false,
-			graphicsPath: '/eyedraw/img/',
-			offsetX: 0,
-			offsetY: 0,
-			toImage: false
-		};
+	.factory('EyeDraw', function($window){
+		return $window.ED;
+	})
+	.constant('eyedrawOptions', {
+		scale: 1,
+		toggleScale: 0,
+		idSuffix: '',
+		isEditable: false,
+		focus: false,
+		graphicsPath: '/eyedraw/img/',
+		offsetX: 0,
+		offsetY: 0,
+		toImage: false
+	})
+	.directive('eyedraw', function(EyeDraw, eyedrawOptions, $timeout) {
 
 		var init = {
 			// Initiate the eyedraw in view mode.
-			view: function($scope, options) {
+			view: function($scope) {
 				var hasInit = false;
 				// Only initiate the eyedraw once we have some data.
 				$scope.$watch('data', function() {
 					var hasData = ($scope.data && $scope.data.length);
 					if (hasData && !hasInit) {
 						hasInit = true;
-						window.ED.init(options);
+						EyeDraw.init($scope.options);
 					}
 				});
 			},
 			// Initiate the eyedraw in edit mode.
-			edit: function($scope, options) {
+			edit: function($scope) {
 				// Only initiate the eyedraw once the $scope has been applied.
-				// We could alternatively use $scope.$apply() to immediately compile the template.
-				$scope.$watch('canvasId', function() {
-					window.ED.init(options);
-				}, true);
+				$timeout(function() {
+					EyeDraw.init($scope.options);
+				});
 			}
 		};
 
-		function link($scope, element, attr) {
+		var id = 0;
 
-			var id = ++c;
-
-			$scope.canvasId = 'canvas-id-'+id;
-			$scope.inputId = 'input-id-'+id;
-			$scope.drawingName = 'drawing-name-'+id;
-			$scope.mode = attr.mode;
-
-			var options = angular.extend({}, defaultOptions, $scope.options, {
+		function setOptions($scope, attr) {
+			id++;
+			angular.extend($scope.options, eyedrawOptions, {
 				isEditable: (attr.mode === 'edit'),
-				canvasId: $scope.canvasId,
-				inputId: $scope.inputId,
-				drawingName: $scope.drawingName,
+				canvasId: 'canvas-id-'+id,
+				inputId: 'input-id-'+id,
+				drawingName: 'drawing-name-'+id
 			});
+		}
 
-			init[attr.mode]($scope, options);
+		function link($scope, element, attr) {
+			$scope.mode = attr.mode;
+			$scope.getTitle = function(className) {
+				return EyeDraw.titles[className];
+			};
+			setOptions($scope, attr)
+			init[attr.mode]($scope);
 		}
 
 		return {
