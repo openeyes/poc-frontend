@@ -454,7 +454,6 @@ ED.Controller = (function() {
 	 * @return {Boolean}
 	 */
 	Controller.prototype.hasInputFieldData = function() {
-		console.log(JSON.parse(this.input.value));
 		return (this.hasInputField() && JSON.parse(this.input.value).length > 0);
 	};
 
@@ -539,8 +538,6 @@ ED.Controller = (function() {
 
 			var method = arr[i][0];
 			var argumentArray = arr[i][1];
-
-			console.log(argumentArray);
 
 			// Run method with arguments
 			this.drawing[method].apply(this.drawing, argumentArray);
