@@ -1,0 +1,9 @@
+// Event Elements
+
+.element {
+	border-top: 1px solid #e5e5e5;
+	margin-top: 20px;
+	&:first-child {
+		margin-top: 0;
+	}
+}
