@@ -1,0 +1,33 @@
+<!-- Event view -->
+
+
+<div class="btn-group pull-right">
+	<button class="btn btn-primary">Save event</button>
+	<button class="btn btn-default" ng-click="cancel()">Cancel</button>
+</div>
+
+<h2>Create laser event</h2>
+
+<form>
+
+	<section class="element">
+		<h3>Site</h3>
+		<lasersite></lasersite>
+	</section>
+
+	<section class="element">
+		<h3>Anterior Segment</h3>
+		<div class="row">
+			<div class="col-xs-6">
+				<h4>Right eye</h4>
+				<eyedraw ng-model="eyedraws.right.value" options="eyedraws.right.options"></eyedraw>
+			</div>
+			<div class="col-xs-6">
+				<h4>Left eye</h4>
+				<eyedraw ng-model="eyedraws.left.value" options="eyedraws.left.options"></eyedraw>
+			</div>
+		</div>
+	</section>
+</form>
+
+
