@@ -1,10 +1,14 @@
 <div class="row">
-	<div class="col-md-4 col-xs-4">
+	<div class="col-md-3 col-xs-3">
 		<h2>Actions</h2>
 		<a href="/#/patient/{{ patient.id }}/event/create" class="btn btn-primary">Create laser event</a>
 		<!-- <a href="/#/patient/{{ patient.id }}/events" class="btn btn-primary">View events</a> -->
+		<h3>Events</h3>
+		<ul class="list-group">
+			<li class="list-group-item" ng-repeat="ev in events"><a href="/#/patient/{{ patientId }}/event/{{ ev.id }}">{{ ev.name }}</a></li>
+		</ul>
 	</div>
-	<div class="col-md-8 col-xs-8">
+	<div class="col-md-9 col-xs-9">
 		<h2>Patient Details</h2>
 		<p>First name(s): {{ patient.firstName}}</p>
 		<p>Last name: {{ patient.surname }}</p>
