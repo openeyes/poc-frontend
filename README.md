@@ -23,3 +23,9 @@ Sass (`gem install sass --version 3.2.18`)
 `grunt serve`
 
 This will launch the app at [http://localhost:9000](http://localhost:9000)
+
+### Building for deployment
+
+If you're not trying to serve the site locally, you can instead build a static version for distribution and deployment. 
+
+`grunt build` will create a `dist` folder which can be deployed.
