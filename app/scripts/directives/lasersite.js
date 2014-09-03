@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('openeyesApp')
-	.directive('lasersite', function (Sites) {
+	.directive('lasersite', function (Site) {
 
 		var ctrl = function($scope){
 			$scope.siteSelected = function(){
 				// Populate laser dropdown for this site
-				Sites.getLasersForSite($scope.selectedSite.id)
+				Site.getLasersForSite($scope.selectedSite.id)
 	      .success(function(data) {
 					$scope.lasers = data;
 	      })
@@ -21,11 +21,11 @@ angular.module('openeyesApp')
 		return {
 			restrict: 'EA', //E = element, A = attribute, C = class, M = comment         
 			scope: {},
-			templateUrl: 'scripts/templates/lasersite.html',
+			templateUrl: 'views/directives/lasersite.html',
 			controller: ctrl, //Embed a custom controller in the directive
 			link: function ($scope) {
 				//	On creation populate sites dropdown
-				Sites.getSites()
+				Site.getSites()
 		      .success(function(data) {
 						$scope.sites = data;
 		      })
@@ -33,7 +33,7 @@ angular.module('openeyesApp')
 						console.log(data, status, headers, config);
 			    });
 
-			  Sites.getLaserOperators()
+			  Site.getLaserOperators()
 					.success(function(data) {
 						$scope.operators = data;
 		      })

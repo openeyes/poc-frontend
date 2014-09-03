@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name openeyesApp.service:Sites
+ * @name openeyesApp.service:Site
  * @description
  * # patientSearch
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .factory('Sites', ['$http', 'ENV', function($http, ENV) {
+  .factory('Site', ['$http', 'ENV', function($http, ENV) {
 
     return {
       getSites: function(){
