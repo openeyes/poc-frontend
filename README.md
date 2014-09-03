@@ -11,6 +11,7 @@ Sass (`gem install sass --version 3.2.18`)
 ###Install globally:
 
 `npm install -g grunt-cli`
+`npm install -g bower`
 
 ###Install (in the project root):
 
