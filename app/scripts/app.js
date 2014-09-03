@@ -40,6 +40,10 @@ angular
         controller: 'PatientCtrl'
       })
       .when('/patient/:patientId/event/create', {
+        templateUrl: 'views/event-create.html',
+        controller: 'EventCtrl'
+      })
+      .when('/patient/:patientId/event/:eventId', {
         templateUrl: 'views/event.html',
         controller: 'EventCtrl'
       })
