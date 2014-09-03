@@ -18,7 +18,8 @@ angular.module('openeyesApp')
         });
       },
       getLasersForSite: function(id){
-        var apiCall = (ENV.name === 'dev') ? ENV.host + ENV.apiEndpoints.siteLasers.replace('<id>', id) : ENV.apiEndpoints.siteLasers + id;
+        // var apiCall = (ENV.name === 'dev') ? ENV.host + ENV.apiEndpoints.siteLasers.replace('<id>', id) : ENV.apiEndpoints.siteLasers + id;
+        var apiCall = ENV.host + ENV.apiEndpoints.siteLasers.replace('<id>', id);
         return $http({
           method: 'GET',
           url: apiCall

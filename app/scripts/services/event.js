@@ -12,14 +12,16 @@ angular.module('openeyesApp')
 
     return {
       getEventsForPatient: function(patientId){
-        var apiCall = (ENV.name === 'dev') ? ENV.host + ENV.apiEndpoints.patientEvents.replace('<id>', patientId) : ENV.apiEndpoints.patientEvents + patientId;
+        // var apiCall = (ENV.name === 'dev') ? ENV.host + ENV.apiEndpoints.patientEvents.replace('<id>', patientId) : ENV.apiEndpoints.patientEvents + patientId;
+        var apiCall = ENV.host + ENV.apiEndpoints.patientEvents.replace('<id>', patientId);
         return $http({
           method: 'GET',
           url: apiCall
         });
       },
       getEvent: function(patientId, eventId){
-        var apiCall = (ENV.name === 'dev') ? ENV.host + ENV.apiEndpoints.event.replace('<pid>', patientId).replace('<eid>', eventId) : ENV.apiEndpoints.event + patientId + '/' + eventId;
+        // var apiCall = (ENV.name === 'dev') ? ENV.host + ENV.apiEndpoints.event.replace('<pid>', patientId).replace('<eid>', eventId) : ENV.apiEndpoints.event + patientId + '/' + eventId;
+        var apiCall = ENV.host + ENV.apiEndpoints.event.replace('<pid>', patientId).replace('<eid>', eventId);
         return $http({
           method: 'GET',
           url: apiCall
