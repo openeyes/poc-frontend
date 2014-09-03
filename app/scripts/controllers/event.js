@@ -11,12 +11,16 @@ angular.module('openeyesApp')
 	.controller('EventCtrl', function ($scope, $window, $routeParams, Event) {
 
 		$scope.event = null;
+		$scope.mode = 'edit';
 
 		function loadEvent(patientId, eventId){
 			console.log('loading event', eventId);
 			Event.getEvent(patientId, eventId)
 				.success(function(data) {
 					$scope.event = data;
+
+					$scope.eyedraws.left.value = data.leftEye;
+					$scope.eyedraws.right.value = data.rightEye;
 	      })
 	      .error(function(data, status, headers, config) {
 					console.log(data, status, headers, config);
@@ -24,6 +28,7 @@ angular.module('openeyesApp')
 		}
 
 		if($routeParams.patientId && $routeParams.eventId){
+			$scope.mode = 'view';
 			loadEvent($routeParams.patientId, $routeParams.eventId);
 		}
 
@@ -54,13 +59,13 @@ angular.module('openeyesApp')
 
 		$scope.eyedraws = {
 			right: {
-				value: '',
+				value: [],
 				options: angular.extend({}, eyedrawOptions, {
 					eye: 1
 				})
 			},
 			left: {
-				value: '',
+				value: [],
 				options: angular.extend({}, eyedrawOptions, {
 					eye: 2
 				})
