@@ -64,6 +64,11 @@ angular.module('openeyesApp')
 			}
 		};
 
+		$scope.procedures = {
+			right: [],
+			left: []
+		};
+
 		$scope.cancel = function() {
 			$window.history.back();
 		};

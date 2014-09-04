@@ -8,11 +8,12 @@
 		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 		<!-- build:css(.) styles/vendor.css -->
 		<!-- bower:css -->
+		<link rel="stylesheet" href="bower_components/chosen/chosen.css" />
 		<!-- endbower -->
 		<!-- endbuild -->
 		<!-- build:css(.tmp) styles/main.css -->
-		<link rel="stylesheet" href="styles/main.css">
 		<link rel="stylesheet" href="eyedraw/css/oe-eyedraw.css">
+		<link rel="stylesheet" href="styles/main.css">
 		<!-- endbuild -->
 	</head>
 	<body ng-app="openeyesApp">
@@ -20,13 +21,16 @@
 			<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 		<![endif]-->
 
-		<nav class="navbar navbar-default" role="navigation">
+		<nav class="navbar navbar-default" role="navigation" ng-controller="NavCtrl">
 			<div class="container">
 				<a class="navbar-brand" href="#">OpenEyes</a>
 				<ul class="nav navbar-nav pull-right">
-					<li class="active"><a ng-href="#">Home</a></li>
-					<li><a ng-href="#/about">About</a></li>
-					<li><a ng-href="#/two-col">Two col</a></li>
+					<li ng-class="{ active: isActive('/') || isActive('/search') }">
+						<a ng-href="#">Home</a>
+					</li>
+					<li ng-class="{ active: isActive('/about') }">
+						<a ng-href="#/about">About</a>
+					</li>
 				</ul>
 			</div>
 		</nav>
@@ -85,10 +89,12 @@
 		<script src="bower_components/angular-route/angular-route.js"></script>
 		<script src="bower_components/eventemitter2/lib/eventemitter2.js"></script>
 		<script src="bower_components/mustache/mustache.js"></script>
+		<script src="bower_components/chosen/chosen.jquery.js"></script>
+		<script src="bower_components/angular-chosen-localytics/chosen.js"></script>
 		<!-- endbower -->
 		<!-- endbuild -->
 
-		<!-- build:js({.tmp,app}) scripts/config.js -->		
+		<!-- build:js({.tmp,app}) scripts/config.js -->
 		<script src="scripts/config.js"></script>
 		<!-- endbuild -->
 		<!-- build:js({.tmp,app}) scripts/scripts.js -->
@@ -96,15 +102,17 @@
 		<script src="scripts/services/patientSearch.js"></script>
 		<script src="scripts/services/patient.js"></script>
 		<script src="scripts/services/site.js"></script>
-		<script src="scripts/services/event.js"></script>		
+		<script src="scripts/services/event.js"></script>
+		<script src="scripts/services/procedure.js"></script>
 		<script src="scripts/controllers/main.js"></script>
 		<script src="scripts/controllers/search.js"></script>
 		<script src="scripts/controllers/patient.js"></script>
 		<script src="scripts/controllers/about.js"></script>
 		<script src="scripts/controllers/event.js"></script>
-		<script src="scripts/controllers/two-col.js"></script>
+		<script src="scripts/controllers/nav.js"></script>
 		<script src="scripts/directives/lasersite.js"></script>
 		<script src="scripts/directives/eyedraw.js"></script>
+		<script src="scripts/directives/procedureselection.js"></script>
 		<script src="eyedraw/js/eyedraw.js"></script>
 		<script src="eyedraw/js/oe-eyedraw.js"></script>
 		<!-- endbuild -->

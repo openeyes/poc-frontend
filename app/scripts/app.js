@@ -16,6 +16,7 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
+    'localytics.directives',
     'config'
   ])
   .config(function ($routeProvider) {
@@ -30,10 +31,6 @@ angular
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
-      })
-      .when('/two-col', {
-        templateUrl: 'views/two-col.html',
-        controller: 'TwoColCtrl'
       })
       .when('/patient/:patientId', {
         templateUrl: 'views/patient.html',
