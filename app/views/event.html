@@ -1,9 +1,22 @@
-<p>{{ event.name }}</p>
-<p>{{ event.site }}</p>
-<p>{{ event.laser }}</p>
-<p>{{ event.laserOperator }}</p>
+<h2>{{ event.name }}</h2>
 
 <section class="element">
+	<h3>Site</h3>
+	<div class="row">
+		<div class="col-xs-2">Site:</div>
+		<div class="col-xs-4">{{ event.site }}</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-2">Laser:</div>
+		<div class="col-xs-4">{{ event.laser }}</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-2">Operater:</div>
+		<div class="col-xs-4">{{ event.laserOperator }}</div>
+	</div>
+</section>
+
+<section class="element" ng-if="eyedraws.right.data.length || eyedraws.left.data.length">
 	<h3>Anterior Segment</h3>
 	<div class="row">
 		<div class="col-xs-6">

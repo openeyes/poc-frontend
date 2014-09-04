@@ -1,18 +1,25 @@
-<div class="row">
-	<div class="col-md-12">
-		<label for="site">Site:</label> 
-		<select name="site" id="" ng-model="selectedSite" ng-change="siteSelected()" ng-options="site.name for site in sites">
-		</select>
-		<p>Please select a site to see the list of available lasers.</p>
-	</div>
-	<div class="col-md-12">
-		<label for="laser">Laser:</label> 
-		<select name="laser" id="" ng-model="selectedLaser" ng-change="laserSelected()" ng-options="laser.name for laser in lasers">
+<div class="form-group">
+	<label for="site" class="col-xs-2 control-label">Site:</label>
+	<div class="col-xs-4">
+		<select class="form-control" name="site" id="site" ng-model="selectedSite" ng-change="siteSelected()" ng-options="site.name for site in sites">
 		</select>
 	</div>
-	<div class="col-md-12">
-		<label for="laser">Laser operator:</label> 
-		<select name="laser" id="" ng-model="selectedOperator" ng-change="operatorSelected()" ng-options="operator.name for operator in operators">
+</div>
+<div class="col-xs-offset-2">
+<p class="help-block"><span class="glyphicon glyphicon-info-sign"></span> Please select a site to see the list of available lasers.</p>
+</div>
+
+<div class="form-group">
+	<label for="laser" class="col-xs-2 control-label">Laser:</label>
+	<div class="col-xs-4">
+		<select class="form-control" name="laser" id="laser" ng-model="selectedLaser" ng-change="laserSelected()" ng-options="laser.name for laser in lasers">
+		</select>
+	</div>
+</div>
+<div class="form-group">
+	<label for="operator" class="col-xs-2 control-label">Laser operator:</label>
+	<div class="col-xs-4">
+		<select class="form-control" name="operator" id="operator" ng-model="selectedOperator" ng-change="operatorSelected()" ng-options="operator.name for operator in operators">
 		</select>
 	</div>
 </div>
