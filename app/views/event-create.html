@@ -2,7 +2,7 @@
 
 
 <div class="btn-group pull-right">
-	<button class="btn btn-primary">Save event</button>
+	<button class="btn btn-primary" ng-click="save()">Save event</button>
 	<button class="btn btn-default" ng-click="cancel()">Cancel</button>
 </div>
 
@@ -12,7 +12,7 @@
 
 	<section class="element">
 		<h3>Site</h3>
-		<lasersite></lasersite>
+		<lasersite selected-site="selectedSite" selected-laser="selectedLaser" selected-operator="selectedOperator"></lasersite>
 	</section>
 
 	<section class="element">

@@ -20,7 +20,11 @@ angular.module('openeyesApp')
 
 		return {
 			restrict: 'EA', //E = element, A = attribute, C = class, M = comment         
-			scope: {},
+			scope: {
+				selectedSite: '=selectedSite',
+				selectedLaser: '=selectedLaser',
+				selectedOperator: '=selectedOperator'
+			},
 			templateUrl: 'views/directives/lasersite.html',
 			controller: ctrl, //Embed a custom controller in the directive
 			link: function ($scope) {
