@@ -2,6 +2,6 @@
 
  angular.module('config', [])
 
-.constant('ENV', {name:'dev',host:'http://localhost:8080',apiEndpoints:{patients:'/data/patients.json',patient:'/data/patient-<id>.json',sites:'/data/sites.json',siteLasers:'/data/lasers-site-<id>.json',laserOperators:'/data/laser-operators.json',patientEvents:'/data/patient-<id>-events.json',event:'/data/patient-<pid>-event-<eid>.json',procedures:'/data/procedures.json'}})
+.constant('ENV', {name:'dev',host:'http://localhost:8080',apiEndpoints:{patients:'/patient/?searchTerm=:term',patient:'/patient/:id',sites:'/site',siteLasers:'/laser/?siteId=:id',laserOperators:'/laser-operator',patientEvents:'/data/patient-<id>-events.json',event:'/data/patient-<pid>-event-<eid>.json',procedures:'/data/procedures.json'}})
 
 ;
