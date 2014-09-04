@@ -19,8 +19,6 @@ insert_final_newline = true
 [*.md]
 trim_trailing_whitespace = false
 
-[package.json]
-
-# This is consistent with how npm formats the package.json file
+[{package.json,bower.json}]
 indent_style = space
 indent_size = 2
