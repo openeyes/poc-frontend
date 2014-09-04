@@ -12,19 +12,26 @@ angular.module('openeyesApp')
 
     return {
       getEventsForPatient: function(patientId){
-        // var apiCall = (ENV.name === 'dev') ? ENV.host + ENV.apiEndpoints.patientEvents.replace('<id>', patientId) : ENV.apiEndpoints.patientEvents + patientId;
-        var apiCall = ENV.host + ENV.apiEndpoints.patientEvents.replace('<id>', patientId);
+        var apiCall = ENV.host + ENV.apiEndpoints.patientEvents.replace(':id', patientId);
         return $http({
           method: 'GET',
           url: apiCall
         });
       },
-      getEvent: function(patientId, eventId){
-        var apiCall = (ENV.name === 'dev') ? 'http://localhost:9000' + ENV.apiEndpoints.event.replace('<pid>', patientId).replace('<eid>', eventId) : ENV.apiEndpoints.event + patientId + '/' + eventId;
-        // var apiCall = ENV.host + ENV.apiEndpoints.event.replace('<pid>', patientId).replace('<eid>', eventId);
+      getEvent: function(eventId){
+        var apiCall = ENV.host + ENV.apiEndpoints.laserEvent.replace(':id', eventId);
         return $http({
           method: 'GET',
           url: apiCall
+        });
+      },
+      create: function(body){
+        var apiCall = ENV.host + ENV.apiEndpoints.createLaserEvent;
+        console.log(apiCall);
+        return $http({
+          method: 'POST',
+          url: apiCall,
+          data: body
         });
       }
     };
