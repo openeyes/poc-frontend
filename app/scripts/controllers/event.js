@@ -73,6 +73,10 @@ angular.module('openeyesApp')
 			$window.history.back();
 		};
 
+		$scope.navToPatient = function(){
+			$location.path('/patient/' + $routeParams.patientId);
+		};
+
 		$scope.save = function(){
 
 			var laserEvent = {};
@@ -96,7 +100,7 @@ angular.module('openeyesApp')
 			Event.create(laserEvent)
 				.success(function(data) {
 					console.log('success', data);
-					$location.path('/patient/' + $routeParams.patientId);
+					$scope.navToPatient();
 	      })
 	      .error(function(data, status, headers, config) {
 					console.log(data, status, headers, config);

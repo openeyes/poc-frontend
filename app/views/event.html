@@ -1,4 +1,10 @@
-<h2>Laser Event {{ event.createdAt | date:'dd/MM/yyyy @ h:mma' }}</h2>
+<div class="row">
+	<h2 class="pull-left">Laser Event {{ event.createdAt | date:'dd/MM/yyyy @ h:mma' }}</h2>
+	
+	<div class="btn-group pull-right">
+		<button class="btn btn-primary" ng-click="navToPatient()">Back to patient</button>
+	</div>
+</div>
 
 <section class="">
 	<div class="row">
