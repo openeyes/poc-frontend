@@ -19,8 +19,8 @@ angular.module('openeyesApp')
 				.success(function(data) {
 					$scope.event = data;
 
-					$scope.eyedraws.left.value = data.leftEye;
-					$scope.eyedraws.right.value = data.rightEye;
+					$scope.eyedraws.left.data = data.leftEye;
+					$scope.eyedraws.right.data = data.rightEye;
 	      })
 	      .error(function(data, status, headers, config) {
 					console.log(data, status, headers, config);
@@ -34,22 +34,14 @@ angular.module('openeyesApp')
 
 		var eyedrawOptions = {
 			doodles: [
-				{
-					name: 'Laser Spot',
-					className: 'LaserSpot'
-				},
-				{
-					name: 'Focal laser',
-					className: 'FocalLaser'
-				},
-				{
-					name: 'Macular grid laser',
-					className: 'MacularGrid'
-				},
-				{
-					name: 'Label',
-					className: 'Label'
-				}
+				'NuclearCataract',
+				'CorticalCataract',
+				'PostSubcapCataract',
+				'PCIOL',
+				'ACIOL',
+				'Bleb',
+				'PI',
+				'Label'
 			],
 			onReadyCommandArray: [
 				['addDoodle', ['AntSeg']],
@@ -59,13 +51,13 @@ angular.module('openeyesApp')
 
 		$scope.eyedraws = {
 			right: {
-				value: [],
+				data: [],
 				options: angular.extend({}, eyedrawOptions, {
 					eye: 1
 				})
 			},
 			left: {
-				value: [],
+				data: [],
 				options: angular.extend({}, eyedrawOptions, {
 					eye: 2
 				})

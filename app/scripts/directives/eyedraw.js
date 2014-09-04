@@ -3,73 +3,84 @@
 /**
  * @ngdoc function
  * @name openeyesApp.directive:eyedraw
+
  * @description
- * # EventCtrl
- * EyeDraw directive
+ * This EyeDraw directive will handle the initiation of an eyedraw instance and
+ * accepts the following attributes:
+ *
+ * data:    The data model used for storing eyedraw data
+ * options: key:value options for the eyedraw lib
+ * mode:    "edit" or "view"
+ *
+ * If the "mode" is set to "view" then data is required to initiate the eyedraw.
+ *
+ * @example
+ * <div ng-init="data=[]">
+ *   <eyedraw data="data" options='{"doodles": ["NuclearCataract"]}' mode="edit"></eyedraw>
+ * </div>
  */
 
 angular.module('openeyesApp')
-	.directive('eyedraw', function() {
-
-		var c = 0;
-		var defaultOptions = {
-			scale: 1,
-			toggleScale: 0,
-			idSuffix: '',
-			isEditable: false,
-			focus: false,
-			graphicsPath: '/eyedraw/img/',
-			offsetX: 0,
-			offsetY: 0,
-			toImage: false
-		};
+	.factory('EyeDraw', function($window){
+		return $window.ED;
+	})
+	.constant('eyedrawOptions', {
+		scale: 1,
+		focus: false,
+		graphicsPath: '/eyedraw/img/',
+		offsetX: 0,
+		offsetY: 0,
+		toImage: false
+	})
+	.directive('eyedraw', function(EyeDraw, eyedrawOptions, $timeout) {
 
 		var init = {
 			// Initiate the eyedraw in view mode.
-			view: function($scope, options) {
-				var hasInit = false;
+			view: function($scope) {
 				// Only initiate the eyedraw once we have some data.
-				$scope.$watch('data', function() {
-					var hasData = ($scope.data && $scope.data.length);
-					if (hasData && !hasInit) {
-						hasInit = true;
-						window.ED.init(options);
+				var unbindWatcher = $scope.$watch('data', function(data) {
+					if (data && data.length) {
+						EyeDraw.init($scope.options);
+						unbindWatcher();
 					}
 				});
 			},
 			// Initiate the eyedraw in edit mode.
-			edit: function($scope, options) {
+			edit: function($scope) {
 				// Only initiate the eyedraw once the $scope has been applied.
-				// We could alternatively use $scope.$apply() to immediately compile the template.
-				$scope.$watch('canvasId', function() {
-					window.ED.init(options);
-				}, true);
+				// This is necessary as we're generating required scope vars in the same event loop.
+				$timeout(function() {
+					EyeDraw.init($scope.options);
+				});
 			}
 		};
 
+		var id = 0;
+
+		function getOptions($scope, options) {
+			id++;
+			return angular.extend({
+				isEditable: ($scope.mode === 'edit'),
+				canvasId: 'canvas-id-'+id,
+				inputId: 'input-id-'+id,
+				drawingName: 'drawing-name-'+id
+			}, eyedrawOptions, options);
+		}
+
 		function link($scope, element, attr) {
 
-			var id = ++c;
-
-			$scope.canvasId = 'canvas-id-'+id;
-			$scope.inputId = 'input-id-'+id;
-			$scope.drawingName = 'drawing-name-'+id;
 			$scope.mode = attr.mode;
+			$scope.options = getOptions($scope, $scope.$eval(attr.options));
+			$scope.getTitle = function getTitle(className) {
+				return EyeDraw.titles[className];
+			};
 
-			var options = angular.extend({}, defaultOptions, $scope.options, {
-				isEditable: (attr.mode === 'edit'),
-				canvasId: $scope.canvasId,
-				inputId: $scope.inputId,
-				drawingName: $scope.drawingName,
-			});
-
-			init[attr.mode]($scope, options);
+			init[attr.mode]($scope);
 		}
 
 		return {
 			scope: {
-				data: '=ngModel',
-				options: '=options'
+				data: '=data',
 			},
 			replace: true,
 			restrict: 'AE',
