@@ -5,7 +5,7 @@
 		<!-- <a href="/#/patient/{{ patient.id }}/events" class="btn btn-primary">View events</a> -->
 		<h3>Events</h3>
 		<ul class="list-group">
-			<li class="list-group-item" ng-repeat="ev in events"><a href="/#/patient/{{ patientId }}/event/{{ ev.id }}">{{ ev.name }}</a></li>
+			<li class="list-group-item" ng-repeat="ev in events"><a href="/#/patient/{{ patientId }}/event/{{ ev._id.$oid }}">Laser Event {{ ev.createdAt | date:'dd/MM/yyyy @ h:mma' }}</a></li>
 		</ul>
 	</div>
 	<div class="col-md-9 col-xs-9">
