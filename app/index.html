@@ -11,8 +11,9 @@
 		<!-- endbower -->
 		<!-- endbuild -->
 		<!-- build:css(.tmp) styles/main.css -->
-		<link rel="stylesheet" href="styles/main.css">
+		<link rel="stylesheet" href="bower_components/chosen/chosen.css">
 		<link rel="stylesheet" href="eyedraw/css/oe-eyedraw.css">
+		<link rel="stylesheet" href="styles/main.css">
 		<!-- endbuild -->
 	</head>
 	<body ng-app="openeyesApp">
@@ -85,18 +86,21 @@
 		<script src="bower_components/angular-route/angular-route.js"></script>
 		<script src="bower_components/eventemitter2/lib/eventemitter2.js"></script>
 		<script src="bower_components/mustache/mustache.js"></script>
+		<script src="bower_components/angular-chosen-localytics/chosen.js"></script>
 		<!-- endbower -->
 		<!-- endbuild -->
 
-		<!-- build:js({.tmp,app}) scripts/config.js -->		
+		<!-- build:js({.tmp,app}) scripts/config.js -->
 		<script src="scripts/config.js"></script>
 		<!-- endbuild -->
 		<!-- build:js({.tmp,app}) scripts/scripts.js -->
+		<script src="bower_components/chosen/chosen.jquery.js"></script>
 		<script src="scripts/app.js"></script>
 		<script src="scripts/services/patientSearch.js"></script>
 		<script src="scripts/services/patient.js"></script>
 		<script src="scripts/services/site.js"></script>
-		<script src="scripts/services/event.js"></script>		
+		<script src="scripts/services/event.js"></script>
+		<script src="scripts/services/procedure.js"></script>
 		<script src="scripts/controllers/main.js"></script>
 		<script src="scripts/controllers/search.js"></script>
 		<script src="scripts/controllers/patient.js"></script>
@@ -105,6 +109,7 @@
 		<script src="scripts/controllers/two-col.js"></script>
 		<script src="scripts/directives/lasersite.js"></script>
 		<script src="scripts/directives/eyedraw.js"></script>
+		<script src="scripts/directives/procedureselection.js"></script>
 		<script src="eyedraw/js/eyedraw.js"></script>
 		<script src="eyedraw/js/oe-eyedraw.js"></script>
 		<!-- endbuild -->
