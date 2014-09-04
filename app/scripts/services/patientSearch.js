@@ -14,7 +14,6 @@ angular.module('openeyesApp')
       findPatients: function(searchTerm){
         searchTerm = encodeURIComponent(searchTerm);
         var apiCall = ENV.host + ENV.apiEndpoints.patients.replace(':term', searchTerm);
-        console.log(apiCall);
         return $http({
           method: 'GET',
           url: apiCall

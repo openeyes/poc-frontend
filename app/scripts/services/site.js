@@ -19,7 +19,6 @@ angular.module('openeyesApp')
       },
       getLasersForSite: function(id){
         var apiCall = ENV.host + ENV.apiEndpoints.siteLasers.replace(':id', id);
-        console.log(apiCall);
         return $http({
           method: 'GET',
           url: apiCall
