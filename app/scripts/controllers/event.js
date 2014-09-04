@@ -8,14 +8,14 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-	.controller('EventCtrl', function ($scope, $window, $routeParams, Event) {
+	.controller('EventCtrl', function ($scope, $window, $routeParams, $location, Event) {
 
 		$scope.event = null;
 		$scope.mode = 'edit';
 
-		function loadEvent(patientId, eventId){
+		function loadEvent(eventId){
 			console.log('loading event', eventId);
-			Event.getEvent(patientId, eventId)
+			Event.getEvent(eventId)
 				.success(function(data) {
 					$scope.event = data;
 
@@ -29,7 +29,7 @@ angular.module('openeyesApp')
 
 		if($routeParams.patientId && $routeParams.eventId){
 			$scope.mode = 'view';
-			loadEvent($routeParams.patientId, $routeParams.eventId);
+			loadEvent($routeParams.eventId);
 		}
 
 		var eyedrawOptions = {
@@ -74,30 +74,33 @@ angular.module('openeyesApp')
 		};
 
 		$scope.save = function(){
-			console.log('Saving event...');
-			// "laser": {
-		 //    "id": "",
-		 //    "codeValue": "",
-		 //    "label": "",
-		 //    "systemId": ""
-			//   },
-			//   "site": {
-			//     "id": "",
-			//     "codeValue": "",
-			//     "label": "",
-			//     "systemId": ""
-			//   }
 
-			// Grab selected laser
-			console.log($scope.selectedSite);
-			console.log($scope.selectedLaser);
-			console.log($scope.selectedOperator);
+			var laserEvent = {};
 
-			// Grab eyedraw data
-			// Need to update this data somehow from the plugin
-			// 
-			console.log($scope.eyedraws.right.data);
-			console.log($scope.eyedraws.left.data);
+			laserEvent.patientId = $routeParams.patientId;
+
+			laserEvent.leftEye = {};
+			laserEvent.leftEye.procedures = $scope.procedures.left;
+			laserEvent.leftEye.anteriorSegment = { data: $scope.eyedraws.left.data };
+
+			laserEvent.rightEye = {};
+			laserEvent.rightEye.procedures = $scope.procedures.right;
+			laserEvent.rightEye.anteriorSegment = { data: $scope.eyedraws.right.data };
+
+			laserEvent.laser = $scope.laserDetails.laser;
+			laserEvent.site = $scope.laserDetails.site;
+			laserEvent.laserOperator = $scope.laserDetails.operator;
+
+			// console.log(laserEvent);
+
+			Event.create(laserEvent)
+				.success(function(data) {
+					console.log('success', data);
+					$location.path('/patient/' + $routeParams.patientId);
+	      })
+	      .error(function(data, status, headers, config) {
+					console.log(data, status, headers, config);
+		    });
 		};
 
 	});
