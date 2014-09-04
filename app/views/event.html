@@ -16,6 +16,40 @@
 	</div>
 </section>
 
+<section class="element">
+	<h3>Treatment</h3>
+	<div class="row">
+		<div class="col-xs-6">
+			<div class="row">
+				<div class="col-xs-4">
+					Procedures:
+				</div>
+				<div class="col-xs-8">
+					<ul>
+						<li ng-repeat="procedure in event.leftProcedures">
+							{{procedure.name}}
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-6">
+			<div class="row">
+				<div class="col-xs-4">
+					Procedures:
+				</div>
+				<div class="col-xs-8">
+					<ul>
+						<li ng-repeat="procedure in event.rightProcedures">
+							{{procedure.name}}
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
 <section class="element" ng-if="eyedraws.right.data.length || eyedraws.left.data.length">
 	<h3>Anterior Segment</h3>
 	<div class="row">

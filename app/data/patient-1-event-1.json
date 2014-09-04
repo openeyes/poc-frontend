@@ -5,5 +5,7 @@
 	"laser": "Laser 1 for site 1",
 	"laserOperator": "Wesley Snipes",
 	"rightEye": [{"scaleLevel": 1,"version":1.1,"subclass":"AntSeg","pupilSize":"Large","apexY":-260,"rotation":0,"pxe":false,"coloboma":false,"colour":"Blue","ectropion":false,"order":0}],
-	"leftEye": [{"scaleLevel": 1,"version":1.1,"subclass":"MacularGrid","apexY":-100,"scaleX":0.70,"scaleY":0.70,"order":0},{"scaleLevel": 1,"version":1.1,"subclass":"AntSeg","pupilSize":"Large","apexY":-260,"rotation":0,"pxe":false,"coloboma":false,"colour":"Blue","ectropion":false,"order":1},{"scaleLevel": 1,"version":1.1,"subclass":"FocalLaser","originX":150,"originY":-150,"apexY":-75,"order":2},{"scaleLevel": 1,"version":1.1,"subclass":"LaserSpot","originX":-130,"originY":16,"scaleX":2.19,"scaleY":2.19,"order":3}]
+	"leftEye": [{"scaleLevel": 1,"version":1.1,"subclass":"MacularGrid","apexY":-100,"scaleX":0.70,"scaleY":0.70,"order":0},{"scaleLevel": 1,"version":1.1,"subclass":"AntSeg","pupilSize":"Large","apexY":-260,"rotation":0,"pxe":false,"coloboma":false,"colour":"Blue","ectropion":false,"order":1},{"scaleLevel": 1,"version":1.1,"subclass":"FocalLaser","originX":150,"originY":-150,"apexY":-75,"order":2},{"scaleLevel": 1,"version":1.1,"subclass":"LaserSpot","originX":-130,"originY":16,"scaleX":2.19,"scaleY":2.19,"order":3}],
+	"rightProcedures": [],
+	"leftProcedures": [{"id": 1,"name": "Dummy procedure 1"},{"id": 2,"name": "Dummy procedure 2"}]
 }
