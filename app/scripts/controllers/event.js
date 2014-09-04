@@ -19,8 +19,8 @@ angular.module('openeyesApp')
 				.success(function(data) {
 					$scope.event = data;
 
-					$scope.eyedraws.left.data = data.leftEye;
-					$scope.eyedraws.right.data = data.rightEye;
+					$scope.eyedraws.left.data = JSON.stringify(data.leftEye);
+					$scope.eyedraws.right.data = JSON.stringify(data.rightEye);
 	      })
 	      .error(function(data, status, headers, config) {
 					console.log(data, status, headers, config);
@@ -51,13 +51,13 @@ angular.module('openeyesApp')
 
 		$scope.eyedraws = {
 			right: {
-				data: [],
+				data: '[]',
 				options: angular.extend({}, eyedrawOptions, {
 					eye: 1
 				})
 			},
 			left: {
-				data: [],
+				data: '[]',
 				options: angular.extend({}, eyedrawOptions, {
 					eye: 2
 				})
