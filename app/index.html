@@ -21,13 +21,16 @@
 			<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 		<![endif]-->
 
-		<nav class="navbar navbar-default" role="navigation">
+		<nav class="navbar navbar-default" role="navigation" ng-controller="NavCtrl">
 			<div class="container">
 				<a class="navbar-brand" href="#">OpenEyes</a>
 				<ul class="nav navbar-nav pull-right">
-					<li class="active"><a ng-href="#">Home</a></li>
-					<li><a ng-href="#/about">About</a></li>
-					<li><a ng-href="#/two-col">Two col</a></li>
+					<li ng-class="{ active: isActive('/') || isActive('/search') }">
+						<a ng-href="#">Home</a>
+					</li>
+					<li ng-class="{ active: isActive('/about') }" class="{{ $location.path() }}">
+						<a ng-href="#/about">About</a>
+					</li>
 				</ul>
 			</div>
 		</nav>
@@ -106,7 +109,7 @@
 		<script src="scripts/controllers/patient.js"></script>
 		<script src="scripts/controllers/about.js"></script>
 		<script src="scripts/controllers/event.js"></script>
-		<script src="scripts/controllers/two-col.js"></script>
+		<script src="scripts/controllers/nav.js"></script>
 		<script src="scripts/directives/lasersite.js"></script>
 		<script src="scripts/directives/eyedraw.js"></script>
 		<script src="scripts/directives/procedureselection.js"></script>
