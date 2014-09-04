@@ -1,6 +1,6 @@
 <h2>{{ event.name }}</h2>
 
-<section class="element">
+<section class="element site">
 	<h3>Site</h3>
 	<div class="row">
 		<div class="col-xs-2">Site:</div>
@@ -16,11 +16,11 @@
 	</div>
 </section>
 
-<section class="element">
+<section class="element treatment">
 	<h3>Treatment</h3>
 	<div class="row">
 		<div class="col-xs-6">
-			<div class="row">
+			<div class="row" ng-if="event.leftProcedures && event.leftProcedures.length">
 				<div class="col-xs-4">
 					Procedures:
 				</div>
@@ -34,7 +34,7 @@
 			</div>
 		</div>
 		<div class="col-xs-6">
-			<div class="row">
+			<div class="row" ng-if="event.rightProcedures && event.rightProcedures.length">
 				<div class="col-xs-4">
 					Procedures:
 				</div>
@@ -50,15 +50,13 @@
 	</div>
 </section>
 
-<section class="element" ng-if="eyedraws.right.data.length || eyedraws.left.data.length">
+<section class="element anterior-segment" ng-if="eyedraws.right.data.length || eyedraws.left.data.length">
 	<h3>Anterior Segment</h3>
 	<div class="row">
 		<div class="col-xs-6">
-			<h4>Right eye</h4>
 			<eyedraw data="eyedraws.right.data" options="{{eyedraws.right.options}}" mode="{{mode}}"></eyedraw>
 		</div>
 		<div class="col-xs-6">
-			<h4>Left eye</h4>
 			<eyedraw data="eyedraws.left.data" options="{{eyedraws.left.options}}" mode="{{mode}}"></eyedraw>
 		</div>
 	</div>
