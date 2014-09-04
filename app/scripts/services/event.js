@@ -20,8 +20,8 @@ angular.module('openeyesApp')
         });
       },
       getEvent: function(patientId, eventId){
-        // var apiCall = (ENV.name === 'dev') ? ENV.host + ENV.apiEndpoints.event.replace('<pid>', patientId).replace('<eid>', eventId) : ENV.apiEndpoints.event + patientId + '/' + eventId;
-        var apiCall = ENV.host + ENV.apiEndpoints.event.replace('<pid>', patientId).replace('<eid>', eventId);
+        var apiCall = (ENV.name === 'dev') ? 'http://localhost:9000' + ENV.apiEndpoints.event.replace('<pid>', patientId).replace('<eid>', eventId) : ENV.apiEndpoints.event + patientId + '/' + eventId;
+        // var apiCall = ENV.host + ENV.apiEndpoints.event.replace('<pid>', patientId).replace('<eid>', eventId);
         return $http({
           method: 'GET',
           url: apiCall
