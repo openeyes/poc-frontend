@@ -10,8 +10,51 @@
 	</div>
 	<div class="col-md-9 col-xs-9">
 		<h2>Patient Details</h2>
-		<p>First name(s): {{ patient.firstName}}</p>
-		<p>Last name: {{ patient.surname }}</p>
-		<p>Gender: {{ patient.gender }}</p>
+		<div class="panel panel-default">
+			<div class="panel-heading">General</div>
+			<div class="panel-body">
+				<p>First name(s): {{ patient.firstName}}</p>
+				<p>Last name: {{ patient.surname }}</p>
+				<p>Gender: {{ patient.gender }}</p>
+				<p>Ethinicity: {{ patient.ethnicity }}</p>
+				<p>D.O.B: {{ patient.dob | date:'shortDate' }}</p>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">Contact</div>
+			<div class="panel-body">
+				<p>Email: {{ patient.contactDetail.email }}</p>
+				<p>Telephone: {{ patient.contactDetail.telephone }}</p>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">Address</div>
+			<div class="panel-body">
+				<p>{{ patient.address.addressLine1 }},<br/> {{ patient.address.addressLine2 }},<br/> {{ patient.address.city }},<br/> {{ patient.address.postcode }}</p>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">Other</div>
+			<div class="panel-body">
+				<p>NHS Number: {{ patient.nhsNumber }}</p>
+				<p>Hospital Number: {{ patient.hospitalNumber }}</p>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">General Practitioner</div>
+			<div class="panel-body">
+				<p>GP: {{ patient.generalPractitioner.firstName }} {{ patient.generalPractitioner.surname }}</p>
+				<p>Email: {{ patient.generalPractitioner.contactDetail.email }}</p>
+				<p>Telephone: {{ patient.generalPractitioner.contactDetail.telephone }}</p>
+				<div class="panel panel-default">
+					<div class="panel-heading">Practice</div>
+					<div class="panel-body">
+						<p>Name: {{ patient.generalPractitioner.practice.name }}</p>
+						<p>Email: {{ patient.generalPractitioner.practice.email }}</p>
+						<p>Telephone: {{ patient.generalPractitioner.practice.telephone }}</p>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
