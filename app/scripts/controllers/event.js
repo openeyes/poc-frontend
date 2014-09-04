@@ -78,6 +78,7 @@ angular.module('openeyesApp')
 
 		$scope.save = function(){
 
+			// Look at extracting this out into a template of class
 			var laserEvent = {};
 
 			laserEvent.patientId = $routeParams.patientId;
