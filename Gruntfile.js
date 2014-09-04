@@ -403,7 +403,7 @@ module.exports = function (grunt) {
         constants: {
           ENV: {
             name: 'dev',
-            host: 'http://localhost:9000',
+            host: 'http://localhost:8080',
             apiEndpoints: grunt.file.readJSON('config/dev.endpoints.json')
           }
         }
