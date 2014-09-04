@@ -4,7 +4,8 @@
   "sites": "/Site",
   "siteLasers": "/Laser/?siteId=:id",
   "laserOperators": "/LaserOperator",
-  "patientEvents": "/data/patient-<id>-events.json",
-  "event": "/data/patient-<pid>-event-<eid>.json",
-  "procedures": "/data/procedures.json"
+  "patientEvents": "/LaserEvent/?patientId=:id",
+  "laserEvent": "/LaserEvent/:id",
+  "createLaserEvent": "/LaserEvent",
+  "procedures": "/Procedure"
 }
