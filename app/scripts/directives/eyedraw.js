@@ -3,9 +3,21 @@
 /**
  * @ngdoc function
  * @name openeyesApp.directive:eyedraw
+
  * @description
- * # EventCtrl
- * EyeDraw directive
+ * This EyeDraw directive will handle the initiation of an eyedraw instance and
+ * accepts the following attributes:
+ *
+ * data:    The data model used for storing eyedraw data
+ * options: key:value options for the eyedraw lib
+ * mode:    "edit" or "view"
+ *
+ * If the "mode" is set to "view" then data is required to initiate the eyedraw.
+ *
+ * @example
+ * <div ng-init="data=[]">
+ *   <eyedraw data="data" options='{"doodles": ["NuclearCataract"]}' mode="edit"></eyedraw>
+ * </div>
  */
 
 angular.module('openeyesApp')
@@ -14,9 +26,6 @@ angular.module('openeyesApp')
 	})
 	.constant('eyedrawOptions', {
 		scale: 1,
-		toggleScale: 0,
-		idSuffix: '',
-		isEditable: false,
 		focus: false,
 		graphicsPath: '/eyedraw/img/',
 		offsetX: 0,
@@ -28,19 +37,18 @@ angular.module('openeyesApp')
 		var init = {
 			// Initiate the eyedraw in view mode.
 			view: function($scope) {
-				var hasInit = false;
 				// Only initiate the eyedraw once we have some data.
-				$scope.$watch('data', function() {
-					var hasData = ($scope.data && $scope.data.length);
-					if (hasData && !hasInit) {
-						hasInit = true;
+				var unbindWatcher = $scope.$watch('data', function(data) {
+					if (data && data.length) {
 						EyeDraw.init($scope.options);
+						unbindWatcher();
 					}
 				});
 			},
 			// Initiate the eyedraw in edit mode.
 			edit: function($scope) {
 				// Only initiate the eyedraw once the $scope has been applied.
+				// This is necessary as we're generating required scope vars in the same event loop.
 				$timeout(function() {
 					EyeDraw.init($scope.options);
 				});
@@ -49,29 +57,30 @@ angular.module('openeyesApp')
 
 		var id = 0;
 
-		function setOptions($scope, attr) {
+		function getOptions($scope, options) {
 			id++;
-			angular.extend($scope.options, eyedrawOptions, {
-				isEditable: (attr.mode === 'edit'),
+			return angular.extend({
+				isEditable: ($scope.mode === 'edit'),
 				canvasId: 'canvas-id-'+id,
 				inputId: 'input-id-'+id,
 				drawingName: 'drawing-name-'+id
-			});
+			}, eyedrawOptions, options);
 		}
 
 		function link($scope, element, attr) {
+
 			$scope.mode = attr.mode;
-			$scope.getTitle = function(className) {
+			$scope.options = getOptions($scope, $scope.$eval(attr.options));
+			$scope.getTitle = function getTitle(className) {
 				return EyeDraw.titles[className];
 			};
-			setOptions($scope, attr)
+
 			init[attr.mode]($scope);
 		}
 
 		return {
 			scope: {
-				data: '=ngModel',
-				options: '=options'
+				data: '=data',
 			},
 			replace: true,
 			restrict: 'AE',
