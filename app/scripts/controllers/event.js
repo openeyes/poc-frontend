@@ -67,5 +67,32 @@ angular.module('openeyesApp')
 		$scope.cancel = function() {
 			$window.history.back();
 		};
-	})
-	;
+
+		$scope.save = function(){
+			console.log('Saving event...');
+			// "laser": {
+		 //    "id": "",
+		 //    "codeValue": "",
+		 //    "label": "",
+		 //    "systemId": ""
+			//   },
+			//   "site": {
+			//     "id": "",
+			//     "codeValue": "",
+			//     "label": "",
+			//     "systemId": ""
+			//   }
+
+			// Grab selected laser
+			console.log($scope.selectedSite);
+			console.log($scope.selectedLaser);
+			console.log($scope.selectedOperator);
+
+			// Grab eyedraw data
+			// Need to update this data somehow from the plugin
+			// 
+			console.log($scope.eyedraws.right.data);
+			console.log($scope.eyedraws.left.data);
+		};
+
+	});
