@@ -1,7 +1,7 @@
 <div class="form-group">
 	<label for="site" class="col-xs-2 control-label">Site:</label>
 	<div class="col-xs-4">
-		<select class="form-control" name="site" id="site" ng-model="selectedSite" ng-change="siteSelected()" ng-options="site.label for site in sites | orderBy:'label'">
+		<select class="form-control" name="site" id="site" ng-model="model.site" ng-change="siteSelected()" ng-options="site.label for site in sites | orderBy:'label'">
 		</select>
 	</div>
 </div>
@@ -12,14 +12,14 @@
 <div class="form-group">
 	<label for="laser" class="col-xs-2 control-label">Laser:</label>
 	<div class="col-xs-4">
-		<select class="form-control" name="laser" id="laser" ng-model="selectedLaser" ng-change="laserSelected()" ng-options="laser.label for laser in lasers | orderBy:'label'">
+		<select class="form-control" name="laser" id="laser" ng-model="model.laser" ng-change="laserSelected()" ng-options="laser.label for laser in lasers | orderBy:'label'">
 		</select>
 	</div>
 </div>
 <div class="form-group">
 	<label for="operator" class="col-xs-2 control-label">Laser operator:</label>
 	<div class="col-xs-4">
-		<select class="form-control" name="operator" id="operator" ng-model="selectedOperator" ng-change="operatorSelected()" ng-options="operator.firstName + ' ' + operator.surname for operator in operators | orderBy: 'surname'">
+		<select class="form-control" name="operator" id="operator" ng-model="model.operator" ng-change="operatorSelected()" ng-options="operator.firstName + ' ' + operator.surname for operator in operators | orderBy: 'surname'">
 		</select>
 	</div>
 </div>

@@ -6,7 +6,7 @@ angular.module('openeyesApp')
 		var ctrl = function($scope){
 			$scope.siteSelected = function(){
 				// Populate laser dropdown for this site
-				Site.getLasersForSite($scope.selectedSite.id)
+				Site.getLasersForSite($scope.model.site.id)
 	      .success(function(data) {
 					$scope.lasers = data;
 	      })
@@ -21,6 +21,7 @@ angular.module('openeyesApp')
 		return {
 			restrict: 'EA', //E = element, A = attribute, C = class, M = comment         
 			scope: {
+				model: '=ngModel',
 				selectedSite: '=selectedSite',
 				selectedLaser: '=selectedLaser',
 				selectedOperator: '=selectedOperator'
