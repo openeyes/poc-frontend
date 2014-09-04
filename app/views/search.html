@@ -5,7 +5,7 @@
 		<div class="input-group input-group-lg">
 			<input type="text" class="form-control" name="query" id="query" ng-model="searchValue" placeholder="Enter your search query.." />
 			<span class="input-group-btn">
-				<button class="btn btn-primary" type="submit">
+				<button class="btn btn-primary" type="submit" ng-disabled="searchValue.length == 0" >
 					<span class="glyphicon glyphicon-search"></span>
 					Search
 				</button>
@@ -15,6 +15,9 @@
 </form>
 <div class="row">
 	<div class="col-md-12">
+		<div class="alert alert-danger" ng-show="!hasResults() && searchPerformed;">
+			<p>No results for {{ currentTerm }}</p>
+		</div>
 		<table class="table table-striped" ng-show="hasResults()">
 			<thead>
 				<tr>

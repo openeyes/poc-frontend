@@ -12,8 +12,11 @@ angular.module('openeyesApp')
 
 		$scope.patients = [];
 		$scope.searchValue = '';
+		$scope.currentTerm = '';
 
 		$scope.getSearchResults = function(){
+			$scope.searchPerformed = true;
+			$scope.currentTerm = $scope.searchValue;
 			PatientSearch.findPatients($scope.searchValue)
 				.success(function(data) {
 					$scope.patients = data;
