@@ -5,5 +5,5 @@
 	data-placeholder="{{placeholder}}"
 	style="width:100%"
 	ng-model="model"
-	ng-options="procedure.name for procedure in options">
+	ng-options="procedure.label for procedure in options | orderBy:'label'">
 	</select>
