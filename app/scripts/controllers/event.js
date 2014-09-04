@@ -14,7 +14,6 @@ angular.module('openeyesApp')
 		$scope.mode = 'edit';
 
 		function loadEvent(eventId){
-			console.log('loading event', eventId);
 			Event.getEvent(eventId)
 				.success(function(data) {
 					$scope.event = data;
