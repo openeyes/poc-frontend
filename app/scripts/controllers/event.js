@@ -64,11 +64,6 @@ angular.module('openeyesApp')
 			}
 		};
 
-		$scope.procedureOptions = [{
-			id: '1',
-			name: 'Dummy procedure'
-		}];
-
 		$scope.procedures = {
 			right: [],
 			left: []
