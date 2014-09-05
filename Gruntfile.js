@@ -425,7 +425,7 @@ module.exports = function (grunt) {
 			},
 			dist: {
 				options: {
-					dest: '.tmp/scripts/config.js',
+					dest: '<%= yeoman.app %>/scripts/config.js',
 					name: 'config',
 					wrap: '"use strict";\n\n {%= __ngModule %}',
 				},
