@@ -16,15 +16,14 @@ Install [Node](http://nodejs.org/download/)
 ###Install globally:
 
 ```
-npm install -g grunt-cli
-npm install -g bower
+sudo npm install -g grunt-cli
+sudo npm install -g bower
 ```
 
 ###Install (in the project root):
 
 ```
-npm install
-bower install
+npm start
 ```
 
 ###Serving with grunt (from the project root)
