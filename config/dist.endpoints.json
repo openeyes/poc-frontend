@@ -1,0 +1,11 @@
+{
+  "patients": "/Patient/?searchTerm=:term",
+  "patient": "/Patient/:id",
+  "sites": "/Site",
+  "siteLasers": "/Laser/?siteId=:id",
+  "laserOperators": "/LaserOperator",
+  "patientEvents": "/LaserEvent/?patientId=:id",
+  "laserEvent": "/LaserEvent/:id",
+  "createLaserEvent": "/LaserEvent",
+  "procedures": "/Procedure"
+}

@@ -1,0 +1,9 @@
+	<select
+	chosen
+	multiple
+	id="{{id}}"
+	data-placeholder="{{placeholder}}"
+	style="width:100%"
+	ng-model="model"
+	ng-options="procedure.label for procedure in options | orderBy:'label'">
+	</select>

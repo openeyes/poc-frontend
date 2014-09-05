@@ -1,0 +1,22 @@
+// NavBar
+
+.navbar-brand {
+	@include text-hide;
+	background: image-url("openeyes-logo.png") no-repeat center center;
+	width: 190px;
+}
+
+.navbar-nav {
+	margin: 0 !important;
+	> li {
+		float: left !important;
+		> a {
+			padding-top: 15px;
+			padding-bottom: 15px;
+		}
+	}
+}
+
+.navbar {
+	border-radius: 4px !important;
+}

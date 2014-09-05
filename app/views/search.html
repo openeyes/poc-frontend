@@ -1,0 +1,38 @@
+<h2>Find a patient</h2>
+<form class="panel panel-default search-form" role="form" ng-submit="getSearchResults()">
+	<div class="form-group panel-body">
+		<label for="query">Query:</label>
+		<div class="input-group input-group-lg">
+			<input type="text" class="form-control" name="query" id="query" ng-model="searchValue" placeholder="Enter your search query.." />
+			<span class="input-group-btn">
+				<button class="btn btn-primary" type="submit" ng-disabled="searchValue.length == 0" >
+					<span class="glyphicon glyphicon-search"></span>
+					Search
+				</button>
+			</span>
+		</div>
+	</div>
+</form>
+<div class="row">
+	<div class="col-md-12">
+		<div class="alert alert-danger" ng-show="!hasResults() && searchPerformed;">
+			<p>No results for {{ currentTerm }}</p>
+		</div>
+		<table class="table table-striped" ng-show="hasResults()">
+			<thead>
+				<tr>
+					<th>Firstname</th>
+					<th>Surname</th>
+					<th>Gender</th>
+					<th>Summary</th>
+				</tr>
+			</thead>
+			<tr ng-repeat="p in patients">
+				<td>{{ p.firstName }}</td>
+				<td>{{ p.surname }}</td>
+				<td>{{ p.gender }}</td>
+				<td><a href="/#/patient/{{ p.id }}">View</a></td>
+			</tr>
+		</table>
+	</div>
+</div>

@@ -1,0 +1,26 @@
+[
+	{
+    "id": 1,
+    "firstName": "Steve",
+    "surname": "Lonie",
+    "gender": "Male"
+	},
+	{
+		"id": 2,
+		"firstName": "Lee",
+		"surname": "Briggs",
+		"gender": "Male"
+	},
+	{
+		"id": 3,
+		"firstName": "Stuart",
+		"surname": "Chinery",
+		"gender": "Male"
+	},
+	{
+		"id": 4,
+		"firstName": "Jamie",
+		"surname": "Neil",
+		"gender": "Male"
+	}
+]
