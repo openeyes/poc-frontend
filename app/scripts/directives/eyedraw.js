@@ -21,9 +21,9 @@
  */
 
 angular.module('openeyesApp')
-	.factory('EyeDraw', function($window){
+	.factory('EyeDraw', ['$window', function($window){
 		return $window.ED;
-	})
+	}])
 	.constant('eyedrawOptions', {
 		scale: 1,
 		focus: false,
@@ -32,7 +32,7 @@ angular.module('openeyesApp')
 		offsetY: 0,
 		toImage: false
 	})
-	.directive('eyedraw', function(EyeDraw, eyedrawOptions, $timeout) {
+	.directive('eyedraw', ['EyeDraw', 'eyedrawOptions', '$timeout', function(EyeDraw, eyedrawOptions, $timeout) {
 
 		var init = {
 			// Initiate the eyedraw in view mode.
@@ -87,4 +87,4 @@ angular.module('openeyesApp')
 			templateUrl: 'views/directives/eyedraw.html',
 			link: link
 		};
-	});
+	}]);

@@ -19,7 +19,7 @@ angular
     'localytics.directives',
     'config'
   ])
-  .config(function ($routeProvider, $httpProvider, ENV) {
+  .config(['$routeProvider', '$httpProvider', 'ENV', function ($routeProvider, $httpProvider, ENV) {
     $routeProvider
       .when('/', {
         redirectTo: '/search'
@@ -55,4 +55,4 @@ angular
       delete $httpProvider.defaults.headers.common['X-Requested-With'];
     }
 
-  });
+  }]);

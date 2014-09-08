@@ -2,15 +2,14 @@
 
 /**
  * @ngdoc function
- * @name openeyesApp.controller:PatientCtrl
+ * @name openeyesApp.controller:NavCtrl
  * @description
- * # PatientCtrl
+ * # NavCtrl
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-	.controller('NavCtrl', function ($scope, $location) {
-
+	.controller('NavCtrl', ['$scope', '$location', function ($scope, $location) {
 		$scope.isActive = function (location) {
-				return location === $location.path();
+			return location === $location.path();
 		};
-	});
+	}]);

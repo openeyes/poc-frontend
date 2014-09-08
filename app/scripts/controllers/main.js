@@ -8,10 +8,10 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-	.controller('MainCtrl', function ($scope) {
+	.controller('MainCtrl', ['$scope', function ($scope) {
 		$scope.awesomeThings = [
 			'HTML5 Boilerplate',
 			'AngularJS',
 			'Karma'
 		];
-	});
+	}]);

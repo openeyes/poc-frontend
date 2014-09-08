@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('openeyesApp')
-	.directive('lasersite', function (Site) {
+	.directive('lasersite', ['Site', function (Site) {
 
 		var ctrl = function($scope){
 			$scope.siteSelected = function(){
@@ -22,9 +22,6 @@ angular.module('openeyesApp')
 			restrict: 'EA', //E = element, A = attribute, C = class, M = comment         
 			scope: {
 				model: '=ngModel',
-				selectedSite: '=selectedSite',
-				selectedLaser: '=selectedLaser',
-				selectedOperator: '=selectedOperator'
 			},
 			templateUrl: 'views/directives/lasersite.html',
 			controller: ctrl, //Embed a custom controller in the directive
@@ -47,4 +44,4 @@ angular.module('openeyesApp')
 			    });
 			}
 		};
-	});
+	}]);

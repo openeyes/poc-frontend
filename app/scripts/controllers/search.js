@@ -8,7 +8,7 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-	.controller('SearchCtrl', function ($scope, PatientSearch) {
+	.controller('SearchCtrl', ['$scope', 'PatientSearch', function ($scope, PatientSearch) {
 
 		$scope.patients = [];
 		$scope.searchValue = '';
@@ -30,4 +30,4 @@ angular.module('openeyesApp')
 			return $scope.patients.length;
 		};
 
-	});
+	}]);

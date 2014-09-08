@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('openeyesApp')
-	.directive('procedureSelection', function (Procedure) {
+	.directive('procedureSelection', ['Procedure', function (Procedure) {
 
 		return {
 			restrict: 'E', //E = element, A = attribute, C = class, M = comment
@@ -21,4 +21,4 @@ angular.module('openeyesApp')
 					});
 			}
 		};
-	});
+	}]);
