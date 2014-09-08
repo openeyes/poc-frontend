@@ -1,9 +1,11 @@
 <h2>Find a patient</h2>
 <form class="panel panel-default search-form" role="form" ng-submit="getSearchResults()">
-	<div class="form-group panel-body">
-		<label for="query">Query:</label>
+	<div class="form-group panel-body has-feedback">
+		<label class="control-label" for="query">Query:</label>
 		<div class="input-group input-group-lg">
-			<input type="text" class="form-control" name="query" id="query" ng-model="searchValue" placeholder="Enter your search query.." />
+
+			<input type="text" class="form-control" name="query" id="query" ng-model="searchValue" required autofocus placeholder="Enter your search query.." />
+
 			<span class="input-group-btn">
 				<button class="btn btn-primary" type="submit" ng-disabled="searchValue.length == 0" >
 					<span class="glyphicon glyphicon-search"></span>

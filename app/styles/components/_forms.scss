@@ -7,3 +7,10 @@
 		text-align: left;
 	}
 }
+
+// Validation states
+.ng-invalid {
+	&.ng-dirty {
+		@extend .has-error;
+	}
+}
