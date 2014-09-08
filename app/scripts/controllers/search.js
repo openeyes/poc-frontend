@@ -15,10 +15,10 @@ angular.module('openeyesApp')
 		$scope.currentTerm = '';
 
 		$scope.getSearchResults = function(){
-			$scope.searchPerformed = true;
 			$scope.currentTerm = $scope.searchValue;
 			PatientSearch.findPatients($scope.searchValue)
 				.success(function(data) {
+					$scope.searchPerformed = true;
 					$scope.patients = data;
 				})
 				.error(function(data, status, headers, config) {
