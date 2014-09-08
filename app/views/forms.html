@@ -1,0 +1,122 @@
+<div class="alert alert-danger" role="alert" ng-if="hasFormErrors()">
+	<p><strong><span class="glyphicon glyphicon-info-sign"></span> There were errors submitting the form!</strong></p>
+		<ul>
+			<li ng-repeat="(rule, errors) in formErrors()" ng-if="errors.length">
+				{{rule}}:
+				<ul>
+					<li ng-repeat="error in errors">
+						<span ng-if="rule === 'required'">
+							{{error.$name}} is required
+						</span>
+						<span ng-if="rule === 'pattern'">
+							{{error.$name}} is not in the correct format
+						</span>
+						<span ng-if="rule === 'minlength'">
+							{{error.$name}} is not long enough
+						</span>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<form class="form-horizontal panel panel-default" novalidate name="{{formName}}" ng-submit="submit()">
+	<div class="panel-body">
+
+		<div ng-class="{
+			'form-group': true,
+			'has-error': hasFieldError('name')
+		}">
+			<label for="name" class="control-label col-xs-2">Name</label>
+			<div class="col-xs-4">
+				<input name="name" type="text" ng-model="user.name" class="form-control" validate="validations.name" placeholder="Enter your name" />
+				<div class="help-block" ng-show="hasFieldError('name')">
+					<span ng-show="hasFieldError('name', 'required')">This field is required.</span>
+					<span ng-show="hasFieldError('name', 'pattern')">This field is not in the correct format.</span>
+				</div>
+			</div>
+		</div>
+
+		<div ng-class="{
+			'form-group': true,
+			'has-error': hasFieldError('location')
+		}">
+			<label for="location" class="control-label col-xs-2">Location</label>
+			<div class="col-xs-4">
+				<select id="location" name="location" class="form-control" ng-model="user.location" required>
+					<option></option>
+					<option>UK</option>
+				</select>
+				<div class="help-block" ng-show="hasFieldError('location')">
+					<span ng-show="hasFieldError('location', 'required')">This field is required.</span>
+				</div>
+			</div>
+		</div>
+
+		<fieldset ng-class="{
+			'form-group': true,
+			'has-error': hasFieldError('sex')
+		}">
+			<legend class="col-xs-2 control-label">Sex</legend>
+			<div class="col-xs-4">
+				<div class="radio">
+					<label>
+						<input name="sex" type="radio" value="male" ng-model="user.sex" ng-required="!user.sex" />
+						Male
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input name="sex" type="radio" value="female" ng-model="user.sex" ng-required="!user.sex" />
+						Female
+					</label>
+				</div>
+				<div class="help-block" ng-show="hasFieldError('sex')">
+					<span ng-show="hasFieldError('sex', 'required')">This field is required.</span>
+				</div>
+			</div>
+		</fieldset>
+
+		<fieldset ng-class="{
+			'form-group': true,
+			'has-error': hasFieldError('hobbies[]')
+		}">
+			<legend class="col-xs-2 control-label">Hobbies</legend>
+			<div class="col-xs-4">
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" name="hobbies[]" value="reading" ng-model="user.hobbies.reading" ng-required="!hasObjectSelection(user.hobbies, 'hobbies[]')" />
+						Reading
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" name="hobbies[]" value="writing" ng-model="user.hobbies.writing" ng-required="!hasObjectSelection(user.hobbies, 'hobbies[]')" />
+						Writing
+					</label>
+				</div>
+				<div class="help-block" ng-show="hasFieldError('hobbies[]')">
+					<span ng-show="hasFieldError('hobbies[]', 'required')">Please select at least one hobby.</span>
+				</div>
+			</div>
+		</fieldset>
+
+		<div class="form-group">
+			<div class="col-xs-4 col-xs-offset-2">
+				<button class="btn btn-primary" type="submit">Submit</button>
+			</div>
+		</div>
+	</div>
+</form>
+
+<div class="panel panel-default">
+	<div class="panel-body">
+		<div>
+			Data: {{user | json}}
+		</div>
+<!-- 		<div>
+			Errors: {{form.$error | json}}
+		</div> -->
+	</div>
+</div>

@@ -44,6 +44,10 @@ angular
         templateUrl: 'views/event.html',
         controller: 'EventCtrl'
       })
+      .when('/forms', {
+      	templateUrl: 'views/forms.html',
+      	controller: 'FormsCtrl'
+      })
       .otherwise({
         redirectTo: '/search'
       });
