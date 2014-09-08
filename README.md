@@ -39,7 +39,7 @@ This will launch the app at [http://localhost:9000](http://localhost:9000)
 If you're not trying to serve the site locally, you can instead build a static version for distribution and deployment.
 
 ```
-grunt build
+npm run deploy
 ```
 
-This will create a *dist* folder which can be deployed.
+This will install npm / bower dependencies and then create a *dist* folder which can be deployed.
