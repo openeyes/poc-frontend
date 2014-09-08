@@ -4,7 +4,7 @@ angular.module('openeyesApp')
 	.directive('procedureSelection', ['Procedure', function (Procedure) {
 
 		return {
-			restrict: 'E', //E = element, A = attribute, C = class, M = comment
+			restrict: 'AE', //E = element, A = attribute, C = class, M = comment
 			scope: {
 				model: '=ngModel'
 			},
