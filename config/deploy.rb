@@ -21,11 +21,11 @@ namespace :deploy do
     transaction do
       remove_cached_copy
       update_code
-      bundle
+      # bundle
       npm_install
       bower_install
       grunt_build
-      update_symlink
+      create_symlink
     end
   end
 
@@ -49,7 +49,7 @@ namespace :deploy do
   end
 
   task :grunt_build do
-    run "cd #{release_path} && grunt_build"
+    run "cd #{release_path} && grunt build"
   end
 
 end
