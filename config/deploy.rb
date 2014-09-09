@@ -25,6 +25,14 @@ namespace :deploy do
   end
 
   desc <<-DESC
+  Does a full deploy while prompting for the tag to be deployed.
+  DESC
+  task :tag do
+    set_tag
+    full
+  end
+
+  desc <<-DESC
   Removes the cached-copy folder.
   DESC
   task :remove_cached_copy do
@@ -45,6 +53,18 @@ namespace :deploy do
 
   task :grunt_build do
     run "cd #{release_path} && grunt build"
+  end
+
+  desc <<-DESC
+  DESC
+  task :set_tag do
+    set :branch do
+      default_tag = `git tag`.split("\n").last
+
+      tag = Capistrano::CLI.ui.ask "Tag to deploy (make sure to push the tag first): [#{default_tag}] "
+      tag = default_tag if tag.empty?
+      tag
+    end
   end
 
 end
