@@ -178,9 +178,6 @@ module.exports = function (grunt) {
 
 		// Automatically inject Bower components into the app
 		wiredep: {
-			options: {
-				cwd: '<%= yeoman.app %>'
-			},
 			app: {
 				src: ['<%= yeoman.app %>/index.html'],
 				ignorePath:  /\.\.\//
@@ -425,14 +422,14 @@ module.exports = function (grunt) {
 			},
 			dist: {
 				options: {
-					dest: '.tmp/scripts/config.js',
+					dest: '<%= yeoman.dist %>/scripts/config.js',
 					name: 'config',
 					wrap: '"use strict";\n\n {%= __ngModule %}',
 				},
 				constants: {
 					ENV: {
 						name: 'dist',
-						host: 'http://openeyes-uat.headlondon.com',
+						host: 'http://openeyes:Aeno8aiKu0ih@openeyes-api-uat.headlondon.com',
 						apiEndpoints: grunt.file.readJSON('config/dist.endpoints.json')
 					}
 				}

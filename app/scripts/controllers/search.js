@@ -8,17 +8,17 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-	.controller('SearchCtrl', function ($scope, PatientSearch) {
+	.controller('SearchCtrl', ['$scope', 'PatientSearch', function ($scope, PatientSearch) {
 
 		$scope.patients = [];
 		$scope.searchValue = '';
 		$scope.currentTerm = '';
 
 		$scope.getSearchResults = function(){
-			$scope.searchPerformed = true;
 			$scope.currentTerm = $scope.searchValue;
 			PatientSearch.findPatients($scope.searchValue)
 				.success(function(data) {
+					$scope.searchPerformed = true;
 					$scope.patients = data;
 				})
 				.error(function(data, status, headers, config) {
@@ -30,4 +30,4 @@ angular.module('openeyesApp')
 			return $scope.patients.length;
 		};
 
-	});
+	}]);

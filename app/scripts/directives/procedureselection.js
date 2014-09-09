@@ -1,16 +1,16 @@
 'use strict';
 
 angular.module('openeyesApp')
-	.directive('procedureSelection', function (Procedure) {
+	.directive('procedureSelection', ['Procedure', function (Procedure) {
 
 		return {
 			restrict: 'E', //E = element, A = attribute, C = class, M = comment
 			scope: {
-				model: '=ngModel',
-				id: '=id'
+				model: '=ngModel'
 			},
 			templateUrl: 'views/directives/procedureselection.html',
-			link: function ($scope) {
+			link: function ($scope, element, attr) {
+				$scope.id = attr.id;
 				$scope.placeholder = 'Choose a procedure...';
 				Procedure.getProcedures()
 					.success(function(data) {
@@ -21,4 +21,4 @@ angular.module('openeyesApp')
 					});
 			}
 		};
-	});
+	}]);

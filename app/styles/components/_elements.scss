@@ -1,11 +1,6 @@
 // Event Elements
 
 .element {
-	border-top: 1px solid #e5e5e5;
-	margin-top: 20px;
-	&:first-child {
-		margin-top: 0;
-	}
 	&.treatment {
 		ul {
 			padding-left: $grid-gutter-width / 2;

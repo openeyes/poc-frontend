@@ -8,7 +8,7 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('PatientCtrl', function ($scope, $routeParams, PatientSearch, Event) {
+  .controller('PatientCtrl', ['$scope', '$routeParams', 'PatientSearch', 'Event', function ($scope, $routeParams, PatientSearch, Event) {
     
 		$scope.patient = null;
 		$scope.patientId = $routeParams.patientId;
@@ -27,4 +27,4 @@ angular.module('openeyesApp')
       .error(function(data, status, headers, config) {
 				console.log(data, status, headers, config);
 	    });
-  });
+  }]);

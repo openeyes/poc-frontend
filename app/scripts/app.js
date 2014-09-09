@@ -19,7 +19,7 @@ angular
     'localytics.directives',
     'config'
   ])
-  .config(function ($routeProvider) {
+  .config(['$routeProvider', '$httpProvider', 'ENV', function ($routeProvider, $httpProvider, ENV) {
     $routeProvider
       .when('/', {
         redirectTo: '/search'
@@ -47,4 +47,12 @@ angular
       .otherwise({
         redirectTo: '/search'
       });
-  });
+
+    // To allow CORS and ajax with http auth
+    if(ENV.name === 'dist') {
+      $httpProvider.defaults.withCredentials = true;
+      $httpProvider.defaults.useXDomain = true;
+      delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    }
+
+  }]);

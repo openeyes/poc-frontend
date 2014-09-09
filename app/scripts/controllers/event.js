@@ -8,7 +8,7 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-	.controller('EventCtrl', function ($scope, $window, $routeParams, $location, Event) {
+	.controller('EventCtrl', ['$scope', '$window', '$routeParams', '$location', 'Event', function ($scope, $window, $routeParams, $location, Event) {
 
 		$scope.event = null;
 		$scope.mode = 'edit';
@@ -107,4 +107,4 @@ angular.module('openeyesApp')
 		    });
 		};
 
-	});
+	}]);
