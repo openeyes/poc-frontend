@@ -6,6 +6,7 @@ The angular web client for the POC openeyes API
 ###Dependencies:
 
 Sass (`gem install sass --version 3.2.18`)
+Compass (`gem install compass`)
 [Node / npm](http://nodejs.org/download/)
 
 ###Install globally:
