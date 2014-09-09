@@ -11,6 +11,7 @@ angular.module('openeyesApp')
   .factory('Event', ['$http', 'ENV', function($http, ENV) {
 
     return {
+      eventStack: [],
       getEventsForPatient: function(patientId){
         var apiCall = ENV.host + ENV.apiEndpoints.patientEvents.replace(':id', patientId);
         return $http({
@@ -33,6 +34,15 @@ angular.module('openeyesApp')
           url: apiCall,
           data: body
         });
+      },
+      addToEventStack: function(data){
+        this.eventStack.push(data);
+      },
+      getEventStack: function(){
+        return this.eventStack;
+      },
+      clearEventStack: function(){
+        this.eventStack = [];
       }
     };
 

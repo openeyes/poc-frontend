@@ -8,7 +8,7 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-	.controller('EventCtrl', ['$scope', '$window', '$routeParams', '$location', 'Event', function ($scope, $window, $routeParams, $location, Event) {
+	.controller('EventCtrl', ['$scope', '$window', '$routeParams', '$location', '$rootScope', 'Event', function ($scope, $window, $routeParams, $location, $rootScope, Event) {
 
 		$scope.event = null;
 		$scope.mode = 'edit';
@@ -63,11 +63,6 @@ angular.module('openeyesApp')
 			}
 		};
 
-		$scope.procedures = {
-			right: [],
-			left: []
-		};
-
 		$scope.cancel = function() {
 			$window.history.back();
 		};
@@ -77,34 +72,8 @@ angular.module('openeyesApp')
 		};
 
 		$scope.save = function(){
-
-			// Look at extracting this out into a template of class
-			var laserEvent = {};
-
-			laserEvent.patientId = $routeParams.patientId;
-
-			laserEvent.leftEye = {};
-			laserEvent.leftEye.procedures = $scope.procedures.left;
-			laserEvent.leftEye.anteriorSegment = { data: $scope.eyedraws.left.data };
-
-			laserEvent.rightEye = {};
-			laserEvent.rightEye.procedures = $scope.procedures.right;
-			laserEvent.rightEye.anteriorSegment = { data: $scope.eyedraws.right.data };
-
-			laserEvent.laser = $scope.laserDetails.laser;
-			laserEvent.site = $scope.laserDetails.site;
-			laserEvent.laserOperator = $scope.laserDetails.operator;
-
-			// console.log(laserEvent);
-
-			Event.create(laserEvent)
-				.success(function(data) {
-					console.log('success', data);
-					$scope.navToPatient();
-	      })
-	      .error(function(data, status, headers, config) {
-					console.log(data, status, headers, config);
-		    });
+			$rootScope.$broadcast('event.save', {patientId: $routeParams.patientId});
+			// laserEvent.rightEye.anteriorSegment = { data: $scope.eyedraws.right.data };
 		};
 
 	}]);
