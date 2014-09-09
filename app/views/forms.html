@@ -14,6 +14,9 @@
 						<span ng-if="rule === 'minlength'">
 							{{error.$name}} is not long enough
 						</span>
+						<span ng-if="rule === 'maxlength'">
+							{{error.$name}} is too long
+						</span>
 					</li>
 				</ul>
 			</li>
@@ -24,40 +27,32 @@
 <form class="form-horizontal panel panel-default" novalidate name="{{formName}}" ng-submit="submit()">
 	<div class="panel-body">
 
-		<div ng-class="{
-			'form-group': true,
-			'has-error': hasFieldError('name')
-		}">
+		<div class="form-group" oe-validate="name" oe-validate-class-name="has-error">
 			<label for="name" class="control-label col-xs-2">Name</label>
 			<div class="col-xs-4">
-				<input name="name" type="text" ng-model="user.name" class="form-control" validate="validations.name" placeholder="Enter your name" />
-				<div class="help-block" ng-show="hasFieldError('name')">
-					<span ng-show="hasFieldError('name', 'required')">This field is required.</span>
-					<span ng-show="hasFieldError('name', 'pattern')">This field is not in the correct format.</span>
-				</div>
+				<input
+					name="name"
+					type="text"
+					ng-model="user.name"
+					class="form-control"
+					oe-validate-rules="validations.name"
+					placeholder="Enter your name" />
+				<oe-validate-msg name="name"></oe-validate-msg>
 			</div>
 		</div>
 
-		<div ng-class="{
-			'form-group': true,
-			'has-error': hasFieldError('location')
-		}">
+		<div class="form-group" oe-validate="location" oe-validate-class-name="has-error">
 			<label for="location" class="control-label col-xs-2">Location</label>
 			<div class="col-xs-4">
 				<select id="location" name="location" class="form-control" ng-model="user.location" required>
 					<option></option>
 					<option>UK</option>
 				</select>
-				<div class="help-block" ng-show="hasFieldError('location')">
-					<span ng-show="hasFieldError('location', 'required')">This field is required.</span>
-				</div>
+				<oe-validate-msg name="location"></oe-validate-msg>
 			</div>
 		</div>
 
-		<fieldset ng-class="{
-			'form-group': true,
-			'has-error': hasFieldError('sex')
-		}">
+		<fieldset class="form-group" oe-validate="sex" oe-validate-class-name="has-error">
 			<legend class="col-xs-2 control-label">Sex</legend>
 			<div class="col-xs-4">
 				<div class="radio">
@@ -72,35 +67,31 @@
 						Female
 					</label>
 				</div>
-				<div class="help-block" ng-show="hasFieldError('sex')">
-					<span ng-show="hasFieldError('sex', 'required')">This field is required.</span>
-				</div>
+				<oe-validate-msg name="sex"></oe-validate-msg>
 			</div>
 		</fieldset>
 
-		<fieldset ng-class="{
-			'form-group': true,
-			'has-error': hasFieldError('hobbies[]')
-		}">
+		<fieldset class="form-group" oe-validate="hobbies" oe-validate-class-name="has-error">
 			<legend class="col-xs-2 control-label">Hobbies</legend>
 			<div class="col-xs-4">
 				<div class="checkbox">
 					<label>
-						<input type="checkbox" name="hobbies[]" value="reading" ng-model="user.hobbies.reading" ng-required="!hasObjectSelection(user.hobbies, 'hobbies[]')" />
+						<input type="checkbox" name="hobbies" value="reading" ng-model="user.hobbies.reading"
+						  />
 						Reading
 					</label>
 				</div>
 				<div class="checkbox">
 					<label>
-						<input type="checkbox" name="hobbies[]" value="writing" ng-model="user.hobbies.writing" ng-required="!hasObjectSelection(user.hobbies, 'hobbies[]')" />
+						<input type="checkbox" name="hobbies" value="writing" ng-model="user.hobbies.writing"
+						/>
 						Writing
 					</label>
 				</div>
-				<div class="help-block" ng-show="hasFieldError('hobbies[]')">
-					<span ng-show="hasFieldError('hobbies[]', 'required')">Please select at least one hobby.</span>
-				</div>
+				<oe-validate-msg name="hobbies"></oe-validate-msg>
 			</div>
 		</fieldset>
+
 
 		<div class="form-group">
 			<div class="col-xs-4 col-xs-offset-2">
