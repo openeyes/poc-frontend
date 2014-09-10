@@ -69,10 +69,27 @@
 				restrict: 'E',
 				replace: true,
 				scope: true,
-				templateUrl: 'views/directives/fieldValidationMsg.html',
+				templateUrl: 'views/directives/validate-msg.html',
 				controller: ValidationCtrl('name')
 			}
 		}])
+		.directive('oeValidateFormErrors', function($location, $anchorScroll) {
+			return {
+				restrict: 'E',
+				require: '^form',
+				replace: true,
+				scope: true,
+				templateUrl: 'views/directives/validate-form-errors.html',
+				controller: function($scope) {
+					$scope.formErrors = function() {
+						return $scope.submitted ? $scope[$scope.formName].$error : {};
+					};
+					$scope.hasFormErrors = function() {
+						return $scope.submitted && $scope[$scope.formName].$invalid;
+					};
+				}
+			}
+		})
 		.directive('oeValidateRules', ['$compile',function($compile) {
 			function getVal(val) {
 				return angular.isObject(val) ? val.value : val;

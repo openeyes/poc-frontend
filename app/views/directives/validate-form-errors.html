@@ -1,0 +1,24 @@
+<div class="alert alert-danger" role="alert" ng-if="hasFormErrors()">
+	<p><strong><span class="glyphicon glyphicon-info-sign"></span> There were errors submitting the form!</strong></p>
+	<ul>
+		<li ng-repeat="(rule, errors) in formErrors()" ng-if="errors.length">
+			{{rule}}:
+			<ul>
+				<li ng-repeat="error in errors">
+					<span ng-if="rule === 'required'">
+						{{error.$name}} is required
+					</span>
+					<span ng-if="rule === 'pattern'">
+						{{error.$name}} is not in the correct format
+					</span>
+					<span ng-if="rule === 'minlength'">
+						{{error.$name}} is not long enough
+					</span>
+					<span ng-if="rule === 'maxlength'">
+						{{error.$name}} is too long
+					</span>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</div>

@@ -28,6 +28,7 @@ angular.module('openeyesApp')
 			name: {
 				minlength: 2,
 				maxlength: 5,
+				email: true,
 				required: {
 					value: true,
 					msg: 'The name field is definately required'
@@ -53,7 +54,7 @@ angular.module('openeyesApp')
 		// Form submit handler
 		$scope.submit = function() {
 			$scope.submitted = true;
-			if (!$scope.hasFormErrors()) {
+			if ($scope[$scope.formName].$valid) {
 				$window.alert('form will be submitted');
 			}
 		};
@@ -64,14 +65,6 @@ angular.module('openeyesApp')
 			return isDirty(field) && Object.keys(model).some(function(key) {
 				return (model[key] === true);
 			});
-		};
-
-		$scope.formErrors = function() {
-			return $scope.submitted ? $scope[$scope.formName].$error : {};
-		};
-
-		$scope.hasFormErrors = function() {
-			return $scope.submitted && $scope[$scope.formName].$invalid;
 		};
 	}]);
 

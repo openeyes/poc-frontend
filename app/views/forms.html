@@ -1,36 +1,14 @@
-<div class="alert alert-danger" role="alert" ng-if="hasFormErrors()">
-	<p><strong><span class="glyphicon glyphicon-info-sign"></span> There were errors submitting the form!</strong></p>
-		<ul>
-			<li ng-repeat="(rule, errors) in formErrors()" ng-if="errors.length">
-				{{rule}}:
-				<ul>
-					<li ng-repeat="error in errors">
-						<span ng-if="rule === 'required'">
-							{{error.$name}} is required
-						</span>
-						<span ng-if="rule === 'pattern'">
-							{{error.$name}} is not in the correct format
-						</span>
-						<span ng-if="rule === 'minlength'">
-							{{error.$name}} is not long enough
-						</span>
-						<span ng-if="rule === 'maxlength'">
-							{{error.$name}} is too long
-						</span>
-					</li>
-				</ul>
-			</li>
-		</ul>
-	</div>
-</div>
+<oe-validate-form-errors></oe-validate-form-errors>
 
 <form class="form-horizontal panel panel-default" novalidate name="{{formName}}" ng-submit="submit()">
+
 	<div class="panel-body">
 
 		<div class="form-group" oe-validate="name" oe-validate-class-name="has-error">
 			<label for="name" class="control-label col-xs-2">Name</label>
 			<div class="col-xs-4">
 				<input
+					id="name"
 					name="name"
 					type="text"
 					ng-model="user.name"
@@ -44,7 +22,13 @@
 		<div class="form-group" oe-validate="location" oe-validate-class-name="has-error">
 			<label for="location" class="control-label col-xs-2">Location</label>
 			<div class="col-xs-4">
-				<select id="location" name="location" class="form-control" ng-model="user.location" required>
+				<select
+					id="location"
+					name="location"
+					class="form-control"
+					ng-model="user.location"
+					oe-validate-rules="validations.location"
+					>
 					<option></option>
 					<option>UK</option>
 				</select>
@@ -57,7 +41,13 @@
 			<div class="col-xs-4">
 				<div class="radio">
 					<label>
-						<input name="sex" type="radio" value="male" ng-model="user.sex" ng-required="!user.sex" />
+						<input
+							name="sex"
+							type="radio"
+							value="male"
+							ng-model="user.sex"
+							oe-validate-rules="validations.sex"
+						 />
 						Male
 					</label>
 				</div>
