@@ -22,7 +22,7 @@ angular.module('openeyesApp')
 
 		  Site.getLaserOperators()
 				.success(function(data) {
-					$scope.operators = data;
+					$scope.laserOperators = data;
 	      })
 	      .error(function(data, status, headers, config) {
 					console.log(data, status, headers, config);

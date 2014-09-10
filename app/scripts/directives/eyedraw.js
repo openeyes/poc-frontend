@@ -34,7 +34,6 @@ angular.module('openeyesApp')
 			toImage: false
 		},
 		'anterior': {
-			eye: 1,
 			doodles: [
 				'NuclearCataract',
 				'CorticalCataract',
@@ -54,35 +53,62 @@ angular.module('openeyesApp')
 	.constant('eyedrawOptionsAnterior', {
 		
 	})
-	.controller('EyeDrawCtrl', ['$scope', '$timeout', 'EyeDraw', 'eyedrawOptions', function($scope, $timeout, EyeDraw, eyedrawOptions){
+	.controller('EyeDrawCtrl', ['$scope', '$timeout', 'Event', 'EyeDraw', 'eyedrawOptions', function($scope, $timeout, Event, EyeDraw, eyedrawOptions){
+
+		var self = this;
 
 		this.init = function(attr, id){
 
+			this.eyeSide = attr.side;
+			this.attr = attr;
 			$scope.mode = attr.mode;
 			$scope.options = this.getOptions(id, eyedrawOptions[attr.options]);
-
-
 			$scope.getTitle = function getTitle(className) {
 				return EyeDraw.titles[className];
 			};
 
+			//	Listen for save event
+			//	Broadcast by event page controller
+			$scope.$on('event.save', this.broadcastModel);
+
 			this[attr.mode]();
 		};
 
-		this.view = function(){
-			var unbindWatcher = $scope.$watch('data', function(data) {
-				if (data && data.length) {
-					EyeDraw.init($scope.options);
-					unbindWatcher();
+		this.broadcastModel = function(){
+			Event.addToEventStack(self.getModel());
+		};
+
+		this.getModel = function(){
+			return {
+				name: 'eyedraw',
+				subPath: this.eyeSide,
+				model: {
+					anteriorSegment: {
+						'data': $scope.data
+					}
 				}
-			});
+			};
+		};
+
+		this.view = function(){
+			// Force wait till next digest incase data isn't available yet
+			if(self.attr.data){
+				$scope.data = self.attr.data;
+				EyeDraw.init($scope.options);
+			} else {
+				$timeout(function() {
+					self.view();
+				});
+			}
+			
 		};
 
 		this.edit = function(){
+			// In edit mode data is empty to begin with
+			$scope.data = '[]';
 			// Only initiate the eyedraw once the $scope has been applied.
 			// This is necessary as we're generating required scope vars in the same event loop.
 			$timeout(function() {
-				console.log($scope.options);				
 				EyeDraw.init($scope.options);
 			});
 		};

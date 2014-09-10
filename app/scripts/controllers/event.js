@@ -17,9 +17,6 @@ angular.module('openeyesApp')
 			Event.getEvent(eventId)
 				.success(function(data) {
 					$scope.event = data;
-
-					$scope.eyedraws.left.data = JSON.stringify(data.leftEye);
-					$scope.eyedraws.right.data = JSON.stringify(data.rightEye);
 	      })
 	      .error(function(data, status, headers, config) {
 					console.log(data, status, headers, config);
@@ -31,38 +28,6 @@ angular.module('openeyesApp')
 			loadEvent($routeParams.eventId);
 		}
 
-		var eyedrawOptions = {
-			doodles: [
-				'NuclearCataract',
-				'CorticalCataract',
-				'PostSubcapCataract',
-				'PCIOL',
-				'ACIOL',
-				'Bleb',
-				'PI',
-				'Label'
-			],
-			onReadyCommandArray: [
-				['addDoodle', ['AntSeg']],
-				['deselectDoodles', []]
-			]
-		};
-
-		$scope.eyedraws = {
-			right: {
-				data: '[]',
-				options: angular.extend({}, eyedrawOptions, {
-					eye: 1
-				})
-			},
-			left: {
-				data: '[]',
-				options: angular.extend({}, eyedrawOptions, {
-					eye: 2
-				})
-			}
-		};
-
 		$scope.cancel = function() {
 			$window.history.back();
 		};
@@ -73,7 +38,8 @@ angular.module('openeyesApp')
 
 		$scope.save = function(){
 			$rootScope.$broadcast('event.save', {patientId: $routeParams.patientId});
-			// laserEvent.rightEye.anteriorSegment = { data: $scope.eyedraws.right.data };
 		};
+
+		$scope.$on('event.save.complete', $scope.navToPatient);
 
 	}]);

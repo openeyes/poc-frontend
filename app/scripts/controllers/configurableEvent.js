@@ -8,7 +8,7 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-	.controller('ConfigurableEventCtrl', ['$scope', '$compile', '$timeout', 'Event', function ($scope, $compile, $timeout, Event) {
+	.controller('ConfigurableEventCtrl', ['$scope', '$compile', '$timeout', '$rootScope', 'Event', function ($scope, $compile, $timeout, $rootScope, Event) {
 
 		var self = this;
 		//	Pretend to load in some workflow config here
@@ -52,19 +52,18 @@ angular.module('openeyesApp')
 				var postObject = self.buildPostObject();
 				postObject.patientId = params.patientId;
 				console.log(postObject);
-			});
-			
-						// Event.create(laserEvent)
-			// 	.success(function(data) {
-			// 		console.log('success', data);
-			// 		$scope.navToPatient();
-	  //     })
-	  //     .error(function(data, status, headers, config) {
-			// 		console.log(data, status, headers, config);
-		 //    });
 
-			// 	After save clear event stack and broadcast saveComplete
-			//	So that page controller can do cleanup / redirect if necessary
+				Event.create(postObject)
+					.success(function(data) {
+						console.log('success', data);
+						Event.clearEventStack();
+						$rootScope.$broadcast('event.save.complete', {});
+		      })
+		      .error(function(data, status, headers, config) {
+						console.log(data, status, headers, config);
+			    });
+
+			});
 		};
 
 		this.buildPostObject = function(){
