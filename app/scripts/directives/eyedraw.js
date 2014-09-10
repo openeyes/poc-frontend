@@ -34,6 +34,7 @@ angular.module('openeyesApp')
 			toImage: false
 		},
 		'anterior': {
+			eye: 1,
 			doodles: [
 				'NuclearCataract',
 				'CorticalCataract',
@@ -55,14 +56,11 @@ angular.module('openeyesApp')
 	})
 	.controller('EyeDrawCtrl', ['$scope', '$timeout', 'EyeDraw', 'eyedrawOptions', function($scope, $timeout, EyeDraw, eyedrawOptions){
 
-		var id = 0;
-
-		this.init = function(attr){
+		this.init = function(attr, id){
 
 			$scope.mode = attr.mode;
-			$scope.options = this.getOptions(eyedrawOptions[attr.options]);
+			$scope.options = this.getOptions(id, eyedrawOptions[attr.options]);
 
-			console.log($scope.options);
 
 			$scope.getTitle = function getTitle(className) {
 				return EyeDraw.titles[className];
@@ -84,12 +82,12 @@ angular.module('openeyesApp')
 			// Only initiate the eyedraw once the $scope has been applied.
 			// This is necessary as we're generating required scope vars in the same event loop.
 			$timeout(function() {
+				console.log($scope.options);				
 				EyeDraw.init($scope.options);
 			});
 		};
 
-		this.getOptions = function(options){
-			++id;
+		this.getOptions = function(id, options){
 			return angular.extend({
 				isEditable: ($scope.mode === 'edit'),
 				canvasId: 'canvas-id-'+id,
@@ -100,9 +98,10 @@ angular.module('openeyesApp')
 
 	}])
 	.directive('eyedraw', [function() {
-
+		var id = 0;
 		function link($scope, element, attr, EyeDrawCtrl) {
-			EyeDrawCtrl.init(attr);
+			id++;
+			EyeDrawCtrl.init(attr, id);
 		}
 
 		return {
