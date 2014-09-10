@@ -14,9 +14,9 @@ angular.module('openeyesApp')
 		//	Pretend to load in some workflow config here
 		//	In practice this would come from a service defined at the api side per workflow side.
 		var layoutConfig = [
-			'laserSite',
 			'procedures',
-			// 'eyedraw'
+			'laserSite',
+			'eyedraw'
 		];
 
 		//	Map component names that would come from the layout config
@@ -25,7 +25,7 @@ angular.module('openeyesApp')
 		var componentMappings = {
 			'laserSite': '<section class="element panel panel-default"><div class="panel-heading"><h3 class="panel-title">Site</h3></div><div class="panel-body"><lasersite ng-model="laserDetails"></lasersite></div></section>',
 			'procedures': '<section class="element panel panel-default"><div class="panel-heading"><h3 class="panel-title">Treatment</h3></div><div class="panel-body"><div class="row"><div class="col-xs-6"><div class="form-group"><label for="procedure-right" class="col-xs-4 control-label">Procedures:</label><div class="col-xs-8"><procedure-selection data-id="procedure-right" data-side="rightEye" ng-model="procedures"></procedure-selection></div></div></div><div class="col-xs-6"><div class="form-group"><label for="procedure-left" class="col-xs-4 control-label">Procedures:</label><div class="col-xs-8"><procedure-selection data-id="procedure-left" data-side="leftEye" ng-model="procedures"></procedure-selection></div></div></div></div></div></section>',
-			'eyedraw': '<section class="element panel panel-default"><div class="panel-heading"><h3 class="panel-title">Anterior Segment</h3></div><div class="panel-body"><div class="row"><div class="col-xs-6"><eyedraw data="eyedraws.right.data" options="{{eyedraws.right.options}}" mode="{{mode}}"></eyedraw></div><div class="col-xs-6"><eyedraw data="eyedraws.left.data" options="{{eyedraws.left.options}}" mode="{{mode}}"></eyedraw></div></div></div></section>',
+			'eyedraw': '<section class="element panel panel-default"><div class="panel-heading"><h3 class="panel-title">Anterior Segment</h3></div><div class="panel-body"><div class="row"><div class="col-xs-6"><eyedraw data="data" data-side="rightEye" options="anterior" mode="{{mode}}"></eyedraw></div><div class="col-xs-6"><eyedraw data="data" data-side="leftEye" options="anterior" mode="{{mode}}"></eyedraw></div></div></div></section>',
 		};
 
 		this.init = function(element, attrs){
@@ -97,6 +97,7 @@ angular.module('openeyesApp')
 					for(var key in modelData){
 						if(modelData.hasOwnProperty(key)){
 							if(subPath){
+								if(!postObject.hasOwnProperty(subPath)){ postObject[subPath] = {}; }
 								postObject[subPath][key] = modelData[key];
 							} else {
 								postObject[key] = modelData[key];

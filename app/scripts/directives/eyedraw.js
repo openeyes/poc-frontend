@@ -25,65 +25,91 @@ angular.module('openeyesApp')
 		return $window.ED;
 	}])
 	.constant('eyedrawOptions', {
-		scale: 1,
-		focus: false,
-		graphicsPath: '/eyedraw/img/',
-		offsetX: 0,
-		offsetY: 0,
-		toImage: false
+		'core': {
+			scale: 1,
+			focus: false,
+			graphicsPath: '/eyedraw/img/',
+			offsetX: 0,
+			offsetY: 0,
+			toImage: false
+		},
+		'anterior': {
+			doodles: [
+				'NuclearCataract',
+				'CorticalCataract',
+				'PostSubcapCataract',
+				'PCIOL',
+				'ACIOL',
+				'Bleb',
+				'PI',
+				'Label'
+			],
+			onReadyCommandArray: [
+				['addDoodle', ['AntSeg']],
+				['deselectDoodles', []]
+			]
+		}
 	})
-	.directive('eyedraw', ['EyeDraw', 'eyedrawOptions', '$timeout', function(EyeDraw, eyedrawOptions, $timeout) {
-
-		var init = {
-			// Initiate the eyedraw in view mode.
-			view: function($scope) {
-				// Only initiate the eyedraw once we have some data.
-				var unbindWatcher = $scope.$watch('data', function(data) {
-					if (data && data.length) {
-						EyeDraw.init($scope.options);
-						unbindWatcher();
-					}
-				});
-			},
-			// Initiate the eyedraw in edit mode.
-			edit: function($scope) {
-				// Only initiate the eyedraw once the $scope has been applied.
-				// This is necessary as we're generating required scope vars in the same event loop.
-				$timeout(function() {
-					EyeDraw.init($scope.options);
-				});
-			}
-		};
+	.constant('eyedrawOptionsAnterior', {
+		
+	})
+	.controller('EyeDrawCtrl', ['$scope', '$timeout', 'EyeDraw', 'eyedrawOptions', function($scope, $timeout, EyeDraw, eyedrawOptions){
 
 		var id = 0;
 
-		function getOptions($scope, options) {
-			id++;
+		this.init = function(attr){
+
+			$scope.mode = attr.mode;
+			$scope.options = this.getOptions(eyedrawOptions[attr.options]);
+
+			console.log($scope.options);
+
+			$scope.getTitle = function getTitle(className) {
+				return EyeDraw.titles[className];
+			};
+
+			this[attr.mode]();
+		};
+
+		this.view = function(){
+			var unbindWatcher = $scope.$watch('data', function(data) {
+				if (data && data.length) {
+					EyeDraw.init($scope.options);
+					unbindWatcher();
+				}
+			});
+		};
+
+		this.edit = function(){
+			// Only initiate the eyedraw once the $scope has been applied.
+			// This is necessary as we're generating required scope vars in the same event loop.
+			$timeout(function() {
+				EyeDraw.init($scope.options);
+			});
+		};
+
+		this.getOptions = function(options){
+			++id;
 			return angular.extend({
 				isEditable: ($scope.mode === 'edit'),
 				canvasId: 'canvas-id-'+id,
 				inputId: 'input-id-'+id,
 				drawingName: 'drawing-name-'+id
-			}, eyedrawOptions, options);
-		}
+			}, eyedrawOptions.core, options);
+		};
 
-		function link($scope, element, attr) {
+	}])
+	.directive('eyedraw', [function() {
 
-			$scope.mode = attr.mode;
-			$scope.options = getOptions($scope, $scope.$eval(attr.options));
-			$scope.getTitle = function getTitle(className) {
-				return EyeDraw.titles[className];
-			};
-
-			init[attr.mode]($scope);
+		function link($scope, element, attr, EyeDrawCtrl) {
+			EyeDrawCtrl.init(attr);
 		}
 
 		return {
-			scope: {
-				data: '=data',
-			},
+			scope: {},
 			replace: true,
 			restrict: 'AE',
+			controller: 'EyeDrawCtrl',
 			templateUrl: 'views/directives/eyedraw.html',
 			link: link
 		};
