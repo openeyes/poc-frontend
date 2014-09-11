@@ -45,7 +45,6 @@ angular.module('openeyesApp')
         this.eventStack = [];
       },
       getLayoutConfig: function(eventType){
-        console.log(eventType);
         var layoutConfig = {
           eventType1: [
             'laserSite',
