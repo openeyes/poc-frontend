@@ -92,15 +92,14 @@ angular.module('openeyesApp')
 
 		this.view = function(){
 			// Force wait till next digest incase data isn't available yet
-			if(self.attr.data){
-				$scope.data = self.attr.data;
-				EyeDraw.init($scope.options);
-			} else {
-				$timeout(function() {
+			$timeout(function() {
+				if(self.attr.data){
+					$scope.data = self.attr.data;
+					EyeDraw.init($scope.options);
+				} else {
 					self.view();
-				});
-			}
-			
+				}
+			});
 		};
 
 		this.edit = function(){
@@ -124,6 +123,7 @@ angular.module('openeyesApp')
 
 	}])
 	.directive('eyedraw', [function() {
+
 		var id = 0;
 		function link($scope, element, attr, EyeDrawCtrl) {
 			id++;
