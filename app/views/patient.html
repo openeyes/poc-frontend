@@ -1,7 +1,16 @@
 <div class="row">
 	<div class="col-md-3 col-xs-3">
 		<h2>Actions</h2>
-		<a href="/#/patient/{{ patient._id.$oid }}/event/create" class="btn btn-primary">Create laser event</a>
+		<div class="dropdown">
+  		<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+		    Create Event
+		    <span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+		    <li role="presentation"><a role="menuitem" tabindex="-1" href="/#/patient/{{ patient._id.$oid }}/event/eventType1/create">Event Type 1</a></li>
+		    <li role="presentation"><a role="menuitem" tabindex="-1" href="/#/patient/{{ patient._id.$oid }}/event/eventType2/create">Event Type 2</a></li>
+		  </ul>
+		</div>
 		<!-- <a href="/#/patient/{{ patient.id }}/events" class="btn btn-primary">View events</a> -->
 		<h3>Events</h3>
 		<ul class="list-group">

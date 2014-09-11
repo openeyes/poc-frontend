@@ -36,7 +36,7 @@ angular
         templateUrl: 'views/patient.html',
         controller: 'PatientCtrl'
       })
-      .when('/patient/:patientId/event/create', {
+      .when('/patient/:patientId/event/:eventType/create', {
         templateUrl: 'views/event-create.html',
         controller: 'EventCtrl'
       })
