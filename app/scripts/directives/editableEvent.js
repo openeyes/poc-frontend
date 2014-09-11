@@ -8,11 +8,13 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-	.controller('ConfigurableEventCtrl', ['$scope', '$compile', '$timeout', '$rootScope', 'Event', function ($scope, $compile, $timeout, $rootScope, Event) {
+	.controller('ConfigurableEventCtrl', ['$scope', '$compile', '$timeout', '$rootScope', '$routeParams', 'Event', function ($scope, $compile, $timeout, $rootScope, $routeParams, Event) {
 
 		var self = this;
 		//	Pretend to load in some workflow config here
-		var layoutConfig = Event.getLayoutConfig('eventType1');
+		//	NEEDS TO BE REMOVED WHEN CONFIG WORKFLOW IS DECIDED ON
+		var eventType = $routeParams.eventType;
+		var layoutConfig = Event.getLayoutConfig(eventType);
 		//	Map component names that would come from the layout config
 		var componentMappings = Event.getComponentMappings('edit');
 
