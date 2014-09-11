@@ -12,21 +12,9 @@ angular.module('openeyesApp')
 
 		var self = this;
 		//	Pretend to load in some workflow config here
-		//	In practice this would come from a service defined at the api side per workflow side.
-		var layoutConfig = [
-			'procedures',
-			'laserSite',
-			'eyedraw'
-		];
-
+		var layoutConfig = Event.getLayoutConfig('eventType1');
 		//	Map component names that would come from the layout config
-		//	This would ideally come from a constant variable
-		//	Also with the template strings potentially in another config value
-		var componentMappings = {
-			'laserSite': '<section class="element panel panel-default"><div class="panel-heading"><h3 class="panel-title">Site</h3></div><div class="panel-body"><lasersite ng-model="laserDetails"></lasersite></div></section>',
-			'procedures': '<section class="element panel panel-default"><div class="panel-heading"><h3 class="panel-title">Treatment</h3></div><div class="panel-body"><div class="row"><div class="col-xs-6"><div class="form-group"><label for="procedure-right" class="col-xs-4 control-label">Procedures:</label><div class="col-xs-8"><procedure-selection data-id="procedure-right" data-side="rightEye" ng-model="procedures"></procedure-selection></div></div></div><div class="col-xs-6"><div class="form-group"><label for="procedure-left" class="col-xs-4 control-label">Procedures:</label><div class="col-xs-8"><procedure-selection data-id="procedure-left" data-side="leftEye" ng-model="procedures"></procedure-selection></div></div></div></div></div></section>',
-			'eyedraw': '<section class="element panel panel-default"><div class="panel-heading"><h3 class="panel-title">Anterior Segment</h3></div><div class="panel-body"><div class="row"><div class="col-xs-6"><eyedraw data="data" data-side="rightEye" options="anterior" mode="{{mode}}"></eyedraw></div><div class="col-xs-6"><eyedraw data="data" data-side="leftEye" options="anterior" mode="{{mode}}"></eyedraw></div></div></div></section>',
-		};
+		var componentMappings = Event.getComponentMappings('edit');
 
 		this.init = function(element, attrs){
 			this.element = element;
@@ -51,7 +39,6 @@ angular.module('openeyesApp')
 			$timeout(function() {
 				var postObject = self.buildPostObject();
 				postObject.patientId = params.patientId;
-				console.log(postObject);
 
 				Event.create(postObject)
 					.success(function(data) {
@@ -109,4 +96,15 @@ angular.module('openeyesApp')
 			return postObject;
 		};
 
-	}]);
+	}])
+	.directive('editableevent', function () {
+
+		return {
+			restrict: 'EA', //E = element, A = attribute, C = class, M = comment         
+			templateUrl: 'views/directives/editableEvent.html',
+			controller: 'ConfigurableEventCtrl', //Embed a custom controller in the directive
+			link: function ($scope, element, attrs, ConfigurableEventCtrl) {
+				ConfigurableEventCtrl.init(element, attrs);
+			}
+		};
+	});
