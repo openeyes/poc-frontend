@@ -45,7 +45,7 @@ angular.module('openeyesApp')
 				required: true
 			},
 			hobbies: {
-				required: true
+				required: '1'
 			}
 		};
 
@@ -57,14 +57,6 @@ angular.module('openeyesApp')
 			if ($scope[$scope.formName].$valid) {
 				$window.alert('form will be submitted');
 			}
-		};
-
-		// Check if an object has any true values (used in checkbox groups)
-		$scope.hasObjectSelection = function(model, fieldName) {
-			var field = $scope[$scope.formName][fieldName];
-			return isDirty(field) && Object.keys(model).some(function(key) {
-				return (model[key] === true);
-			});
 		};
 	}]);
 

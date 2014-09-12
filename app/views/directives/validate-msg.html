@@ -1,4 +1,5 @@
 <div class="help-block" ng-show="hasError()">
+	<span ng-show="hasError('checkbox-group-required')">This group is required.</span>
 	<span ng-show="hasError('required')">This field is required.</span>
 	<span ng-show="hasError('minlength')">This field is not long enough.</span>
 	<span ng-show="hasError('maxlength')">This field is too long.</span>

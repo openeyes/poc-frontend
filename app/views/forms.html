@@ -4,22 +4,23 @@
 
 	<div class="panel-body">
 
-		<div class="form-group" oe-validate="name" oe-validate-class-name="has-error">
+		<div class="form-group" oe-validate oe-validate-class-name="has-error">
 			<label for="name" class="control-label col-xs-2">Name</label>
 			<div class="col-xs-4">
 				<input
 					id="name"
 					name="name"
 					type="text"
-					ng-model="user.name"
 					class="form-control"
+					placeholder="Enter your name"
+					ng-model="user.name"
 					oe-validate-rules="validations.name"
-					placeholder="Enter your name" />
-				<oe-validate-msg name="name"></oe-validate-msg>
+					/>
+				<oe-validate-msg></oe-validate-msg>
 			</div>
 		</div>
 
-		<div class="form-group" oe-validate="location" oe-validate-class-name="has-error">
+		<div class="form-group" oe-validate oe-validate-class-name="has-error">
 			<label for="location" class="control-label col-xs-2">Location</label>
 			<div class="col-xs-4">
 				<select
@@ -32,11 +33,11 @@
 					<option></option>
 					<option>UK</option>
 				</select>
-				<oe-validate-msg name="location"></oe-validate-msg>
+				<oe-validate-msg></oe-validate-msg>
 			</div>
 		</div>
 
-		<fieldset class="form-group" oe-validate="sex" oe-validate-class-name="has-error">
+		<fieldset class="form-group" oe-validate oe-validate-class-name="has-error">
 			<legend class="col-xs-2 control-label">Sex</legend>
 			<div class="col-xs-4">
 				<div class="radio">
@@ -53,35 +54,50 @@
 				</div>
 				<div class="radio">
 					<label>
-						<input name="sex" type="radio" value="female" ng-model="user.sex" ng-required="!user.sex" />
+						<input
+							name="sex"
+							type="radio"
+							value="female"
+							ng-model="user.sex"
+							oe-validate-rules="validations.sex"
+						/>
 						Female
 					</label>
 				</div>
-				<oe-validate-msg name="sex"></oe-validate-msg>
+				<oe-validate-msg></oe-validate-msg>
 			</div>
 		</fieldset>
 
-		<fieldset class="form-group" oe-validate="hobbies" oe-validate-class-name="has-error">
-			<legend class="col-xs-2 control-label">Hobbies</legend>
-			<div class="col-xs-4">
-				<div class="checkbox">
-					<label>
-						<input type="checkbox" name="hobbies" value="reading" ng-model="user.hobbies.reading"
-						  />
-						Reading
-					</label>
+		<fieldset class="form-group" oe-validate oe-validate-class-name="has-error" oe-validate-checkbox-group="{{validations.hobbies}}">
+			<!-- <oe-validate-checkbox-group min-required="2"> -->
+				<legend class="col-xs-2 control-label">Hobbies</legend>
+				<div class="col-xs-4">
+					<div class="checkbox">
+						<label>
+							<input
+								type="checkbox"
+								name="hobbiesReading"
+								ng-model="user.hobbies.reading"
+							  />
+							Reading
+						</label>
+					</div>
+					<div class="checkbox">
+						<label>
+							<input
+								type="checkbox"
+								name="hobbiesWriting"
+								ng-model="user.hobbies.writing"
+							/>
+							Writing
+						</label>
+					</div>
+					<oe-validate-msg></oe-validate-msg>
 				</div>
-				<div class="checkbox">
-					<label>
-						<input type="checkbox" name="hobbies" value="writing" ng-model="user.hobbies.writing"
-						/>
-						Writing
-					</label>
-				</div>
-				<oe-validate-msg name="hobbies"></oe-validate-msg>
-			</div>
+			<!-- </oe-validate-checkbox-group> -->
 		</fieldset>
 
+<pre>Form is valid: {{form.$valid}}</pre>
 
 		<div class="form-group">
 			<div class="col-xs-4 col-xs-offset-2">

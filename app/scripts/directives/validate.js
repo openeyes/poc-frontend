@@ -2,63 +2,143 @@
 
 	'use strict';
 
-	function isDirty($scope, field) {
-		return ($scope.submitted || field.$dirty);
-	}
-
-	function hasError($scope, name, rule) {
-
-		var field = $scope[$scope.formName][name];
-		var hasError = (isDirty($scope, field) && field.$invalid);
-		var hasErrorForRule = hasError && (rule ? field.$error[rule] : true);
-
-		return hasErrorForRule;
-	}
-
-	var ValidationCtrl = function(attrName) {
-		return [
-			'$scope','$element','$attrs',
-			function ValidationCtrl($scope, $element, $attrs) {
-
-				$scope.hasError = function(rule) {
-					return hasError($scope, $attrs[attrName], rule);
-				};
-
-				// Check if an object has any true values (used in checkbox groups)
-				$scope.hasObjectSelection = function(model, fieldName) {
-					var field = $scope[$scope.formName][fieldName];
-					return isDirty(field) && Object.keys(model).some(function(key) {
-						return (model[key] === true);
-					});
-				};
-			}
-		];
-	};
-
 	angular.module('openeyesApp')
+		.directive('input', function() {
+			return {
+				restrict: 'E',
+				require: [
+					'^oeValidate',
+					'^ngModel'
+				],
+				link: function(scope, element, attrs, controllers) {
+
+					var oeValidate = controllers[0];
+					var ngModel = controllers[1];
+
+					oeValidate.register(ngModel);
+
+					if (attrs.type === 'checkbox') {
+						scope.$watch(function() {
+							return ngModel.$modelValue;
+						}, oeValidate.validateCheckboxGroup);
+						// In case we are adding and removing checkboxes dynamically we need to tidy up after outselves.
+						scope.$on('$destroy', function() {
+							oeValidate.deregister(ngModel);
+						});
+					}
+				}
+			};
+		})
+		.directive('select', function() {
+			return {
+				restrict: 'E',
+				require: [
+					'^oeValidate',
+					'^ngModel'
+				],
+				link: function(scope, element, attrs, controllers) {
+					var oeValidate = controllers[0];
+					var ngModel = controllers[1];
+					oeValidate.register(ngModel);
+				}
+			};
+		})
 		.directive('oeValidate', [function() {
 			return {
 				restrict: 'A',
-				require: '^form',
+				require: ['^form','^oeValidate'],
 				scope: true,
-				link: function(scope, element, attr) {
+				controller: function($scope, $element, $attrs) {
 
-					var fieldName = attr.oeValidate;
-					var className = attr.oeValidateClassName || 'has-error';
+					var self = this;
+					var minRequired;
+					var ngModels = [];
+					var checkboxGroupRules = {};
 
-					if (!fieldName) {
-						throw new Error('oeValidate: field name not specified.')
+					self.register = function(ngModel) {
+						ngModels.push(ngModel);
+					};
+
+					self.deregister = function(ngModel) {
+						var index = self.ngModels.indexOf(ngModel);
+						if (index !== -1) {
+							self.ngModels.splice(index, 1);
+						}
+					};
+
+					self.getModels = function() {
+						return ngModels;
+					};
+
+					self.validateCheckboxGroup = function() {
+
+						var rules = JSON.parse($attrs.oeValidateCheckboxGroup);
+
+						if (!rules || !rules.required) {
+							return;
+						}
+
+						var checkedCount = 0;
+						angular.forEach(ngModels, function(ngModel) {
+							if (ngModel.$modelValue) {
+								checkedCount++;
+							}
+						});
+
+						var minRequiredValidity;
+						if (rules.required === '*') {
+							minRequiredValidity = checkedCount === ngModels.length;
+						} else {
+							minRequiredValidity = checkedCount >= rules.required;
+						}
+
+						angular.forEach(ngModels, function(ngModel) {
+							ngModel.$setValidity('checkbox-group-required', minRequiredValidity, self);
+						});
+					};
+
+					$scope.hasError = function(rule) {
+
+						var invalidModels = ngModels.filter(function(model) {
+							var isDirty = ($scope.submitted || model.$dirty);
+							return isDirty && (!rule ? model.$invalid : model.$error[rule]);
+						});
+
+						return ngModels.length && invalidModels.length === ngModels.length;
 					}
+				},
+				link: function(scope, element, attr, controllers) {
 
-					scope.$watchCollection('[' + [
-						'form.' + fieldName + '.$valid',
-						'form.' + fieldName + '.$dirty',
-						'submitted'
-					].join(',') + ']', function updateClass() {
-						if (hasError(scope, fieldName)) {
+					function updateClass() {
+						var className = attr.oeValidateClassName;
+						if (scope.hasError()) {
 							element.addClass(className);
 						} else {
 							element.removeClass(className);
+						}
+					}
+
+					function watchModel(callback) {
+
+						var oeValidateController = controllers[1];
+						var models = oeValidateController.getModels();
+
+						var collection = ['submitted'];
+
+						angular.forEach(models, function(model) {
+							collection.push(scope.formName + '.' + model.$name + '.$valid');
+							collection.push(scope.formName + '.' + model.$name + '.$dirty');
+						});
+
+						collection = '[' + collection.join(',') + ']';
+
+						// Watch for model validity changes.
+						scope.$watchCollection(collection, callback);
+					}
+
+					watchModel(function() {
+						if (attr.oeValidateClassName) {
+							updateClass();
 						}
 					});
 				}
@@ -69,11 +149,10 @@
 				restrict: 'E',
 				replace: true,
 				scope: true,
-				templateUrl: 'views/directives/validate-msg.html',
-				controller: ValidationCtrl('name')
-			}
+				templateUrl: 'views/directives/validate-msg.html'
+			};
 		}])
-		.directive('oeValidateFormErrors', function($location, $anchorScroll) {
+		.directive('oeValidateFormErrors', function() {
 			return {
 				restrict: 'E',
 				require: '^form',
@@ -88,7 +167,7 @@
 						return $scope.submitted && $scope[$scope.formName].$invalid;
 					};
 				}
-			}
+			};
 		})
 		.directive('oeValidateRules', ['$compile',function($compile) {
 			function getVal(val) {
@@ -103,13 +182,16 @@
 				priority: 1000,
 				link: function(scope, element, attrs) {
 
-					var rules = scope.$eval(attrs['oeValidateRules']);
+					var rules = scope.$eval(attrs.oeValidateRules);
 
 					Object.keys(rules).forEach(function(rule) {
 						var val = rules[rule];
 						switch(rule) {
+							case 'checkboxGroupRequired':
+								element.attr('oe-validate-checkbox-group', getVal(val));
+							break;
 							case 'required':
-								element.attr('required', getVal(val));
+								element.attr('ng-required', getVal(val));
 							break;
 							case 'pattern':
 								element.attr('ng-pattern', getVal(val));
@@ -129,6 +211,7 @@
 						}
 					});
 
+					// Remove attribute to prevent infinite loop.
 					element.removeAttr('oe-validate-rules');
 
 					$compile(element)(scope);
