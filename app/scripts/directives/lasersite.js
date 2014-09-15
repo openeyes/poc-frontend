@@ -22,8 +22,6 @@ angular.module('openeyesApp')
 
 		  Site.getLaserOperators()
 				.success(function(data) {
-					console.log('Success for getLaserOperators');
-					console.log(data);
 					$scope.laserOperators = data;
 	      })
 	      .error(function(data, status, headers, config) {
