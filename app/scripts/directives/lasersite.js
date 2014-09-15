@@ -15,11 +15,20 @@ angular.module('openeyesApp')
 		    });
 			};
 
+			$scope.validations = {
+				site: {
+					required: true
+				},
+				laser: {
+					required: true
+				}
+			};
+
 			$scope.laserSelected = function(){};
 		};
 
 		return {
-			restrict: 'EA', //E = element, A = attribute, C = class, M = comment         
+			restrict: 'EA', //E = element, A = attribute, C = class, M = comment
 			scope: {
 				model: '=ngModel',
 			},

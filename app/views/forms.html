@@ -1,7 +1,6 @@
-<oe-validate-form-errors></oe-validate-form-errors>
+<oe-validate-form-errors rules="{{validations}}"></oe-validate-form-errors>
 
 <form class="form-horizontal panel panel-default" novalidate name="{{formName}}" ng-submit="submit()">
-
 
 	<div class="panel-body">
 
@@ -76,7 +75,7 @@
 						<label>
 							<input
 								type="checkbox"
-								name="hobbiesReading"
+								name="hobbies"
 								ng-model="user.hobbies.reading"
 							  />
 							Reading
@@ -86,7 +85,7 @@
 						<label>
 							<input
 								type="checkbox"
-								name="hobbiesWriting"
+								name="hobbies"
 								ng-model="user.hobbies.writing"
 							/>
 							Writing

@@ -10,8 +10,8 @@
  *
  * Dependency tree:
  * -- FormController
+ *   -- oeValidateFormErrors directive
  *   -- oeValidateController
- *     -- oeValidateFormErrors directive
  *     -- oeValidateDirective
  *       -- input directive
  *       -- select directive
@@ -155,9 +155,11 @@
 						scope.$watchCollection(collection, callback);
 					}
 
-					// Watch all models registered with the controller.
-					watchModels(function() {
-						updateClass();
+					scope.$watch('formName', function() {
+						// Watch all models registered with the controller.
+						watchModels(function() {
+							updateClass();
+						});
 					});
 				}
 			};
@@ -167,7 +169,7 @@
 			return {
 				restrict: 'E',
 				require: [
-					'^oeValidate',
+					'?^oeValidate',
 					'^ngModel'
 				],
 				link: function(scope, element, attrs, controllers) {
@@ -175,19 +177,22 @@
 					var oeValidateCtrl = controllers[0];
 					var ngModel = controllers[1];
 
-					oeValidateCtrl.registerModel(ngModel);
+					if (oeValidateCtrl) {
 
-					if (attrs.type === 'checkbox') {
+						oeValidateCtrl.registerModel(ngModel);
 
-						// Set the validity of the group when any checkbox model changes.
-						scope.$watch(function() {
-							return ngModel.$modelValue;
-						}, oeValidateCtrl.validateGroup);
+						if (attrs.type === 'checkbox') {
 
-						// In case we are adding and removing checkboxes dynamically we need to tidy up after ourselves.
-						scope.$on('$destroy', function() {
-							oeValidateCtrl.deregisterModel(ngModel);
-						});
+							// Set the validity of the group when any checkbox model changes.
+							scope.$watch(function() {
+								return ngModel.$modelValue;
+							}, oeValidateCtrl.validateGroup);
+
+							// In case we are adding and removing checkboxes dynamically we need to tidy up after ourselves.
+							scope.$on('$destroy', function() {
+								oeValidateCtrl.deregisterModel(ngModel);
+							});
+						}
 					}
 				}
 			};
@@ -197,13 +202,15 @@
 			return {
 				restrict: 'E',
 				require: [
-					'^oeValidate',
-					'^ngModel'
+					'?^oeValidate',
+					'?^ngModel'
 				],
 				link: function(scope, element, attrs, controllers) {
 					var oeValidateCtrl = controllers[0];
 					var ngModel = controllers[1];
-					oeValidateCtrl.registerModel(ngModel);
+					if (oeValidateCtrl && ngModel) {
+						oeValidateCtrl.registerModel(ngModel);
+					}
 				}
 			};
 		})
@@ -221,16 +228,61 @@
 		.directive('oeValidateFormErrors', function() {
 			return {
 				restrict: 'E',
-				require: '^form',
-				replace: true,
+				replace: false,
 				scope: true,
 				templateUrl: 'views/directives/validate-form-errors.html',
-				controller: function($scope) {
+				link: function(scope, element, attrs) {
+					scope.rules = attrs.rules;
+				},
+				controller: function($scope, $element, $attrs, oeValidateInvalidMessages) {
+
+					var names;
+					var formattedErrors;
+					var rules = {};
+
+					$scope.$watch('rules', function(val) {
+						rules = JSON.parse(val);
+					});
+
+					function formatErrors(errors) {
+
+						formattedErrors = [];
+						names = [];
+
+						Object.keys(errors).forEach(function(key) {
+
+							var models = errors[key];
+
+							if (!angular.isArray(models)) {
+								return;
+							}
+
+							models.forEach(function(model) {
+								if (names.indexOf(model.$name) === -1) {
+									names.push(model.$name);
+									formattedErrors.push(model);
+								}
+							});
+						});
+
+						return formattedErrors;
+					}
+
 					$scope.formErrors = function() {
-						return $scope.submitted ? $scope[$scope.formName].$error : {};
+						return formatErrors($scope.submitted ? $scope[$scope.formName].$error : {});
 					};
+
 					$scope.hasFormErrors = function() {
 						return $scope.submitted && $scope[$scope.formName].$invalid;
+					};
+
+					$scope.getErrorMessage = function(name, rule) {
+
+						if (rule && rules[name] && rules[name][rule] && rules[name][rule].msg) {
+							return rules[name][rule].msg;
+						}
+
+						return oeValidateInvalidMessages[rule] || 'This field has an error.';
 					};
 				}
 			};
