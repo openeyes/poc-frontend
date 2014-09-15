@@ -2,6 +2,7 @@
 
 <form class="form-horizontal panel panel-default" novalidate name="{{formName}}" ng-submit="submit()">
 
+
 	<div class="panel-body">
 
 		<div class="form-group" oe-validate oe-validate-class-name="has-error">
@@ -68,8 +69,7 @@
 			</div>
 		</fieldset>
 
-		<fieldset class="form-group" oe-validate oe-validate-class-name="has-error" oe-validate-checkbox-group="{{validations.hobbies}}">
-			<!-- <oe-validate-checkbox-group min-required="2"> -->
+		<fieldset class="form-group" oe-validate oe-validate-class-name="has-error" oe-validate-group="{{validations.hobbies}}">
 				<legend class="col-xs-2 control-label">Hobbies</legend>
 				<div class="col-xs-4">
 					<div class="checkbox">
@@ -94,10 +94,8 @@
 					</div>
 					<oe-validate-msg></oe-validate-msg>
 				</div>
-			<!-- </oe-validate-checkbox-group> -->
 		</fieldset>
 
-<pre>Form is valid: {{form.$valid}}</pre>
 
 		<div class="form-group">
 			<div class="col-xs-4 col-xs-offset-2">
@@ -109,11 +107,14 @@
 
 <div class="panel panel-default">
 	<div class="panel-body">
+		<pre>Form is valid: {{form.$valid}}</pre>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-body">
 		<div>
 			Data: {{user | json}}
 		</div>
-<!-- 		<div>
-			Errors: {{form.$error | json}}
-		</div> -->
 	</div>
 </div>
