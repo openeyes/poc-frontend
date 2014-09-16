@@ -49,12 +49,10 @@ angular.module('openeyesApp')
 			}
 		};
 
-		$scope.formName = 'form';
-
 		// Form submit handler
 		$scope.submit = function() {
-			$scope.submitted = true;
-			if ($scope[$scope.formName].$valid) {
+			$scope.form.submitted = true;
+			if ($scope.form.$valid) {
 				$window.alert('form will be submitted');
 			}
 		};

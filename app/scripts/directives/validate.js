@@ -26,6 +26,7 @@
 
 	'use strict';
 
+
 	angular.module('openeyesApp')
 		// Default validation messages.
 		.constant('oeValidateInvalidMessages', {
@@ -45,8 +46,28 @@
 			// Model validation rules.
 			var rules = {};
 
-			this.registerModel = function(ngModel) {
+			this.init = function(_rules) {
+				rules = _rules;
+				$scope.hasError = this.hasError.bind(this);
+				$scope.getErrorMessage = this.getErrorMessage.bind(this);
+			}
+
+			this.registerModel = function(ngModel, attrs) {
+
 				ngModels.push(ngModel);
+
+				if (attrs.type === 'checkbox') {
+
+					// Set the validity of the group when any checkbox model changes.
+					$scope.$watch(function() {
+						return ngModel.$modelValue;
+					}, this.validateGroup);
+
+					// In case we are adding and removing checkboxes dynamically we need to tidy up after ourselves.
+					$scope.$on('$destroy', function() {
+						this.deregisterModel(ngModel);
+					}).bind(this);
+				}
 			};
 
 			this.deregisterModel = function(ngModel) {
@@ -56,61 +77,41 @@
 				}
 			};
 
-			this.registerRules = function(_rules) {
-				rules = _rules;
-			};
-
-			this.getModels = function() {
-				return ngModels;
-			};
-
-			this.getRules = function() {
-				return rules;
-			}
-
 			this.validateGroup = function() {
 
 				var rules = JSON.parse($attrs.oeValidateGroup);
 
 				if (!rules || !rules.required) {
+					console.warn('Attempting to validate a group of field when no rules have been specified.')
 					return;
 				}
 
-				var checkedCount = 0;
-				angular.forEach(ngModels, function(ngModel) {
-					if (ngModel.$modelValue) {
-						checkedCount++;
-					}
-				});
+				var checkedCount = ngModels.filter(function(ngModel) {
+					return !!ngModel.$modelValue;
+				}).length;
 
-				var minRequiredValidity;
-				if (rules.required === '*') {
-					minRequiredValidity = checkedCount === ngModels.length;
-				} else {
-					minRequiredValidity = checkedCount >= rules.required;
-				}
+				var minRequiredValidity = (rules.required === '*') ?
+					checkedCount === ngModels.length :
+					checkedCount >= rules.required;
 
 				angular.forEach(ngModels, function(ngModel) {
 					ngModel.$setValidity('group-required', minRequiredValidity, self);
 				});
 			};
 
-			$scope.hasError = function(rule) {
+			this.hasError = function(rule) {
 
 				var invalidModels = ngModels.filter(function(model) {
-					var isDirty = ($scope.submitted || model.$dirty);
+					var isDirty = ($scope.form.submitted || model.$dirty);
 					return isDirty && (!rule ? model.$invalid : model.$error[rule]);
 				});
-
 				return ngModels.length && (invalidModels.length === ngModels.length);
 			};
 
-			$scope.getErrorMessage = function(rule) {
-
+			this.getErrorMessage = function(rule) {
 				if (rule && rules[rule] && rules[rule].msg) {
 					return rules[rule].msg;
 				}
-
 				return oeValidateInvalidMessages[rule] || 'This field has an error.';
 			};
 		}])
@@ -120,85 +121,26 @@
 			return {
 				restrict: 'A',
 				controller: 'oeValidateCtrl',
-				require: ['^form', 'oeValidate'],
-				scope: true,
-				link: function(scope, element, attr, controllers) {
-
-					var oeValidateCtrl = controllers[1];
-
-					function updateClass() {
-						var className = attr.oeValidateClassName;
-						if (!className) {
-							return;
-						}
-						if (scope.hasError()) {
-							element.addClass(className);
-						} else {
-							element.removeClass(className);
-						}
-					}
-
-					// Watch model validity changes.
-					function watchModels(callback) {
-
-						var models = oeValidateCtrl.getModels();
-
-						var collection = ['submitted'];
-
-						angular.forEach(models, function(model) {
-							collection.push(scope.formName + '.' + model.$name + '.$valid');
-							collection.push(scope.formName + '.' + model.$name + '.$dirty');
-						});
-
-						collection = '[' + collection.join(',') + ']';
-
-						scope.$watchCollection(collection, callback);
-					}
-
-					scope.$watch('formName', function() {
-						// Watch all models registered with the controller.
-						watchModels(function() {
-							updateClass();
-						});
-					});
-				}
+				require: ['oeValidate'],
+				scope: true
 			};
+		}])
+		// Angular's form validation doesn't work with dynamically named fields. So we need to
+		// add the name attribute before other directives are compiled.
+		.directive('oeName', ['$compile','$interpolate', function ($compile, $interpolate) {
+				return {
+						priority: 9999,
+						scope: false,
+						controller: ['$scope', '$element', '$attrs', function ($scope, $element, $attrs) {
+								var interpolatedName = $interpolate($attrs.oeName)($scope);
+								if (interpolatedName) {
+									$attrs.$set('name', interpolatedName);
+								}
+						}]
+				};
 		}])
 		// Register all inputs with the validateController.
 		.directive('input', function() {
-			return {
-				restrict: 'E',
-				require: [
-					'?^oeValidate',
-					'^ngModel'
-				],
-				link: function(scope, element, attrs, controllers) {
-
-					var oeValidateCtrl = controllers[0];
-					var ngModel = controllers[1];
-
-					if (oeValidateCtrl) {
-
-						oeValidateCtrl.registerModel(ngModel);
-
-						if (attrs.type === 'checkbox') {
-
-							// Set the validity of the group when any checkbox model changes.
-							scope.$watch(function() {
-								return ngModel.$modelValue;
-							}, oeValidateCtrl.validateGroup);
-
-							// In case we are adding and removing checkboxes dynamically we need to tidy up after ourselves.
-							scope.$on('$destroy', function() {
-								oeValidateCtrl.deregisterModel(ngModel);
-							});
-						}
-					}
-				}
-			};
-		})
-		// Register all selects with the validateController.
-		.directive('select', function() {
 			return {
 				restrict: 'E',
 				require: [
@@ -208,8 +150,26 @@
 				link: function(scope, element, attrs, controllers) {
 					var oeValidateCtrl = controllers[0];
 					var ngModel = controllers[1];
-					if (oeValidateCtrl && ngModel) {
-						oeValidateCtrl.registerModel(ngModel);
+					if (oeValidateCtrl && ngModel && ngModel.$name) {
+						oeValidateCtrl.registerModel(ngModel, attrs);
+					}
+				}
+			};
+		})
+		// Register all selects with the validateController.
+		.directive('select', function($timeout) {
+			return {
+				restrict: 'E',
+				require: [
+					'?^oeValidate',
+					'?^ngModel'
+				],
+				// terminal: true,
+				link: function(scope, element, attrs, controllers) {
+					var oeValidateCtrl = controllers[0];
+					var ngModel = controllers[1];
+					if (oeValidateCtrl && ngModel && ngModel.$name) {
+						oeValidateCtrl.registerModel(ngModel, attrs);
 					}
 				}
 			};
@@ -220,121 +180,138 @@
 				restrict: 'E',
 				replace: true,
 				scope: true,
+				priority: 999,
 				require: 'oeValidate',
 				templateUrl: 'views/directives/validate-msg.html'
 			};
 		}])
-		// Show all form errors.
+		.controller('oeValidateFormErrorsCtrl', function($scope, $attrs, $parse, oeValidateInvalidMessages) {
+
+			var rules = {};
+
+			this.init = function() {
+				rules = $parse($attrs.rules)($scope);
+			};
+
+			this.formatErrors = function(errors) {
+
+				var formattedErrors = [];
+				var names = [];
+
+				Object.keys(errors).forEach(function(key) {
+					var models = errors[key];
+					if (!angular.isArray(models)) {
+						return;
+					}
+					models.forEach(function(model) {
+						if (names.indexOf(model.$name) === -1) {
+							names.push(model.$name);
+							formattedErrors.push(model);
+						}
+					});
+				});
+				return formattedErrors;
+			}
+
+			this.formErrors = function() {
+				return this.formatErrors($scope.form.submitted ? $scope.form.$error : {});
+			};
+
+			this.hasFormErrors = function() {
+				return ($scope.form.submitted && $scope.form.$invalid);
+			};
+
+			this.getErrorMessage = function(name, rule) {
+				if (rule && rules[name] && rules[name][rule] && rules[name][rule].msg) {
+					return rules[name][rule].msg;
+				}
+				return oeValidateInvalidMessages[rule] || 'This field has an error.';
+			};
+
+			$scope.formErrors = this.formErrors.bind(this);
+			$scope.hasFormErrors = this.hasFormErrors.bind(this);
+			$scope.getErrorMessage = this.getErrorMessage.bind(this);
+		})
+		// Show form validation errors.
 		.directive('oeValidateFormErrors', function() {
 			return {
 				restrict: 'E',
 				replace: false,
 				scope: true,
 				templateUrl: 'views/directives/validate-form-errors.html',
-				link: function(scope, element, attrs) {
-					scope.rules = attrs.rules;
-				},
-				controller: function($scope, $element, $attrs, oeValidateInvalidMessages) {
-
-					var names;
-					var formattedErrors;
-					var rules = {};
-
-					$scope.$watch('rules', function(val) {
-						rules = JSON.parse(val);
-					});
-
-					function formatErrors(errors) {
-
-						formattedErrors = [];
-						names = [];
-
-						Object.keys(errors).forEach(function(key) {
-
-							var models = errors[key];
-
-							if (!angular.isArray(models)) {
-								return;
-							}
-
-							models.forEach(function(model) {
-								if (names.indexOf(model.$name) === -1) {
-									names.push(model.$name);
-									formattedErrors.push(model);
-								}
-							});
-						});
-
-						return formattedErrors;
-					}
-
-					$scope.formErrors = function() {
-						return formatErrors($scope.submitted ? $scope[$scope.formName].$error : {});
-					};
-
-					$scope.hasFormErrors = function() {
-						return $scope.submitted && $scope[$scope.formName].$invalid;
-					};
-
-					$scope.getErrorMessage = function(name, rule) {
-
-						if (rule && rules[name] && rules[name][rule] && rules[name][rule].msg) {
-							return rules[name][rule].msg;
-						}
-
-						return oeValidateInvalidMessages[rule] || 'This field has an error.';
-					};
+				controller: 'oeValidateFormErrorsCtrl',
+				link: function(scope, element, attr, oeValidateFormErrorsCtrl) {
+					oeValidateFormErrorsCtrl.init();
 				}
 			};
 		})
 		// Accepts rules for specific fields and recompiles the field elements with
 		// the correct validation attribute directives.
-		.directive('oeValidateRules', ['$compile',function($compile) {
+		.controller('oeValidateRulesCtrl', function($scope, $element, $compile) {
+
+			this.rules = {};
+
 			function getVal(val) {
 				return angular.isObject(val) ? val.value : val;
 			}
+
+			this.init = function(rules) {
+				this.rules = rules;
+				this.bindValidationDirectives();
+			};
+
+			this.bindValidationDirectives = function() {
+				Object.keys(this.rules).forEach(function(rule) {
+					var val = this.rules[rule];
+					switch(rule) {
+						case 'required':
+							$element.attr('ng-required', getVal(val));
+						break;
+						case 'pattern':
+							$element.attr('ng-pattern', getVal(val));
+						break;
+						case 'minlength':
+							$element.attr('ng-minlength', getVal(val));
+						break;
+						case 'maxlength':
+							$element.attr('ng-maxlength', getVal(val));
+						break;
+						case 'min':
+							$element.attr('min', getVal(val));
+						break;
+						case 'max':
+							$element.attr('max', getVal(val));
+						break;
+					}
+				}.bind(this));
+
+				// Remove attribute to prevent infinite loop.
+				$element.removeAttr('oe-validate-rules');
+
+				$compile($element)($scope);
+			}
+		})
+		.directive('oeValidateRules', ['$compile','$parse', function($compile, $parse) {
 			return {
 				restrict: 'A',
 				replace: false,
-				require: '^oeValidate',
-				// Skip other directives with lower priority (we'll be using $compile to compile other directives)
+				require: ['^oeValidate', '^oeValidateRules'],
+				controller: 'oeValidateRulesCtrl',
+				scope: true,
 				terminal: true,
-				// Execute before other directives
 				priority: 1000,
-				link: function(scope, element, attrs, oeValidateCtrl) {
+				link: function(scope, element, attrs, controllers) {
 
-					var rules = scope.$eval(attrs.oeValidateRules);
+					var oeValidateCtrl = controllers[0];
+					var oeValidateRulesCtrl = controllers[1];
+					var rules = $parse(attrs.oeValidateRules)(scope);
 
-					oeValidateCtrl.registerRules(rules);
-
-					Object.keys(rules).forEach(function(rule) {
-						var val = rules[rule];
-						switch(rule) {
-							case 'required':
-								element.attr('ng-required', getVal(val));
-							break;
-							case 'pattern':
-								element.attr('ng-pattern', getVal(val));
-							break;
-							case 'minlength':
-								element.attr('ng-minlength', getVal(val));
-							break;
-							case 'maxlength':
-								element.attr('ng-maxlength', getVal(val));
-							break;
-							case 'min':
-								element.attr('min', getVal(val));
-							break;
-							case 'max':
-								element.attr('max', getVal(val));
-							break;
-						}
-					});
-
-					// Remove attribute to prevent infinite loop.
-					element.removeAttr('oe-validate-rules');
-
-					$compile(element)(scope);
+					if (!rules) {
+						console.warn('Attempted to bind validation directives without any rules, skipping validation.')
+						return;
+					}
+					oeValidateRulesCtrl.init(rules);
+					oeValidateCtrl.init(rules);
 				}
 			};
 		}]);

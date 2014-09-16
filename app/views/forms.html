@@ -1,10 +1,10 @@
 <oe-validate-form-errors rules="{{validations}}"></oe-validate-form-errors>
 
-<form class="form-horizontal panel panel-default" novalidate name="{{formName}}" ng-submit="submit()">
+<form class="form-horizontal panel panel-default" novalidate name="form" ng-submit="submit()">
 
 	<div class="panel-body">
 
-		<div class="form-group" oe-validate oe-validate-class-name="has-error">
+		<div class="form-group" oe-validate ng-class="{ 'has-error': hasError() }">
 			<label for="name" class="control-label col-xs-2">Name</label>
 			<div class="col-xs-4">
 				<input
@@ -20,7 +20,7 @@
 			</div>
 		</div>
 
-		<div class="form-group" oe-validate oe-validate-class-name="has-error">
+		<div class="form-group" oe-validate ng-class="{ 'has-error': hasError() }">
 			<label for="location" class="control-label col-xs-2">Location</label>
 			<div class="col-xs-4">
 				<select
@@ -37,7 +37,7 @@
 			</div>
 		</div>
 
-		<fieldset class="form-group" oe-validate oe-validate-class-name="has-error">
+		<fieldset class="form-group" oe-validate ng-class="{ 'has-error': hasError() }">
 			<legend class="col-xs-2 control-label">Sex</legend>
 			<div class="col-xs-4">
 				<div class="radio">
@@ -68,7 +68,7 @@
 			</div>
 		</fieldset>
 
-		<fieldset class="form-group" oe-validate oe-validate-class-name="has-error" oe-validate-group="{{validations.hobbies}}">
+		<fieldset class="form-group" oe-validate ng-class="{ 'has-error': hasError() }" oe-validate-group="{{validations.hobbies}}">
 				<legend class="col-xs-2 control-label">Hobbies</legend>
 				<div class="col-xs-4">
 					<div class="checkbox">

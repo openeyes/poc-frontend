@@ -15,10 +15,16 @@ angular.module('openeyesApp')
 		//	NEEDS TO BE REMOVED WHEN CONFIG WORKFLOW IS DECIDED ON
 		var eventType = $routeParams.eventType;
 		var layoutConfig = Event.getLayoutConfig(eventType);
+
 		//	Map component names that would come from the layout config
 		var componentMappings = Event.getComponentMappings('edit');
 
 		this.init = function(element, attrs){
+
+			$scope.form.submitted = false;
+			$scope.validations = Event.getValidationRules();
+			Event.setForm($scope.form);
+
 			this.element = element;
 			//	Could be use when requesting event spec from api
 			//	Relistically though it would come from the routeParams when navigating to create each type of event / workflow
@@ -33,12 +39,19 @@ angular.module('openeyesApp')
 			for(var i = 0;i < layoutConfig.length;i++){
 				var template = componentMappings[layoutConfig[i]];
 				var cTemplate = $compile(template)($scope);
-				this.element.append(cTemplate);
+				this.element.find('form:first').append(cTemplate);
 			}
 		};
 
 		this.save = function(scope, params){
 			$timeout(function() {
+
+				$scope.form.submitted = true;
+
+				if ($scope.form.$invalid) {
+					return;
+				}
+
 				var postObject = self.buildPostObject();
 				postObject.patientId = params.patientId;
 
@@ -102,7 +115,7 @@ angular.module('openeyesApp')
 	.directive('editableevent', function () {
 
 		return {
-			restrict: 'EA', //E = element, A = attribute, C = class, M = comment         
+			restrict: 'EA', //E = element, A = attribute, C = class, M = comment
 			templateUrl: 'views/directives/editableEvent.html',
 			controller: 'ConfigurableEventCtrl', //Embed a custom controller in the directive
 			link: function ($scope, element, attrs, ConfigurableEventCtrl) {

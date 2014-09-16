@@ -5,6 +5,10 @@ angular.module('openeyesApp')
 
 		var self = this;
 
+		$scope.model = {};
+		$scope.form = Event.getForm();
+		$scope.validations = Event.getValidationRules();
+
 		this.init = function(){
 
 			//	Listen for save event
@@ -52,7 +56,6 @@ angular.module('openeyesApp')
 				console.log(data, status, headers, config);
 	    });
 		};
-
 	}])
 	.directive('lasersite', [function () {
 		return {
