@@ -23,15 +23,11 @@ angular.module('openeyesApp')
 
 			Acuity.getAcuityFields()
 				.then(function(data) {
-          console.log(data);
 					$scope.measurements = data.measurements;
           $scope.corrections = data.corrections;
-          console.log($scope.corrections);
 				}, function(error) {
 					console.log(error);
 				});
-
-
 		};
 
 		this.broadcastModel = function(){
@@ -53,6 +49,10 @@ angular.module('openeyesApp')
         measurement: 0,
         correction: ''
       });
+    };
+
+    $scope.removeRow = function(index){
+      $scope.model.acuityMeasurements.splice(index, 1);
     };
 
 	}])

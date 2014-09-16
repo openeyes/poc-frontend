@@ -13,15 +13,18 @@
 </div>
 
 <div class="form-group row" ng-repeat="am in model.acuityMeasurements">
-  <div class="col-xs-6">
+  <div class="col-xs-4">
     <select class="" ng-model="model.acuityMeasurements[$index].measurement" ng-options="m as m for m in measurements">
       <option value="">--Measurement--</option>
     </select>
   </div>
-  <div class="col-xs-6">
+  <div class="col-xs-4">
     <select class="" ng-model="model.acuityMeasurements[$index].correction" ng-options="c as c for c in corrections">
       <option value="">--Correction--</option>
     </select>
+  </div>
+  <div class="col-xs-4">
+    <button class="btn btn-default btn-xs" ng-click="removeRow($index)">Remove</button>
   </div>
 </div>
 
