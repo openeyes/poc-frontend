@@ -10,8 +10,16 @@
 angular.module('openeyesApp')
   .factory('Event', ['$http', 'ENV', function($http, ENV) {
 
+  	var form;
+
     return {
       eventStack: [],
+      setForm: function(f) {
+      	form = f;
+      },
+      getForm: function() {
+      	return form;
+      },
       getEventsForPatient: function(patientId){
         var apiCall = ENV.host + ENV.apiEndpoints.patientEvents.replace(':id', patientId);
         return $http({
@@ -60,11 +68,42 @@ angular.module('openeyesApp')
 
         return layoutConfig[eventType];
       },
+      getValidationRules: function(name) {
+
+      	var rules = {
+					laser: {
+						required: {
+							value: true,
+							msg: 'Laser is required.'
+						}
+					},
+					site: {
+						required: {
+							value: true,
+							msg: 'Site is required.'
+						}
+					},
+					operator: {
+						required: {
+							value: true,
+							msg: 'Operator is required.'
+						}
+					},
+					procedures: {
+						required: {
+							value: true,
+							msg: 'At least one procedure is required.'
+						}
+					}
+				};
+
+				return name ? rules[name] : rules;
+      },
       getComponentMappings: function(mode){
         var componentMappings = {
           edit: {
             laserSite: '<section class="element panel panel-default"><div class="panel-heading"><h3 class="panel-title">Site</h3></div><div class="panel-body"><lasersite ng-model="laserDetails"></lasersite></div></section>',
-            procedures: '<section class="element panel panel-default"><div class="panel-heading"><h3 class="panel-title">Treatment</h3></div><div class="panel-body"><div class="row"><div class="col-xs-6"><div class="form-group"><label for="procedure-right" class="col-xs-4 control-label">Procedures:</label><div class="col-xs-8"><procedure-selection data-id="procedure-right" data-side="rightEye" ng-model="procedures"></procedure-selection></div></div></div><div class="col-xs-6"><div class="form-group"><label for="procedure-left" class="col-xs-4 control-label">Procedures:</label><div class="col-xs-8"><procedure-selection data-id="procedure-left" data-side="leftEye" ng-model="procedures"></procedure-selection></div></div></div></div></div></section>',
+            procedures: '<section class="element panel panel-default"><div class="panel-heading"><h3 class="panel-title">Treatment</h3></div><div class="panel-body"><div class="row"><div class="col-xs-6"><procedure-selection data-id="procedure-right" data-name="procedureRight" data-side="rightEye" ng-model="procedures"></procedure-selection></div><div class="col-xs-6"><procedure-selection data-id="procedure-left" data-side="leftEye" data-name="procedureLeft" ng-model="procedures"></procedure-selection></div></div></div></section>',
             eyedraw: '<section class="element panel panel-default"><div class="panel-heading"><h3 class="panel-title">Anterior Segment</h3></div><div class="panel-body"><div class="row"><div class="col-xs-6"><eyedraw data="data" data-side="rightEye" options="anterior" mode="{{mode}}"></eyedraw></div><div class="col-xs-6"><eyedraw data="data" data-side="leftEye" options="anterior" mode="{{mode}}"></eyedraw></div></div></div></section>',
             treatment: '<section class="element panel panel-default"><div class="panel-heading"><h3 class="panel-title">Treatment</h3></div><div class="panel-body"><div class="row"><div class="col-xs-6"><treatment data-side="rightEye"></treatment></div><div class="col-xs-6"><treatment data-side="leftEye"></treatment></div></div></div></section>'
           },
@@ -73,7 +112,7 @@ angular.module('openeyesApp')
             procedures: '<section class=""><div class="row"><div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title">Treatment</h3></div><div class="panel-body"><div class="row"><div class="col-xs-6"><div class="row" ng-if="event.rightEye.procedures && event.rightEye.procedures.length"><div class="col-xs-4">Procedures:</div><div class="col-xs-8"><ul><li ng-repeat="procedure in event.rightEye.procedures">{{procedure.label}}</li></ul></div></div></div><div class="col-xs-6"><div class="row" ng-if="event.leftEye.procedures && event.leftEye.procedures.length"><div class="col-xs-4">Procedures:</div><div class="col-xs-8"><ul><li ng-repeat="procedure in event.leftEye.procedures">{{procedure.label}}</li></ul></div></div></div></div></div></div></div></section>',
             eyedraw: '<section class=""><div class="row"><div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title">Anterior Segment</h3></div><div class="panel-body"><div class="row"><div class="col-xs-6"><eyedraw data="{{ event.rightEye.anteriorSegment.data }}" options="anterior" mode="view"></eyedraw></div><div class="col-xs-6"><eyedraw data="{{ event.leftEye.anteriorSegment.data }}" options="anterior" mode="view"></eyedraw></div></div></div></div></div></section>'
           }
-          
+
         };
 
         return componentMappings[mode];

@@ -11,6 +11,6 @@
 // Validation states
 .ng-invalid {
 	&.ng-dirty {
-		@extend .has-error;
+		// @extend .has-error;
 	}
 }

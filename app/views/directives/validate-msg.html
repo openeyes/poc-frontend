@@ -1,0 +1,18 @@
+<div class="help-block" ng-show="hasError()">
+	<span ng-show="hasError('group-required')">{{ getErrorMessage('group-required') }}</span>
+	<span ng-show="hasError('required')">{{ getErrorMessage('required') }}</span>
+	<span ng-show="hasError('minlength')">{{ getErrorMessage('minlength') }}</span>
+	<span ng-show="hasError('maxlength')">{{ getErrorMessage('maxlength') }}</span>
+	<span ng-show="hasError('pattern')">{{ getErrorMessage('pattern') }}</span>
+
+	<!-- Alternate approach if/when we upgrade to 1.3: -->
+<!-- <div class="help-block" ng-show="form.name.$error">
+	<span ng-message="required">This field is required.</span>
+	<span ng-message="minlength">This field is not long enough.</span>
+	<span ng-message="maxlength">This field is too long.</span>
+	<span ng-message="pattern">This field is not in the correct format.</span>
+</div> -->
+</div>
+
+
+

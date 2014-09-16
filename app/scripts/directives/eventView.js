@@ -38,7 +38,7 @@ angular.module('openeyesApp')
 	.directive('eventview', function () {
 
 		return {
-			restrict: 'EA', //E = element, A = attribute, C = class, M = comment         
+			restrict: 'EA', //E = element, A = attribute, C = class, M = comment
 			templateUrl: 'views/directives/eventView.html',
 			controller: 'EventViewCrl', //Embed a custom controller in the directive
 			link: function ($scope, element, attrs, EventViewCrl) {

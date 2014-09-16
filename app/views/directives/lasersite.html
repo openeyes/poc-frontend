@@ -1,25 +1,27 @@
-<div class="form-group">
+<div class="form-group" oe-validate ng-class="{ 'has-error': hasError() }">
 	<label for="site" class="col-xs-2 control-label">Site:</label>
 	<div class="col-xs-4">
-		<select class="form-control" name="site" id="site" ng-model="model.site" ng-change="siteSelected()" ng-options="site.label for site in sites | orderBy:'label'">
+		<select class="form-control" name="site" id="site" ng-model="model.site" ng-change="siteSelected()" ng-options="site.label for site in sites | orderBy:'label'" oe-validate-rules="validations.site">
 		</select>
+		<oe-validate-msg></oe-validate-msg>
 	</div>
 </div>
 <div class="col-xs-offset-2">
 <p class="help-block"><span class="glyphicon glyphicon-info-sign"></span> Please select a site to see the list of available lasers.</p>
 </div>
-
-<div class="form-group">
+<div class="form-group" oe-validate ng-class="{ 'has-error': hasError() }">
 	<label for="laser" class="col-xs-2 control-label">Laser:</label>
 	<div class="col-xs-4">
-		<select class="form-control" name="laser" id="laser" ng-model="model.laser" ng-change="laserSelected()" ng-options="laser.label for laser in lasers | orderBy:'label'">
+		<select class="form-control" name="laser" id="laser" ng-model="model.laser" ng-change="laserSelected()" ng-options="laser.label for laser in lasers | orderBy:'label'" oe-validate-rules="validations.laser">
 		</select>
+		<oe-validate-msg></oe-validate-msg>
 	</div>
 </div>
-<div class="form-group">
+<div class="form-group" oe-validate ng-class="{ 'has-error': hasError() }">
 	<label for="operator" class="col-xs-2 control-label">Laser operator:</label>
 	<div class="col-xs-4">
-		<select class="form-control" name="operator" id="operator" ng-model="model.laserOperator" ng-change="operatorSelected()" ng-options="laserOperator.firstName + ' ' + laserOperator.surname for laserOperator in laserOperators | orderBy: 'surname'">
+		<select class="form-control" name="operator" id="operator" ng-model="model.laserOperator" ng-change="operatorSelected()" ng-options="laserOperator.firstName + ' ' + laserOperator.surname for laserOperator in laserOperators | orderBy: 'surname'"  oe-validate-rules="validations.operator">
 		</select>
+		<oe-validate-msg></oe-validate-msg>
 	</div>
 </div>

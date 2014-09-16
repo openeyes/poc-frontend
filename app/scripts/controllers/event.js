@@ -12,6 +12,8 @@ angular.module('openeyesApp')
 
 		$scope.event = null;
 		$scope.mode = 'edit';
+		$scope.formName = 'form';
+		$scope.submitted = false;
 
 		function loadEvent(eventId){
 			Event.getEvent(eventId)
