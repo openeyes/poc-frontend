@@ -41,7 +41,7 @@
     // determining the validity of such models.
     .controller('oeValidateCtrl', [ '$scope','$element','$attrs','oeValidateInvalidMessages', function($scope, $element, $attrs, oeValidateInvalidMessages) {
 
-      var ngModels = [];
+      var model = null;
       var rules = {};
 
       this.init = function(_rules) {
@@ -49,22 +49,12 @@
       };
 
       this.registerModel = function(ngModel, attrs) {
-        ngModels.push(ngModel);
-      };
-
-      this.deregisterModel = function(ngModel) {
-        var index = this.ngModels.indexOf(ngModel);
-        if (index !== -1) {
-          this.ngModels.splice(index, 1);
-        }
+        model = ngModel;
       };
 
       this.hasError = function(rule) {
-        var invalidModels = ngModels.filter(function(model) {
-          var isDirty = ($scope.form.submitted || model.$dirty);
-          return isDirty && (!rule ? model.$invalid : model.$error[rule]);
-        });
-        return ngModels.length && (invalidModels.length === ngModels.length);
+        var isDirty = ($scope.form.submitted || model.$dirty);
+        return isDirty && (!rule ? model.$invalid : model.$error[rule]);
       };
 
       this.getErrorMessage = function(rule) {
@@ -90,16 +80,16 @@
     // Angular's form validation doesn't work with dynamically named fields. So we need to
     // add the name attribute before other directives are compiled.
     .directive('oeName', ['$compile','$interpolate', function ($compile, $interpolate) {
-        return {
-            priority: 9999,
-            scope: false,
-            controller: ['$scope', '$element', '$attrs', function ($scope, $element, $attrs) {
-                var interpolatedName = $interpolate($attrs.oeName)($scope);
-                if (interpolatedName) {
-                  $attrs.$set('name', interpolatedName);
-                }
-            }]
-        };
+      return {
+        priority: 9999,
+        scope: false,
+        controller: ['$scope', '$element', '$attrs', function ($scope, $element, $attrs) {
+          var interpolatedName = $interpolate($attrs.oeName)($scope);
+          if (interpolatedName) {
+            $attrs.$set('name', interpolatedName);
+          }
+        }]
+      };
     }])
     // Shows contextual validation messages.
     .directive('oeValidateMsg', [function() {
