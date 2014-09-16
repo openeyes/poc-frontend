@@ -1,21 +1,21 @@
 // Chosen multi-select
 
 .chosen-container-multi {
-	.chosen-choices {
-		@extend .form-control;
-		min-height: 34px !important;
-		padding: 0;
-		li.search-field {
-			input[type="text"] {
-				height: 30px;
-			}
-		}
-		li.search-choice {
-			margin-top: 5px;
-		}
-	}
+  .chosen-choices {
+    @extend .form-control;
+    min-height: 34px !important;
+    padding: 0;
+    li.search-field {
+      input[type="text"] {
+        height: 30px;
+      }
+    }
+    li.search-choice {
+      margin-top: 5px;
+    }
+  }
 }
 
 select[chosen] {
-	width: 100%;
+  width: 100%;
 }

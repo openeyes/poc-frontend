@@ -1,22 +1,22 @@
 <div class="alert alert-danger" role="alert" ng-if="hasFormErrors()">
-	<p><strong><span class="glyphicon glyphicon-info-sign"></span> There were errors submitting the form!</strong></p>
-	<ul>
-		<li ng-repeat="model in formErrors()" ng-if="formErrors().length">
-			<span ng-if="model.$error.required">
-				<a href="#" ng-click="scroll($event, model)">{{model.$name}}</a>: {{ getErrorMessage(model.$name, 'required') }}
-			</span>
-			<span ng-if="model.$error.pattern">
-				{{model.$name}}: {{ getErrorMessage(model.$name, 'pattern') }}
-			</span>
-			<span ng-if="model.$error.minlength">
-				{{model.$name}}: {{ getErrorMessage(model.$name, 'minlength') }}
-			</span>
-			<span ng-if="model.$error.maxlength">
-				{{model.$name}}: {{ getErrorMessage(model.$name, 'maxlength') }}
-			</span>
-			<span ng-if="model.$error['group-required']">
-				{{model.$name}}: {{ getErrorMessage(model.$name, 'group-required') }}
-			</span>
-		</li>
-	</ul>
+  <p><strong><span class="glyphicon glyphicon-info-sign"></span> There were errors submitting the form!</strong></p>
+  <ul>
+    <li ng-repeat="model in formErrors()" ng-if="formErrors().length">
+      <span ng-if="model.$error.required">
+        <a href="#" ng-click="scroll($event, model)">{{model.$name}}</a>: {{ getErrorMessage(model.$name, 'required') }}
+      </span>
+      <span ng-if="model.$error.pattern">
+        {{model.$name}}: {{ getErrorMessage(model.$name, 'pattern') }}
+      </span>
+      <span ng-if="model.$error.minlength">
+        {{model.$name}}: {{ getErrorMessage(model.$name, 'minlength') }}
+      </span>
+      <span ng-if="model.$error.maxlength">
+        {{model.$name}}: {{ getErrorMessage(model.$name, 'maxlength') }}
+      </span>
+      <span ng-if="model.$error['group-required']">
+        {{model.$name}}: {{ getErrorMessage(model.$name, 'group-required') }}
+      </span>
+    </li>
+  </ul>
 </div>

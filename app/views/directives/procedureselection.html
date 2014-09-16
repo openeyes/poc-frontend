@@ -1,18 +1,18 @@
 <div class="form-group" oe-validate ng-class="{ 'has-error': hasError() }">
-	<label for="{{id}}" class="col-xs-4 control-label">Procedures:</label>
-	<div class="col-xs-8">
-		<select
-			chosen
-			multiple
-			id="{{id}}"
-			oe-name="{{name}}"
-			data-placeholder="{{placeholder}}"
-			style="width:100%"
-			ng-model="model"
-			ng-options="procedure.label for procedure in options | orderBy:'label'"
-			oe-validate-rules="rules"
-			>
-		</select>
-		<oe-validate-msg></oe-validate-msg>
-	</div>
+  <label for="{{id}}" class="col-xs-4 control-label">Procedures:</label>
+  <div class="col-xs-8">
+    <select
+      chosen
+      multiple
+      id="{{id}}"
+      oe-name="{{name}}"
+      data-placeholder="{{placeholder}}"
+      style="width:100%"
+      ng-model="model"
+      ng-options="procedure.label for procedure in options | orderBy:'label'"
+      oe-validate-rules="rules"
+      >
+    </select>
+    <oe-validate-msg></oe-validate-msg>
+  </div>
 </div>

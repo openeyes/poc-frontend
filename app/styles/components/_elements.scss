@@ -1,9 +1,9 @@
 // Event Elements
 
 .element {
-	&.treatment {
-		ul {
-			padding-left: $grid-gutter-width / 2;
-		}
-	}
+  &.treatment {
+    ul {
+      padding-left: $grid-gutter-width / 2;
+    }
+  }
 }
