@@ -3,7 +3,7 @@
 .chosen-container-multi {
 	.chosen-choices {
 		@extend .form-control;
-		height: 34px !important;
+		min-height: 34px !important;
 		padding: 0;
 		li.search-field {
 			input[type="text"] {
@@ -14,4 +14,8 @@
 			margin-top: 5px;
 		}
 	}
+}
+
+select[chosen] {
+	width: 100%;
 }

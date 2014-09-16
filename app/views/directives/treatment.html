@@ -1,0 +1,89 @@
+<div class="form-group row">
+	<label for="site" class="col-xs-4 control-label">Pre Injection Antiseptic:</label>
+	<div class="col-xs-8">
+		<select class="form-control" ng-model="model.preInjectAntiseptic" ng-options="obj.label for obj in preInjectAntiseptics | orderBy:'label'">
+		</select>
+	</div>
+</div>
+
+<div class="form-group row">
+	<label for="site" class="col-xs-4 control-label">Pre Injection Skin Cleanser:</label>
+	<div class="col-xs-8">
+		<select class="form-control" ng-model="model.preInjectSkinCleanser" ng-options="obj.label for obj in preInjectSkinCleansers | orderBy:'label'">
+		</select>
+	</div>
+</div>
+
+<div class="form-group row">
+	<label for="site" class="col-xs-4 control-label">Pre Injection IOP Lowering Therapy Required:</label>
+	<div class="col-xs-8">
+		<input type="checkbox" ng-model="model.hasPreInjectionLoweringTherapy">
+	</div>
+</div>
+
+<div class="form-group row" ng-show="model.hasPreInjectionLoweringTherapy">
+	<label for="site" class="col-xs-4 control-label">Pre Injection IOP Lowering Therapy:</label>
+	<div class="col-xs-8">
+		<select chosen multiple ng-model="model.preInjectionLoweringTherapy" ng-options="obj.label for obj in preInjectionLoweringTherapies | orderBy:'label'">
+		</select>
+	</div>
+</div>
+
+<div class="form-group row">
+	<label for="site" class="col-xs-4 control-label">Drug:</label>
+	<div class="col-xs-8">
+		<select class="form-control" ng-model="model.drug" ng-options="obj.label for obj in drugs | orderBy:'label'">
+		</select>
+	</div>
+</div>
+
+<div class="form-group row">
+	<label for="site" class="col-xs-4 control-label">Number of Injections:</label>
+	<div class="col-xs-8">
+		<input type="text" class="form-control">
+	</div>
+</div>
+
+<div class="form-group row">
+	<label for="site" class="col-xs-4 control-label">Batch Number:</label>
+	<div class="col-xs-8">
+		<input type="text" class="form-control">
+	</div>
+</div>
+
+<div class="form-group row">
+	<label for="site" class="col-xs-4 control-label">Batch Expiry Date:</label>
+	<div class="col-xs-8">
+		<input type="date" class="form-control">
+	</div>
+</div>
+
+<div class="form-group row">
+	<label for="site" class="col-xs-4 control-label">Injection Given By:</label>
+	<div class="col-xs-8">
+		<select class="form-control" ng-model="model.injectionPerson" ng-options="obj.label for obj in injectionPersonnel | orderBy:'label'">
+		</select>
+	</div>
+</div>
+
+<div class="form-group row">
+	<label for="site" class="col-xs-4 control-label">Injection Time</label>
+	<div class="col-xs-8">
+		<input type="time" class="form-control">
+	</div>
+</div>
+
+<div class="form-group row">
+	<label for="site" class="col-xs-4 control-label">Post Injection IOP Lowering Therapy Required:</label>
+	<div class="col-xs-8">
+		<input type="checkbox" ng-model="model.hasPostInjectionLoweringTherapy">
+	</div>
+</div>
+
+<div class="form-group row" ng-show="model.hasPostInjectionLoweringTherapy">
+	<label for="site" class="col-xs-4 control-label">Post Injection IOP Lowering Therapy:</label>
+	<div class="col-xs-8">
+		<select chosen multiple ng-model="model.postInjectionLoweringTherapy" ng-options="obj.label for obj in postInjectionLoweringTherapies | orderBy:'label'">
+		</select>
+	</div>
+</div>

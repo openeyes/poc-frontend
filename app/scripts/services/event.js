@@ -36,7 +36,6 @@ angular.module('openeyesApp')
       },
       create: function(body){
         var apiCall = ENV.host + ENV.apiEndpoints.createLaserEvent;
-        console.log(apiCall);
         return $http({
           method: 'POST',
           url: apiCall,
@@ -57,7 +56,8 @@ angular.module('openeyesApp')
           eventType1: [
             'laserSite',
             'procedures',
-            'eyedraw'
+            'eyedraw',
+            'treatment'
           ],
           eventType2: [
             'procedures',
@@ -104,7 +104,8 @@ angular.module('openeyesApp')
           edit: {
             laserSite: '<section class="element panel panel-default"><div class="panel-heading"><h3 class="panel-title">Site</h3></div><div class="panel-body"><lasersite ng-model="laserDetails"></lasersite></div></section>',
             procedures: '<section class="element panel panel-default"><div class="panel-heading"><h3 class="panel-title">Treatment</h3></div><div class="panel-body"><div class="row"><div class="col-xs-6"><procedure-selection data-id="procedure-right" data-name="procedureRight" data-side="rightEye" ng-model="procedures"></procedure-selection></div><div class="col-xs-6"><procedure-selection data-id="procedure-left" data-side="leftEye" data-name="procedureLeft" ng-model="procedures"></procedure-selection></div></div></div></section>',
-            eyedraw: '<section class="element panel panel-default"><div class="panel-heading"><h3 class="panel-title">Anterior Segment</h3></div><div class="panel-body"><div class="row"><div class="col-xs-6"><eyedraw data="data" data-side="rightEye" options="anterior" mode="{{mode}}"></eyedraw></div><div class="col-xs-6"><eyedraw data="data" data-side="leftEye" options="anterior" mode="{{mode}}"></eyedraw></div></div></div></section>'
+            eyedraw: '<section class="element panel panel-default"><div class="panel-heading"><h3 class="panel-title">Anterior Segment</h3></div><div class="panel-body"><div class="row"><div class="col-xs-6"><eyedraw data="data" data-side="rightEye" options="anterior" mode="{{mode}}"></eyedraw></div><div class="col-xs-6"><eyedraw data="data" data-side="leftEye" options="anterior" mode="{{mode}}"></eyedraw></div></div></div></section>',
+            treatment: '<section class="element panel panel-default"><div class="panel-heading"><h3 class="panel-title">Treatment</h3></div><div class="panel-body"><div class="row"><div class="col-xs-6"><treatment data-side="rightEye"></treatment></div><div class="col-xs-6"><treatment data-side="leftEye"></treatment></div></div></div></section>'
           },
           view: {
             laserSite: '<section class=""><div class="row"><div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title">Site</h3></div><div class="panel-body"><div class="row"><div class="col-xs-2">Site:</div><div class="col-xs-4">{{ event.site.label }}</div></div><div class="row"><div class="col-xs-2">Laser:</div><div class="col-xs-4">{{ event.laser.label }}</div></div><div class="row"><div class="col-xs-2">Operater:</div><div class="col-xs-4">{{ event.laserOperator.firstName }} {{ event.laserOperator.surname }}</div></div></div></div></div></section>',
