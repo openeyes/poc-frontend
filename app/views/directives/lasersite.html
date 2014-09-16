@@ -30,7 +30,7 @@
 <div class="form-group">
 	<label for="operator" class="col-xs-2 control-label">Laser operator:</label>
 	<div class="col-xs-4">
-		<select class="form-control" name="operator" id="operator" ng-model="model.operator" ng-change="operatorSelected()" ng-options="operator.firstName + ' ' + operator.surname for operator in operators | orderBy: 'surname'">
+		<select class="form-control" name="operator" id="operator" ng-model="model.laserOperator" ng-change="operatorSelected()" ng-options="laserOperator.firstName + ' ' + laserOperator.surname for laserOperator in laserOperators | orderBy: 'surname'">
 		</select>
 	</div>
 </div>

@@ -8,24 +8,9 @@
 	}
 }
 
-
-legend {
-	&.control-label {
-		@extend label;
-		border: 0;
-		font-size: inherit;
-	}
-}
-
 // Validation states
-.form-control {
-	&.ng-invalid {
-
-	}
-}
-
-form {
-	&.ng-invalid {
-		// background: red;
+.ng-invalid {
+	&.ng-dirty {
+		@extend .has-error;
 	}
 }

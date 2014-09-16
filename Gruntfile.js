@@ -68,7 +68,7 @@ module.exports = function (grunt) {
 			options: {
 				port: 9000,
 				// Change this to '0.0.0.0' to access the server from outside.
-				hostname: 'localhost'
+				hostname: '0.0.0.0'
 			},
 			livereload: {
 				options: {
@@ -178,9 +178,6 @@ module.exports = function (grunt) {
 
 		// Automatically inject Bower components into the app
 		wiredep: {
-			options: {
-				cwd: '<%= yeoman.app %>'
-			},
 			app: {
 				src: ['<%= yeoman.app %>/index.html'],
 				ignorePath:  /\.\.\//
@@ -243,7 +240,7 @@ module.exports = function (grunt) {
 				flow: {
 					html: {
 						steps: {
-							js: ['concat', 'uglifyjs'],
+							js: ['concat'],
 							css: ['cssmin']
 						},
 						post: {}
@@ -362,7 +359,8 @@ module.exports = function (grunt) {
 						'*.html',
 						'views/{,*/}*.html',
 						'images/{,*/}*.{webp}',
-						'fonts/*'
+						'fonts/*',
+						'eyedraw/{,*/*}*'
 					]
 				}, {
 					expand: true,
@@ -482,7 +480,7 @@ module.exports = function (grunt) {
 		'copy:dist',
 		'cdnify',
 		'cssmin',
-		'uglify',
+		// 'uglify',
 		'filerev',
 		'usemin',
 		'htmlmin'
