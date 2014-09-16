@@ -41,7 +41,7 @@ angular.module('openeyesApp')
 			$timeout(function() {
 				var postObject = self.buildPostObject();
 				postObject.patientId = params.patientId;
-
+				console.log(postObject);
 				Event.create(postObject)
 					.success(function(data) {
 						console.log('success', data);

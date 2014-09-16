@@ -46,11 +46,12 @@ angular.module('openeyesApp')
       getLayoutConfig: function(eventType){
         var layoutConfig = {
           eventType1: [
-            'laserSite',
-            'procedures',
-            'eyedraw',
-            'treatment',
-            'history'
+            // 'laserSite',
+            // 'procedures',
+            // 'eyedraw',
+            // 'treatment',
+            'history',
+            'commorbidities'
           ],
           eventType2: [
             'procedures',
@@ -68,7 +69,8 @@ angular.module('openeyesApp')
             procedures: '<ng-include src="\'/views/components/edit/procedures.html\'"></ng-include>',
             eyedraw: '<ng-include src="\'/views/components/edit/eyedraw.html\'"></ng-include>',
             treatment: '<ng-include src="\'/views/components/edit/treatment.html\'"></ng-include>',
-            history: '<ng-include src="\'/views/components/edit/history.html\'"></ng-include>'
+            history: '<ng-include src="\'/views/components/edit/history.html\'"></ng-include>',
+            commorbidities: '<ng-include src="\'/views/components/edit/commorbidities.html\'"></ng-include>'
           },
           view: {
             laserSite: '<ng-include src="\'/views/components/view/laserSite.html\'"></ng-include>',
