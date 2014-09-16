@@ -1,13 +1,14 @@
 'use strict';
 
 angular.module('openeyesApp')
-	.controller('ProcedureSelectionCtrl', ['$scope', '$attrs', 'Procedure', 'Event', function($scope, $attrs, Procedure, Event){
+	.controller('ProcedureSelectionCtrl', ['$scope', '$attrs', '$parse', 'Procedure', 'Event', function($scope, $attrs, $parse, Procedure, Event){
 
 		var self = this;
 
 		$scope.form = Event.getForm();
 		$scope.validations = Event.getValidationRules();
 		$scope.name = $attrs.name;
+		$scope.rules = Event.getValidationRules('procedures')[$scope.name];
 
 		this.init = function(attr){
 

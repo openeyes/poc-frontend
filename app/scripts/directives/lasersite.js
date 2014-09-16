@@ -7,7 +7,7 @@ angular.module('openeyesApp')
 
 		$scope.model = {};
 		$scope.form = Event.getForm();
-		$scope.validations = Event.getValidationRules();
+		$scope.rules = Event.getValidationRules('laserSite');
 
 		this.init = function(){
 

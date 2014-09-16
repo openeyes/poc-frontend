@@ -26,6 +26,7 @@
 
 	'use strict';
 
+	var DEFAULT_ERROR_MSG = 'This field has an error.';
 
 	angular.module('openeyesApp')
 		// Default validation messages.
@@ -111,7 +112,7 @@
 				if (rule && rules[rule] && rules[rule].msg) {
 					return rules[rule].msg;
 				}
-				return oeValidateInvalidMessages[rule] || 'This field has an error.';
+				return oeValidateInvalidMessages[rule] || DEFAULT_ERROR_MSG;
 			};
 		}])
 		// Our main validate directive. Will adjust the UI based on the validity of
@@ -138,41 +139,6 @@
 						}]
 				};
 		}])
-		// Register all inputs with the validateController.
-		.directive('input', function() {
-			return {
-				restrict: 'E',
-				require: [
-					'?^oeValidate',
-					'?^ngModel'
-				],
-				link: function(scope, element, attrs, controllers) {
-					var oeValidateCtrl = controllers[0];
-					var ngModel = controllers[1];
-					if (oeValidateCtrl && ngModel && ngModel.$name) {
-						oeValidateCtrl.registerModel(ngModel, attrs);
-					}
-				}
-			};
-		})
-		// Register all selects with the validateController.
-		.directive('select', function() {
-			return {
-				restrict: 'E',
-				require: [
-					'?^oeValidate',
-					'?^ngModel'
-				],
-				// terminal: true,
-				link: function(scope, element, attrs, controllers) {
-					var oeValidateCtrl = controllers[0];
-					var ngModel = controllers[1];
-					if (oeValidateCtrl && ngModel && ngModel.$name) {
-						oeValidateCtrl.registerModel(ngModel, attrs);
-					}
-				}
-			};
-		})
 		// Shows contextual validation messages.
 		.directive('oeValidateMsg', [function() {
 			return {
@@ -338,5 +304,41 @@
 					oeValidateCtrl.init(rules);
 				}
 			};
-		}]);
+		}])
+		// Register all input models with the validateController.
+		.directive('input', function() {
+			return {
+				restrict: 'E',
+				require: [
+					'?^oeValidate',
+					'?^ngModel'
+				],
+				link: function(scope, element, attrs, controllers) {
+					var oeValidateCtrl = controllers[0];
+					var ngModel = controllers[1];
+					if (oeValidateCtrl && ngModel && ngModel.$name) {
+						oeValidateCtrl.registerModel(ngModel, attrs);
+					}
+				}
+			};
+		})
+		// Register all select models with the validateController.
+		.directive('select', function() {
+			return {
+				restrict: 'E',
+				require: [
+					'?^oeValidate',
+					'?^ngModel'
+				],
+				// terminal: true,
+				link: function(scope, element, attrs, controllers) {
+					var oeValidateCtrl = controllers[0];
+					var ngModel = controllers[1];
+					if (oeValidateCtrl && ngModel && ngModel.$name) {
+						oeValidateCtrl.registerModel(ngModel, attrs);
+					}
+				}
+			};
+		})
+		;
 }());

@@ -8,13 +8,18 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-	.controller('TreatmentCtrl', ['$scope', 'Treatment', 'Event', function($scope, Treatment, Event){
+	.controller('TreatmentCtrl', ['$scope', '$attrs', 'Treatment', 'Event', function($scope, $attrs, Treatment, Event){
+
+		$scope.form = Event.getForm();
+		$scope.rules = Event.getValidationRules('treatment');
+		$scope.side = $attrs.side;
 
 		var self = this;
 
 		this.init = function(attrs){
 
-			this.eyeSide = attrs.side;
+			this.eyeSide = $scope.side = attrs.side;
+
 			//	Listen for save event
 			//	Broadcast by event page controller
 			$scope.$on('event.save', this.broadcastModel);
@@ -60,7 +65,7 @@ angular.module('openeyesApp')
 				}, function(error){
 					console.log(error);
 				});
-	      
+
 
 		};
 
@@ -86,7 +91,7 @@ angular.module('openeyesApp')
 	 */
 	.directive('treatment', [function () {
 		return {
-			restrict: 'EA', //E = element, A = attribute, C = class, M = comment         
+			restrict: 'EA', //E = element, A = attribute, C = class, M = comment
 			scope: {},
 			templateUrl: 'views/directives/treatment.html',
 			controller: 'TreatmentCtrl', //Embed a custom controller in the directive

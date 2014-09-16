@@ -71,28 +71,88 @@ angular.module('openeyesApp')
       getValidationRules: function(name) {
 
       	var rules = {
-					laser: {
-						required: {
-							value: true,
-							msg: 'Laser is required.'
-						}
-					},
-					site: {
-						required: {
-							value: true,
-							msg: 'Site is required.'
-						}
-					},
-					operator: {
-						required: {
-							value: true,
-							msg: 'Operator is required.'
-						}
+      		laserSite: {
+						laser: {
+							required: {
+								value: true,
+								msg: 'Laser is required.'
+							}
+						},
+						site: {
+							required: {
+								value: true,
+								msg: 'Site is required.'
+							}
+						},
+						operator: {
+							required: {
+								value: true,
+								msg: 'Operator is required.'
+							}
+						},
 					},
 					procedures: {
-						required: {
-							value: true,
-							msg: 'At least one procedure is required.'
+						procedureLeft: {
+							required: {
+								value: true,
+								msg: 'At least one procedure is required.'
+							}
+						},
+						procedureRight: {
+							required: {
+								value: true,
+								msg: 'At least one procedure is required.'
+							}
+						}
+					},
+					treatment: {
+						'pre-injection-antiseptic-leftEye': {
+							required: true
+						},
+						'pre-injection-antiseptic-rightEye': {
+							required: true
+						},
+						'pre-injection-skin-cleanser-leftEye': {
+							required: true
+						},
+						'pre-injection-skin-cleanser-rightEye': {
+							required: true
+						},
+						'drug-leftEye': {
+							required: true
+						},
+						'drug-rightEye': {
+							required: true
+						},
+						'injection-time-leftEye': {
+							required: true
+						},
+						'injection-time-rightEye': {
+							required: true
+						},
+						'injection-person-leftEye': {
+							required: true
+						},
+						'injection-person-rightEye': {
+							required: true
+						},
+						'batch-expiry-date-leftEye': {
+							required: true
+						},
+						'batch-expiry-date-rightEye': {
+							required: true
+						},
+						'batch-number-rightEye': {
+							required: true
+						},
+						'batch-number-leftEye': {
+							required: true
+						},
+						'number-injections-leftEye': {
+							required: true
+						},
+						'number-injections-rightEye': {
+							required: true
 						}
 					}
 				};
