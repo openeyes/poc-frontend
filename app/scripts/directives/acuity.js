@@ -12,21 +12,25 @@ angular.module('openeyesApp')
 
 		var self = this;
 
-		this.init = function(){
+		this.init = function(attrs){
 			//	Listen for save event
 			//	Broadcast by event page controller
+      this.eyeSide = attrs.side;
 			$scope.model = {};
-			$scope.model.history = '';
+			$scope.model.acuityMeasurements = [];
 			$scope.$on('event.save', this.broadcastModel);
-			//	On creation populate dropdown 
-			
+			//	On creation populate dropdown
+
 			Acuity.getAcuityFields()
 				.then(function(data) {
-					$scope.slugs = data;
+          console.log(data);
+					$scope.measurements = data.measurements;
+          $scope.corrections = data.corrections;
+          console.log($scope.corrections);
 				}, function(error) {
 					console.log(error);
 				});
-				
+
 
 		};
 
@@ -35,11 +39,21 @@ angular.module('openeyesApp')
 		};
 
 		this.getModel = function(){
+      console.log('get the model', $scope.model);
 			return {
 				name: 'acuity',
+        subPath: this.eyeSide,
 				model: $scope.model
 			};
 		};
+
+    // $scope methods
+    $scope.addRow = function(){
+      $scope.model.acuityMeasurements.push({
+        measurement: 0,
+        correction: ''
+      });
+    };
 
 	}])
 	/**
@@ -51,7 +65,7 @@ angular.module('openeyesApp')
 	 */
 	.directive('acuity', [function () {
 		return {
-			restrict: 'EA', //E = element, A = attribute, C = class, M = comment         
+			restrict: 'EA', //E = element, A = attribute, C = class, M = comment
 			scope: {},
 			templateUrl: 'views/directives/acuity.html',
 			controller: 'AcuityCtrl', //Embed a custom controller in the directive
