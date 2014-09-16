@@ -3,7 +3,7 @@
 	<ul>
 		<li ng-repeat="model in formErrors()" ng-if="formErrors().length">
 			<span ng-if="model.$error.required">
-				{{model.$name}}: {{ getErrorMessage(model.$name, 'required') }}
+				<a href="#" ng-click="scroll($event, model)">{{model.$name}}</a>: {{ getErrorMessage(model.$name, 'required') }}
 			</span>
 			<span ng-if="model.$error.pattern">
 				{{model.$name}}: {{ getErrorMessage(model.$name, 'pattern') }}

@@ -50,7 +50,7 @@
 				rules = _rules;
 				$scope.hasError = this.hasError.bind(this);
 				$scope.getErrorMessage = this.getErrorMessage.bind(this);
-			}
+			};
 
 			this.registerModel = function(ngModel, attrs) {
 
@@ -82,7 +82,7 @@
 				var rules = JSON.parse($attrs.oeValidateGroup);
 
 				if (!rules || !rules.required) {
-					console.warn('Attempting to validate a group of field when no rules have been specified.')
+					console.warn('Attempting to validate a group of field when no rules have been specified.');
 					return;
 				}
 
@@ -95,12 +95,11 @@
 					checkedCount >= rules.required;
 
 				angular.forEach(ngModels, function(ngModel) {
-					ngModel.$setValidity('group-required', minRequiredValidity, self);
-				});
+					ngModel.$setValidity('group-required', minRequiredValidity, this);
+				}.bind(this));
 			};
 
 			this.hasError = function(rule) {
-
 				var invalidModels = ngModels.filter(function(model) {
 					var isDirty = ($scope.form.submitted || model.$dirty);
 					return isDirty && (!rule ? model.$invalid : model.$error[rule]);
@@ -157,7 +156,7 @@
 			};
 		})
 		// Register all selects with the validateController.
-		.directive('select', function($timeout) {
+		.directive('select', function() {
 			return {
 				restrict: 'E',
 				require: [
@@ -211,7 +210,7 @@
 					});
 				});
 				return formattedErrors;
-			}
+			};
 
 			this.formErrors = function() {
 				return this.formatErrors($scope.form.submitted ? $scope.form.$error : {});
@@ -228,9 +227,34 @@
 				return oeValidateInvalidMessages[rule] || 'This field has an error.';
 			};
 
+			this.scroll = function($event, model) {
+
+				$event.preventDefault();
+
+				var element = angular.element('[name="' + model.$name + '"]');
+
+				if (!element.length) {
+					console.warn('Attempting to scroll to an element that does not exist.');
+					return;
+				}
+
+				var parentNode = element[0];
+				while((parentNode = parentNode.parentNode)) {
+					if (angular.element(parentNode).hasClass('form-group')) {
+						break;
+					}
+				}
+				if (parentNode) {
+					parentNode.scrollIntoView(true);
+				} else {
+					console.warn('Unable to find form-group wrapper for this field.');
+				}
+			};
+
 			$scope.formErrors = this.formErrors.bind(this);
 			$scope.hasFormErrors = this.hasFormErrors.bind(this);
 			$scope.getErrorMessage = this.getErrorMessage.bind(this);
+			$scope.scroll = this.scroll.bind(this);
 		})
 		// Show form validation errors.
 		.directive('oeValidateFormErrors', function() {
@@ -289,7 +313,7 @@
 				$element.removeAttr('oe-validate-rules');
 
 				$compile($element)($scope);
-			}
+			};
 		})
 		.directive('oeValidateRules', ['$compile','$parse', function($compile, $parse) {
 			return {
@@ -307,7 +331,7 @@
 					var rules = $parse(attrs.oeValidateRules)(scope);
 
 					if (!rules) {
-						console.warn('Attempted to bind validation directives without any rules, skipping validation.')
+						console.warn('Attempted to bind validation directives without any rules, skipping validation.');
 						return;
 					}
 					oeValidateRulesCtrl.init(rules);
