@@ -5,20 +5,10 @@
   <div class="panel-body">
     <div class="row">
       <div class="col-xs-6">
-        <div class="form-group">
-          <label for="procedure-right" class="col-xs-4 control-label">Procedures:</label>
-          <div class="col-xs-8">
-            <procedure-selection data-id="procedure-right" data-side="rightEye" ng-model="procedures"></procedure-selection>
-          </div>
-        </div>
+        <procedure-selection data-id="procedure-right" data-side="rightEye" data-name="procedureRight" ng-model="procedures"></procedure-selection>
       </div>
       <div class="col-xs-6">
-        <div class="form-group">
-          <label for="procedure-left" class="col-xs-4 control-label">Procedures:</label>
-          <div class="col-xs-8">
-            <procedure-selection data-id="procedure-left" data-side="leftEye" ng-model="procedures"></procedure-selection>
-          </div>
-        </div>
+        <procedure-selection data-id="procedure-left" data-side="leftEye" data-name="procedureLeft" ng-model="procedures"></procedure-selection>
       </div>
     </div>
   </div>

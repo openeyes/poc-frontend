@@ -1,0 +1,119 @@
+<oe-validate-form-errors rules="{{validations}}"></oe-validate-form-errors>
+
+<form class="form-horizontal panel panel-default" novalidate name="form" ng-submit="submit()">
+
+  <div class="panel-body">
+
+    <div class="form-group" oe-validate ng-class="{ 'has-error': hasError() }">
+      <label for="name" class="control-label col-xs-2">Name</label>
+      <div class="col-xs-4">
+        <input
+          id="name"
+          name="name"
+          type="text"
+          class="form-control"
+          placeholder="Enter your name"
+          ng-model="user.name"
+          oe-validate-rules="validations.name"
+          />
+        <oe-validate-msg></oe-validate-msg>
+      </div>
+    </div>
+
+    <div class="form-group" oe-validate ng-class="{ 'has-error': hasError() }">
+      <label for="location" class="control-label col-xs-2">Location</label>
+      <div class="col-xs-4">
+        <select
+          id="location"
+          name="location"
+          class="form-control"
+          ng-model="user.location"
+          oe-validate-rules="validations.location"
+          >
+          <option></option>
+          <option>UK</option>
+        </select>
+        <oe-validate-msg></oe-validate-msg>
+      </div>
+    </div>
+
+    <fieldset class="form-group" oe-validate ng-class="{ 'has-error': hasError() }">
+      <legend class="col-xs-2 control-label">Sex</legend>
+      <div class="col-xs-4">
+        <div class="radio">
+          <label>
+            <input
+              name="sex"
+              type="radio"
+              value="male"
+              ng-model="user.sex"
+              oe-validate-rules="validations.sex"
+             />
+            Male
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input
+              name="sex"
+              type="radio"
+              value="female"
+              ng-model="user.sex"
+              oe-validate-rules="validations.sex"
+            />
+            Female
+          </label>
+        </div>
+        <oe-validate-msg></oe-validate-msg>
+      </div>
+    </fieldset>
+
+    <fieldset class="form-group" oe-validate ng-class="{ 'has-error': hasError() }" oe-validate-group="{{validations.hobbies}}">
+        <legend class="col-xs-2 control-label">Hobbies</legend>
+        <div class="col-xs-4">
+          <div class="checkbox">
+            <label>
+              <input
+                type="checkbox"
+                name="hobbies"
+                ng-model="user.hobbies.reading"
+                />
+              Reading
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input
+                type="checkbox"
+                name="hobbies"
+                ng-model="user.hobbies.writing"
+              />
+              Writing
+            </label>
+          </div>
+          <oe-validate-msg></oe-validate-msg>
+        </div>
+    </fieldset>
+
+
+    <div class="form-group">
+      <div class="col-xs-4 col-xs-offset-2">
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <pre>Form is valid: {{form.$valid}}</pre>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div>
+      Data: {{user | json}}
+    </div>
+  </div>
+</div>

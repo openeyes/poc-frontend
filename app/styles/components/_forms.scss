@@ -1,16 +1,16 @@
 .search-form {
-	margin: 20px 0;
+  margin: 20px 0;
 }
 
 @media (min-width: 0) {
-	.form-horizontal .control-label {
-		text-align: left;
-	}
+  .form-horizontal .control-label {
+    text-align: left;
+  }
 }
 
 // Validation states
 .ng-invalid {
-	&.ng-dirty {
-		@extend .has-error;
-	}
+  &.ng-dirty {
+    // @extend .has-error;
+  }
 }

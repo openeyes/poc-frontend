@@ -1,54 +1,60 @@
 'use strict';
 
 angular.module('openeyesApp')
-	.controller('ProcedureSelectionCtrl', ['$scope', 'Procedure', 'Event', function($scope, Procedure, Event){
+  .controller('ProcedureSelectionCtrl', ['$scope', '$attrs', '$parse', 'Procedure', 'Event', function($scope, $attrs, $parse, Procedure, Event){
 
-		var self = this;
+    var self = this;
 
-		this.init = function(attr){
+    $scope.form = Event.getForm();
+    $scope.validations = Event.getValidationRules();
+    $scope.name = $attrs.name;
+    $scope.rules = Event.getValidationRules('procedures')[$scope.name];
 
-			// 	Push directive controller onto current stack of event components
-			// Event.addToEventStack(this);
-			this.eyeSide = attr.side;
-			$scope.id = attr.id;
-			$scope.placeholder = 'Choose a procedure...';
+    this.init = function(attr){
 
-			//	Populate the procedures
-			Procedure.getProcedures()
-				.success(function(data) {
-					$scope.options = data;
-				})
-				.error(function(data, status, headers, config) {
-					console.log(data, status, headers, config);
-				});
+      //  Push directive controller onto current stack of event components
+      // Event.addToEventStack(this);
+      this.eyeSide = attr.side;
+      $scope.id = attr.id;
 
-			//	Listen for save event
-			//	Broadcast by event page controller
-			$scope.$on('event.save', this.broadcastModel);
-		};
+      $scope.placeholder = 'Choose a procedure...';
 
-		this.broadcastModel = function(){
-			Event.addToEventStack(self.getModel());
-		};
+      //  Populate the procedures
+      Procedure.getProcedures()
+        .success(function(data) {
+          $scope.options = data;
+        })
+        .error(function(data, status, headers, config) {
+          console.log(data, status, headers, config);
+        });
 
-		this.getModel = function(){
-			return {
-				name: 'procedures',
-				subPath: this.eyeSide,
-				model: $scope.model
-			};
-		};
+      //  Listen for save event
+      //  Broadcast by event page controller
+      $scope.$on('event.save', this.broadcastModel);
+    };
 
-	}])
-	.directive('procedureSelection', [function () {
+    this.broadcastModel = function(){
+      Event.addToEventStack(self.getModel());
+    };
 
-		return {
-			restrict: 'AE', //E = element, A = attribute, C = class, M = comment
-			scope: {},
-			templateUrl: 'views/directives/procedureselection.html',
-			controller: 'ProcedureSelectionCtrl',
-			link: function ($scope, element, attr, ProcedureSelectionCtrl) {
-				ProcedureSelectionCtrl.init(attr);
-			}
-		};
-	}]);
+    this.getModel = function(){
+      return {
+        name: 'procedures',
+        subPath: this.eyeSide,
+        model: $scope.model
+      };
+    };
+
+  }])
+  .directive('procedureSelection', [function () {
+
+    return {
+      restrict: 'AE', //E = element, A = attribute, C = class, M = comment
+      scope: {},
+      templateUrl: 'views/directives/procedureselection.html',
+      controller: 'ProcedureSelectionCtrl',
+      link: function ($scope, element, attr, ProcedureSelectionCtrl) {
+        ProcedureSelectionCtrl.init(attr);
+      }
+    };
+  }]);

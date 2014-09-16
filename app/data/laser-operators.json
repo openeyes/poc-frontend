@@ -1,22 +1,22 @@
 [
-	{
-		"id": 1,
-		"name": "Major Laser"
-	},
-	{
-		"id": 1,
-		"name": "Bob Smith"
-	},
-	{
-		"id": 1,
-		"name": "Richard Sharpe"
-	},
-	{
-		"id": 1,
-		"name": "Green Arrow"
-	},
-	{
-		"id": 1,
-		"name": "Wesley Snipes"
-	}
+  {
+    "id": 1,
+    "name": "Major Laser"
+  },
+  {
+    "id": 1,
+    "name": "Bob Smith"
+  },
+  {
+    "id": 1,
+    "name": "Richard Sharpe"
+  },
+  {
+    "id": 1,
+    "name": "Green Arrow"
+  },
+  {
+    "id": 1,
+    "name": "Wesley Snipes"
+  }
 ]

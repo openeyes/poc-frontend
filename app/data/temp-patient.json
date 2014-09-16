@@ -1,50 +1,50 @@
 {
-    "id": 2,
-    "firstName": "Steve",
-    "surname": "Lonie",
-    "dob": "1969-06-13T00:00:00Z",
-    "gender": "Male",
-    "ethnicity": "Unknown",
+  "id": 2,
+  "firstName": "Steve",
+  "surname": "Lonie",
+  "dob": "1969-06-13T00:00:00Z",
+  "gender": "Male",
+  "ethnicity": "Unknown",
+  "contactDetail": {
+    "email": "info@here.org",
+    "telephone": "+44 208 9734 6789"
+  },
+  "address": {
+      "addressLine1": "Murray Hill",
+      "addressLine2": "",
+      "city": "Wimbledon",
+      "county": "Greater London",
+      "postcode": "SW4 7JH"
+  },
+  "nhsNumber": 67890,
+  "nextOfKin": "Unknown",
+  "generalPractitioner": {
+    "firstName": "Dr",
+    "surname": "Strange",
     "contactDetail": {
-        "email": "info@here.org",
-        "telephone": "+44 208 9734 6789"
+      "email": "info@here.org",
+      "telephone": "+44 208 9734 6789"
     },
     "address": {
+      "addressLine1": "Murray Hill",
+      "addressLine2": "",
+      "city": "Wimbledon",
+      "county": "Greater London",
+      "postcode": "SW4 7JH"
+    },
+    "practice": {
+      "name": "The Practice",
+      "contactDetail": {
+        "email": "info@here.org",
+        "telephone": "+44 208 9734 6789"
+      },
+      "address": {
         "addressLine1": "Murray Hill",
         "addressLine2": "",
         "city": "Wimbledon",
         "county": "Greater London",
         "postcode": "SW4 7JH"
-    },
-    "nhsNumber": 67890,
-    "nextOfKin": "Unknown",
-    "generalPractitioner": {
-        "firstName": "Dr",
-        "surname": "Strange",
-        "contactDetail": {
-            "email": "info@here.org",
-            "telephone": "+44 208 9734 6789"
-        },
-        "address": {
-            "addressLine1": "Murray Hill",
-            "addressLine2": "",
-            "city": "Wimbledon",
-            "county": "Greater London",
-            "postcode": "SW4 7JH"
-        },
-        "practice": {
-            "name": "The Practice",
-            "contactDetail": {
-                "email": "info@here.org",
-                "telephone": "+44 208 9734 6789"
-            },
-            "address": {
-                "addressLine1": "Murray Hill",
-                "addressLine2": "",
-                "city": "Wimbledon",
-                "county": "Greater London",
-                "postcode": "SW4 7JH"
-            }
-        }
+      }
     }
+  }
 }

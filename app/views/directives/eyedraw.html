@@ -1,61 +1,61 @@
 <div class="ed-widget {{mode}}">
-	<div class="ed-body">
-		<div class="ed-editor-container">
+  <div class="ed-body">
+    <div class="ed-editor-container">
 
-			<div class="ed-toolbar" ng-if="mode === 'edit'">
-				<ul class="ed-toolbar-panel ed-main-toolbar">
-					<li ng-repeat="doodle in options.doodles">
-						<a class="ed-button" href="#" data-function="addDoodle" data-arg="{{ doodle }}">
-							<span class="icon-ed-{{ doodle }}"></span>
-							<span class="label">{{ getTitle(doodle) }}</span>
-						</a>
-					</li>
-				</ul>
-			</div>
+      <div class="ed-toolbar" ng-if="mode === 'edit'">
+        <ul class="ed-toolbar-panel ed-main-toolbar">
+          <li ng-repeat="doodle in options.doodles">
+            <a class="ed-button" href="#" data-function="addDoodle" data-arg="{{ doodle }}">
+              <span class="icon-ed-{{ doodle }}"></span>
+              <span class="label">{{ getTitle(doodle) }}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
 
-			<div class="ed-editor">
-				<div class="ed-drawing-controls" ng-if="mode === 'edit'">
-					<!-- DRAWING TOOLBAR -->
-					<ul class="ed-toolbar-panel ed-drawing-toolbar">
-						<li>
-							<a class="ed-button" href="#" data-function="resetEyedraw">
-								<span class="icon-ed-reset"></span>
-								<span class="label">Reset eyedraw</span>
-							</a>
-						</li>
-					</ul>
-					<!-- SELECTED DOODLE -->
-					<div class="ed-selected-doodle">
-						<select class="ed-selected-doodle-select" id="ed_example_selected_doodle">
-						</select>
-					</div>
-				</div>
+      <div class="ed-editor">
+        <div class="ed-drawing-controls" ng-if="mode === 'edit'">
+          <!-- DRAWING TOOLBAR -->
+          <ul class="ed-toolbar-panel ed-drawing-toolbar">
+            <li>
+              <a class="ed-button" href="#" data-function="resetEyedraw">
+                <span class="icon-ed-reset"></span>
+                <span class="label">Reset eyedraw</span>
+              </a>
+            </li>
+          </ul>
+          <!-- SELECTED DOODLE -->
+          <div class="ed-selected-doodle">
+            <select class="ed-selected-doodle-select" id="ed_example_selected_doodle">
+            </select>
+          </div>
+        </div>
 
-				<!-- DOODLE POPUP -->
-				<div class="ed-doodle-popup closed">
-				</div>
+        <!-- DOODLE POPUP -->
+        <div class="ed-doodle-popup closed">
+        </div>
 
-				<!-- CANVAS -->
-				<canvas
-				id="{{ options.canvasId }}"
-				class="ed-canvas-{{ mode == 'view' ? 'display' : 'edit' }}"
-				width="300"
-				height="300"
-				tabindex="1"
-				data-drawing-name="{{ options.drawingName }}"
-				>
-				</canvas>
+        <!-- CANVAS -->
+        <canvas
+        id="{{ options.canvasId }}"
+        class="ed-canvas-{{ mode == 'view' ? 'display' : 'edit' }}"
+        width="300"
+        height="300"
+        tabindex="1"
+        data-drawing-name="{{ options.drawingName }}"
+        >
+        </canvas>
 
-				<!-- DATA FIELD -->
-				<input
-				type="text"
-				id="{{ options.inputId }}"
-				ng-model="data"
-				/>
-			</div>
-		</div>
+        <!-- DATA FIELD -->
+        <input
+        type="text"
+        id="{{ options.inputId }}"
+        ng-model="data"
+        />
+      </div>
+    </div>
 
-		<div class="ed-fields-container">
-		</div>
-	</div>
+    <div class="ed-fields-container">
+    </div>
+  </div>
 </div>
