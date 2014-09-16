@@ -46,10 +46,10 @@ angular.module('openeyesApp')
       getLayoutConfig: function(eventType){
         var layoutConfig = {
           eventType1: [
-            // 'laserSite',
-            // 'procedures',
-            // 'eyedraw',
-            // 'treatment',
+            'laserSite',
+            'procedures',
+            'eyedraw',
+            'treatment',
             'history',
             'commorbidities'
           ],
