@@ -1,0 +1,23 @@
+<section class="">
+  <div class="row">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Site</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-2">Site:</div>
+          <div class="col-xs-4">{{ event.site.label }}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-2">Laser:</div>
+          <div class="col-xs-4">{{ event.laser.label }}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-2">Operater:</div>
+          <div class="col-xs-4">{{ event.laserOperator.firstName }} {{ event.laserOperator.surname }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,33 @@
+<section class="">
+  <div class="row">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Treatment</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-6">
+            <div class="row" ng-if="event.rightEye.procedures && event.rightEye.procedures.length">
+              <div class="col-xs-4">Procedures:</div>
+              <div class="col-xs-8">
+                <ul>
+                  <li ng-repeat="procedure in event.rightEye.procedures">{{procedure.label}}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-6">
+            <div class="row" ng-if="event.leftEye.procedures && event.leftEye.procedures.length">
+              <div class="col-xs-4">Procedures:</div>
+              <div class="col-xs-8">
+                <ul>
+                  <li ng-repeat="procedure in event.leftEye.procedures">{{procedure.label}}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
