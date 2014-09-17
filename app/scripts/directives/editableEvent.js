@@ -49,6 +49,9 @@ angular.module('openeyesApp')
         $scope.form.submitted = true;
 
         if ($scope.form.$invalid) {
+          self.scrollToField(
+            self.getFirstErrorField($scope.form.$error)
+          );
           return;
         }
 
@@ -66,6 +69,26 @@ angular.module('openeyesApp')
           });
 
       });
+    };
+
+    this.getFirstErrorField = function(errors) {
+      return errors[Object.keys(errors)[0]][0];
+    };
+
+    this.scrollToField = function(model) {
+
+      var element = angular.element('[name="' + model.$name + '"]');
+
+      if (!element.length) {
+        console.warn('Attempting to scroll to an element that does not exist.');
+        return;
+      }
+      var formGroup = element.parents('.form-group');
+      if (formGroup.length) {
+        formGroup[0].scrollIntoView(true);
+      } else {
+        console.warn('Unable to find form-group wrapper for this field.');
+      }
     };
 
     this.buildPostObject = function(){

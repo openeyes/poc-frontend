@@ -142,10 +142,12 @@ angular.module('openeyesApp')
               required: true
             },
             'batch-expiry-date-rightEye': {
-              required: true
+              required: true,
+              pattern: '/^[0-9]+$/'
             },
             'batch-number-rightEye': {
-              required: true
+              required: true,
+              pattern: '/^[0-9]+$/'
             },
             'batch-number-leftEye': {
               required: true
