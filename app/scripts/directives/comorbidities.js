@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name openeyesApp.controller:CommorbiditiesCtrl
+ * @name openeyesApp.controller:ComorbiditiesCtrl
  * @description
- * # CommorbiditiesCtrl
+ * # ComorbiditiesCtrl
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('CommorbiditiesCtrl', ['$scope', 'Conditions', 'Event', function($scope, Conditions, Event){
+  .controller('ComorbiditiesCtrl', ['$scope', 'Conditions', 'Event', function($scope, Conditions, Event){
 
     var self = this;
 
@@ -18,9 +18,9 @@ angular.module('openeyesApp')
       $scope.$on('event.save', this.broadcastModel);
       //  On creation populate dropdown
 
-      Conditions.getCommorbidities()
+      Conditions.getComorbidities()
         .then(function(data) {
-          $scope.commorbidities = data;
+          $scope.comorbidities = data;
         }, function(error) {
           console.log(error);
         });
@@ -34,7 +34,7 @@ angular.module('openeyesApp')
 
     this.getModel = function(){
       return {
-        name: 'commorbidities',
+        name: 'comorbidities',
         model: $scope.model
       };
     };
@@ -43,19 +43,19 @@ angular.module('openeyesApp')
   }])
   /**
    * @ngdoc function
-   * @name openeyesApp.directive:commorbidities
+   * @name openeyesApp.directive:comorbidities
    * @description
-   * # commorbidities
+   * # comorbidities
    * Directive of the openeyesApp
    */
-  .directive('commorbidities', [function () {
+  .directive('oeComorbidities', [function () {
     return {
       restrict: 'EA', //E = element, A = attribute, C = class, M = comment
       scope: {},
-      templateUrl: 'views/directives/commorbidities.html',
-      controller: 'CommorbiditiesCtrl', //Embed a custom controller in the directive
-      link: function (scope, element, attrs, CommorbiditiesCtrl) {
-        CommorbiditiesCtrl.init(attrs);
+      templateUrl: 'views/directives/comorbidities.html',
+      controller: 'ComorbiditiesCtrl', //Embed a custom controller in the directive
+      link: function (scope, element, attrs, ComorbiditiesCtrl) {
+        ComorbiditiesCtrl.init(attrs);
       }
     };
   }]);
