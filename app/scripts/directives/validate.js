@@ -48,7 +48,7 @@
         rules = _rules;
       };
 
-      this.registerModel = function(ngModel, attrs) {
+      this.registerModel = function(ngModel) {
         ngModels.push(ngModel);
       };
 
