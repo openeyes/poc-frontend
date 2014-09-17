@@ -35,7 +35,7 @@ angular.module('openeyesApp')
     };
 
   }])
-  .directive('eventview', function () {
+  .directive('oeEventView', function () {
 
     return {
       restrict: 'EA', //E = element, A = attribute, C = class, M = comment

@@ -89,7 +89,7 @@ angular.module('openeyesApp')
    * # treatment
    * Directive of the openeyesApp
    */
-  .directive('treatment', [function () {
+  .directive('oeTreatment', [function () {
     return {
       restrict: 'EA', //E = element, A = attribute, C = class, M = comment
       scope: {},

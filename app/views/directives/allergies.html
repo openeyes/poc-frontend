@@ -1,0 +1,39 @@
+<div class="form-group row">
+  <div class="col-xs-6">
+    <strong>Allergies</strong>
+  </div>
+  <div class="col-xs-6">
+    <strong>Actions</strong>
+  </div>
+</div>
+
+<div class="form-group row" ng-repeat="a in model.allergies | orderBy:'toString()'">
+  <div class="col-xs-6">
+    {{ a }}
+  </div>
+  <div class="col-xs-6">
+    <button class="btn btn-default btn-xs" ng-click="removeRow($index)">Remove</button>
+  </div>
+</div>
+
+<div class="form-group row">
+  <div class="col-xs-6">
+    <button class="btn btn-primary" type="button" ng-click="addMode = !addMode">Add</button>
+  </div>
+</div>
+
+
+
+<div class="form-group row" ng-show="addMode">
+  <div class="col-xs-6">
+    Add allergy
+  </div>
+  <div class="col-xs-6">
+    <select class="form-control" ng-model="currentAllergy" ng-options="m as m for m in allergies | orderBy:'toString()'" ng-change="addAllergy()">
+      <option value="">--Allergy--</option>
+    </select>
+  </div>
+</div>
+
+
+

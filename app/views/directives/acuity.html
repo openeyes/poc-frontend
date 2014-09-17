@@ -1,1 +1,31 @@
-<h1>Acuity</h1>
+<div class="form-group row" ng-hide="model.acuityMeasurements.length">
+  <div class="col-xs-2">
+    <span>Not Recorded</span>
+  </div>
+  <div class="col-xs-5">
+    <input type="checkbox">
+    <label for="">Unable to assess</label>
+  </div>
+  <div class="col-xs-5">
+    <input type="checkbox">
+    <label for="">Eye missing</label>
+  </div>
+</div>
+
+<div class="form-group row" ng-repeat="am in model.acuityMeasurements">
+  <div class="col-xs-4">
+    <select class="" ng-model="model.acuityMeasurements[$index].measurement" ng-options="m as m for m in measurements">
+      <option value="">--Measurement--</option>
+    </select>
+  </div>
+  <div class="col-xs-4">
+    <select class="" ng-model="model.acuityMeasurements[$index].correction" ng-options="c as c for c in corrections">
+      <option value="">--Correction--</option>
+    </select>
+  </div>
+  <div class="col-xs-4">
+    <button class="btn btn-default btn-xs" ng-click="removeRow($index)">Remove</button>
+  </div>
+</div>
+
+<button class="btn btn-primary" type="button" ng-click="addRow()">Add</button>

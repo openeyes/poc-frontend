@@ -135,7 +135,7 @@ angular.module('openeyesApp')
     };
 
   }])
-  .directive('editableevent', function () {
+  .directive('oeEditableEvent', function () {
 
     return {
       restrict: 'EA', //E = element, A = attribute, C = class, M = comment

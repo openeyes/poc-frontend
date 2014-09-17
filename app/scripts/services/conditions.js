@@ -13,7 +13,7 @@ angular.module('openeyesApp')
     console.log(ENV);
 
     return {
-      getCommorbidities: function(){
+      getComorbidities: function(){
         var data = [
           {
             id: 1,

@@ -55,7 +55,7 @@ angular.module('openeyesApp')
       });
     };
   }])
-  .directive('lasersite', [function () {
+  .directive('oeLaserSite', [function () {
     return {
       restrict: 'EA', //E = element, A = attribute, C = class, M = comment
       scope: {},

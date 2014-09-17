@@ -123,7 +123,7 @@ angular.module('openeyesApp')
     };
 
   }])
-  .directive('eyedraw', [function() {
+  .directive('oeEyedraw', [function() {
 
     var id = 0;
     function link($scope, element, attr, EyeDrawCtrl) {

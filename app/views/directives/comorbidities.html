@@ -1,0 +1,12 @@
+<div class="row form-group">
+  <div class="col-xs-12">
+    <select chosen multiple ng-model="model.comorbidities" ng-options="obj.label for obj in comorbidities | orderBy:'label'">
+    </select>
+  </div>
+</div>
+
+<div class="row form-group">
+  <div class="col-xs-12">
+    <textarea placeholder="Enter comments here" name="" id="" cols="148" rows="5" ng-model="model.comorbidityComment"></textarea>
+  </div>
+</div>
