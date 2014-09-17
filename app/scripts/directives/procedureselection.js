@@ -46,7 +46,7 @@ angular.module('openeyesApp')
     };
 
   }])
-  .directive('procedureSelection', [function () {
+  .directive('oeProcedureSelection', [function () {
 
     return {
       restrict: 'AE', //E = element, A = attribute, C = class, M = comment

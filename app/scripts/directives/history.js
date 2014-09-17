@@ -55,7 +55,7 @@ angular.module('openeyesApp')
    * # history
    * Directive of the openeyesApp
    */
-  .directive('history', [function () {
+  .directive('oeHistory', [function () {
     return {
       restrict: 'EA', //E = element, A = attribute, C = class, M = comment
       scope: {},
