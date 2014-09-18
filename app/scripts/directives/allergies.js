@@ -65,12 +65,12 @@ angular.module('openeyesApp')
       $scope.currentAllergy = '';
     };
 
-    $scope.removeRow = function(index){
+    $scope.removeRow = function(allergy){
+      //  Add back into dropdown
+      var index = $scope.model.allergies.indexOf(allergy);
+      $scope.allergies.push($scope.model.allergies[index]);
       //  Remove from list
       $scope.model.allergies.splice(index, 1);
-      //  Add back into dropdown
-      $scope.allergies.push($scope.model.allergies[index]);
-
     };
 
   }])

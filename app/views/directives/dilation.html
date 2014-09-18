@@ -1,0 +1,26 @@
+<div class="form-group row">
+  <div class="col-xs-3">
+    Add Dilation:
+  </div>
+  <div class="col-xs-6">
+    <select class="form-control" ng-model="currentDilationMed" ng-options="d as d for d in dilationMeds | orderBy:'toString()'">
+      <option value="">--Dilation--</option>
+    </select>
+  </div>
+  <div class="col-xs-3">
+    <button class="btn btn-primary" type="button" ng-click="addDilation()">Add</button>
+  </div>
+</div>
+<table ng-show="model.dilations.length" style="width:100%;">
+  <tr><th>Time</th><th>Drug</th><th>Drops</th><th>Actions</th></tr>
+  <tr class="" ng-repeat="d in model.dilations">
+    <td><input
+      type="time" value="{{ d.time | date: 'HH:mm' }}"></td>
+    <td>{{ d.drug }}</td>
+    <td>{{ d.drops }}</td>
+    <td><button class="btn btn-default btn-xs" ng-click="removeRow($index)">Remove</button></td>
+  </tr>
+</table>
+
+
+
