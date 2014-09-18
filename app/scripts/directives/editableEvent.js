@@ -11,35 +11,49 @@ angular.module('openeyesApp')
   .controller('ConfigurableEventCtrl', ['$scope', '$compile', '$timeout', '$rootScope', '$routeParams', 'Event', function ($scope, $compile, $timeout, $rootScope, $routeParams, Event) {
 
     var self = this;
-    //  Pretend to load in some workflow config here
-    //  NEEDS TO BE REMOVED WHEN CONFIG WORKFLOW IS DECIDED ON
-    var eventType = $routeParams.eventType;
-    var layoutConfig = Event.getLayoutConfig(eventType);
 
-    //  Map component names that would come from the layout config
-    var componentMappings = Event.getComponentMappings('edit');
-
-    this.init = function(element, attrs){
+    this.init = function(element){
 
       $scope.form.submitted = false;
       $scope.validations = Event.getValidationRules();
-      Event.setForm($scope.form);
 
+      Event.setForm($scope.form);
+      this.componentMappings = Event.getComponentMappings('edit');
       this.element = element;
-      //  Could be use when requesting event spec from api
-      //  Relistically though it would come from the routeParams when navigating to create each type of event / workflow
-      this.eventType = attrs.eventType;
-      this.buildLayout();
+
       //  Broadcast by event page controller
       $scope.$on('event.save', this.save);
+
+      Event.getWorkflowConfig()
+        .success(function(data){
+          self.layoutConfig = data[Event.getCurrentSite()];
+          self.buildLayout($routeParams.stepName);
+        })
+        .error(function(data, status, headers, config) {
+          console.log(data, status, headers, config);
+        });
     };
 
-    this.buildLayout = function(){
+    this.buildLayout = function(stepName){
+      $scope.stepName = stepName;
+      var steps = self.layoutConfig.steps;
+      var mandatoryFieldSets;
+
+      for(var i = 0;i < steps.length;i++){
+        if(steps[i].name === stepName) {
+          mandatoryFieldSets = steps[i].mandatoryFieldSets;
+          break;
+        }
+      }
       //  Loop over given layout components and add into container
-      for(var i = 0;i < layoutConfig.length;i++){
-        var template = componentMappings[layoutConfig[i]];
-        var cTemplate = $compile(template)($scope);
-        this.element.find('form:first').append(cTemplate);
+      for(var index = 0;index < mandatoryFieldSets.length;index++){
+        if(self.componentMappings.hasOwnProperty(mandatoryFieldSets[index])) {
+          var template = self.componentMappings[mandatoryFieldSets[index]];
+          var cTemplate = $compile(template)($scope);
+          this.element.find('form:first').append(cTemplate);
+        } else {
+          console.log('No component mapping found for ', mandatoryFieldSets[index], 'Step:', stepName);
+        }
       }
     };
 
