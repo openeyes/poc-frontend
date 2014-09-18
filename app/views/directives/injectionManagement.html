@@ -5,14 +5,14 @@
   <div class="col-xs-8">
     <div class="checkbox">
       <label>
-        <input type="checkbox" name="no-treatment" ng-model="model.noTreatment" />
+        <input type="checkbox" ng-model="noTreatment" />
         No treatment
       </label>
     </div>
   </div>
 </div>
 
-<div ng-show="model.noTreatment">
+<div ng-show="noTreatment">
 
   <div class="form-group row">
     <label class="col-xs-4 control-label">Reason for no treatment:</label>
@@ -30,25 +30,25 @@
 
 </div>
 
-<div ng-show="!model.noTreatment">
+<div ng-show="!noTreatment">
   <div class="form-group row">
     <label class="col-xs-4 control-label">
       Diagnosis:
     </label>
     <div class="col-xs-8">
-      <diagnosis-selection ng-model="diagnosis"></diagnosis-selection>
+      <oe-diagnosis-selection ng-model="model.diagnosis"></oe-diagnosis-selection>
     </div>
   </div>
-  <div class="form-group row" ng-show="diagnosis && diagnosis.hasSecondary">
+  <div class="form-group row" ng-show="model.diagnosis && model.diagnosis.hasSecondary">
     <label class="col-xs-4 control-label">
       Secondary to:
     </label>
     <div class="col-xs-8">
-      <diagnosis-selection ng-model="secondaryDiagnosis" secondary-to="diagnosis"></diagnosis-selection>
+      <oe-diagnosis-selection ng-model="model.diagnosisSecondaryTo" secondary-to="model.diagnosis"></oe-diagnosis-selection>
     </div>
   </div>
 
-  <injection-questions diagnosis="diagnosis" secondary-to-diagnosis="secondaryDiagnosis"></injection-questions>
+  <oe-injection-questions ng-model="model.questions" diagnosis="model.diagnosis" secondary-to-diagnosis="model.diagnosisSecondaryTo"></oe-injection-questions>
 
   <div class="form-group row">
     <label class="col-xs-4 control-label">
@@ -56,7 +56,10 @@
     </label>
     <div class="col-xs-8">
       <select
-        ng-model="model.treatment"
+        chosen
+        disable-search="true"
+        data-placeholder="Select a treatment..."
+        ng-model="model.intendedTreatment"
         ng-options="treatment.label for treatment in treatments | orderBy:'order'"
         >
       </select>
@@ -68,7 +71,16 @@
       Risks:
     </label>
     <div class="col-xs-8">
-      <risks-selection></risks-selection>
+      <oe-risks-selection ng-model="model.risks" data-placeholder="Select risks..."></oe-risks-selection>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-xs-4 control-label">
+      Comments:
+    </label>
+    <div class="col-xs-8">
+      <textarea class="form-control" rows="3" ng-model="model.comments" placeholder="Enter comments..."></textarea>
     </div>
   </div>
 

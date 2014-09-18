@@ -1,19 +1,11 @@
 'use strict';
 
 angular.module('openeyesApp')
-  .controller('InjectionQuestionsCtrl', ['$scope', '$attrs', '$parse', 'Conditions', 'Event', function($scope, $attrs, $parse, Conditions, Event){
+  .controller('InjectionQuestionsCtrl', ['$scope', '$attrs', '$parse', 'InjectionManagement', 'Event', function($scope, $attrs, $parse, InjectionManagement, Event){
 
     var self = this;
 
     this.init = function(attr){
-
-      this.eyeSide = $attrs.side;
-
-      $scope.model = {};
-
-      //  Listen for save event
-      //  Broadcast by event page controller
-      $scope.$on('event.save', this.broadcastModel);
 
       $scope.$watchCollection('[diagnosis,secondaryToDiagnosis]', function(collection) {
         // At the least, we need a diagnosis, but secondaryToDiagnosis is optional.
@@ -28,32 +20,20 @@ angular.module('openeyesApp')
       var diagnosisId = $scope.diagnosis.id;
       var secondaryToDiagnosisId = $scope.secondaryToDiagnosis ? $scope.secondaryToDiagnosis.id : null;
 
-      Conditions.getInjectionQuestions(diagnosisId, secondaryToDiagnosisId)
+      InjectionManagement.getInjectionQuestions(diagnosisId, secondaryToDiagnosisId)
         .then(function(data) {
           $scope.questions = data;
         }, function(data, status, headers, config) {
           console.log(data, status, headers, config);
         });
     };
-
-    this.broadcastModel = function(){
-      Event.addToEventStack(self.getModel());
-    };
-
-    this.getModel = function(){
-      return {
-        name: 'injectionQuestions',
-        subPath: this.eyeSide,
-        model: $scope.model
-      };
-    };
-
   }])
-  .directive('injectionQuestions', [function () {
+  .directive('oeInjectionQuestions', [function () {
 
     return {
       restrict: 'E',
       scope: {
+        model: '=?ngModel',
         diagnosis: '=',
         secondaryToDiagnosis: '='
       },

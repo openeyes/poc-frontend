@@ -1,9 +1,9 @@
 <select
   chosen
-  multiple
   id="{{id}}"
   data-placeholder="{{placeholder}}"
   ng-model="model"
   ng-options="obj.label for obj in options | orderBy:'order'"
   >
+  <option value=""><option>
 </select>

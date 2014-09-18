@@ -8,6 +8,10 @@
   }
 }
 
+.control-label {
+  @extend label;
+}
+
 // Validation states
 .ng-invalid {
   &.ng-dirty {

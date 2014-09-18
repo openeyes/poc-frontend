@@ -1,49 +1,35 @@
 'use strict';
 
 angular.module('openeyesApp')
-  .controller('RisksSelectionCtrl', ['$scope', '$attrs', '$parse', 'Conditions', 'Event', function($scope, $attrs, $parse, Conditions, Event){
+  .controller('RisksSelectionCtrl', ['$scope', '$attrs', '$parse', 'InjectionManagement', 'Event', function($scope, $attrs, $parse, InjectionManagement, Event){
 
     var self = this;
 
     this.init = function(attr){
+      $scope.placeholder = $attrs.placeholder || 'Select risks...'
+      this.getRisks();
+    };
 
-      this.eyeSide = attr.side;
-
-      //  Populate the procedures
-      Conditions.getRisks()
+    this.getRisks = function() {
+      InjectionManagement.getRisks()
         .then(function(data) {
           $scope.options = data;
         }, function(data, status, headers, config) {
           console.log(data, status, headers, config);
         });
-
-      //  Listen for save event
-      //  Broadcast by event page controller
-      $scope.$on('event.save', this.broadcastModel);
-    };
-
-    this.broadcastModel = function(){
-      Event.addToEventStack(self.getModel());
-    };
-
-    this.getModel = function(){
-      return {
-        name: 'risks',
-        subPath: this.eyeSide,
-        model: $scope.model
       };
-    };
-
   }])
-  .directive('risksSelection', [function () {
+  .directive('oeRisksSelection', [function () {
 
     return {
       restrict: 'AE', //E = element, A = attribute, C = class, M = comment
-      scope: {},
+      scope: {
+        model: '=?ngModel',
+      },
       templateUrl: 'views/directives/multiSelect.html',
       controller: 'RisksSelectionCtrl',
       link: function ($scope, element, attr, RisksSelectionCtrl) {
-        RisksSelectionCtrl.init(attr);
+        RisksSelectionCtrl.init();
       }
     };
   }]);

@@ -11,45 +11,57 @@ angular.module('openeyesApp')
   .factory('InjectionManagement', ['$http', '$q', 'ENV', function($http, $q, ENV) {
 
     return {
-      getNoTreatmentReasons: function() {
-        var data = [
+      getInjectionQuestions: function(disorderId, secondaryToDisorderId) {
+
+        console.info('Getting injection questions. DisorderID:', disorderId, 'SecondaryToDisorderId', secondaryToDisorderId);
+
+        var data = disorderId === 1 ? [
           {
-            label: 'DNA',
-            other: false,
+            label: 'CRT Increase <100',
             id: 1,
             order: 1
           },
           {
-            label: 'Infection',
-            other: false,
+            label: 'CRT >= 100',
             id: 2,
             order: 2
           },
           {
-            label: 'CVA',
-            other: false,
+            label: 'Loss of 5 letters',
             id: 3,
-            order: 4
+            order: 3
           },
           {
-            label: 'MI',
-            other: false,
+            label: 'Loss of letter >5',
             id: 4,
-            order: 5
+            order: 4
+          }
+        ] : [];
+
+        var deferred = $q.defer();
+        deferred.resolve(data);
+
+        return deferred.promise;
+      },
+      getRisks: function() {
+        var data = [
+          {
+            id: 1,
+            label: 'Pre-existing glaucoma',
+            order: 1
           },
           {
-            label: 'Spontaneous improvement',
-            other: false,
-            id: 5,
-            order: 6
+            id: 2,
+            label: 'CVARemove',
+            order: 2
           },
           {
-            label: 'Other',
-            other: true,
-            id: 6,
-            order: 7
+            id: 3,
+            label: 'Previous glaucoma surgery (trabeculectomy bleb, glaucoma draining device)',
+            order: 3
           }
         ];
+
         var deferred = $q.defer();
         deferred.resolve(data);
 

@@ -247,7 +247,7 @@
       return {
         restrict: 'A',
         replace: false,
-        require: ['^oeValidate', '^oeValidateRules'],
+        require: ['^?oeValidate', '^oeValidateRules'],
         controller: 'oeValidateRulesCtrl',
         scope: true,
         terminal: true,
@@ -255,6 +255,7 @@
         link: function(scope, element, attrs, controllers) {
 
           var oeValidateCtrl = controllers[0];
+
           var oeValidateRulesCtrl = controllers[1];
           var rules = $parse(attrs.oeValidateRules)(scope);
 

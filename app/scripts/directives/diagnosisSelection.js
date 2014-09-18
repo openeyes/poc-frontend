@@ -7,15 +7,14 @@ angular.module('openeyesApp')
 
     this.init = function(attr){
 
-      this.eyeSide = $attrs.side;
+      $scope.placeholder = attr.placeholder || 'Choose a diagnosis...';
 
-      //  Listen for save event
-      //  Broadcast by event page controller
-      $scope.$on('event.save', this.broadcastModel);
-
+      // Get all disorders
       if (!$attrs.secondaryTo) {
         this.getDisorders();
-      } else {
+      }
+      // Get filtered orders
+      else {
         $scope.$watch('secondaryTo', function(secondaryTo) {
           if (secondaryTo) {
             self.getDisorders(secondaryTo.id);
@@ -25,7 +24,6 @@ angular.module('openeyesApp')
     };
 
     this.getDisorders = function(secondaryToId) {
-
       Conditions.getDisorders(secondaryToId)
         .then(function(data) {
           $scope.options = data;
@@ -33,21 +31,8 @@ angular.module('openeyesApp')
           console.log(data, status, headers, config);
         });
     };
-
-    this.broadcastModel = function(){
-      Event.addToEventStack(self.getModel());
-    };
-
-    this.getModel = function(){
-      return {
-        name: 'diagnosis',
-        subPath: this.eyeSide,
-        model: $scope.model
-      };
-    };
-
   }])
-  .directive('diagnosisSelection', [function () {
+  .directive('oeDiagnosisSelection', [function () {
 
     return {
       restrict: 'E',
@@ -55,7 +40,7 @@ angular.module('openeyesApp')
         model: '=?ngModel',
         secondaryTo: '=?'
       },
-      templateUrl: 'views/directives/diagnosisSelection.html',
+      templateUrl: 'views/directives/select.html',
       controller: 'DiagnosisSelectionCtrl',
       link: function ($scope, element, attr, DiagnosisSelectionCtrl) {
         DiagnosisSelectionCtrl.init(attr);
