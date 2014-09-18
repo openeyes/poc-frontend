@@ -25,11 +25,8 @@
       <div class="container">
         <a class="navbar-brand" href="#">OpenEyes</a>
         <ul class="nav navbar-nav pull-right">
-          <li ng-class="{ active: isActive('/') || isActive('/search') }">
-            <a ng-href="#">Home</a>
-          </li>
-          <li ng-class="{ active: isActive('/about') }">
-            <a ng-href="#/about">About</a>
+          <li ng-class="{ active: isActive($index) }" ng-repeat="s in sites">
+            <a ng-click="changeSite($index)">{{ s.name }}</a>
           </li>
         </ul>
       </div>
