@@ -51,10 +51,10 @@ angular.module('openeyesApp')
         .then(function(data) {
           $scope.agents = data;
         }, function() {
-          console.log('Unable to get anaesthetic agents')
+          console.log('Unable to get anaesthetic agents');
         });
 
-    }
+    };
   }])
   .directive('oeAnaesthetic', [function () {
     return {
