@@ -158,18 +158,14 @@ angular.module('openeyesApp')
             LaserSite: '<ng-include src="\'/views/components/edit/laserSite.html\'"></ng-include>',
             Procedures: '<ng-include src="\'/views/components/edit/procedures.html\'"></ng-include>',
             eyedraw: '<ng-include src="\'/views/components/edit/eyedraw.html\'"></ng-include>',
-<<<<<<< HEAD
             Treatment: '<ng-include src="\'/views/components/edit/treatment.html\'"></ng-include>',
             History: '<ng-include src="\'/views/components/edit/history.html\'"></ng-include>',
             Comorbidities: '<ng-include src="\'/views/components/edit/comorbidities.html\'"></ng-include>',
             VisualAcuity: '<ng-include src="\'/views/components/edit/acuity.html\'"></ng-include>',
             Allergies: '<ng-include src="\'/views/components/edit/allergies.html\'"></ng-include>',
-=======
-            treatment: '<ng-include src="\'/views/components/edit/treatment.html\'"></ng-include>',
-            history: '<ng-include src="\'/views/components/edit/history.html\'"></ng-include>',
-            commorbidities: '<ng-include src="\'/views/components/edit/commorbidities.html\'"></ng-include>',
-            injectionManagement: '<ng-include src="\'/views/components/edit/injectionManagement.html\'"></ng-include>'
->>>>>>> Initial work on injection management element
+            InjectionManagement: '<ng-include src="\'/views/components/edit/injectionManagement.html\'"></ng-include>'
+            acuity: '<ng-include src="\'/views/components/edit/acuity.html\'"></ng-include>',
+            allergies: '<ng-include src="\'/views/components/edit/allergies.html\'"></ng-include>'
           },
           view: {
             laserSite: '<ng-include src="\'/views/components/view/laserSite.html\'"></ng-include>',
