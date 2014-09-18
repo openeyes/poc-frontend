@@ -40,13 +40,17 @@ angular
         templateUrl: 'views/event-create.html',
         controller: 'EventCtrl'
       })
+      .when('/patient/:patientId/step/:stepName', {
+        templateUrl: 'views/event-create.html',
+        controller: 'EventCtrl'
+      })
       .when('/patient/:patientId/event/:eventId', {
         templateUrl: 'views/event.html',
         controller: 'EventCtrl'
       })
       .when('/forms', {
-      	templateUrl: 'views/forms.html',
-      	controller: 'FormsCtrl'
+        templateUrl: 'views/forms.html',
+        controller: 'FormsCtrl'
       })
       .otherwise({
         redirectTo: '/search'

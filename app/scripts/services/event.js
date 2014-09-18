@@ -14,6 +14,7 @@ angular.module('openeyesApp')
 
     return {
       eventStack: [],
+      currentSite: null,
       setForm: function(f) {
         form = f;
       },
@@ -51,26 +52,12 @@ angular.module('openeyesApp')
       clearEventStack: function(){
         this.eventStack = [];
       },
-      getLayoutConfig: function(eventType){
-        var layoutConfig = {
-          eventType1: [
-            'laserSite',
-            'procedures',
-            'eyedraw',
-            'treatment',
-            'history',
-            'comorbidities',
-            'acuity',
-            'allergies'
-          ],
-          eventType2: [
-            'procedures',
-            'eyedraw',
-            'laserSite',
-          ]
-        };
-
-        return layoutConfig[eventType];
+      getWorkflowConfig: function(){
+        var apiCall = ENV.host + ENV.apiEndpoints.workflow;
+        return $http({
+          method: 'GET',
+          url: apiCall
+        });
       },
       getValidationRules: function(name) {
 
@@ -168,14 +155,14 @@ angular.module('openeyesApp')
       getComponentMappings: function(mode){
         var componentMappings = {
           edit: {
-            laserSite: '<ng-include src="\'/views/components/edit/laserSite.html\'"></ng-include>',
-            procedures: '<ng-include src="\'/views/components/edit/procedures.html\'"></ng-include>',
+            LaserSite: '<ng-include src="\'/views/components/edit/laserSite.html\'"></ng-include>',
+            Procedures: '<ng-include src="\'/views/components/edit/procedures.html\'"></ng-include>',
             eyedraw: '<ng-include src="\'/views/components/edit/eyedraw.html\'"></ng-include>',
-            treatment: '<ng-include src="\'/views/components/edit/treatment.html\'"></ng-include>',
-            history: '<ng-include src="\'/views/components/edit/history.html\'"></ng-include>',
-            comorbidities: '<ng-include src="\'/views/components/edit/comorbidities.html\'"></ng-include>',
-            acuity: '<ng-include src="\'/views/components/edit/acuity.html\'"></ng-include>',
-            allergies: '<ng-include src="\'/views/components/edit/allergies.html\'"></ng-include>',
+            Treatment: '<ng-include src="\'/views/components/edit/treatment.html\'"></ng-include>',
+            History: '<ng-include src="\'/views/components/edit/history.html\'"></ng-include>',
+            Comorbidities: '<ng-include src="\'/views/components/edit/comorbidities.html\'"></ng-include>',
+            VisualAcuity: '<ng-include src="\'/views/components/edit/acuity.html\'"></ng-include>',
+            Allergies: '<ng-include src="\'/views/components/edit/allergies.html\'"></ng-include>',
           },
           view: {
             laserSite: '<ng-include src="\'/views/components/view/laserSite.html\'"></ng-include>',
@@ -186,6 +173,12 @@ angular.module('openeyesApp')
         };
 
         return componentMappings[mode];
+      },
+      getCurrentSite: function(){
+        return this.currentSite;
+      },
+      setCurrentSite: function(siteIndex){
+        this.currentSite = siteIndex;
       }
     };
 
