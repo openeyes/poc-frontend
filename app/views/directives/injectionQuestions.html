@@ -1,0 +1,17 @@
+<div class="form-group" ng-repeat="question in questions">
+  <label class="col-xs-4 control-label">{{question.label}}</label>
+  <div class="col-xs-8">
+    <div class="radio-inline">
+      <label>
+        <input type="radio" value="1" ng-model="model[question.id]" />
+        Yes
+      </label>
+    </div>
+    <div class="radio-inline">
+      <label>
+        <input type="radio" value="0" ng-model="model[question.id]" />
+        No
+      </label>
+    </div>
+  </div>
+</div>

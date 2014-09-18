@@ -8,9 +8,29 @@
   }
 }
 
+.control-label {
+  @extend label;
+}
+
 // Validation states
 .ng-invalid {
   &.ng-dirty {
     // @extend .has-error;
   }
+}
+
+.form-group {
+  &.vertical {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+
+.radio-inline + .radio-inline {
+  margin-left: 0;
+}
+
+.radio-inline {
+  margin-right: 10px;
 }

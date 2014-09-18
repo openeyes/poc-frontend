@@ -19,3 +19,30 @@
 select[chosen] {
   width: 100%;
 }
+
+.chosen-container {
+  width: 100% !important;
+}
+
+.chosen-container-single {
+  .chosen-single {
+    @extend .form-control;
+    div {
+      b {
+        background-position: 0 6px;
+      }
+    }
+  }
+}
+
+.chosen-container-active {
+  &.chosen-with-drop {
+    .chosen-single {
+      div {
+        b {
+          background-position: -18px 6px;
+        }
+      }
+    }
+  }
+}

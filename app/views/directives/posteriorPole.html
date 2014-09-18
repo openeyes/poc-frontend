@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-xs-8">
+    <oe-eyedraw ng-model="model.eyedraw" data-side="{{side}}" options="{{options}}" mode="{{mode}}" instance="eyedrawInstance"></oe-eyedraw>
+  </div>
+  <div class="col-xs-4">
+    <div class="form-group vertical">
+      <label class="control-label">Description:</label>
+      <textarea class="form-control" rows="3" ng-model="model.description" placholder="Enter a description..."></textarea>
+    </div>
+    <div class="form-group vertical">
+      <button type="button" class="btn btn-default" ng-click="report()">Report</button>
+      <button type="button" class="btn btn-default" ng-click="clear()">Clear</button>
+    </div>
+  </div>
+</div>
