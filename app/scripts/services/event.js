@@ -36,7 +36,7 @@ angular.module('openeyesApp')
         });
       },
       create: function(body){
-        var apiCall = ENV.host + ENV.apiEndpoints.createLaserEvent;
+        var apiCall = ENV.host + ENV.apiEndpoints.createEncounter;
         return $http({
           method: 'POST',
           url: apiCall,
