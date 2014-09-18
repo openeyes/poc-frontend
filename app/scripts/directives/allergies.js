@@ -8,7 +8,7 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('AllergiesCtrl', ['$scope', 'Patient', 'Allergies', 'Event', function($scope, Patient, Allergies, Event){
+  .controller('AllergiesCtrl', ['$scope', 'Patient', 'Allergies', 'Event', 'MODEL_DOMAIN', function($scope, Patient, Allergies, Event, MODEL_DOMAIN){
 
     var self = this;
 
@@ -16,6 +16,7 @@ angular.module('openeyesApp')
       //  Listen for save event
       //  Broadcast by event page controller
       $scope.model = {};
+      $scope.model.allergies = [];
       $scope.$on('event.save', this.broadcastModel);
       //  On creation populate dropdown
 
@@ -41,14 +42,14 @@ angular.module('openeyesApp')
 
     this.getModel = function(){
       return {
-        name: 'allergies',
+        name: MODEL_DOMAIN + 'Allergies',
         model: $scope.model
       };
     };
 
     this.pruneExistingAllergies = function(){
       for(var i = 0;i < $scope.model.allergies.length;i++){
-        var index = $scope.allergies.indexOf($scope.model.allergies[i]);
+        var index = $scope.allergies.indexOf($scope.model.allergies[i].name);
         if(index) {
           $scope.allergies.splice(index, 1);
         }
@@ -58,7 +59,7 @@ angular.module('openeyesApp')
     // $scope methods
     $scope.addAllergy = function(){
       //  Add to model
-      $scope.model.allergies.push($scope.currentAllergy);
+      $scope.model.allergies.push({name: $scope.currentAllergy, comment: ''});
       //  Remove from dropdown
       $scope.allergies.splice($scope.allergies.indexOf($scope.currentAllergy), 1);
       //  Reset dropdown
@@ -68,7 +69,7 @@ angular.module('openeyesApp')
     $scope.removeRow = function(allergy){
       //  Add back into dropdown
       var index = $scope.model.allergies.indexOf(allergy);
-      $scope.allergies.push($scope.model.allergies[index]);
+      $scope.allergies.push($scope.model.allergies[index].name);
       //  Remove from list
       $scope.model.allergies.splice(index, 1);
     };
