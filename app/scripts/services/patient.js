@@ -18,8 +18,8 @@ angular.module('openeyesApp')
         console.log(patientId);
 
         var data = [
-          'Atropine',
-          'Fluorescin'
+          {name: 'Atropine', comment: ''},
+          {name: 'Fluorescin', comment: ''}
         ];
 
         var deferred = $q.defer();

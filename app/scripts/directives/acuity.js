@@ -8,7 +8,7 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('AcuityCtrl', ['$scope', 'Acuity', 'Event', function($scope, Acuity, Event){
+  .controller('AcuityCtrl', ['$scope', 'Acuity', 'Event', 'MODEL_DOMAIN', function($scope, Acuity, Event, MODEL_DOMAIN){
 
     var self = this;
 
@@ -17,7 +17,8 @@ angular.module('openeyesApp')
       //  Broadcast by event page controller
       this.eyeSide = attrs.side;
       $scope.model = {};
-      $scope.model.acuityMeasurements = [];
+      $scope.model.readings = [];
+      $scope.model.comment = '';
       $scope.$on('event.save', this.broadcastModel);
       //  On creation populate dropdown
 
@@ -35,9 +36,8 @@ angular.module('openeyesApp')
     };
 
     this.getModel = function(){
-      console.log('get the model', $scope.model);
       return {
-        name: 'acuity',
+        name: MODEL_DOMAIN + 'VisualAcuity',
         subPath: this.eyeSide,
         model: $scope.model
       };
@@ -45,14 +45,14 @@ angular.module('openeyesApp')
 
     // $scope methods
     $scope.addRow = function(){
-      $scope.model.acuityMeasurements.push({
-        measurement: 0,
+      $scope.model.readings.push({
+        value: 0,
         correction: ''
       });
     };
 
     $scope.removeRow = function(index){
-      $scope.model.acuityMeasurements.splice(index, 1);
+      $scope.model.readings.splice(index, 1);
     };
 
   }])

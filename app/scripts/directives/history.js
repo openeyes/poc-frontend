@@ -8,7 +8,7 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('HistoryCtrl', ['$scope', 'History', 'Event', function($scope, History, Event){
+  .controller('HistoryCtrl', ['$scope', 'History', 'Event', 'MODEL_DOMAIN', function($scope, History, Event, MODEL_DOMAIN){
 
     var self = this;
 
@@ -16,7 +16,7 @@ angular.module('openeyesApp')
       //  Listen for save event
       //  Broadcast by event page controller
       $scope.model = {};
-      $scope.model.history = '';
+      $scope.model.text = '';
       $scope.$on('event.save', this.broadcastModel);
       //  On creation populate dropdown
 
@@ -36,14 +36,14 @@ angular.module('openeyesApp')
 
     this.getModel = function(){
       return {
-        name: 'history',
+        name: MODEL_DOMAIN + 'History',
         model: $scope.model
       };
     };
 
     // $scope methods
     $scope.addSlug = function(slug, slugModel){
-      $scope.model.history += ' ' + slug.label.toLowerCase() + ',';
+      $scope.model.text += ' ' + slug.label.toLowerCase() + ',';
       $scope[slugModel] = '';
     };
 

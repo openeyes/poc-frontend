@@ -7,9 +7,9 @@
   </div>
 </div>
 
-<div class="form-group row" ng-repeat="a in model.allergies | orderBy:'toString()'">
+<div class="form-group row" ng-repeat="a in model.allergies | orderBy:'name'">
   <div class="col-xs-6">
-    {{ a }}
+    {{ a.name }}
   </div>
   <div class="col-xs-6">
     <button class="btn btn-default btn-xs" ng-click="removeRow(a)">Remove</button>
