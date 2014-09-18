@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('openeyesApp')
-  .controller('InjectionQuestionsCtrl', ['$scope', '$attrs', '$parse', 'InjectionManagement', 'Event', function($scope, $attrs, $parse, InjectionManagement, Event){
+  .controller('InjectionQuestionsCtrl', ['$scope', '$attrs', '$parse', 'InjectionManagement', function($scope, $attrs, $parse, InjectionManagement){
 
     var self = this;
 
-    this.init = function(attr){
+    this.init = function(){
 
       $scope.$watchCollection('[diagnosis,secondaryToDiagnosis]', function(collection) {
         // At the least, we need a diagnosis, but secondaryToDiagnosis is optional.
@@ -40,7 +40,7 @@ angular.module('openeyesApp')
       templateUrl: 'views/directives/injectionQuestions.html',
       controller: 'InjectionQuestionsCtrl',
       link: function ($scope, element, attr, InjectionQuestionsCtrl) {
-        InjectionQuestionsCtrl.init(attr);
+        InjectionQuestionsCtrl.init();
       }
     };
   }]);

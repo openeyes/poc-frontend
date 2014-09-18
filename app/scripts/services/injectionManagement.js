@@ -8,7 +8,7 @@
  * Service of the openeyesApp
  */
 angular.module('openeyesApp')
-  .factory('InjectionManagement', ['$http', '$q', 'ENV', function($http, $q, ENV) {
+  .factory('InjectionManagement', ['$http', '$q', function($http, $q) {
 
     return {
       getInjectionQuestions: function(disorderId, secondaryToDisorderId) {

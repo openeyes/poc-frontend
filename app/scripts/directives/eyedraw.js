@@ -5,7 +5,7 @@ angular.module('openeyesApp')
     return $window.ED;
   }])
   .constant('eyedrawOptions', {
-    'core': {
+    'default': {
       scale: 1,
       focus: false,
       graphicsPath: '/eyedraw/img/',
@@ -15,44 +15,97 @@ angular.module('openeyesApp')
     },
     'anterior': {
       doodles: [
-        'NuclearCataract',
-        'CorticalCataract',
-        'PostSubcapCataract',
-        'PCIOL',
-        'ACIOL',
-        'Bleb',
-        'PI',
-        'Label'
+        [
+          'NuclearCataract',
+          'CorticalCataract',
+          'PostSubcapCataract',
+          'PCIOL',
+          'ACIOL',
+          'Bleb',
+          'PI',
+          'Label'
+        ]
       ],
       onReadyCommandArray: [
         ['addDoodle', ['AntSeg']],
         ['deselectDoodles', []]
       ]
     },
-    'posteriorPole': {
+    'posterior': {
       doodles: [
-        'NuclearCataract'
+        [
+          'HardDrusen',
+          'Geographic',
+          'CNV',
+          'RPEDetachment',
+          'EpiretinalMembrane',
+          'MacularHole',
+          'MacularDystrophy',
+          'Macroaneurysm',
+          'RetinalVeinOcclusionPostPole',
+          'RetinalArteryOcclusionPostPole'
+        ],
+        [
+          'Microaneurysm',
+          'BlotHaemorrhage',
+          'HardExudate',
+          'IRMA',
+          'Circinate',
+          'MacularThickening',
+          'CystoidMacularOedema',
+          'PreRetinalHaemorrhage',
+          'CottonWoolSpot',
+          'DiabeticNV',
+          'VitreousOpacity',
+          'FibrousProliferation',
+          'TractionRetinalDetachment'
+        ],
+        [
+          'SwollenDisc',
+          'Telangiectasis',
+          'ChoroidalHaemorrhage',
+          'ChoroidalNaevus'
+        ],
+        [
+          'LaserSpot',
+          'FocalLaser',
+          'MacularGrid',
+          'SectorPRPPostPole',
+          'PRPPostPole',
+          'Label'
+        ]
+      ],
+      onReadyCommandArray: [
+        ['addDoodle',['PostPole']],
+        ['deselectDoodles', []]
       ]
     }
   })
   .controller('EyeDrawCtrl', ['$scope', '$timeout', 'Event', 'EyeDraw', 'eyedrawOptions', function($scope, $timeout, Event, EyeDraw, eyedrawOptions){
 
-    var self = this;
-
     this.init = function(attr, id){
 
-      this.eyeSide = attr.side;
-      this.attr = attr;
+      if (!attr.mode) {
+        console.warn('EyeDraw: mode not set');
+        return;
+      }
+
+      $scope.side = attr.side;
       $scope.mode = attr.mode;
-      $scope.options = this.getOptions(id, eyedrawOptions[attr.options]);
+
+      var options = eyedrawOptions[attr.options];
+      if (!options) {
+        console.warn('EyeDraw: Options not found for', attr.options);
+        return;
+      }
+
+      $scope.options = this.getOptions(id, options);
       $scope.getTitle = function getTitle(className) {
         return EyeDraw.titles[className];
       };
 
       this[attr.mode]();
     };
-
-
 
     this.view = function(){
       // Force wait till next digest incase data isn't available yet
@@ -68,17 +121,20 @@ angular.module('openeyesApp')
       // Only initiate the eyedraw once the $scope has been applied.
       // This is necessary as we're generating required scope vars in the same event loop.
       $timeout(function() {
-        EyeDraw.init($scope.options);
+        EyeDraw.init($scope.options, function(instance) {
+          $scope.instance = instance;
+        });
       });
     };
 
     this.getOptions = function(id, options){
       return angular.extend({
+        eye: ($scope.side === 'rightEye' ? 0 : 1),
         isEditable: ($scope.mode === 'edit'),
         canvasId: 'canvas-id-'+id,
         inputId: 'input-id-'+id,
         drawingName: 'drawing-name-'+id
-      }, eyedrawOptions.core, options);
+      }, eyedrawOptions.default, options);
     };
 
   }])
@@ -92,7 +148,8 @@ angular.module('openeyesApp')
 
     return {
       scope: {
-        model: '=?ngModel'
+        model: '=?ngModel',
+        instance: '=?'
       },
       replace: true,
       restrict: 'AE',

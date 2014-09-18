@@ -3,8 +3,6 @@
 angular.module('openeyesApp')
   .controller('ProcedureSelectionCtrl', ['$scope', '$attrs', '$parse', 'Procedure', 'Event', function($scope, $attrs, $parse, Procedure, Event){
 
-    var self = this;
-
     this.init = function(){
 
       $scope.form = Event.getForm();

@@ -26,14 +26,14 @@ angular.module('openeyesApp')
         .then(function(data) {
           $scope.noTreatmentReasons = data;
         }, function() {
-          alert('error getting no treatment reaons');
+          console.log('error getting no treatment reaons');
         });
 
       Treatment.getTreatments()
         .then(function(data) {
           $scope.treatments = data;
         }, function() {
-          console.log('error getting treatments')
+          console.log('error getting treatments');
         });
     };
 

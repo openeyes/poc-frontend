@@ -9,6 +9,7 @@ angular.module('openeyesApp')
 
       this.eyeSide = attr.side;
       $scope.mode = attr.mode;
+      $scope.options = 'anterior';
       $scope.model = {};
 
       //  Listen for save event

@@ -3,12 +3,26 @@
     <div class="ed-editor-container">
 
       <div class="ed-toolbar" ng-if="mode === 'edit'">
-        <ul class="ed-toolbar-panel ed-main-toolbar">
-          <li ng-repeat="doodle in options.doodles">
+        <ul class="ed-toolbar-panel ed-main-toolbar" ng-repeat="toolbar in options.doodles">
+          <li ng-repeat="doodle in toolbar | limitTo: 7">
             <a class="ed-button" href="#" data-function="addDoodle" data-arg="{{ doodle }}">
               <span class="icon-ed-{{ doodle }}"></span>
               <span class="label">{{ getTitle(doodle) }}</span>
             </a>
+          </li>
+          <li ng-if="toolbar.length > 7">
+            <a class="ed-button ed-button-more" href="#">
+              <span class="icon-ed-More"></span>
+              <span class="label">More</span>
+            </a>
+            <ul class="ed-toolbar-panel-drawer">
+              <li ng-repeat="doodle in toolbar" ng-if="$index >= 7">
+                <a class="ed-button" href="#" data-function="addDoodle" data-arg="{{ doodle }}">
+                  <span class="icon-ed-{{ doodle }}"></span>
+                  <span class="label">{{ getTitle(doodle) }}</span>
+                </a>
+              </li>
+            </ul>
           </li>
         </ul>
       </div>

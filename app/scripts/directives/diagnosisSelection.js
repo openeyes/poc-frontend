@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('openeyesApp')
-  .controller('DiagnosisSelectionCtrl', ['$scope', '$attrs', '$parse', 'Conditions', 'Event', function($scope, $attrs, $parse, Conditions, Event){
+  .controller('DiagnosisSelectionCtrl', ['$scope', '$attrs', '$parse', 'Conditions', function($scope, $attrs, $parse, Conditions){
 
     var self = this;
 

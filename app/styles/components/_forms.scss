@@ -18,3 +18,10 @@
     // @extend .has-error;
   }
 }
+
+.form-group {
+  &.vertical {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}

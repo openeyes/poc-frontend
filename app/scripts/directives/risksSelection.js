@@ -1,12 +1,10 @@
 'use strict';
 
 angular.module('openeyesApp')
-  .controller('RisksSelectionCtrl', ['$scope', '$attrs', '$parse', 'InjectionManagement', 'Event', function($scope, $attrs, $parse, InjectionManagement, Event){
+  .controller('RisksSelectionCtrl', ['$scope', '$attrs', '$parse', 'InjectionManagement', function($scope, $attrs, $parse, InjectionManagement){
 
-    var self = this;
-
-    this.init = function(attr){
-      $scope.placeholder = $attrs.placeholder || 'Select risks...'
+    this.init = function(){
+      $scope.placeholder = $attrs.placeholder || 'Select risks...';
       this.getRisks();
     };
 

@@ -14,7 +14,13 @@ angular.module('openeyesApp')
 
     this.init = function(){
       $scope.$on('event.save', this.broadcastModel);
-      $scope.model = {};
+      $scope.side = $attrs.side;
+      $scope.mode = $attrs.mode;
+      $scope.options = 'posterior';
+      $scope.eyedrawInstance = null;
+      $scope.model = {
+        description: ''
+      };
     };
 
     this.broadcastModel = function(){
@@ -25,9 +31,29 @@ angular.module('openeyesApp')
       console.log($scope.model);
       return {
         name: 'posteriorPole',
-        subPath: $attrs.side,
+        subPath: $scope.side,
         model: $scope.model
       };
+    };
+
+    $scope.report = function() {
+
+      if (!$scope.eyedrawInstance) {
+        console.warn('EyeDraw instance not available yet.');
+        return;
+      }
+
+      var report = $scope.eyedrawInstance.drawing.report();
+      report = report.replace(/, +$/, '');
+
+      if ($scope.model.description) {
+        report = ', ' + report;
+      }
+      $scope.model.description += report;
+    };
+
+    $scope.clear = function() {
+      $scope.model.description = '';
     };
 
   }])
