@@ -1,20 +1,20 @@
 <div class="row">
   <div class="col-md-3 col-xs-3">
-    <h2>Actions</h2>
+    <!-- <h2>Step</h2>
     <div class="dropdown">
       <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-        Create Event
+        Choose step
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="/#/patient/{{ patient._id.$oid }}/event/eventType1/create">Event Type 1</a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="/#/patient/{{ patient._id.$oid }}/event/eventType2/create">Event Type 2</a></li>
+        <li role="presentation" ng-repeat="s in workflowSteps"><a role="menuitem" tabindex="-1" href="/#/patient/{{ patient._id.$oid }}/step/{{ s.name }}">{{ s.name }}</a></li>
       </ul>
-    </div>
-    <!-- <a href="/#/patient/{{ patient.id }}/events" class="btn btn-primary">View events</a> -->
-    <h3>Events</h3>
+    </div> -->
+    <h2>Action</h2>
     <ul class="list-group">
-      <li class="list-group-item" ng-repeat="ev in events"><a href="/#/patient/{{ patientId }}/event/{{ ev._id.$oid }}">Laser Event {{ ev.createdAt | date:'dd/MM/yyyy @ h:mma' }}</a></li>
+      <li class="list-group-item"><a href="/#/patient/{{ patient._id.$oid }}/step/{{ workflowSteps[0].name }}">I’m an Optomotrist, assess vision</a></li>
+      <li class="list-group-item"><a href="/#/patient/{{ patient._id.$oid }}/step/{{ workflowSteps[1].name }}">I’m a Fellow, assess for Macular Degeneration</a></li>
+      <li class="list-group-item"><a href="/#/patient/{{ patient._id.$oid }}/step/{{ workflowSteps[2].name }}">I’m a Nurse, prepare for injection</a></li>
     </ul>
   </div>
   <div class="col-md-9 col-xs-9">
