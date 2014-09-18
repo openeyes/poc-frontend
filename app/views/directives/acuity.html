@@ -1,4 +1,4 @@
-<div class="form-group row" ng-hide="model.acuityMeasurements.length">
+<div class="form-group row" ng-hide="model.readings.length">
   <div class="col-xs-2">
     <span>Not Recorded</span>
   </div>
@@ -12,14 +12,14 @@
   </div>
 </div>
 
-<div class="form-group row" ng-repeat="am in model.acuityMeasurements">
+<div class="form-group row" ng-repeat="am in model.readings">
   <div class="col-xs-4">
-    <select class="" ng-model="model.acuityMeasurements[$index].measurement" ng-options="m as m for m in measurements">
+    <select class="" ng-model="model.readings[$index].value" ng-options="m as m for m in measurements">
       <option value="">--Measurement--</option>
     </select>
   </div>
   <div class="col-xs-4">
-    <select class="" ng-model="model.acuityMeasurements[$index].correction" ng-options="c as c for c in corrections">
+    <select class="" ng-model="model.readings[$index].correction" ng-options="c as c for c in corrections">
       <option value="">--Correction--</option>
     </select>
   </div>
