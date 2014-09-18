@@ -27,4 +27,13 @@ angular.module('openeyesApp')
       .error(function(data, status, headers, config) {
         console.log(data, status, headers, config);
       });
+
+    Event.getWorkflowConfig()
+      .success(function(data){
+        var workflowConfig = data[0];
+        $scope.workflowSteps = workflowConfig.steps;
+      })
+      .error(function(data, status, headers, config) {
+        console.log(data, status, headers, config);
+      });
   }]);
