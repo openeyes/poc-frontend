@@ -7,5 +7,6 @@
   "patientEvents": "/LaserEvent/?patientId=:id",
   "laserEvent": "/LaserEvent/:id",
   "createLaserEvent": "/LaserEvent",
-  "procedures": "/Procedure"
+  "procedures": "/Procedure",
+  "workflow": "/Workflow"
 }
