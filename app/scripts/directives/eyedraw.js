@@ -79,6 +79,20 @@ angular.module('openeyesApp')
         ['addDoodle',['PostPole']],
         ['deselectDoodles', []]
       ]
+    },
+    'injectionSite': {
+      scale: 0.5,
+      doodles: [
+        [
+          'InjectionSite',
+          'Label'
+        ]
+      ],
+      onReadyCommandArray: [
+        ['addDoodle',['AntSeg']],
+        ['addDoodle',['InjectionSite']],
+        ['deselectDoodles',[]]
+      ]
     }
   })
   .controller('EyeDrawCtrl', ['$scope', '$timeout', 'Event', 'EyeDraw', 'eyedrawOptions', function($scope, $timeout, Event, EyeDraw, eyedrawOptions){
