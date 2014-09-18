@@ -6,7 +6,7 @@
   "laserOperators": "/LaserOperator",
   "patientEvents": "/LaserEvent/?patientId=:id",
   "laserEvent": "/LaserEvent/:id",
-  "createLaserEvent": "/LaserEvent",
+  "createEncounter": "/Encounter",
   "procedures": "/Procedure",
   "workflow": "/Workflow"
 }
