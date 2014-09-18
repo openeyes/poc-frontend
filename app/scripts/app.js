@@ -63,4 +63,5 @@ angular
       delete $httpProvider.defaults.headers.common['X-Requested-With'];
     }
 
-  }]);
+  }])
+  .constant('MODEL_DOMAIN', 'org.openeyes.api.models.');
