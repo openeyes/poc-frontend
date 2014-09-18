@@ -27,6 +27,9 @@ angular.module('openeyesApp')
       Event.getWorkflowConfig()
         .success(function(data){
           self.layoutConfig = data[Event.getCurrentSite()];
+
+          // self.layoutConfig.steps[1].mandatoryFieldSets.push('ClinicalManagement');
+
           self.buildLayout($routeParams.stepName);
         })
         .error(function(data, status, headers, config) {
