@@ -72,6 +72,7 @@ angular.module('openeyesApp')
         var postObject = self.buildPostObject();
         postObject.patientId = params.patientId;
         console.log(postObject);
+
         Event.create(postObject)
           .success(function(data) {
             console.log('success', data);
@@ -108,43 +109,37 @@ angular.module('openeyesApp')
     this.buildPostObject = function(){
       var eventComponents = Event.getEventStack();
       var postObject = {};
-      var i;
+      var elements = {};
+      var postElements = [];
 
-      for(i = 0;i < eventComponents.length;i++){
+      for(var i = 0;i < eventComponents.length;i++){
         var model = eventComponents[i];
-        var subPath = '';
         var name = model.name;
         var modelData = model.model;
-
+        //  No data so skip
         if(!modelData){
           continue;
         }
-
-        if(model.hasOwnProperty('subPath')){
-          subPath = model.subPath;
+        //  Do we already have an entry for this element?
+        if(!elements.hasOwnProperty(name)){
+          elements[name] = {};
         }
-
-        if(modelData instanceof Array){
-          if(subPath){
-            if(!postObject.hasOwnProperty(subPath)){ postObject[subPath] = {}; }
-            postObject[subPath][name] = modelData;
-          } else {
-            postObject[name] = modelData;
-          }
+        //  If subpath then nest data there e.g. element.rightEye
+        if(model.hasOwnProperty('subPath')){
+          elements[name][model.subPath] = modelData;
         } else {
-          for(var key in modelData){
-            if(modelData.hasOwnProperty(key)){
-              if(subPath){
-                if(!postObject.hasOwnProperty(subPath)){ postObject[subPath] = {}; }
-                postObject[subPath][key] = modelData[key];
-              } else {
-                postObject[key] = modelData[key];
-              }
-            }
-          }
+          elements[name] = modelData;
         }
       }
 
+      for(var typeKey in elements) {
+        if(elements.hasOwnProperty(typeKey)){
+          elements[typeKey].type = typeKey;
+          postElements.push(elements[typeKey]);
+        }
+      }
+
+      postObject.elements = postElements;
       return postObject;
     };
 
