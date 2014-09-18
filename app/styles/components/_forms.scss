@@ -25,3 +25,12 @@
     margin-right: 0;
   }
 }
+
+
+.radio-inline + .radio-inline {
+  margin-left: 0;
+}
+
+.radio-inline {
+  margin-right: 10px;
+}
