@@ -163,11 +163,11 @@ angular.module('openeyesApp')
             Comorbidities: '<ng-include src="\'/views/components/edit/comorbidities.html\'"></ng-include>',
             VisualAcuity: '<ng-include src="\'/views/components/edit/acuity.html\'"></ng-include>',
             Allergies: '<ng-include src="\'/views/components/edit/allergies.html\'"></ng-include>',
-            InjectionManagement: '<ng-include src="\'/views/components/edit/injectionManagement.html\'"></ng-include>'
+            InjectionManagement: '<ng-include src="\'/views/components/edit/injectionManagement.html\'"></ng-include>',
             acuity: '<ng-include src="\'/views/components/edit/acuity.html\'"></ng-include>',
             allergies: '<ng-include src="\'/views/components/edit/allergies.html\'"></ng-include>',
-            posteriorPole: '<ng-include src="\'/views/components/edit/posteriorPole.html\'"></ng-include>',
-            anaesthetic: '<ng-include src="\'/views/components/edit/anaesthetic.html\'"></ng-include>'
+            PosteriorPole: '<ng-include src="\'/views/components/edit/posteriorPole.html\'"></ng-include>',
+            Anaesthetic: '<ng-include src="\'/views/components/edit/anaesthetic.html\'"></ng-include>'
           },
           view: {
             laserSite: '<ng-include src="\'/views/components/view/laserSite.html\'"></ng-include>',
