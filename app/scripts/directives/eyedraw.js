@@ -1,26 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name openeyesApp.directive:eyedraw
-
- * @description
- * This EyeDraw directive will handle the initiation of an eyedraw instance and
- * accepts the following attributes:
- *
- * data:    The data model used for storing eyedraw data
- * options: key:value options for the eyedraw lib
- * mode:    "edit" or "view"
- *
- * If the "mode" is set to "view" then data is required to initiate the eyedraw.
- *
- * @example
- * <div ng-init="data=[]">
- *   <eyedraw data="data" options='{"doodles": ["NuclearCataract"]}' mode="edit"></eyedraw>
- * </div>
- */
-
-
 angular.module('openeyesApp')
   .factory('EyeDraw', ['$window', function($window){
     return $window.ED;
@@ -49,10 +28,12 @@ angular.module('openeyesApp')
         ['addDoodle', ['AntSeg']],
         ['deselectDoodles', []]
       ]
+    },
+    'posteriorPole': {
+      doodles: [
+        'NuclearCataract'
+      ]
     }
-  })
-  .constant('eyedrawOptionsAnterior', {
-
   })
   .controller('EyeDrawCtrl', ['$scope', '$timeout', 'Event', 'EyeDraw', 'eyedrawOptions', function($scope, $timeout, Event, EyeDraw, eyedrawOptions){
 
@@ -68,44 +49,22 @@ angular.module('openeyesApp')
         return EyeDraw.titles[className];
       };
 
-      //  Listen for save event
-      //  Broadcast by event page controller
-      $scope.$on('event.save', this.broadcastModel);
-
       this[attr.mode]();
     };
 
-    this.broadcastModel = function(){
-      Event.addToEventStack(self.getModel());
-    };
 
-    this.getModel = function(){
-      return {
-        name: 'eyedraw',
-        subPath: this.eyeSide,
-        model: {
-          anteriorSegment: {
-            'data': $scope.data
-          }
-        }
-      };
-    };
 
     this.view = function(){
       // Force wait till next digest incase data isn't available yet
       $timeout(function() {
-        if(self.attr.data){
-          $scope.data = self.attr.data;
-          EyeDraw.init($scope.options);
-        } else {
-          self.view();
-        }
+        EyeDraw.init($scope.options);
       });
     };
 
     this.edit = function(){
-      // In edit mode data is empty to begin with
-      $scope.data = '[]';
+      if (!$scope.model) {
+        $scope.model = '[]';
+      }
       // Only initiate the eyedraw once the $scope has been applied.
       // This is necessary as we're generating required scope vars in the same event loop.
       $timeout(function() {
@@ -132,7 +91,9 @@ angular.module('openeyesApp')
     }
 
     return {
-      scope: {},
+      scope: {
+        model: '=?ngModel'
+      },
       replace: true,
       restrict: 'AE',
       controller: 'EyeDrawCtrl',
