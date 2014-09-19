@@ -27,27 +27,20 @@ angular.module('openeyesApp')
       Event.getWorkflowConfig()
         .success(function(data){
           self.layoutConfig = data[Event.getCurrentSite()];
-
-          // self.layoutConfig.steps[1].mandatoryFieldSets.push('ClinicalManagement');
-
-          self.buildLayout($routeParams.stepName);
+          self.buildLayout($routeParams.stepIndex);
         })
         .error(function(data, status, headers, config) {
           console.log(data, status, headers, config);
         });
     };
 
-    this.buildLayout = function(stepName){
-      $scope.stepName = stepName;
+    this.buildLayout = function(stepIndex){
+
       var steps = self.layoutConfig.steps;
       var mandatoryFieldSets;
 
-      for(var i = 0;i < steps.length;i++){
-        if(steps[i].name === stepName) {
-          mandatoryFieldSets = steps[i].mandatoryFieldSets;
-          break;
-        }
-      }
+      $scope.stepName = steps[stepIndex].name;
+      mandatoryFieldSets = steps[stepIndex].mandatoryFieldSets;
 
       //  Loop over given layout components and add into container
       for(var index = 0;index < mandatoryFieldSets.length;index++){
@@ -56,7 +49,7 @@ angular.module('openeyesApp')
           var cTemplate = $compile(template)($scope);
           this.element.find('form:first').append(cTemplate);
         } else {
-          console.log('No component mapping found for ', mandatoryFieldSets[index], 'Step:', stepName);
+          console.log('No component mapping found for ', mandatoryFieldSets[index], 'Step:', stepIndex);
         }
       }
     };
