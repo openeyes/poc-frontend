@@ -131,21 +131,23 @@ angular.module('openeyesApp')
               required: true
             },
             'batch-expiry-date-rightEye': {
-              required: true,
-              pattern: '/^[0-9]+$/'
+              required: true
             },
             'batch-number-rightEye': {
               required: true,
               pattern: '/^[0-9]+$/'
             },
             'batch-number-leftEye': {
-              required: true
+              required: true,
+              pattern: '/^[0-9]+$/'
             },
             'number-injections-leftEye': {
-              required: true
+              required: true,
+              pattern: '/^[0-9]+$/'
             },
             'number-injections-rightEye': {
-              required: true
+              required: true,
+              pattern: '/^[0-9]+$/'
             }
           }
         };
