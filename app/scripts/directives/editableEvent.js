@@ -48,6 +48,7 @@ angular.module('openeyesApp')
           break;
         }
       }
+
       //  Loop over given layout components and add into container
       for(var index = 0;index < mandatoryFieldSets.length;index++){
         if(self.componentMappings.hasOwnProperty(mandatoryFieldSets[index])) {

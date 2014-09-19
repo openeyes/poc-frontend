@@ -171,6 +171,7 @@ angular.module('openeyesApp')
             ClinicOutcome: '<ng-include src="\'/views/components/edit/clinicOutcome.html\'"></ng-include>',
             ClinicalManagement: '<ng-include src="\'/views/components/edit/clinicalManagement.html\'"></ng-include>',
             InjectionSite: '<ng-include src="\'/views/components/edit/injectionSite.html\'"></ng-include>',
+            Complications: '<ng-include src="\'/views/components/edit/complications.html\'"></ng-include>',
           },
           view: {
             laserSite: '<ng-include src="\'/views/components/view/laserSite.html\'"></ng-include>',
