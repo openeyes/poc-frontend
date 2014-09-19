@@ -113,11 +113,11 @@ angular.module('openeyesApp')
     this.buildPostObject = function(){
       var eventComponents = Event.getEventStack();
       var postObject = {};
-      var i;
+      var postElements = [];
+      var elements = {};
 
-      for(i = 0;i < eventComponents.length;i++){
+      for(var i = 0;i < eventComponents.length;i++){
         var model = eventComponents[i];
-        var subPath = '';
         var name = model.name;
         var modelData = model.model;
 
@@ -125,31 +125,26 @@ angular.module('openeyesApp')
           continue;
         }
 
-        if(model.hasOwnProperty('subPath')){
-          subPath = model.subPath;
+        if(!elements.hasOwnProperty(name)){
+          elements[name] = {};
         }
 
-        if(modelData instanceof Array){
-          if(subPath){
-            if(!postObject.hasOwnProperty(subPath)){ postObject[subPath] = {}; }
-            postObject[subPath][name] = modelData;
-          } else {
-            postObject[name] = modelData;
-          }
+        if(model.hasOwnProperty('subPath')){
+          elements[name][model.subPath] = modelData;
         } else {
-          for(var key in modelData){
-            if(modelData.hasOwnProperty(key)){
-              if(subPath){
-                if(!postObject.hasOwnProperty(subPath)){ postObject[subPath] = {}; }
-                postObject[subPath][key] = modelData[key];
-              } else {
-                postObject[key] = modelData[key];
-              }
-            }
-          }
+          elements[name] = modelData;
         }
       }
 
+      for(var key in elements){
+        if(elements.hasOwnProperty(key)){
+          elements[key].type = key;
+          postElements.push(elements[key]);
+        }
+
+      }
+
+      postObject.elements = postElements;
       return postObject;
     };
 
