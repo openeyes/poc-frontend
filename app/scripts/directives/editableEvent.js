@@ -95,18 +95,26 @@ angular.module('openeyesApp')
 
     this.scrollToField = function(model) {
 
-      var element = angular.element('[name="' + model.$name + '"]');
+      // Timeout to allow validation messages to be displayed prior to scrolling to element.
+      $timeout(function() {
 
-      if (!element.length) {
-        console.warn('Attempting to scroll to an element that does not exist.');
-        return;
-      }
-      var formGroup = element.parents('.form-group');
-      if (formGroup.length) {
-        formGroup[0].scrollIntoView(true);
-      } else {
-        console.warn('Unable to find form-group wrapper for this field.');
-      }
+        var element = angular.element('[name="' + model.$name + '"]');
+
+        if (!element.length) {
+          console.warn('Attempting to scroll to an element that does not exist.');
+          return;
+        }
+        var formGroup = element.parents('.form-group');
+        if (formGroup.length) {
+          // Some weirdness experienced in chrome. I guess this forces chrome to
+          // re-calculate the window sroll area. This is required for the scrollIntoView()
+          // method to work reliably.
+          window.scrollTo(0,1);
+          formGroup[0].scrollIntoView(true);
+        } else {
+          console.warn('Unable to find form-group wrapper for this field.');
+        }
+      });
     };
 
     this.buildPostObject = function(){
