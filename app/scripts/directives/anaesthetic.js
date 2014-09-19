@@ -8,7 +8,7 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('AnaestheticCtrl', ['$scope', '$attrs', 'Anaesthetic', 'Event', function($scope, $attrs, Anaesthetic, Event){
+  .controller('AnaestheticCtrl', ['$scope', '$attrs', 'Anaesthetic', 'Event', 'MODEL_DOMAIN', function($scope, $attrs, Anaesthetic, Event, MODEL_DOMAIN){
 
     var self = this;
 
@@ -26,7 +26,7 @@ angular.module('openeyesApp')
     this.getModel = function(){
       console.log($scope.model);
       return {
-        name: 'anaesthetic',
+        name: MODEL_DOMAIN + 'Anaesthetic',
         subPath: $scope.side,
         model: $scope.model
       };

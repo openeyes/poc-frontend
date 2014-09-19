@@ -8,7 +8,7 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('PosteriorPoleCtrl', ['$scope', '$attrs', 'Event', function($scope, $attrs, Event){
+  .controller('PosteriorPoleCtrl', ['$scope', '$attrs', 'Event', 'MODEL_DOMAIN', function($scope, $attrs, Event, MODEL_DOMAIN){
 
     var self = this;
 
@@ -30,7 +30,7 @@ angular.module('openeyesApp')
     this.getModel = function(){
       console.log($scope.model);
       return {
-        name: 'posteriorPole',
+        name: MODEL_DOMAIN + 'PosteriorPole',
         subPath: $scope.side,
         model: $scope.model
       };

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('openeyesApp')
-  .controller('InjectionSiteCtrl', ['$scope', '$attrs', 'InjectionSite', 'EyeDraw', 'Event', function($scope, $attrs, InjectionSite, EyeDraw, Event){
+  .controller('InjectionSiteCtrl', ['$scope', '$attrs', 'InjectionSite', 'EyeDraw', 'Event', 'MODEL_DOMAIN', function($scope, $attrs, InjectionSite, EyeDraw, Event, MODEL_DOMAIN){
 
     var self = this;
 
@@ -22,7 +22,7 @@ angular.module('openeyesApp')
 
     this.getModel = function(){
       return {
-        name: 'injectionSite',
+        name: MODEL_DOMAIN + 'InjectionSite',
         subPath: $attrs.side,
         model: $scope.model
       };

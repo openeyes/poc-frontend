@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('openeyesApp')
-  .controller('LaserSiteCtrl', ['$scope', 'Site', 'Event', function($scope, Site, Event){
+  .controller('LaserSiteCtrl', ['$scope', 'Site', 'Event', 'MODEL_DOMAIN', function($scope, Site, Event, MODEL_DOMAIN){
 
     var self = this;
 
@@ -39,7 +39,7 @@ angular.module('openeyesApp')
 
     this.getModel = function(){
       return {
-        name: 'lasersite',
+        name: MODEL_DOMAIN + 'LaserSite',
         model: $scope.model
       };
     };

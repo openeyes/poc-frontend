@@ -8,7 +8,7 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('ClinicOutcomeCtrl', ['$scope', '$attrs', 'ClinicOutcome', 'Event', function($scope, $attrs, ClinicOutcome, Event){
+  .controller('ClinicOutcomeCtrl', ['$scope', '$attrs', 'ClinicOutcome', 'Event', 'MODEL_DOMAIN', function($scope, $attrs, ClinicOutcome, Event, MODEL_DOMAIN){
 
     var self = this;
 
@@ -24,7 +24,7 @@ angular.module('openeyesApp')
 
     this.getModel = function(){
       return {
-        name: 'clinicOutcome',
+        name: MODEL_DOMAIN + 'ClinicOutcome',
         model: $scope.model
       };
     };

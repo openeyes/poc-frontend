@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('openeyesApp')
-  .controller('AnteriorSegmentCtrl', ['$scope', '$attrs', 'Event', function($scope, $attrs, Event){
+  .controller('AnteriorSegmentCtrl', ['$scope', '$attrs', 'Event', 'MODEL_DOMAIN',function($scope, $attrs, Event, MODEL_DOMAIN){
 
     var self = this;
 
@@ -23,7 +23,7 @@ angular.module('openeyesApp')
 
     this.getModel = function(){
       return {
-        name: 'anteriorSegment',
+        name: MODEL_DOMAIN + 'AnteriorSegment',
         subPath: this.eyeSide,
         model: $scope.model
       };
