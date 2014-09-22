@@ -18,7 +18,7 @@ angular.module('openeyesApp')
       $scope.validations = Event.getValidationRules();
 
       Event.setForm($scope.form);
-      this.componentMappings = Event.getComponentMappings('edit');
+      this.componentMappings = Event.getComponentMappings();
       this.element = element;
 
       //  Broadcast by event page controller
@@ -42,14 +42,28 @@ angular.module('openeyesApp')
       $scope.stepName = steps[stepIndex].name;
       mandatoryFieldSets = steps[stepIndex].mandatoryFieldSets;
 
+
+      // Push fake view components into fieldsets
+      mandatoryFieldSets = [
+        {type: 'view', name: 'VisualAcuity'},
+        {type: 'view', name: 'History'},
+        {type: 'edit', name: 'History'},
+        {type: 'edit', name: 'VisualAcuity'}
+      ];
+
+
+
       //  Loop over given layout components and add into container
       for(var index = 0;index < mandatoryFieldSets.length;index++){
-        if(self.componentMappings.hasOwnProperty(mandatoryFieldSets[index])) {
-          var template = self.componentMappings[mandatoryFieldSets[index]];
+
+        var cType = mandatoryFieldSets[index].type;
+
+        if(self.componentMappings[cType].hasOwnProperty(mandatoryFieldSets[index].name)) {
+          var template = self.componentMappings[cType][mandatoryFieldSets[index].name];
           var cTemplate = $compile(template)($scope);
           this.element.find('form:first').append(cTemplate);
         } else {
-          console.log('No component mapping found for ', mandatoryFieldSets[index], 'Step:', stepIndex);
+          console.log('No component mapping found for ', mandatoryFieldSets[index].type, mandatoryFieldSets[index].name, 'Step:', stepIndex);
         }
       }
     };
