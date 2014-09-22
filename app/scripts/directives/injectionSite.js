@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('openeyesApp')
-  .controller('InjectionSiteCtrl', ['$scope', '$attrs', 'InjectionSite', 'EyeDraw', 'Event', 'MODEL_DOMAIN', function($scope, $attrs, InjectionSite, EyeDraw, Event, MODEL_DOMAIN){
+  .controller('InjectionSiteCtrl', ['$scope', '$attrs', '$timeout', 'InjectionSite', 'EyeDraw', 'Event', 'MODEL_DOMAIN', function($scope, $attrs, $timeout, InjectionSite, EyeDraw, Event, MODEL_DOMAIN){
 
     var self = this;
 
@@ -44,15 +44,19 @@ angular.module('openeyesApp')
         return;
       }
 
-      $scope.eyedrawInstance.drawing.doodleArray.filter(function(doodle) {
-        return doodle instanceof EyeDraw.InjectionSite;
-      }).forEach(function(doodle) {
+      $timeout(function() {
 
-        var validityArray = doodle.validateParameter('distance', $scope.model.lensStatus.defaultDistance.toString());
+        var doodles = $scope.eyedrawInstance.drawing.doodleArray.filter(function(doodle) {
+          return doodle instanceof EyeDraw.InjectionSite;
+        }).forEach(function(doodle) {
 
-        if (validityArray.valid) {
-          doodle.setParameterWithAnimation('distance', validityArray.value);
-        }
+          var distance = $scope.model.lensStatus.defaultDistance.toString();
+          var validityArray = doodle.validateParameter('distance', distance);
+
+          if (validityArray.valid) {
+            doodle.setParameterWithAnimation('distance', validityArray.value);
+          }
+        });
       });
     };
 
