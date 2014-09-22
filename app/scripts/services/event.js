@@ -154,7 +154,7 @@ angular.module('openeyesApp')
 
         return name ? rules[name] : rules;
       },
-      getComponentMappings: function(mode){
+      getComponentMappings: function(){
         var componentMappings = {
           edit: {
             LaserSite: '<ng-include src="\'/views/components/edit/laserSite.html\'"></ng-include>',
@@ -166,7 +166,6 @@ angular.module('openeyesApp')
             VisualAcuity: '<ng-include src="\'/views/components/edit/acuity.html\'"></ng-include>',
             Allergies: '<ng-include src="\'/views/components/edit/allergies.html\'"></ng-include>',
             InjectionManagement: '<ng-include src="\'/views/components/edit/injectionManagement.html\'"></ng-include>',
-            acuity: '<ng-include src="\'/views/components/edit/acuity.html\'"></ng-include>',
             allergies: '<ng-include src="\'/views/components/edit/allergies.html\'"></ng-include>',
             PosteriorPole: '<ng-include src="\'/views/components/edit/posteriorPole.html\'"></ng-include>',
             Anaesthetic: '<ng-include src="\'/views/components/edit/anaesthetic.html\'"></ng-include>',
@@ -178,12 +177,13 @@ angular.module('openeyesApp')
           view: {
             laserSite: '<ng-include src="\'/views/components/view/laserSite.html\'"></ng-include>',
             procedures: '<ng-include src="\'/views/components/view/procedures.html\'"></ng-include>',
-            eyedraw: '<ng-include src="\'/views/components/view/eyedraw.html\'"></ng-include>'
+            eyedraw: '<ng-include src="\'/views/components/view/eyedraw.html\'"></ng-include>',
+            VisualAcuity: '<ng-include src="\'/views/components/view/acuity.html\'"></ng-include>',
           }
 
         };
 
-        return componentMappings[mode];
+        return componentMappings;
       },
       getCurrentSite: function(){
         return this.currentSite;
