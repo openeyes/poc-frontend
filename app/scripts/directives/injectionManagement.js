@@ -42,7 +42,28 @@ angular.module('openeyesApp')
     };
 
     this.getModel = function(){
-      console.log($scope.model);
+      // Shuffle around more complex objects
+      // To retrieve basic strings that api requires
+      // While leaving the complex data intact
+      if($scope.selectedDiagnosis){
+        $scope.model.diagnosis = $scope.selectedDiagnosis.label;
+      }
+
+      if($scope.diagnosisSecondaryTo){
+        $scope.model.diagnosisSecondaryTo = $scope.diagnosisSecondaryTo.label;
+      }
+
+      if($scope.intendedTreatment){
+        $scope.model.intendedTreatment = $scope.intendedTreatment.label;
+      }
+
+      if($scope.risks){
+        $scope.model.risks = [];
+        for(var i = 0;i < $scope.risks.length;i++){
+          $scope.model.risks.push($scope.risks[i].label);
+        }
+      }
+
       return {
         name: MODEL_DOMAIN + 'InjectionManagement',
         subPath: $attrs.side,

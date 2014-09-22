@@ -36,19 +36,19 @@
       Diagnosis:
     </label>
     <div class="col-xs-8">
-      <oe-diagnosis-selection ng-model="model.diagnosis"></oe-diagnosis-selection>
+      <oe-diagnosis-selection ng-model="selectedDiagnosis"></oe-diagnosis-selection>
     </div>
   </div>
-  <div class="form-group row" ng-show="model.diagnosis && model.diagnosis.hasSecondary">
+  <div class="form-group row" ng-show="selectedDiagnosis && selectedDiagnosis.hasSecondary">
     <label class="col-xs-4 control-label">
       Secondary to:
     </label>
     <div class="col-xs-8">
-      <oe-diagnosis-selection ng-model="model.diagnosisSecondaryTo" secondary-to="model.diagnosis"></oe-diagnosis-selection>
+      <oe-diagnosis-selection ng-model="diagnosisSecondaryTo" secondary-to="selectedDiagnosis"></oe-diagnosis-selection>
     </div>
   </div>
 
-  <oe-injection-questions ng-model="model.questions" diagnosis="model.diagnosis" secondary-to-diagnosis="model.diagnosisSecondaryTo"></oe-injection-questions>
+  <oe-injection-questions ng-model="model.questions" diagnosis="selectedDiagnosis" secondary-to-diagnosis="diagnosisSecondaryTo"></oe-injection-questions>
 
   <div class="form-group row">
     <label class="col-xs-4 control-label">
@@ -59,7 +59,7 @@
         chosen
         disable-search="true"
         data-placeholder="Select a treatment..."
-        ng-model="model.intendedTreatment"
+        ng-model="intendedTreatment"
         ng-options="treatment.label for treatment in treatments | orderBy:'order'"
         >
       </select>
@@ -71,7 +71,7 @@
       Risks:
     </label>
     <div class="col-xs-8">
-      <oe-risks-selection ng-model="model.risks" data-placeholder="Select risks..."></oe-risks-selection>
+      <oe-risks-selection ng-model="risks" data-placeholder="Select risks..."></oe-risks-selection>
     </div>
   </div>
 
@@ -80,7 +80,7 @@
       Comments:
     </label>
     <div class="col-xs-8">
-      <textarea class="form-control" rows="3" ng-model="model.comments" placeholder="Enter comments..."></textarea>
+      <textarea class="form-control" rows="3" ng-model="model.comment" placeholder="Enter comments..."></textarea>
     </div>
   </div>
 
