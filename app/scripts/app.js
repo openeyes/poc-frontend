@@ -22,7 +22,7 @@ angular
   .config(['$routeProvider', '$httpProvider', 'ENV', function ($routeProvider, $httpProvider, ENV) {
     $routeProvider
       .when('/', {
-        redirectTo: '/search'
+        redirectTo: '/steps'
       })
       .when('/search', {
         templateUrl: 'views/search.html',
@@ -52,8 +52,16 @@ angular
         templateUrl: 'views/forms.html',
         controller: 'FormsCtrl'
       })
+      .when('/steps', {
+        templateUrl: 'views/steps.html',
+        controller: 'StepsCtrl'
+      })
+      .when('/steps/:stepId', {
+        templateUrl: 'views/steps-patients.html',
+        controller: 'StepsCtrl'
+      })
       .otherwise({
-        redirectTo: '/search'
+        redirectTo: '/steps'
       });
 
     // To allow CORS and ajax with http auth

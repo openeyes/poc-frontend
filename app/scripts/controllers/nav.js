@@ -23,11 +23,7 @@ angular.module('openeyesApp')
         console.log(data, status, headers, config);
       });
 
-    $scope.isActive = function (index) {
-      return index === Event.getCurrentSite();
-    };
-
-    $scope.changeSite = function(index){
-      Event.setCurrentSite(index);
+    $scope.isActive = function (location) {
+      return location === $location.path();
     };
   }]);
