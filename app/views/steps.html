@@ -3,7 +3,7 @@
 <div class="row">
   <div class="col-xs-6 col-xs-offset-3">
     <div class="well">
-      <a ng-repeat="step in steps" href="/#/steps/{{ step.id }}" class="btn btn-primary btn-lg btn-block">{{ step.role }}</a>
+      <a href="/#/steps/{{ siteId }}/{{ $index }}/patients" ng-repeat="step in steps" class="btn btn-primary btn-lg btn-block">{{ step.name }}</a>
     </div>
   </div>
 </div>

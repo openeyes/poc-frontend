@@ -14,7 +14,7 @@ angular.module('openeyesApp')
 
     return {
       eventStack: [],
-      currentSite: null,
+      currentSite: 0,
       setForm: function(f) {
         form = f;
       },

@@ -56,7 +56,7 @@ angular
         templateUrl: 'views/steps.html',
         controller: 'StepsCtrl'
       })
-      .when('/steps/:stepId', {
+      .when('/steps/:siteId/:stepId/patients', {
         templateUrl: 'views/steps-patients.html',
         controller: 'StepsCtrl'
       })

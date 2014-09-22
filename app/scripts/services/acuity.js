@@ -10,8 +10,6 @@
 angular.module('openeyesApp')
   .factory('Acuity', ['$http', '$q', 'ENV', function($http, $q, ENV) {
 
-		console.log(ENV);
-
     return {
       getAcuityFields: function(){
 				var data = {
