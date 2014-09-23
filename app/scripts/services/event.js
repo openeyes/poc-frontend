@@ -156,7 +156,7 @@ angular.module('openeyesApp')
       },
       getComponentMappings: function(){
         var componentMappings = {
-          edit: {
+          FormComponent: {
             LaserSite: '<ng-include src="\'/views/components/edit/laserSite.html\'"></ng-include>',
             Procedures: '<ng-include src="\'/views/components/edit/procedures.html\'"></ng-include>',
             eyedraw: '<ng-include src="\'/views/components/edit/eyedraw.html\'"></ng-include>',
@@ -173,8 +173,9 @@ angular.module('openeyesApp')
             ClinicalManagement: '<ng-include src="\'/views/components/edit/clinicalManagement.html\'"></ng-include>',
             InjectionSite: '<ng-include src="\'/views/components/edit/injectionSite.html\'"></ng-include>',
             Complications: '<ng-include src="\'/views/components/edit/complications.html\'"></ng-include>',
+            Dilation: '<ng-include src="\'/views/components/edit/dilation.html\'"></ng-include>',
           },
-          view: {
+          ViewComponent: {
             laserSite: '<ng-include src="\'/views/components/view/laserSite.html\'"></ng-include>',
             procedures: '<ng-include src="\'/views/components/view/procedures.html\'"></ng-include>',
             eyedraw: '<ng-include src="\'/views/components/view/eyedraw.html\'"></ng-include>',
