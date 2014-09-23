@@ -64,4 +64,5 @@ angular
     }
 
   }])
-  .constant('MODEL_DOMAIN', 'org.openeyes.api.models.');
+  .constant('MODEL_DOMAIN', 'org.openeyes.api.models.')
+  .constant('WORKFLOW_DOMAIN', 'org.openeyes.api.models.workflow');
