@@ -30,7 +30,6 @@ angular.module('openeyesApp')
 
     Event.getWorkflowConfig()
       .success(function(data){
-        console.log(data);
         var workflowConfig = data[0];
         $scope.workflowSteps = workflowConfig.steps;
       })

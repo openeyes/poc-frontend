@@ -1,4 +1,4 @@
-<h2 ng-if="workflow.name && step.label">{{workflow.name}} - {{step.label}}</h2>
+<h2 ng-if="workflow.site && step.name">{{ workflow.site }} - {{ step.name }} by {{ step.role }}</h2>
 
 <h3>Select a patient</h3>
 
@@ -18,7 +18,7 @@
         <td>{{ p.surname }}</td>
         <td>{{ p.gender }}</td>
         <td>
-          <a href="/#/patient/{{ p._id.$oid }}/{{ workflow._id.$oid }}/{{ step.id }}">Record data</a> |
+          <a href="/#/patient/{{ p._id.$oid }}/{{ workflow._id.$oid }}/{{ stepIndex }}">Record data</a> |
           <a href="/#/patient/{{ p._id.$oid }}">View Summary</a>
         </td>
       </tr>
