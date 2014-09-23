@@ -8,5 +8,6 @@
   "laserEvent": "/LaserEvent/:id",
   "createEncounter": "/Encounter",
   "procedures": "/Procedure",
-  "workflow": "/Workflow"
+  "workflow": "/Workflow",
+  "getElements": "/Element/?patientId=:patientId&elementType=:elementType&date=:date"
 }
