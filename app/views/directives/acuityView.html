@@ -1,0 +1,21 @@
+<!-- case class VisualAcuity(leftEye: Option[VisualAcuitySide], rightEye: Option[VisualAcuitySide]) extends Element -->
+<!-- case class VisualAcuitySide(readings: List[VisualAcuityReading], comment: Option[String]) -->
+<!-- case class VisualAcuityReading(value: Int, correction: String) -->
+<div class="row">
+  <div class="col-xs-6">
+    <table class="table">
+      <tr><th>Value</th><th>Correction</th></tr>
+      <tr ng-repeat="r in model.rightEye.readings">
+        <td>{{ r.value }}</td><td>{{ r.correction }}</td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-xs-6">
+    <table class="table">
+      <tr><th>Value</th><th>Correction</th></tr>
+      <tr ng-repeat="r in model.leftEye.readings">
+        <td>{{ r.value }}</td><td>{{ r.correction }}</td>
+      </tr>
+    </table>
+  </div>
+</div>

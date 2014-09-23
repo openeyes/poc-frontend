@@ -22,7 +22,8 @@ angular
   .config(['$routeProvider', '$httpProvider', 'ENV', function ($routeProvider, $httpProvider, ENV) {
     $routeProvider
       .when('/', {
-        redirectTo: '/search'
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl'
       })
       .when('/search', {
         templateUrl: 'views/search.html',
@@ -40,7 +41,7 @@ angular
         templateUrl: 'views/event-create.html',
         controller: 'EventCtrl'
       })
-      .when('/patient/:patientId/step/:stepIndex', {
+      .when('/patient/:patientId/:workflowId/:stepIndex', {
         templateUrl: 'views/event-create.html',
         controller: 'EventCtrl'
       })
@@ -52,8 +53,12 @@ angular
         templateUrl: 'views/forms.html',
         controller: 'FormsCtrl'
       })
+      .when('/patients/:workflowId/:stepIndex', {
+        templateUrl: 'views/patients.html',
+        controller: 'PatientsCtrl'
+      })
       .otherwise({
-        redirectTo: '/search'
+        redirectTo: '/'
       });
 
     // To allow CORS and ajax with http auth
@@ -64,4 +69,5 @@ angular
     }
 
   }])
-  .constant('MODEL_DOMAIN', 'org.openeyes.api.models.');
+  .constant('MODEL_DOMAIN', 'org.openeyes.api.models.')
+  .constant('WORKFLOW_DOMAIN', 'org.openeyes.api.models.workflow');

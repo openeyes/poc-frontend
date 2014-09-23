@@ -8,10 +8,20 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-	.controller('MainCtrl', ['$scope', function ($scope) {
-		$scope.awesomeThings = [
-			'HTML5 Boilerplate',
-			'AngularJS',
-			'Karma'
-		];
-	}]);
+  .controller('MainCtrl', ['$scope', 'Event', function ($scope, Event) {
+
+    Event.getWorkflowConfig()
+    .success(function(data){
+      $scope.workflows = data;
+    })
+    .error(function(data, status, headers, config) {
+      console.log('Error getting workflow', data, status, headers, config);
+    });
+
+    $scope.$watch('workflows', function(workflows) {
+      if (workflows instanceof Array && workflows.length) {
+        // Set default workflow
+        $scope.workflow = workflows[0];
+      }
+    });
+  }]);

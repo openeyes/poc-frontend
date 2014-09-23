@@ -46,7 +46,7 @@ angular.module('openeyesApp')
 
       $timeout(function() {
 
-        var doodles = $scope.eyedrawInstance.drawing.doodleArray.filter(function(doodle) {
+        $scope.eyedrawInstance.drawing.doodleArray.filter(function(doodle) {
           return doodle instanceof EyeDraw.InjectionSite;
         }).forEach(function(doodle) {
 

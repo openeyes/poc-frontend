@@ -1,0 +1,27 @@
+<h2 ng-if="workflow.site && step.name">{{ workflow.site }} - {{ step.name }} as a {{ step.role }}</h2>
+
+<h3>Select a patient</h3>
+
+<div class="row">
+  <div class="col-xs-12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Firstname</th>
+          <th>Surname</th>
+          <th>Gender</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tr ng-repeat="p in patients">
+        <td>{{ p.firstName }}</td>
+        <td>{{ p.surname }}</td>
+        <td>{{ p.gender }}</td>
+        <td>
+          <a href="/#/patient/{{ p._id.$oid }}/{{ workflow._id.$oid }}/{{ stepIndex }}">Record data</a> |
+          <a href="/#/patient/{{ p._id.$oid }}">View Summary</a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

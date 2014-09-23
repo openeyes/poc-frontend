@@ -10,8 +10,6 @@
 angular.module('openeyesApp')
   .factory('Patient', ['$http', '$q', 'ENV', function($http, $q, ENV) {
 
-    console.log(ENV);
-
     return {
 
       getExistingAllergies: function(patientId){
@@ -26,6 +24,16 @@ angular.module('openeyesApp')
         deferred.resolve(data);
 
         return deferred.promise;
+      },
+
+      getPatientsForStep: function(step) {
+        var searchTerm = 'u';
+        var apiCall = ENV.host + ENV.apiEndpoints.patients.replace(':term', searchTerm);
+        return $http({
+          method: 'GET',
+          url: apiCall,
+          cache: true
+        });
       }
     };
   }]);

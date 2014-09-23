@@ -8,13 +8,12 @@
  * Service of the openeyesApp
  */
 angular.module('openeyesApp')
-  .factory('Event', ['$http', 'ENV', function($http, ENV) {
+  .factory('Event', ['$http', '$q', 'ENV', function($http, $q, ENV) {
 
     var form;
 
     return {
       eventStack: [],
-      currentSite: null,
       setForm: function(f) {
         form = f;
       },
@@ -52,8 +51,11 @@ angular.module('openeyesApp')
       clearEventStack: function(){
         this.eventStack = [];
       },
-      getWorkflowConfig: function(){
+      getWorkflowConfig: function(id){
         var apiCall = ENV.host + ENV.apiEndpoints.workflow;
+        if (id) {
+          apiCall += '/' + id;
+        }
         return $http({
           method: 'GET',
           url: apiCall
@@ -154,9 +156,9 @@ angular.module('openeyesApp')
 
         return name ? rules[name] : rules;
       },
-      getComponentMappings: function(mode){
+      getComponentMappings: function(){
         var componentMappings = {
-          edit: {
+          FormComponent: {
             LaserSite: '<ng-include src="\'/views/components/edit/laserSite.html\'"></ng-include>',
             Procedures: '<ng-include src="\'/views/components/edit/procedures.html\'"></ng-include>',
             eyedraw: '<ng-include src="\'/views/components/edit/eyedraw.html\'"></ng-include>',
@@ -166,7 +168,6 @@ angular.module('openeyesApp')
             VisualAcuity: '<ng-include src="\'/views/components/edit/acuity.html\'"></ng-include>',
             Allergies: '<ng-include src="\'/views/components/edit/allergies.html\'"></ng-include>',
             InjectionManagement: '<ng-include src="\'/views/components/edit/injectionManagement.html\'"></ng-include>',
-            acuity: '<ng-include src="\'/views/components/edit/acuity.html\'"></ng-include>',
             allergies: '<ng-include src="\'/views/components/edit/allergies.html\'"></ng-include>',
             PosteriorPole: '<ng-include src="\'/views/components/edit/posteriorPole.html\'"></ng-include>',
             Anaesthetic: '<ng-include src="\'/views/components/edit/anaesthetic.html\'"></ng-include>',
@@ -174,22 +175,19 @@ angular.module('openeyesApp')
             ClinicalManagement: '<ng-include src="\'/views/components/edit/clinicalManagement.html\'"></ng-include>',
             InjectionSite: '<ng-include src="\'/views/components/edit/injectionSite.html\'"></ng-include>',
             Complications: '<ng-include src="\'/views/components/edit/complications.html\'"></ng-include>',
+            Dilation: '<ng-include src="\'/views/components/edit/dilation.html\'"></ng-include>',
+            TreatmentOrder: '<ng-include src="\'/views/components/edit/treatmentOrder.html\'"></ng-include>'
           },
-          view: {
+          ViewComponent: {
             laserSite: '<ng-include src="\'/views/components/view/laserSite.html\'"></ng-include>',
             procedures: '<ng-include src="\'/views/components/view/procedures.html\'"></ng-include>',
-            eyedraw: '<ng-include src="\'/views/components/view/eyedraw.html\'"></ng-include>'
+            eyedraw: '<ng-include src="\'/views/components/view/eyedraw.html\'"></ng-include>',
+            VisualAcuity: '<ng-include src="\'/views/components/view/acuity.html\'"></ng-include>',
           }
 
         };
 
-        return componentMappings[mode];
-      },
-      getCurrentSite: function(){
-        return this.currentSite;
-      },
-      setCurrentSite: function(siteIndex){
-        this.currentSite = siteIndex;
+        return componentMappings;
       }
     };
 

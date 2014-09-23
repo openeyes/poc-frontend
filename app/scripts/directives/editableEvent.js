@@ -8,7 +8,7 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('ConfigurableEventCtrl', ['$scope', '$compile', '$timeout', '$rootScope', '$routeParams', 'Event', function ($scope, $compile, $timeout, $rootScope, $routeParams, Event) {
+  .controller('ConfigurableEventCtrl', ['$scope', '$compile', '$timeout', '$rootScope', '$routeParams', 'Event', 'WORKFLOW_DOMAIN', function ($scope, $compile, $timeout, $rootScope, $routeParams, Event, WORKFLOW_DOMAIN) {
 
     var self = this;
 
@@ -18,20 +18,19 @@ angular.module('openeyesApp')
       $scope.validations = Event.getValidationRules();
 
       Event.setForm($scope.form);
-      this.componentMappings = Event.getComponentMappings('edit');
+      this.componentMappings = Event.getComponentMappings();
       this.element = element;
 
       //  Broadcast by event page controller
       $scope.$on('event.save', this.save);
 
-      Event.getWorkflowConfig()
-        .success(function(data){
-          self.layoutConfig = data[Event.getCurrentSite()];
-          self.buildLayout($routeParams.stepIndex);
-        })
-        .error(function(data, status, headers, config) {
-          console.log(data, status, headers, config);
-        });
+      Event.getWorkflowConfig($routeParams.workflowId)
+      .then(function(workflow) {
+        self.layoutConfig = workflow.data;
+        self.buildLayout($routeParams.stepIndex);
+      }, function() {
+        console.log('Unable to get current sute');
+      });
     };
 
     this.buildLayout = function(stepIndex){
@@ -40,16 +39,24 @@ angular.module('openeyesApp')
       var mandatoryFieldSets;
 
       $scope.stepName = steps[stepIndex].name;
-      mandatoryFieldSets = steps[stepIndex].mandatoryFieldSets;
+
+      // Filter out non-required fields
+      mandatoryFieldSets = steps[stepIndex].components.filter(function(el){
+        return el.required === true || !el.hasOwnProperty('required');
+      });
 
       //  Loop over given layout components and add into container
       for(var index = 0;index < mandatoryFieldSets.length;index++){
-        if(self.componentMappings.hasOwnProperty(mandatoryFieldSets[index])) {
-          var template = self.componentMappings[mandatoryFieldSets[index]];
+
+        // Get component type without class prefix
+        var cType = mandatoryFieldSets[index].type.split(WORKFLOW_DOMAIN + '.')[1];
+        //  If component found then grab template and compile and append
+        if(self.componentMappings[cType].hasOwnProperty(mandatoryFieldSets[index].name)) {
+          var template = self.componentMappings[cType][mandatoryFieldSets[index].name];
           var cTemplate = $compile(template)($scope);
           this.element.find('form:first').append(cTemplate);
         } else {
-          console.log('No component mapping found for ', mandatoryFieldSets[index], 'Step:', stepIndex);
+          console.log('No component mapping found for ', mandatoryFieldSets[index].type, mandatoryFieldSets[index].name, 'Step:', stepIndex);
         }
       }
     };
