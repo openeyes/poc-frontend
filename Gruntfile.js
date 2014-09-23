@@ -434,7 +434,21 @@ module.exports = function (grunt) {
 						apiEndpoints: grunt.file.readJSON('config/dist.endpoints.json')
 					}
 				}
-			}
+			},
+      devdeploy: {
+        options: {
+          dest: '<%= yeoman.dist %>/scripts/config.js',
+          name: 'config',
+          wrap: '"use strict";\n\n {%= __ngModule %}',
+        },
+        constants: {
+          ENV: {
+            name: 'dist',
+            host: 'http://openeyes-api-dev.headlondon.com',
+            apiEndpoints: grunt.file.readJSON('config/dist.endpoints.json')
+          }
+        }
+      }
 		},
 	});
 
@@ -485,6 +499,24 @@ module.exports = function (grunt) {
 		'usemin',
 		'htmlmin'
 	]);
+
+  grunt.registerTask('dev-deploy', [
+    'clean:dist',
+    'ngconstant:devdeploy',
+    'wiredep',
+    'useminPrepare',
+    'concurrent:dist',
+    'autoprefixer',
+    'concat',
+    'ngmin',
+    'copy:dist',
+    'cdnify',
+    'cssmin',
+    // 'uglify',
+    'filerev',
+    'usemin',
+    'htmlmin'
+  ]);
 
 	grunt.registerTask('default', [
 		'newer:jshint',

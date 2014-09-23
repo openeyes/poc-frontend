@@ -43,6 +43,8 @@
     "test": "grunt test",
     "start": "grunt serve",
     "predeploy": "npm install",
-    "deploy": "grunt build"
+    "deploy": "grunt build",
+    "predev-deploy": "npm install",
+    "dev-deploy": "grunt dev-deploy"
   }
 }
