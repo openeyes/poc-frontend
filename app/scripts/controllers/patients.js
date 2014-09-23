@@ -5,7 +5,7 @@ angular.module('openeyesApp')
 
     Event.getWorkflowConfig($routeParams.workflowId)
       .then(function(data){
-        $scope.workflow = data.data
+        $scope.workflow = data.data;
       }, function(data, status, headers, config) {
         console.log('Error getting workflow', data, status, headers, config);
       });
