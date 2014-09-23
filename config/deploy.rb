@@ -22,6 +22,7 @@ namespace :deploy do
       grunt_build
       create_symlink
     end
+    cleanup
   end
 
   desc <<-DESC
