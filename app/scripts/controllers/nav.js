@@ -8,7 +8,7 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('NavCtrl', ['$scope', '$location', 'Event', function ($scope, $location, Event) {
+  .controller('NavCtrl', ['$scope', '$location', function ($scope, $location) {
     $scope.isActive = function (location) {
       return location === $location.path();
     };
