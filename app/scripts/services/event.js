@@ -8,13 +8,13 @@
  * Service of the openeyesApp
  */
 angular.module('openeyesApp')
-  .factory('Event', ['$http', 'ENV', function($http, ENV) {
+  .factory('Event', ['$http', '$q', 'ENV', function($http, $q, ENV) {
 
     var form;
 
     return {
       eventStack: [],
-      currentSite: 0,
+      currentSite: null,
       setForm: function(f) {
         form = f;
       },
@@ -185,11 +185,26 @@ angular.module('openeyesApp')
 
         return componentMappings[mode];
       },
-      getCurrentSite: function(){
-        return this.currentSite;
+      getCurrentSite: function() {
+
+        var deferred = $q.defer();
+
+        if (!this.currentSite) {
+          this.getWorkflowConfig().then(
+            function success(data) {
+              this.currentSite = data.data[0];
+              deferred.resolve(this.currentSite);
+            }.bind(this),
+            deferred.reject.bind(deferred)
+          );
+        } else {
+          deferred.resolve(this.currentSite);
+        }
+
+        return deferred.promise;
       },
-      setCurrentSite: function(siteIndex){
-        this.currentSite = siteIndex;
+      setCurrentSite: function(site){
+        this.currentSite = site;
       }
     };
 

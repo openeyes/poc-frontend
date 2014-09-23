@@ -5,41 +5,28 @@ angular.module('openeyesApp')
 
     var self = this;
 
-    $scope.patients = [];
-    $scope.steps = [];
+    var labels = [
+      'Vision Assessment by Optometrist',
+      'Assessment for Macular Degeneration by Fellow in Clinic',
+      'Injection by Nurse'
+    ];
 
     this.showPatients = function() {
 
-      Patient.getPatientsForStep()
-        .then(function(data) {
-          $scope.patients = data.data;
-        }, function() {
-          console.log('Error getting patients for step:', step);
-        });
-
-      $scope.stepId = parseInt($routeParams.stepId, 10);
+      this.getWorkFlow();
+      this.getPatients();
 
       $scope.$watch('sites', function(sites) {
-        if (sites) {
-          $scope.site = self.getSite();
-          $scope.step = self.getStep();
+        if (sites instanceof Array && sites.length) {
+          $scope.site = self.getSite($scope.sites, $routeParams.siteId);
+          $scope.step = self.getStep($scope.site.steps, parseInt($routeParams.stepId, 10));
         }
       });
     };
 
-    this.getSite = function() {
-      return $scope.sites.filter(function(site) {
-        return site._id.$oid === $routeParams.siteId;
-      })[0];
-    };
-
-    this.getStep = function() {
-      return $scope.site.steps[$scope.stepId];
-    };
-
     this.showSteps = function(site) {
 
-      $scope.site = 0;
+      this.getWorkFlow();
 
       $scope.$watch('site', function(site) {
         if (site !== undefined) {
@@ -48,20 +35,49 @@ angular.module('openeyesApp')
       });
 
       $scope.$watch('sites', function(sites) {
-        if (sites) {
-          $scope.steps = sites[$scope.site].steps;
-          $scope.siteId = sites[$scope.site]._id.$oid;
+        if (sites instanceof Array && sites.length) {
+          $scope.site = $scope.site || sites[0];
+          $scope.steps = $scope.site.steps.map(function(step, i) {
+            return angular.extend(step, {
+              label: labels[i],
+              id: i
+            });
+          });
         }
       });
     };
 
-    Event.getWorkflowConfig()
+    this.getWorkFlow = function() {
+      Event.getWorkflowConfig()
       .success(function(data){
         $scope.sites = data;
       })
       .error(function(data, status, headers, config) {
-        console.log(data, status, headers, config);
+        console.log('Error getting workflow', data, status, headers, config);
       });
+    };
+
+    this.getPatients = function() {
+      Patient.getPatientsForStep()
+      .then(function(data) {
+        $scope.patients = data.data;
+      }, function(data, status, headers, config) {
+        console.log('Error getting patients for step:', step, data, status, headers, config);
+      });
+    }
+
+    this.getSite = function(sites, id) {
+      return sites.filter(function(site) {
+        return site._id.$oid === id;
+      })[0];
+    };
+
+    this.getStep = function(steps, id) {
+      return angular.extend(steps[id], {
+        label: labels[id],
+        id: id
+      });
+    };
 
     if ($routeParams.stepId) {
       this.showPatients();

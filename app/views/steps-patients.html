@@ -1,4 +1,4 @@
-<h2>{{site.name}} - {{step.name}}</h2>
+<h2>{{site.name}} - {{step.label}}</h2>
 
 <h3>Select a patient</h3>
 
@@ -18,7 +18,7 @@
         <td>{{ p.surname }}</td>
         <td>{{ p.gender }}</td>
         <td>
-          <a href="/#/patient/{{ p._id.$oid }}/step/{{ stepId }}">Record data</a> |
+          <a href="/#/patient/{{ p._id.$oid }}/step/{{ step.id }}">Record data</a> |
           <a href="/#/patient/{{ p._id.$oid }}">View Summary</a>
         </td>
       </tr>

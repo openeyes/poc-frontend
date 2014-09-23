@@ -24,14 +24,13 @@ angular.module('openeyesApp')
       //  Broadcast by event page controller
       $scope.$on('event.save', this.save);
 
-      Event.getWorkflowConfig()
-        .success(function(data){
-          self.layoutConfig = data[Event.getCurrentSite()];
-          self.buildLayout($routeParams.stepIndex);
-        })
-        .error(function(data, status, headers, config) {
-          console.log(data, status, headers, config);
-        });
+      Event.getCurrentSite()
+      .then(function(site) {
+        self.layoutConfig = site;
+        self.buildLayout($routeParams.stepIndex);
+      }, function() {
+        console.log('Unable to get current sute');
+      });
     };
 
     this.buildLayout = function(stepIndex){
