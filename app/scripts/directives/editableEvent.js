@@ -38,7 +38,8 @@ angular.module('openeyesApp')
       var steps = self.layoutConfig.steps;
       var mandatoryFieldSets;
 
-      $scope.stepName = steps[stepIndex].name;
+      var step = steps[stepIndex];
+      $scope.stepName = self.layoutConfig.site + ' - ' + step.name + ' as a ' + step.role;
 
       // Filter out non-required fields
       mandatoryFieldSets = steps[stepIndex].components.filter(function(el){
