@@ -392,8 +392,8 @@ module.exports = function (grunt) {
 			],
 			dist: [
 				'compass:dist',
-				'imagemin',
-				'svgmin'
+				// 'imagemin',
+				// 'svgmin'
 			]
 		},
 
@@ -434,10 +434,37 @@ module.exports = function (grunt) {
 						apiEndpoints: grunt.file.readJSON('config/dist.endpoints.json')
 					}
 				}
-			}
+			},
+      devdeploy: {
+        options: {
+          dest: '<%= yeoman.dist %>/scripts/config.js',
+          name: 'config',
+          wrap: '"use strict";\n\n {%= __ngModule %}',
+        },
+        constants: {
+          ENV: {
+            name: 'dist',
+            host: 'http://openeyes-api-dev.headlondon.com',
+            apiEndpoints: grunt.file.readJSON('config/dist.endpoints.json')
+          }
+        }
+      },
+      uatdeploy: {
+        options: {
+          dest: '<%= yeoman.dist %>/scripts/config.js',
+          name: 'config',
+          wrap: '"use strict";\n\n {%= __ngModule %}',
+        },
+        constants: {
+          ENV: {
+            name: 'dist',
+            host: 'http://openeyes-api-uat.headlondon.com',
+            apiEndpoints: grunt.file.readJSON('config/dist.endpoints.json')
+          }
+        }
+      }
 		},
 	});
-
 
 	grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
 		if (target === 'dist') {
@@ -485,6 +512,42 @@ module.exports = function (grunt) {
 		'usemin',
 		'htmlmin'
 	]);
+
+  grunt.registerTask('dev-deploy', [
+    'clean:dist',
+    'ngconstant:devdeploy',
+    'wiredep',
+    'useminPrepare',
+    'concurrent:dist',
+    'autoprefixer',
+    'concat',
+    'ngmin',
+    'copy:dist',
+    'cdnify',
+    'cssmin',
+    // 'uglify',
+    'filerev',
+    'usemin',
+    'htmlmin'
+  ]);
+
+  grunt.registerTask('uat-deploy', [
+    'clean:dist',
+    'ngconstant:uatdeploy',
+    'wiredep',
+    'useminPrepare',
+    'concurrent:dist',
+    'autoprefixer',
+    'concat',
+    'ngmin',
+    'copy:dist',
+    'cdnify',
+    'cssmin',
+    // 'uglify',
+    'filerev',
+    'usemin',
+    'htmlmin'
+  ]);
 
 	grunt.registerTask('default', [
 		'newer:jshint',

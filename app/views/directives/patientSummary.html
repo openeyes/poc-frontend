@@ -20,6 +20,14 @@
     </div>
     <div class="row">
       <div class="col-xs-12">
+        Allergies:
+        <span ng-repeat="allergy in allergies">
+          {{ allergy.name }}<span ng-show="{{ $index !== allergies.length - 1 }}">,</span>
+        </span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
         <a ng-href="/#/patient/{{ patientId }}">View patient summary</a>
       </div>
     </div>
