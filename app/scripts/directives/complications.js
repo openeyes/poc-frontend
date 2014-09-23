@@ -36,7 +36,7 @@ angular.module('openeyesApp')
       return ($scope.model.complications || []).filter(function(complication) {
         return complication.other;
       }).length;
-    }
+    };
   }])
   .directive('oeComplications', [function () {
     return {
