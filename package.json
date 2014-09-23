@@ -45,6 +45,8 @@
     "predeploy": "npm install",
     "deploy": "grunt build",
     "predev-deploy": "npm install",
-    "dev-deploy": "grunt dev-deploy"
+    "dev-deploy": "grunt dev-deploy",
+    "preuat-deploy": "npm install",
+    "uat-deploy": "grunt uat-deploy"
   }
 }
