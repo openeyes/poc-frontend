@@ -8,7 +8,7 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('ConfigurableEventCtrl', ['$scope', '$compile', '$timeout', '$rootScope', '$routeParams', 'Event', function ($scope, $compile, $timeout, $rootScope, $routeParams, Event) {
+  .controller('ConfigurableEventCtrl', ['$scope', '$compile', '$timeout', '$rootScope', '$routeParams', 'Event', 'WORKFLOW_DOMAIN', function ($scope, $compile, $timeout, $rootScope, $routeParams, Event, WORKFLOW_DOMAIN) {
 
     var self = this;
 
@@ -40,24 +40,18 @@ angular.module('openeyesApp')
       var mandatoryFieldSets;
 
       $scope.stepName = steps[stepIndex].name;
-      mandatoryFieldSets = steps[stepIndex].mandatoryFieldSets;
 
-
-      // Push fake view components into fieldsets
-      mandatoryFieldSets = [
-        {type: 'view', name: 'VisualAcuity'},
-        {type: 'view', name: 'History'},
-        {type: 'edit', name: 'History'},
-        {type: 'edit', name: 'VisualAcuity'}
-      ];
-
-
+      // Filter out non-required fields
+      mandatoryFieldSets = steps[stepIndex].components.filter(function(el){
+        return el.required === true || !el.hasOwnProperty('required');
+      });
 
       //  Loop over given layout components and add into container
       for(var index = 0;index < mandatoryFieldSets.length;index++){
 
-        var cType = mandatoryFieldSets[index].type;
-
+        // Get component type without class prefix
+        var cType = mandatoryFieldSets[index].type.split(WORKFLOW_DOMAIN + '.')[1];
+        //  If component found then grab template and compile and append
         if(self.componentMappings[cType].hasOwnProperty(mandatoryFieldSets[index].name)) {
           var template = self.componentMappings[cType][mandatoryFieldSets[index].name];
           var cTemplate = $compile(template)($scope);
