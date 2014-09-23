@@ -52,21 +52,12 @@ angular.module('openeyesApp')
           console.log(error);
         });
 
-      Treatment.getInjectionPersonnel()
-        .then(function(data){
-          $scope.injectionPersonnel = data;
-        }, function(error){
-          console.log(error);
-        });
-
       Treatment.getPostInjectionLoweringTherapies()
         .then(function(data){
           $scope.postInjectionLoweringTherapies = data;
         }, function(error){
           console.log(error);
         });
-
-
     };
 
     this.broadcastModel = function(){
