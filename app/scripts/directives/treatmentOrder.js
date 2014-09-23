@@ -3,9 +3,11 @@
 angular.module('openeyesApp')
   .controller('TreatmentOrderCtrl', ['$scope', '$attrs', 'Treatment', 'Event', function($scope, $attrs, Treatment, Event){
 
+    var self = this;
+
     this.init = function(attrs){
 
-      $scope.side = $attrs.side;
+      $scope.side = attrs.side;
       $scope.model = {};
 
       //  Listen for save event
