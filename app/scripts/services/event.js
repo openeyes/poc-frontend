@@ -14,7 +14,6 @@ angular.module('openeyesApp')
 
     return {
       eventStack: [],
-      currentSite: null,
       setForm: function(f) {
         form = f;
       },
@@ -52,8 +51,11 @@ angular.module('openeyesApp')
       clearEventStack: function(){
         this.eventStack = [];
       },
-      getWorkflowConfig: function(){
+      getWorkflowConfig: function(id){
         var apiCall = ENV.host + ENV.apiEndpoints.workflow;
+        if (id) {
+          apiCall += '/' + id;
+        }
         return $http({
           method: 'GET',
           url: apiCall
@@ -184,27 +186,6 @@ angular.module('openeyesApp')
         };
 
         return componentMappings[mode];
-      },
-      getCurrentSite: function() {
-
-        var deferred = $q.defer();
-
-        if (!this.currentSite) {
-          this.getWorkflowConfig().then(
-            function success(data) {
-              this.currentSite = data.data[0];
-              deferred.resolve(this.currentSite);
-            }.bind(this),
-            deferred.reject.bind(deferred)
-          );
-        } else {
-          deferred.resolve(this.currentSite);
-        }
-
-        return deferred.promise;
-      },
-      setCurrentSite: function(site){
-        this.currentSite = site;
       }
     };
 

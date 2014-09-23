@@ -24,9 +24,9 @@ angular.module('openeyesApp')
       //  Broadcast by event page controller
       $scope.$on('event.save', this.save);
 
-      Event.getCurrentSite()
-      .then(function(site) {
-        self.layoutConfig = site;
+      Event.getWorkflowConfig($routeParams.workflowId)
+      .then(function(workflow) {
+        self.layoutConfig = workflow.data;
         self.buildLayout($routeParams.stepIndex);
       }, function() {
         console.log('Unable to get current sute');

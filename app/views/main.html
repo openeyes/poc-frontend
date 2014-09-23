@@ -1,13 +1,21 @@
-<!-- <h1>Search</h1> -->
+<h2>Try it out</h2>
 
-<form class="panel panel-default search-form" role="form">
-  <div class="form-group panel-body">
-    <label for="query">Query:</label>
-    <div class="input-group input-group-lg">
-      <input type="text" class="form-control" name="query" id="query" placeholder="Enter your search query.." />
-      <span class="input-group-btn">
-        <button class="btn btn-primary">Search</button>
-      </span>
+<div class="form-group row">
+  <div class="col-xs-12">
+    <div class="radio" ng-repeat="workflow in workflows">
+      <label>
+        <input type="radio" ng-model="$parent.workflow" ng-value="workflow" />
+        {{workflow.name}}
+      </label>
     </div>
   </div>
-</form>
+</div>
+
+<div class="row">
+  <div class="col-xs-8 col-xs-offset-2">
+    <div class="well">
+      <a href="/#/patients/{{ workflow._id.$oid }}/{{ $index }}" ng-repeat="step in steps" class="btn btn-primary btn-lg btn-block">{{ step.label }}</a>
+    </div>
+  </div>
+</div>
+
