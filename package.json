@@ -15,7 +15,6 @@
     "grunt-contrib-copy": "^0.5.0",
     "grunt-contrib-cssmin": "^0.9.0",
     "grunt-contrib-htmlmin": "^0.3.0",
-    "grunt-contrib-imagemin": "^0.7.0",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-uglify": "^0.4.0",
     "grunt-contrib-watch": "^0.6.1",
@@ -44,6 +43,10 @@
     "test": "grunt test",
     "start": "grunt serve",
     "predeploy": "npm install",
-    "deploy": "grunt build"
+    "deploy": "grunt build",
+    "predev-deploy": "npm install",
+    "dev-deploy": "grunt dev-deploy",
+    "preuat-deploy": "npm install",
+    "uat-deploy": "grunt uat-deploy"
   }
 }

@@ -17,11 +17,10 @@ namespace :deploy do
       remove_cached_copy
       update_code
       # bundle
-      npm_install
-      bower_install
-      grunt_build
+      npm_run_env_deploy
       create_symlink
     end
+    cleanup
   end
 
   desc <<-DESC
@@ -53,6 +52,10 @@ namespace :deploy do
 
   task :grunt_build do
     run "cd #{release_path} && grunt build"
+  end
+
+  task :npm_run_env_deploy do
+    run "cd #{release_path} && npm run #{environment}-deploy"
   end
 
   desc <<-DESC

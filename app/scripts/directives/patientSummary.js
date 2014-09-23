@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('openeyesApp')
-  .controller('PatientSummaryCtrl', ['$scope', '$routeParams', 'PatientSearch', function($scope, $routeParams, PatientSearch){
+  .controller('PatientSummaryCtrl', ['$scope', '$routeParams', 'PatientSearch', 'Patient', function($scope, $routeParams, PatientSearch, Patient){
 
     this.init = function(){
 
       $scope.patient = {};
+      $scope.patientId = $routeParams.patientId;
 
       // This is not exactly precise.
       $scope.age = function() {
@@ -21,13 +22,21 @@ angular.module('openeyesApp')
     };
 
     this.getData = function() {
-      $scope.patientId = $routeParams.patientId;
+
+
       PatientSearch.getPatient($scope.patientId)
         .success(function(data) {
           $scope.patient = data;
         })
         .error(function(data, status, headers, config) {
           console.log('Error getting patient data', data, status, headers, config);
+        });
+
+      Patient.getExistingAllergies($scope.patientId)
+        .then(function(data) {
+          $scope.allergies = data;
+        }, function() {
+          console.log('Error getting allergies');
         });
     };
   }])
