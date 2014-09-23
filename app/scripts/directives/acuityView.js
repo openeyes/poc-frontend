@@ -10,8 +10,6 @@
 angular.module('openeyesApp')
   .controller('AcuityViewCtrl', ['$scope', '$routeParams', 'Element', 'MODEL_DOMAIN', function($scope, $routeParams, Element, MODEL_DOMAIN){
 
-    // var self = this;
-
     this.init = function(){
 
       $scope.model = {};
@@ -22,8 +20,7 @@ angular.module('openeyesApp')
 
       Element.getElements($routeParams.patientId, eType, today)
         .then(function(data) {
-          console.log(data);
-          $scope.model = data[0];
+          $scope.model = data.data[0];
         }, function(error) {
           console.log(error);
         });
