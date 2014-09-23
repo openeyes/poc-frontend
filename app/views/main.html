@@ -7,13 +7,13 @@
       <div class="radio" ng-repeat="workflow in workflows">
         <label>
           <input type="radio" ng-model="$parent.workflow" ng-value="workflow" />
-          {{ workflow.site }}
+          At {{ workflow.site }}
         </label>
       </div>
     </div>
     <div class="well">
       <p>Select a step in the worflow.</p>
-      <a href="/#/patients/{{ workflow._id.$oid }}/{{ $index }}" ng-repeat="step in workflow.steps" class="btn btn-primary btn-lg btn-block">{{ step.name }} by {{ step.role }}</a>
+      <a href="/#/patients/{{ workflow._id.$oid }}/{{ $index }}" ng-repeat="step in workflow.steps" class="btn btn-primary btn-lg btn-block">{{ step.name }} as a {{ step.role }}</a>
     </div>
   </div>
 </div>
