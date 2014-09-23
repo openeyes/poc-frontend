@@ -10,8 +10,6 @@
 angular.module('openeyesApp')
   .factory('History', ['$http', '$q', 'ENV', function($http, $q, ENV) {
 
-    console.log(ENV);
-
     return {
       getSlugs: function(){
         var data = {

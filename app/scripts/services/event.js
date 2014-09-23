@@ -8,13 +8,12 @@
  * Service of the openeyesApp
  */
 angular.module('openeyesApp')
-  .factory('Event', ['$http', 'ENV', function($http, ENV) {
+  .factory('Event', ['$http', '$q', 'ENV', function($http, $q, ENV) {
 
     var form;
 
     return {
       eventStack: [],
-      currentSite: null,
       setForm: function(f) {
         form = f;
       },
@@ -52,8 +51,11 @@ angular.module('openeyesApp')
       clearEventStack: function(){
         this.eventStack = [];
       },
-      getWorkflowConfig: function(){
+      getWorkflowConfig: function(id){
         var apiCall = ENV.host + ENV.apiEndpoints.workflow;
+        if (id) {
+          apiCall += '/' + id;
+        }
         return $http({
           method: 'GET',
           url: apiCall
@@ -186,12 +188,6 @@ angular.module('openeyesApp')
         };
 
         return componentMappings;
-      },
-      getCurrentSite: function(){
-        return this.currentSite;
-      },
-      setCurrentSite: function(siteIndex){
-        this.currentSite = siteIndex;
       }
     };
 
