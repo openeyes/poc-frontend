@@ -1,0 +1,9 @@
+// Icons
+
+[class*="icon-"] {
+  @include text-hide;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@include sprite($oe-sprite-icons, "icon", 20px, 20px);

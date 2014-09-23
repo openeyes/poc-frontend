@@ -1,3 +1,15 @@
+// OpenEyes vars
+
+
+$oe-sprite-icons: "icons/*.png";
+
+
+// Bootstrap vars from here
+
+
+
+
+
 // When true, asset path helpers are used, otherwise regular url() is used
 // When there no function is defined, `fn('')` is parsed as string that equals the right hand side
 // NB: in Sass 3.3 there is a native function: function-exists(twbs-font-path)
@@ -343,15 +355,15 @@ $container-lg:                 $container-large-desktop;
 //##
 
 // Basics of a navbar
-$navbar-height:                    50px;
+$navbar-height:                    58px;
 $navbar-margin-bottom:             $line-height-computed;
-$navbar-border-radius:             $border-radius-base;
+$navbar-border-radius:             0;
 $navbar-padding-horizontal:        floor(($grid-gutter-width / 2));
 $navbar-padding-vertical:          (($navbar-height - $line-height-computed) / 2);
 $navbar-collapse-max-height:       340px;
 
 $navbar-default-color:             #777;
-$navbar-default-bg:                #f8f8f8;
+$navbar-default-bg:                #1b2b3c;
 $navbar-default-border:            darken($navbar-default-bg, 6.5%);
 
 // Navbar links

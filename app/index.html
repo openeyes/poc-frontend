@@ -22,24 +22,26 @@
     <![endif]-->
 
     <nav class="navbar navbar-default" role="navigation" ng-controller="NavCtrl">
-      <div class="container">
+      <div class="container-fluid">
         <a class="navbar-brand" href="#">OpenEyes</a>
         <ul class="nav navbar-nav pull-right">
           <!-- <li ng-class="{ active: isActive($index) }" ng-repeat="s in sites">
             <a ng-click="changeSite($index)">Medical Retina Injection Suite {{ $index + 1 }}</a>
           </li> -->
           <li ng-class="{ active: isActive('/search') }">
-            <a href="/#/search">Patient Search</a>
+            <a href="/#/search">
+              <span class="icon-search">Patient Search</span>
+            </a>
           </li>
         </ul>
       </div>
     </nav>
 
-    <div class="container">
+    <div class="container-fluid">
       <div ng-view=""></div>
     </div>
 
-    <div class="container">
+    <div class="container-fluid">
       <div class="footer">
         <p>&copy; OpenEyes</p>
       </div>
