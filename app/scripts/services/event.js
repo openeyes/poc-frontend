@@ -184,6 +184,7 @@ angular.module('openeyesApp')
             eyedraw: '<ng-include src="\'/views/components/view/eyedraw.html\'"></ng-include>',
             VisualAcuity: '<ng-include src="\'/views/components/view/acuity.html\'"></ng-include>',
             History: '<ng-include src="\'/views/components/view/history.html\'"></ng-include>',
+            TreatmentOrder: '<ng-include src="\'/views/components/view/treatmentOrder.html\'"></ng-include>',
           }
 
         };
