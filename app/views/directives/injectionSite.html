@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col-xs-8">
-    <oe-eyedraw instance="eyedrawInstance" ng-model="model.eyedraw" data-side="{{side}}" options="{{options}}" mode="{{mode}}"></oe-eyedraw>
+    <oe-eyedraw instance="eyedrawInstance" ng-model="model.data" data-side="{{side}}" options="{{options}}" mode="{{mode}}"></oe-eyedraw>
   </div>
   <div class="col-xs-4">
     <div class="form-group vertical">
       <label class="control-label">Lens status:</label>
-      <select class="form-control" ng-model="model.lensStatus" ng-options="obj.label for obj in statuses" ng-change="updateLensStatus()">
+      <select class="form-control" ng-model="lensStatus" ng-options="obj.label for obj in statuses" ng-change="updateLensStatus()">
       </select>
     </div>
   </div>
