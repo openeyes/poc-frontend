@@ -1,0 +1,86 @@
+// Patient Summary
+
+.patient-summary {
+  position: fixed;
+  top: 58px;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  .row {
+    background: #fff;
+    border-bottom: 1px solid #c9d3da;
+  }
+  .appointment-time {
+    background: #3fb9eb;
+    text-align: center;
+    a {
+      color: #ffffff;
+      display: block;
+      padding: 34px 0 18px 0;
+    }
+    .time, .time-period {
+      line-height: 1;
+    }
+    .time {
+      display: inline-block;
+      font-size: 30px;
+      font-weight: 600;
+    }
+    .time-period {
+      display: block;
+      font-size: 16px;
+      font-weight: 200;
+      text-align: right;
+    }
+  }
+  .patient-info {
+    position: relative;
+  }
+  .patient-pic {
+    border-radius: 30px;
+    border: 1px solid #fff;
+    height: 60px;
+    margin-left: 15px;
+    margin-top: 22px;
+    float: left;
+    overflow: hidden;
+    width: 60px;
+  }
+  .patient-overview {
+    margin-left: 10px;
+    float: left;
+    position: relative;
+  }
+  .patient-name {
+    font-size: 30px;
+    line-height: 100px;
+    a {
+      color: $text-color;
+    }
+  }
+  .patient-allergies {
+    color: #ec4867;
+    position: absolute;
+    bottom: 12px;
+    left: -28px;
+    .notification {
+      margin-right: 3px;
+    }
+  }
+  .patient-details {
+    float: right;
+    font-size: 16px;
+    margin-top: 35px;
+    .details {
+      display: inline-block;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      vertical-align: middle;
+      li {
+        float: left;
+        margin-right: 24px;
+      }
+    }
+  }
+}

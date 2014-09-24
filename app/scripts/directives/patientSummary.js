@@ -10,6 +10,8 @@ angular.module('openeyesApp')
       $scope.patient = null;
       $scope.ticketId = $routeParams.ticketId;
 
+      document.body.classList.add('has-patient-summary');
+
       // This is not exactly precise.
       $scope.age = function() {
         if (!$scope.patient.dob) {
@@ -51,6 +53,7 @@ angular.module('openeyesApp')
   .directive('oePatientSummary', [function () {
     return {
       restrict: 'E', //E = element, A = attribute, C = class, M = comment
+      replace: true,
       scope: {},
       templateUrl: 'views/directives/patientSummary.html',
       controller: 'PatientSummaryCtrl',

@@ -2,27 +2,49 @@
 
 .navbar {
   border: 0;
+  margin-bottom: 0;
 }
 
 .navbar-brand {
   @include text-hide;
   background: image-url("openeyes-logo.png") no-repeat center center;
+  padding: 0;
   width: 160px;
+  margin-left: 30px;
   @media (min-width: $grid-float-breakpoint) {
-    .navbar > .container &,
+    .navbar > .container-fluid {
+      padding: 0;
+    }
     .navbar > .container-fluid & {
       margin-left: 15px;
     }
   }
 }
 
+@media (min-width: $grid-float-breakpoint) {
+  .navbar-right {
+    margin-right: -($grid-gutter-width / 2);
+  }
+}
+
 .navbar-nav {
-  margin: 0 !important;
+  li {
+    border-left: 1px solid #3a4b5a;
+    a {
+      font-size: 16px;
+    }
+  }
   > li {
-    float: left !important;
     > a {
-      padding-top: 15px;
-      padding-bottom: 15px;
+      padding: 18px;
+    }
+  }
+}
+
+.navbar-default {
+  .navbar-nav {
+    > li > a {
+      font-weight: 200;
     }
   }
 }

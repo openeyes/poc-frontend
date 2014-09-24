@@ -7,3 +7,16 @@
 }
 
 @include sprite($oe-sprite-icons, "icon", 20px, 20px);
+
+.notification {
+  background: #ec4867;
+  border-radius: 12px;
+  border: 2px solid #fff;
+  color: #fff;
+  display: inline-block;
+  font-weight: bold;
+  height: 24px;
+  position: relative;
+  text-align: center;
+  width: 24px;
+}
