@@ -1,29 +1,60 @@
 'use strict';
 
+/**
+ * @ngdoc function
+ * @name openeyesApp.controller:TreatmentOrderCtrl
+ * @description
+ * # TreatmentOrderCtrl
+ * Controller of the openeyesApp
+ */
 angular.module('openeyesApp')
-  .controller('TreatmentOrderCtrl', ['$scope', '$attrs', 'Treatment', 'Event', function($scope, $attrs, Treatment, Event){
+  .controller('TreatmentOrderCtrl', ['$scope', '$attrs', 'Treatment', 'Event', 'MODEL_DOMAIN', function($scope, $attrs, Treatment, Event, MODEL_DOMAIN){
+
+    $scope.form = Event.getForm();
+    $scope.rules = Event.getValidationRules('treatment');
+    $scope.side = $attrs.side;
 
     var self = this;
 
     this.init = function(attrs){
 
-      $scope.side = attrs.side;
-      $scope.model = {};
+      this.eyeSide = $scope.side = attrs.side;
 
       //  Listen for save event
       //  Broadcast by event page controller
       $scope.$on('event.save', this.broadcastModel);
+      //  On creation populate dropdowns
+      Treatment.getPreInjectionAntiseptics()
+        .then(function(data) {
+          $scope.preInjectAntiseptics = data;
+        }, function(error) {
+          console.log(error);
+        });
 
-      $scope.$watch('injectionPersonnel', function(people) {
-        if (people instanceof Array) {
-          // Default to first person.
-          $scope.model.injectionPerson = people[0];
-        }
-      });
-
-      Treatment.getInjectionPersonnel()
+      Treatment.getPreInjectionSkinCleansers()
         .then(function(data){
-          $scope.injectionPersonnel = data;
+          $scope.preInjectSkinCleansers = data;
+        }, function(error){
+          console.log(error);
+        });
+
+      Treatment.getPreInjectionLoweringTherapies()
+        .then(function(data){
+          $scope.preInjectionLoweringTherapies = data;
+        }, function(error){
+          console.log(error);
+        });
+
+      Treatment.getDrugs()
+        .then(function(data){
+          $scope.drugs = data;
+        }, function(error){
+          console.log(error);
+        });
+
+      Treatment.getPostInjectionLoweringTherapies()
+        .then(function(data){
+          $scope.postInjectionLoweringTherapies = data;
         }, function(error){
           console.log(error);
         });
@@ -35,19 +66,26 @@ angular.module('openeyesApp')
 
     this.getModel = function(){
       return {
-        name: 'TreatmentOrder',
-        subPath: $scope.side,
+        name: MODEL_DOMAIN + 'TreatmentOrder',
+        subPath: this.eyeSide,
         model: $scope.model
       };
     };
 
   }])
+  /**
+   * @ngdoc function
+   * @name openeyesApp.directive:oeTreatmentOrder
+   * @description
+   * # oeTreatmentOrder
+   * Directive of the openeyesApp
+   */
   .directive('oeTreatmentOrder', [function () {
     return {
-      restrict: 'EA',
+      restrict: 'EA', //E = element, A = attribute, C = class, M = comment
       scope: {},
       templateUrl: 'views/directives/treatmentOrder.html',
-      controller: 'TreatmentOrderCtrl',
+      controller: 'TreatmentOrderCtrl', //Embed a custom controller in the directive
       link: function (scope, element, attrs, TreatmentOrderCtrl) {
         TreatmentOrderCtrl.init(attrs);
       }

@@ -1,60 +1,29 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name openeyesApp.controller:TreatmentCtrl
- * @description
- * # TreatmentCtrl
- * Controller of the openeyesApp
- */
 angular.module('openeyesApp')
-  .controller('TreatmentCtrl', ['$scope', '$attrs', 'Treatment', 'Event', function($scope, $attrs, Treatment, Event){
-
-    $scope.form = Event.getForm();
-    $scope.rules = Event.getValidationRules('treatment');
-    $scope.side = $attrs.side;
+  .controller('TreatmentCtrl', ['$scope', '$attrs', 'Treatment', 'Event', 'MODEL_DOMAIN', function($scope, $attrs, Treatment, Event, MODEL_DOMAIN){
 
     var self = this;
 
     this.init = function(attrs){
 
-      this.eyeSide = $scope.side = attrs.side;
+      $scope.side = attrs.side;
+      $scope.model = {};
 
       //  Listen for save event
       //  Broadcast by event page controller
       $scope.$on('event.save', this.broadcastModel);
-      //  On creation populate dropdowns
-      Treatment.getPreInjectionAntiseptics()
-        .then(function(data) {
-          $scope.preInjectAntiseptics = data;
-        }, function(error) {
-          console.log(error);
-        });
 
-      Treatment.getPreInjectionSkinCleansers()
-        .then(function(data){
-          $scope.preInjectSkinCleansers = data;
-        }, function(error){
-          console.log(error);
-        });
+      $scope.$watch('injectionPersonnel', function(people) {
+        if (people instanceof Array) {
+          // Default to first person.
+          $scope.model.injectionPerson = people[0];
+        }
+      });
 
-      Treatment.getPreInjectionLoweringTherapies()
+      Treatment.getInjectionPersonnel()
         .then(function(data){
-          $scope.preInjectionLoweringTherapies = data;
-        }, function(error){
-          console.log(error);
-        });
-
-      Treatment.getDrugs()
-        .then(function(data){
-          $scope.drugs = data;
-        }, function(error){
-          console.log(error);
-        });
-
-      Treatment.getPostInjectionLoweringTherapies()
-        .then(function(data){
-          $scope.postInjectionLoweringTherapies = data;
+          $scope.injectionPersonnel = data;
         }, function(error){
           console.log(error);
         });
@@ -66,26 +35,19 @@ angular.module('openeyesApp')
 
     this.getModel = function(){
       return {
-        name: 'treatment',
-        subPath: this.eyeSide,
+        name: MODEL_DOMAIN + 'Treatment',
+        subPath: $scope.side,
         model: $scope.model
       };
     };
 
   }])
-  /**
-   * @ngdoc function
-   * @name openeyesApp.directive:treatment
-   * @description
-   * # treatment
-   * Directive of the openeyesApp
-   */
   .directive('oeTreatment', [function () {
     return {
-      restrict: 'EA', //E = element, A = attribute, C = class, M = comment
+      restrict: 'EA',
       scope: {},
       templateUrl: 'views/directives/treatment.html',
-      controller: 'TreatmentCtrl', //Embed a custom controller in the directive
+      controller: 'TreatmentCtrl',
       link: function (scope, element, attrs, TreatmentCtrl) {
         TreatmentCtrl.init(attrs);
       }
