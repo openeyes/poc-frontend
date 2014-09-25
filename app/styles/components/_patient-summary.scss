@@ -1,9 +1,9 @@
 // Patient Summary
 
 .patient-summary {
+  left: 0;
   position: fixed;
   top: 58px;
-  left: 0;
   width: 100%;
   z-index: 1000;
   .row {
@@ -12,11 +12,13 @@
   }
   .appointment-time {
     background: #3fb9eb;
+    color: #ffffff;
+    display: block;
+    padding-bottom: 18px;
+    padding-top: 34px;
     text-align: center;
-    a {
-      color: #ffffff;
-      display: block;
-      padding: 34px 0 18px 0;
+    &:hover {
+      color: #ddd;
     }
     .time, .time-period {
       line-height: 1;
@@ -39,29 +41,27 @@
   .patient-pic {
     border-radius: 30px;
     border: 1px solid #fff;
+    float: left;
     height: 60px;
     margin-left: 15px;
     margin-top: 22px;
-    float: left;
-    overflow: hidden;
     width: 60px;
   }
   .patient-overview {
-    margin-left: 10px;
     float: left;
+    margin-left: 10px;
     position: relative;
+    margin-top: 30px;
   }
   .patient-name {
+    color: $text-color;
+    display: block;
     font-size: 30px;
-    line-height: 100px;
-    a {
-      color: $text-color;
-    }
   }
   .patient-allergies {
     color: #ec4867;
     position: absolute;
-    bottom: 12px;
+    bottom: -15px;
     left: -28px;
     .notification {
       margin-right: 3px;

@@ -1,24 +1,18 @@
 <div class="patient-summary" ng-if="patient.firstName">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-xs-1 appointment-time">
-        <a href="#">
-          <time class="time">
-            10:15
-            <span class="time-period">am</span>
-          </time>
-        </a>
-      </div>
+      <a href="#" class="col-xs-1 appointment-time">
+        <time class="time">
+          10:15
+          <span class="time-period">am</span>
+        </time>
+      </a>
       <div class="col-xs-11 patient-info">
-        <div class="patient-pic">
-          <img src="/images/profiles/gladys.png" />
-        </div>
+        <img src="/images/profiles/gladys.png" alt="{{patient.firstName}} {{patient.surname}}" class="patient-pic" />
         <div class="patient-overview">
-          <div class="patient-name">
-            <a ng-href="/#/patient/{{ patientId }}">
-              <strong>{{ patient.surname | uppercase }},</strong> {{ patient.firstName }} (Mrs)
-            </a>
-          </div>
+          <a ng-href="/#/patient/{{ patient._id.$oid }}" class="patient-name">
+            <strong>{{ patient.surname | uppercase }},</strong> {{ patient.firstName }} (Mrs)
+          </a>
           <div class="patient-allergies" ng-show="allergies.length">
             <span class="notification">!</span>
             <strong>Allergies</strong>
