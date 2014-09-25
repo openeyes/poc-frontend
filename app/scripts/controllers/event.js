@@ -34,14 +34,14 @@ angular.module('openeyesApp')
       $window.history.back();
     };
 
-    $scope.navToPatient = function(){
-      $location.path('/patient/' + $routeParams.patientId);
+    $scope.navToLanding = function(){
+      $location.path('/');
     };
 
     $scope.save = function(){
-      $rootScope.$broadcast('event.save', {patientId: $routeParams.patientId});
+      $rootScope.$broadcast('event.save');
     };
 
-    $scope.$on('event.save.complete', $scope.navToPatient);
+    $scope.$on('event.save.complete', $scope.navToLanding);
 
   }]);

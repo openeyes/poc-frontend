@@ -1,1 +1,19 @@
-Anaesthetic view
+<!-- case class AnaestheticSide (anaestheticType: String, delivery: String, agent: String) -->
+<div class="row">
+  <div class="col-xs-6">
+    <table class="table">
+      <tr><th>Type</th><th>Delivery</th><th>Agent</th></tr>
+      <tr>
+        <td>{{ model.rightEye.anaestheticType }}</td><td>{{ model.rightEye.delivery }}</td><td>{{ model.rightEye.agent }}</td>
+      </tr>
+    </table>
+  </div>
+    <div class="col-xs-6">
+    <table class="table">
+      <tr><th>Type</th><th>Delivery</th><th>Agent</th></tr>
+      <tr>
+        <td>{{ model.leftEye.anaestheticType }}</td><td>{{ model.leftEye.delivery }}</td><td>{{ model.leftEye.agent }}</td>
+      </tr>
+    </table>
+  </div>
+</div>

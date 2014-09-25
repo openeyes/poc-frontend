@@ -8,7 +8,7 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('ConfigurableEventCtrl', ['$scope', '$compile', '$timeout', '$rootScope', '$routeParams', 'Event', 'WORKFLOW_DOMAIN', function ($scope, $compile, $timeout, $rootScope, $routeParams, Event, WORKFLOW_DOMAIN) {
+  .controller('ConfigurableEventCtrl', ['$scope', '$compile', '$timeout', '$rootScope', '$routeParams', 'Event', 'Ticket', 'WORKFLOW_DOMAIN', function ($scope, $compile, $timeout, $rootScope, $routeParams, Event, Ticket, WORKFLOW_DOMAIN) {
 
     var self = this;
 
@@ -62,7 +62,7 @@ angular.module('openeyesApp')
       }
     };
 
-    this.save = function(scope, params){
+    this.save = function(){
       $timeout(function() {
 
         $scope.form.submitted = true;
@@ -74,20 +74,37 @@ angular.module('openeyesApp')
           return;
         }
 
-        var postObject = self.buildPostObject();
-        postObject.patientId = params.patientId;
-
-        Event.create(postObject)
-          .success(function(data) {
-            console.log('success', data);
-            Event.clearEventStack();
-            $rootScope.$broadcast('event.save.complete', {});
-          })
-          .error(function(data, status, headers, config) {
-            console.log(data, status, headers, config);
-          });
+        self.getPatient(function(){
+          var postObject = self.buildPostObject();
+          postObject.patientId = self.patient._id.$oid;
+          self.postEncounter(postObject);
+        });
 
       });
+    };
+
+    this.postEncounter = function(postObject){
+      console.log(postObject);
+      // return;
+      Event.create(postObject)
+        .success(function(data) {
+          console.log('success', data);
+          Event.clearEventStack();
+          $rootScope.$broadcast('event.save.complete', {});
+        })
+        .error(function(data, status, headers, config) {
+          console.log(data, status, headers, config);
+        });
+    };
+
+    this.getPatient = function(callback){
+      Ticket.getTicket($routeParams.ticketId)
+        .then(function(data) {
+          self.patient = data.data.patient;
+          callback();
+        }, function(data, status, headers, config) {
+          console.log('Error getting patient data', data, status, headers, config);
+        });
     };
 
     this.getFirstErrorField = function(errors) {
