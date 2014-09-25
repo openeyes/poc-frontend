@@ -78,7 +78,7 @@ angular.module('openeyesApp')
         self.getPatient(function(){
           var postObject = self.buildPostObject();
           postObject.patientId = self.patient._id.$oid;
-          postObject.stepIndex = self.stepIndex;
+          postObject.stepIndex = parseInt(self.stepIndex, 10);
           postObject.ticketId = $routeParams.ticketId;
           self.postEncounter(postObject);
         });
@@ -88,6 +88,7 @@ angular.module('openeyesApp')
 
     this.postEncounter = function(postObject){
       console.log(postObject);
+      console.log(JSON.stringify(postObject));
       // return;
       Event.create(postObject)
         .success(function(data) {
