@@ -41,7 +41,7 @@ angular
         templateUrl: 'views/event-create.html',
         controller: 'EventCtrl'
       })
-      .when('/patient/:patientId/:workflowId/:stepIndex', {
+      .when('/patient/:workflowId/:ticketId/:stepIndex', {
         templateUrl: 'views/event-create.html',
         controller: 'EventCtrl'
       })

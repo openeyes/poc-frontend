@@ -13,13 +13,13 @@
           <th>Actions</th>
         </tr>
       </thead>
-      <tr ng-repeat="p in patients">
-        <td>{{ p.firstName }}</td>
-        <td>{{ p.surname }}</td>
-        <td>{{ p.gender }}</td>
+      <tr ng-repeat="ticket in tickets">
+        <td>{{ ticket.patient.firstName }}</td>
+        <td>{{ ticket.patient.surname }}</td>
+        <td>{{ ticket.patient.gender }}</td>
         <td>
-          <a href="/#/patient/{{ p._id.$oid }}/{{ workflow._id.$oid }}/{{ stepIndex }}">Record data</a> |
-          <a href="/#/patient/{{ p._id.$oid }}">View Summary</a>
+          <a href="/#/patient/{{ workflow._id.$oid }}/{{ ticket._id.$oid }}/{{ stepIndex }}">Record data</a> |
+          <a href="/#/patient/{{ ticket.patient._id.$oid }}">View Summary</a>
         </td>
       </tr>
     </table>
