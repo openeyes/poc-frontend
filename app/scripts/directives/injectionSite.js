@@ -21,6 +21,11 @@ angular.module('openeyesApp')
     };
 
     this.getModel = function(){
+
+      if($scope.lensStatus){
+        $scope.model.lensStatus = $scope.lensStatus.label;
+      }
+
       return {
         name: MODEL_DOMAIN + 'InjectionSite',
         subPath: $attrs.side,
@@ -50,7 +55,7 @@ angular.module('openeyesApp')
           return doodle instanceof EyeDraw.InjectionSite;
         }).forEach(function(doodle) {
 
-          var distance = $scope.model.lensStatus.defaultDistance.toString();
+          var distance = $scope.lensStatus.defaultDistance.toString();
           var validityArray = doodle.validateParameter('distance', distance);
 
           if (validityArray.valid) {
