@@ -4,7 +4,7 @@
   </label>
   <div class="col-xs-8">
     <label class="radio-inline"  ng-repeat="type in types">
-      <input type="radio" ng-model="model.type" ng-value="type" />
+      <input type="radio" ng-model="model.anaestheticType" ng-value="type.label" />
       {{type.label}}
     </label>
   </div>
@@ -16,7 +16,7 @@
   </label>
   <div class="col-xs-8">
     <label class="radio-inline"  ng-repeat="delivery in deliveries">
-      <input type="radio" ng-model="model.delivery" ng-value="delivery" />
+      <input type="radio" ng-model="model.delivery" ng-value="delivery.label" />
       {{delivery.label}}
     </label>
   </div>
@@ -27,6 +27,6 @@
     Anaesthetic Agent:
   </label>
   <div class="col-xs-8">
-    <select class="form-control" ng-model="model.agent" ng-options="obj.label for obj in agents | orderBy:'label'"></select>
+    <select class="form-control" ng-model="selectedAgent" ng-options="obj.label for obj in agents | orderBy:'label'"></select>
   </div>
 </div>

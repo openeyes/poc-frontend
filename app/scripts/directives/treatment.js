@@ -17,7 +17,7 @@ angular.module('openeyesApp')
       $scope.$watch('injectionPersonnel', function(people) {
         if (people instanceof Array) {
           // Default to first person.
-          $scope.model.injectionPerson = people[0];
+          $scope.injectionGivenBy = people[0];
         }
       });
 
@@ -34,6 +34,11 @@ angular.module('openeyesApp')
     };
 
     this.getModel = function(){
+
+      if($scope.injectionGivenBy){
+        $scope.model.injectionGivenBy = $scope.injectionGivenBy.label;
+      }
+
       return {
         name: MODEL_DOMAIN + 'Treatment',
         subPath: $scope.side,

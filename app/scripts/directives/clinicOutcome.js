@@ -23,6 +23,25 @@ angular.module('openeyesApp')
     };
 
     this.getModel = function(){
+
+      if($scope.status){
+        $scope.model.status = $scope.status.label;
+      }
+      if($scope.quantity){
+        $scope.model.quantity = $scope.quantity.label;
+      }
+      if($scope.role){
+        $scope.model.role = $scope.role.label;
+      }
+      if($scope.period){
+        $scope.model.period = $scope.period.label;
+      }
+      if($scope.communityPatient){
+        $scope.model.communityPatient = $scope.communityPatient.label;
+      } else {
+        $scope.model.communityPatient = false;
+      }
+
       return {
         name: MODEL_DOMAIN + 'ClinicOutcome',
         model: $scope.model

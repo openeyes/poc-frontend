@@ -12,9 +12,9 @@ angular.module('openeyesApp')
 
     var self = this;
 
-    this.init = function(){
+    this.init = function(attrs){
       $scope.$on('event.save', this.broadcastModel);
-      $scope.side = $attrs.side;
+      $scope.side = attrs.side;
       $scope.model = {};
       this.getData();
     };
@@ -24,7 +24,11 @@ angular.module('openeyesApp')
     };
 
     this.getModel = function(){
-      console.log($scope.model);
+
+      if($scope.selectedAgent){
+        $scope.model.agent = $scope.selectedAgent.label;
+      }
+
       return {
         name: MODEL_DOMAIN + 'Anaesthetic',
         subPath: $scope.side,
@@ -63,7 +67,7 @@ angular.module('openeyesApp')
       templateUrl: 'views/directives/anaesthetic.html',
       controller: 'AnaestheticCtrl',
       link: function (scope, element, attrs, AnaestheticCtrl) {
-        AnaestheticCtrl.init();
+        AnaestheticCtrl.init(attrs);
       }
     };
   }]);
