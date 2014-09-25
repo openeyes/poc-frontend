@@ -1,5 +1,11 @@
 // Patient Summary
 
+body.has-patient-summary {
+  .page-body {
+    margin-top: 159px;
+  }
+}
+
 .patient-summary {
   left: 0;
   position: fixed;
@@ -14,73 +20,67 @@
     background: #3fb9eb;
     color: #ffffff;
     display: block;
-    padding-bottom: 18px;
-    padding-top: 34px;
+    padding-bottom: 35px;
+    padding-top: 35px;
     text-align: center;
+    line-height: 1;
+    font-size: 30px;
+    font-weight: 600;
     &:hover {
       color: #ddd;
     }
-    .time, .time-period {
-      line-height: 1;
-    }
-    .time {
-      display: inline-block;
-      font-size: 30px;
-      font-weight: 600;
-    }
-    .time-period {
-      display: block;
-      font-size: 16px;
-      font-weight: 200;
-      text-align: right;
-    }
-  }
-  .patient-info {
-    position: relative;
   }
   .patient-pic {
-    border-radius: 30px;
-    border: 1px solid #fff;
-    float: left;
-    height: 60px;
-    margin-left: 15px;
     margin-top: 22px;
-    width: 60px;
   }
   .patient-overview {
-    float: left;
-    margin-left: 10px;
-    position: relative;
     margin-top: 30px;
   }
-  .patient-name {
-    color: $text-color;
-    display: block;
-    font-size: 30px;
+  .patient-details-list {
+    margin-top: 40px;
   }
-  .patient-allergies {
-    color: #ec4867;
-    position: absolute;
-    bottom: -15px;
-    left: -28px;
-    .notification {
-      margin-right: 3px;
-    }
+}
+
+.patient-pic {
+  border-radius: 30px;
+  border: 1px solid #fff;
+  float: left;
+  height: 60px;
+  margin-left: 15px;
+  width: 60px;
+}
+
+.patient-overview {
+  float: left;
+  margin-left: 10px;
+  position: relative;
+}
+
+.patient-name {
+  color: $text-color;
+  display: block;
+  font-size: 30px;
+}
+
+.patient-allergies {
+  color: #ec4867;
+  position: absolute;
+  bottom: -15px;
+  left: -28px;
+  .notification {
+    margin-right: 3px;
   }
-  .patient-details {
-    float: right;
-    font-size: 16px;
-    margin-top: 35px;
-    .details {
-      display: inline-block;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      vertical-align: middle;
-      li {
-        float: left;
-        margin-right: 24px;
-      }
-    }
+}
+
+.patient-details-list {
+  font-size: 16px;
+  display: inline-block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  vertical-align: middle;
+  li {
+    float: left;
+    margin-right: 24px;
   }
 }

@@ -1,17 +1,14 @@
 <div class="patient-summary" ng-if="patient.firstName">
   <div class="container-fluid">
     <div class="row">
-      <a href="#" class="col-xs-1 appointment-time">
-        <time class="time">
-          10:15
-          <span class="time-period">am</span>
-        </time>
+      <a href="#" ng-click="openList($event)" class="col-xs-1 appointment-time">
+        10:15
       </a>
-      <div class="col-xs-11 patient-info">
+      <div class="col-xs-5 patient-info">
         <img src="/images/profiles/gladys.png" alt="{{patient.firstName}} {{patient.surname}}" class="patient-pic" />
         <div class="patient-overview">
           <a ng-href="/#/patient/{{ patient._id.$oid }}" class="patient-name">
-            <strong>{{ patient.surname | uppercase }},</strong> {{ patient.firstName }} (Mrs)
+            <strong>{{ patient.surname }},</strong> {{ patient.firstName }} (Mrs)
           </a>
           <div class="patient-allergies" ng-show="allergies.length">
             <span class="notification">!</span>
@@ -21,14 +18,14 @@
             </span>
           </div>
         </div>
-        <div class="patient-details">
-          <ul class="details">
-            <li><strong>Born</strong> {{ patient.dob }} ({{ age() }}y)</li>
-            <li><strong>Gender</strong> ({{ patient.gender.slice(0,1) }})</li>
-            <li><strong>NHS No.</strong> {{ patient.nhsNumber }}</li>
-          </ul>
-          <a href="#" class="btn btn-default">View History</a>
-        </div>
+      </div>
+      <div class="col-xs-6">
+        <ul class="patient-details-list">
+          <li><strong>Born</strong> {{ patient.dob }} ({{ getAge() }}y)</li>
+          <li><strong>Gender</strong> ({{ patient.gender.slice(0,1) }})</li>
+          <li><strong>NHS No.</strong> {{ patient.nhsNumber }}</li>
+        </ul>
+        <a href="#" class="btn btn-default">View History</a>
       </div>
     </div>
   </div>

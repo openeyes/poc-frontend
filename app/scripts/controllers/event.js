@@ -44,4 +44,10 @@ angular.module('openeyesApp')
 
     $scope.$on('event.save.complete', $scope.navToLanding);
 
+    document.body.classList.add('page-event');
+
+    $scope.$on('$destroy', function() {
+      document.body.classList.remove('page-event');
+    });
+
   }]);

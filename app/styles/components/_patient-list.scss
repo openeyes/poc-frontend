@@ -1,0 +1,71 @@
+// Patient Summary
+
+$patient-list-padding-vertical: 16px;
+
+.patient-list-container {
+  .page-event & {
+    display: none;
+  }
+  .patient-list-open & {
+    display: block;
+  }
+}
+
+.patient-list {
+  background: #fafbfc;
+  border-color: #93a2ad;
+  border-width: 0 0 2px 0;
+  padding: 0;
+}
+
+.patient-list-table {
+  border-bottom: 1px solid $table-border-color;
+  margin: 0;
+  tbody {
+    tr {
+      cursor: pointer;
+      &:hover {
+        background: #e3f7f9;
+        .patient-start {
+          display: block;
+        }
+      }
+      td {
+        font-size: 20px;
+        padding-bottom: $patient-list-padding-vertical;
+        padding-top: $patient-list-padding-vertical;
+        position: relative;
+        &:first-child {
+          border-right: 1px solid $table-border-color;
+        }
+      }
+    }
+  }
+  .patient-name {
+    float: left;
+    font-size: 22px;
+    margin-left: 76px;
+  }
+  .patient-info {
+    position: relative;
+  }
+  .patient-pic {
+    border-radius: 20px;
+    height: 40px;
+    left: 22px;
+    margin-top: -20px;
+    position: absolute;
+    top: 50%;
+    width: 40px;
+  }
+  .patient-start {
+    background: #00bdcb;
+    color: #fff;
+    display: none;
+    height: 100%;
+    padding: 18px 6px;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
