@@ -4,7 +4,7 @@
     <select
       class="form-control"
       id="pre-injection-antiseptic-{{side}}"
-      ng-model="model.preInjectAntiseptic"
+      ng-model="temp.selectedPreAntiseptic"
       ng-options="obj.label for obj in preInjectAntiseptics | orderBy:'label'"
       oe-name="pre-injection-antiseptic-{{side}}"
       oe-validate-rules="rules['pre-injection-antiseptic-'+side]">
@@ -19,7 +19,7 @@
     <select
       class="form-control"
       id="pre-injection-skin-cleanser-{{side}}"
-      ng-model="model.preInjectSkinCleanser"
+      ng-model="temp.selectedPreSkinCleanser"
       ng-options="obj.label for obj in preInjectSkinCleansers | orderBy:'label'"
       oe-name="pre-injection-skin-cleanser-{{side}}"
       oe-validate-rules="rules['pre-injection-skin-cleanser-'+side]">
@@ -38,7 +38,7 @@
 <div class="form-group row" ng-show="model.hasPreInjectionLoweringTherapy">
   <label class="col-xs-4 control-label">Pre Injection IOP Lowering Therapy:</label>
   <div class="col-xs-8">
-    <select chosen multiple ng-model="model.preInjectionLoweringTherapy" ng-options="obj.label for obj in preInjectionLoweringTherapies | orderBy:'label'">
+    <select chosen multiple ng-model="temp.selectedPreIopLoweringTherapy" ng-options="obj.label for obj in preInjectionLoweringTherapies | orderBy:'label'">
     </select>
   </div>
 </div>
@@ -50,7 +50,7 @@
       class="form-control"
       id="drug-{{side}}"
       oe-name="drug-{{side}}"
-      ng-model="model.drug"
+      ng-model="temp.selectedDrug"
       ng-options="obj.label for obj in drugs | orderBy:'label'"
       oe-validate-rules="rules['drug-'+side]"
     >
@@ -66,7 +66,7 @@
       type="text"
       class="form-control"
       id="number-injections-{{side}}"
-      ng-model="model.numberInjections"
+      ng-model="model.sequenceNumber"
       oe-name="number-injections-{{side}}"
       oe-validate-rules="rules['number-injections-'+side]"
       />
@@ -81,7 +81,7 @@
       type="time"
       class="form-control"
       id="injection-time-{{side}}"
-      ng-model="model.injectionTime"
+      ng-model="temp.injectionTime"
       oe-name="injection-time-{{side}}"
       oe-validate-rules="rules['injection-time-'+side]"
       />
@@ -102,7 +102,7 @@
 <div class="form-group row" ng-show="model.hasPostInjectionLoweringTherapy">
   <label for="site" class="col-xs-4 control-label">Post Injection IOP Lowering Therapy:</label>
   <div class="col-xs-8">
-    <select chosen multiple ng-model="model.postInjectionLoweringTherapy" ng-options="obj.label for obj in postInjectionLoweringTherapies | orderBy:'label'">
+    <select chosen multiple ng-model="temp.selectedPostIopLoweringTherapy" ng-options="obj.label for obj in postInjectionLoweringTherapies | orderBy:'label'">
     </select>
   </div>
 </div>
