@@ -4,7 +4,7 @@ angular.module('openeyesApp')
   .controller('PatientsCtrl', ['$scope', '$routeParams', 'Event', 'Ticket', function ($scope, $routeParams, Event, Ticket) {
 
     function getTickets() {
-      Ticket.getTickets($scope.workflow._id.$oid, 0)
+      Ticket.getTickets($scope.workflow._id.$oid, $routeParams.stepIndex)
         .then(function(data) {
           $scope.tickets = data.data;
         }, function(data, status, headers, config) {
