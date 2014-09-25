@@ -1,36 +1,108 @@
+<div class="form-group row" oe-validate ng-class="{ 'has-error': hasError() }">
+  <label for="pre-injection-antiseptic-{{side}}" class="col-xs-4 control-label">Pre Injection Antiseptic:</label>
+  <div class="col-xs-8">
+    <select
+      class="form-control"
+      id="pre-injection-antiseptic-{{side}}"
+      ng-model="temp.selectedPreAntiseptic"
+      ng-options="obj.label for obj in preInjectAntiseptics | orderBy:'label'"
+      oe-name="pre-injection-antiseptic-{{side}}"
+      oe-validate-rules="rules['pre-injection-antiseptic-'+side]">
+    </select>
+    <oe-validate-msg></oe-validate-msg>
+  </div>
+</div>
+
+<div class="form-group row" oe-validate ng-class="{ 'has-error': hasError() }">
+  <label for="pre-injection-skin-cleanser-{{side}}" class="col-xs-4 control-label">Pre Injection Skin Cleanser:</label>
+  <div class="col-xs-8">
+    <select
+      class="form-control"
+      id="pre-injection-skin-cleanser-{{side}}"
+      ng-model="temp.selectedPreSkinCleanser"
+      ng-options="obj.label for obj in preInjectSkinCleansers | orderBy:'label'"
+      oe-name="pre-injection-skin-cleanser-{{side}}"
+      oe-validate-rules="rules['pre-injection-skin-cleanser-'+side]">
+    </select>
+    <oe-validate-msg></oe-validate-msg>
+  </div>
+</div>
+
 <div class="form-group row">
-  <label for="batch-number-{{side}}" class="col-xs-4 control-label">Batch Number:</label>
+  <label for="site" class="col-xs-4 control-label">Pre Injection IOP Lowering Therapy Required:</label>
+  <div class="col-xs-8">
+    <input type="checkbox" ng-model="model.hasPreInjectionLoweringTherapy">
+  </div>
+</div>
+
+<div class="form-group row" ng-show="model.hasPreInjectionLoweringTherapy">
+  <label class="col-xs-4 control-label">Pre Injection IOP Lowering Therapy:</label>
+  <div class="col-xs-8">
+    <select chosen multiple ng-model="temp.selectedPreIopLoweringTherapy" ng-options="obj.label for obj in preInjectionLoweringTherapies | orderBy:'label'">
+    </select>
+  </div>
+</div>
+
+<div class="form-group row" oe-validate ng-class="{ 'has-error': hasError() }">
+  <label for="drug-{{side}}" class="col-xs-4 control-label">Drug:</label>
+  <div class="col-xs-8">
+    <select
+      class="form-control"
+      id="drug-{{side}}"
+      oe-name="drug-{{side}}"
+      ng-model="temp.selectedDrug"
+      ng-options="obj.label for obj in drugs | orderBy:'label'"
+      oe-validate-rules="rules['drug-'+side]"
+    >
+    </select>
+    <oe-validate-msg></oe-validate-msg>
+  </div>
+</div>
+
+<div class="form-group row" oe-validate ng-class="{ 'has-error': hasError() }">
+  <label for="number-injections-{{side}}" class="col-xs-4 control-label">Number of Injections:</label>
   <div class="col-xs-8">
     <input
       type="text"
       class="form-control"
-      id="batch-number-{{side}}"
-      ng-model="model.batchNumber"
+      id="number-injections-{{side}}"
+      ng-model="model.sequenceNumber"
+      oe-name="number-injections-{{side}}"
+      oe-validate-rules="rules['number-injections-'+side]"
       />
+    <oe-validate-msg></oe-validate-msg>
   </div>
 </div>
 
-<div class="form-group row">
-  <label for="batch-expiry-date-{{side}}" class="col-xs-4 control-label">Batch Expiry Date:</label>
+<div class="form-group row" oe-validate ng-class="{ 'has-error': hasError() }">
+  <label for="injection-time-{{side}}" class="col-xs-4 control-label">Injection Time</label>
   <div class="col-xs-8">
     <input
-      type="date"
+      type="time"
       class="form-control"
-      id="batch-expiry-date-{{side}}"
-      ng-model="model.batchExpiryDate"
+      id="injection-time-{{side}}"
+      ng-model="temp.injectionTime"
+      oe-name="injection-time-{{side}}"
+      oe-validate-rules="rules['injection-time-'+side]"
       />
+    <oe-validate-msg></oe-validate-msg>
   </div>
 </div>
 
 <div class="form-group row">
-  <label for="injection-person-{{side}}" class="col-xs-4 control-label">Injection Given By:</label>
+  <label for="site" class="col-xs-4 control-label">Post Injection IOP Lowering Therapy Required:</label>
   <div class="col-xs-8">
-    <select
-      class="form-control"
-      id="injection-person-{{side}}"
-      ng-model="model.injectionPerson"
-      ng-options="obj.label for obj in injectionPersonnel | orderBy:'label'"
+    <input
+      type="checkbox"
+      ng-model="model.hasPostInjectionLoweringTherapy"
       >
+  </div>
+</div>
+
+<div class="form-group row" ng-show="model.hasPostInjectionLoweringTherapy">
+  <label for="site" class="col-xs-4 control-label">Post Injection IOP Lowering Therapy:</label>
+  <div class="col-xs-8">
+    <select chosen multiple ng-model="temp.selectedPostIopLoweringTherapy" ng-options="obj.label for obj in postInjectionLoweringTherapies | orderBy:'label'">
     </select>
   </div>
 </div>

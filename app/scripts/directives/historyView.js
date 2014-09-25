@@ -8,19 +8,41 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('HistoryViewCtrl', ['$scope', '$routeParams', 'Element', 'MODEL_DOMAIN', function($scope, $routeParams, Element, MODEL_DOMAIN){
+  .controller('HistoryViewCtrl', ['$scope', '$routeParams', 'Element', 'Ticket', 'MODEL_DOMAIN', function($scope, $routeParams, Element, Ticket, MODEL_DOMAIN){
+
+    var self = this;
 
     this.init = function(){
 
       $scope.model = {};
+      $scope.patient = null;
+
+      $scope.$watch('patient', function(patient) {
+        if (patient) {
+          self.getElement();
+        }
+      });
+
+      this.getPatient();
+    };
+
+    this.getPatient = function() {
+      Ticket.getTicket($routeParams.ticketId)
+        .then(function(data) {
+          $scope.patient = data.data.patient;
+        }, function(data, status, headers, config) {
+          console.log('Error getting patient data', data, status, headers, config);
+        });
+    };
+
+    this.getElement = function() {
 
       // Request element for todays date
       var today = Date.now();
       var eType = MODEL_DOMAIN + 'History';
 
-      Element.getElements($routeParams.patientId, eType, today)
+      Element.getElements($scope.patient._id.$oid, eType, today)
         .then(function(data) {
-          console.log(data.data);
           $scope.model = data.data[0];
         }, function(error) {
           console.log(error);

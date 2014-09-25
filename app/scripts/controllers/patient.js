@@ -20,14 +20,6 @@ angular.module('openeyesApp')
         console.log(data, status, headers, config);
       });
 
-    Event.getEventsForPatient($scope.patientId)
-      .success(function(data) {
-        $scope.events = data;
-      })
-      .error(function(data, status, headers, config) {
-        console.log(data, status, headers, config);
-      });
-
     Event.getWorkflowConfig()
       .success(function(data){
         var workflowConfig = data[0];

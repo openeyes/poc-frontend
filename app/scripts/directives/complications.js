@@ -5,9 +5,11 @@ angular.module('openeyesApp')
 
     var self = this;
 
-    this.init = function(){
+    this.init = function(attrs){
       $scope.$on('event.save', this.broadcastModel);
+      this.eyeSide = $scope.side = attrs.side;
       $scope.model = {};
+      $scope.temp = {};
       this.getData();
     };
 
@@ -16,8 +18,17 @@ angular.module('openeyesApp')
     };
 
     this.getModel = function(){
+
+      if($scope.temp.complications){
+        $scope.model.complications = [];
+        for(var i = 0;i < $scope.temp.complications.length;i++){
+          $scope.model.complications.push($scope.temp.complications[i].label);
+        }
+      }
+
       return {
         name: MODEL_DOMAIN + 'Complications',
+        subPath: this.eyeSide,
         model: $scope.model
       };
     };
@@ -26,7 +37,6 @@ angular.module('openeyesApp')
       Complications.getInjectionComplications()
         .then(function(data) {
           $scope.complications = data;
-          console.log($scope.complications);
         }, function() {
           console.log('Unable to get injection complications');
         });
@@ -45,7 +55,7 @@ angular.module('openeyesApp')
       templateUrl: 'views/directives/complications.html',
       controller: 'ComplicationsCtrl',
       link: function (scope, element, attrs, ComplicationsCtrl) {
-        ComplicationsCtrl.init();
+        ComplicationsCtrl.init(attrs);
       }
     };
   }]);

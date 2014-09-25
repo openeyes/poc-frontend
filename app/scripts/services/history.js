@@ -8,7 +8,7 @@
  * Service of the openeyesApp
  */
 angular.module('openeyesApp')
-  .factory('History', ['$http', '$q', 'ENV', function($http, $q, ENV) {
+  .factory('History', ['$http', '$q', function($http, $q) {
 
     return {
       getSlugs: function(){
