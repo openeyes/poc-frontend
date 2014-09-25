@@ -1,44 +1,52 @@
 'use strict';
 
 angular.module('openeyesApp')
-  .controller('PatientSummaryCtrl', ['$scope', '$routeParams', 'PatientSearch', 'Patient', function($scope, $routeParams, PatientSearch, Patient){
+  .controller('PatientSummaryCtrl', ['$scope', '$routeParams', 'Ticket', 'Patient', function($scope, $routeParams, Ticket, Patient){
+
+    var self = this;
 
     this.init = function(){
 
-      $scope.patient = {};
-      $scope.patientId = $routeParams.patientId;
+      $scope.patient = null;
+      $scope.ticketId = $routeParams.ticketId;
 
       // This is not exactly precise.
       $scope.age = function() {
         if (!$scope.patient.dob) {
           return;
         }
-        var dobTime = new Date($scope.patient.dob);
+        var dobTime = new Date($scope.patient.dob).getTime();
         var age = (Date.now() - dobTime) / (1000 * 60 * 60 * 24 * 365.26);
         return age.toFixed(0);
       };
 
-      this.getData();
+      $scope.$watch('patient', function(patient) {
+        if (patient) {
+          self.getPatientAllergies();
+        }
+      });
+
+      this.getTicket();
     };
 
-    this.getData = function() {
-
-
-      PatientSearch.getPatient($scope.patientId)
-        .success(function(data) {
-          $scope.patient = data;
-        })
-        .error(function(data, status, headers, config) {
-          console.log('Error getting patient data', data, status, headers, config);
-        });
-
-      Patient.getExistingAllergies($scope.patientId)
+    this.getPatientAllergies = function() {
+       Patient.getExistingAllergies($scope.patient._id.$oid)
         .then(function(data) {
           $scope.allergies = data;
         }, function() {
           console.log('Error getting allergies');
         });
     };
+
+    this.getTicket = function() {
+      Ticket.getTicket($scope.ticketId)
+        .then(function(data) {
+          $scope.patient = data.data.patient;
+        }, function(data, status, headers, config) {
+          console.log('Error getting patient data', data, status, headers, config);
+        });
+    };
+
   }])
   .directive('oePatientSummary', [function () {
     return {
