@@ -9,5 +9,7 @@
   "createEncounter": "/Encounter",
   "procedures": "/Procedure",
   "workflow": "/Workflow",
-  "getElements": "/Element/?patientId=:patientId&elementType=:elementType&date=:date"
+  "getElements": "/Element/?patientId=:patientId&elementType=:elementType&date=:date",
+  "getTickets": "/Ticket/?workflowId=:workflowId&stepIndex=:stepIndex",
+  "getTicket": "/Ticket/:ticketId"
 }
