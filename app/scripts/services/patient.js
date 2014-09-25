@@ -8,11 +8,11 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .factory('Patient', ['$http', '$q', 'ENV', function($http, $q, ENV) {
+  .factory('Patient', ['$http', '$q', function($http, $q) {
 
     return {
-
       getExistingAllergies: function(patientId){
+
         console.log(patientId);
 
         var data = [
@@ -24,16 +24,6 @@ angular.module('openeyesApp')
         deferred.resolve(data);
 
         return deferred.promise;
-      },
-
-      getPatientsForStep: function(step) {
-        var searchTerm = 'u';
-        var apiCall = ENV.host + ENV.apiEndpoints.patients.replace(':term', searchTerm);
-        return $http({
-          method: 'GET',
-          url: apiCall,
-          cache: true
-        });
       }
     };
   }]);

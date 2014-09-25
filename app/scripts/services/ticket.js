@@ -21,7 +21,7 @@ angular.module('openeyesApp')
       getTicket: function(ticketId) {
 
         var apiCall = ENV.host + ENV.apiEndpoints.getTicket
-          .replace(':ticketId', ticketId)
+          .replace(':ticketId', ticketId);
 
         return $http({
           method: 'GET',

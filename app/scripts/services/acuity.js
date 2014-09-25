@@ -8,31 +8,31 @@
  * Service of the openeyesApp
  */
 angular.module('openeyesApp')
-  .factory('Acuity', ['$http', '$q', 'ENV', function($http, $q, ENV) {
+  .factory('Acuity', ['$http', '$q', function($http, $q) {
 
     return {
       getAcuityFields: function(){
-				var data = {
-					measurements: [],
-					corrections: [
-						'Unaided',
-						'Glasses',
-						'Contact lens',
-						'Pinhole',
-						'Auto-refraction',
-						'Formal refraction'
-					]
-				};
+        var data = {
+          measurements: [],
+          corrections: [
+            'Unaided',
+            'Glasses',
+            'Contact lens',
+            'Pinhole',
+            'Auto-refraction',
+            'Formal refraction'
+          ]
+        };
 
-				for(var i = 0;i < 81;i++){
-					data.measurements.push(i);
-				}
+        for(var i = 0;i < 81;i++){
+          data.measurements.push(i);
+        }
 
-				var deferred = $q.defer();
+        var deferred = $q.defer();
         deferred.resolve(data);
 
         return deferred.promise;
-			}
+      }
     };
 
   }]);
