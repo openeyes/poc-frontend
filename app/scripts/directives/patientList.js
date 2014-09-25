@@ -18,6 +18,7 @@ angular.module('openeyesApp')
 
       $scope.getAge = Dates.getAge;
       $scope.start = this.start.bind(this);
+      $scope.close = this.close.bind(this);
 
       this.getWorkflow();
     };
@@ -29,6 +30,11 @@ angular.module('openeyesApp')
         }, function(data, status, headers, config) {
           console.log('Error getting workflow', data, status, headers, config);
         });
+    };
+
+    this.close = function($event) {
+      $event.preventDefault();
+      document.body.classList.remove('patient-list-open');
     };
 
     this.getTime = (function() {
@@ -53,13 +59,17 @@ angular.module('openeyesApp')
       $location.path(url);
     };
 
+    this.getRandomAvatar = function() {
+      return Math.floor(Math.random() * 6) + 1;
+    };
+
     this.getTickets = function() {
       Ticket.getTickets($scope.workflow._id.$oid, 0)
         .then(function(data) {
           $scope.tickets = data.data.map(function(ticket) {
-            return angular.extend(ticket, {
-              appointmentTime: self.getTime()
-            });
+            ticket.patient.avatar = self.getRandomAvatar();;
+            ticket.appointmentTime = self.getTime();
+            return ticket;
           });
         }, function(data, status, headers, config) {
           console.log('Error getting patients', data, status, headers, config);

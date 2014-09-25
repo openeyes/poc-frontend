@@ -3,6 +3,10 @@
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="#">OpenEyes</a>
+        <span class="title" ng-if="workflow.site && step.name">
+          <!-- {{ workflow.site }} -->
+           - {{ step.name }}
+        </span>
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
@@ -13,7 +17,7 @@
           </li>
           <li>
             <a href="#" ng-click="$event.preventDefault()">
-              Hello, OPTOMOTRIST <span class="caret"></span>
+              Hello, {{step.role}} <span class="caret"></span>
             </a>
           </li>
         </ul>

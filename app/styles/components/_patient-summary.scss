@@ -1,5 +1,9 @@
 // Patient Summary
 
+// [class*="col-"] {
+//   outline: 1px solid red;
+// }
+
 body.has-patient-summary {
   .page-body {
     margin-top: 159px;
@@ -17,8 +21,8 @@ body.has-patient-summary {
     border-bottom: 1px solid #c9d3da;
   }
   .appointment-time {
-    background: #3fb9eb;
-    color: #ffffff;
+    background: #e3f7f9;
+    color: #02abb8;
     display: block;
     padding-bottom: 35px;
     padding-top: 35px;
@@ -38,6 +42,10 @@ body.has-patient-summary {
   }
   .patient-details-list {
     margin-top: 40px;
+  }
+  .view-history {
+    margin-top: 26px;
+    float: left;
   }
 }
 
@@ -74,11 +82,10 @@ body.has-patient-summary {
 
 .patient-details-list {
   font-size: 16px;
-  display: inline-block;
   list-style: none;
   margin: 0;
   padding: 0;
-  vertical-align: middle;
+  float: left;
   li {
     float: left;
     margin-right: 24px;

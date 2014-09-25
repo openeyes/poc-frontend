@@ -1,0 +1,11 @@
+// Buttons
+
+.btn-default {
+  &.view-history {
+    border-radius: 30px;
+    border-width: 2px;
+    font-size: 15px;
+    line-height: 17px;
+    padding: 12px 30px;
+  }
+}

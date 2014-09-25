@@ -5,10 +5,10 @@
         10:15
       </a>
       <div class="col-xs-5 patient-info">
-        <img src="/images/profiles/gladys.png" alt="{{patient.firstName}} {{patient.surname}}" class="patient-pic" />
+        <img ng-src="/images/profiles/{{patient.avatar}}.png" alt="{{patient.firstName}} {{patient.surname}}" class="patient-pic" />
         <div class="patient-overview">
           <a ng-href="/#/patient/{{ patient._id.$oid }}" class="patient-name">
-            <strong>{{ patient.surname }},</strong> {{ patient.firstName }} (Mrs)
+            <strong>{{ patient.surname }},</strong> {{ patient.firstName }} ({{ patient.title }})
           </a>
           <div class="patient-allergies" ng-show="allergies.length">
             <span class="notification">!</span>
@@ -25,7 +25,7 @@
           <li><strong>Gender</strong> ({{ patient.gender.slice(0,1) }})</li>
           <li><strong>NHS No.</strong> {{ patient.nhsNumber }}</li>
         </ul>
-        <a href="#" class="btn btn-default">View History</a>
+        <a href="#" class="btn btn-default view-history">View History</a>
       </div>
     </div>
   </div>

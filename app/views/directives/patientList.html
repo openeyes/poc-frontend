@@ -1,38 +1,34 @@
 <div class="container-fluid patient-list-container">
   <div class="row">
-    <div class="col-xs-12 page-body patient-list">
-
-      <!--
-      <h2 ng-if="workflow.site && step.name">{{ workflow.site }} - {{ step.name }} as a {{ step.role }}</h2>
-      <h3>Select a patient</h3>
-      -->
-      <table class="table patient-list-table">
-        <tbody>
-          <tr ng-repeat="ticket in tickets" ng-click="start($event, ticket)">
-            <td class="col-xs-1 text-center">{{ ticket.appointmentTime }}</td>
-            <td class="col-xs-5">
-              <img src="/images/profiles/gladys.png" alt="Chay Close" class="patient-pic">
-              <span class="patient-name">
-                <strong class="ng-binding">{{ ticket.patient.surname }},</strong> {{ ticket.patient.firstName }} (Mrs)
-              </span>
-            </td>
-            <td class="col-xs-6">
-              <ul class="patient-details-list">
-                <li><strong>Born</strong> {{ ticket.patient.dob }} ({{ getAge(ticket.patient.dob) }}y)</li>
-                <li><strong>Gender</strong> ({{ ticket.patient.gender.slice(0,1) }})</li>
-                <li><strong>NHS No.</strong> {{ ticket.patient.nhsNumber }}</li>
-              </ul>
-
-                <a class="patient-start" href="#" ng-click="start($event, ticket)">
-                  >
-                </a>
-              <!-- </div> -->
-              <!-- <a href="/#/patient/{{ workflow._id.$oid }}/{{ ticket._id.$oid }}/{{ stepIndex }}">Record data</a> | -->
-              <!-- <a href="/#/patient/{{ ticket.patient._id.$oid }}">View Summary</a> -->
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="col-xs-12 patient-list">
+      <div class="patient-list-table-container">
+        <table class="table patient-list-table">
+          <tbody>
+            <tr ng-repeat="ticket in tickets" ng-click="start($event, ticket)">
+              <td class="col-xs-1 text-center">{{ ticket.appointmentTime }}</td>
+              <td class="col-xs-5">
+                <img ng-src="/images/profiles/{{ticket.patient.avatar}}.png" alt="Chay Close" class="patient-pic">
+                <span class="patient-name">
+                  <strong class="ng-binding">{{ ticket.patient.surname }},</strong> {{ ticket.patient.firstName }} ({{ ticket.patient.title }})
+                </span>
+              </td>
+              <td class="col-xs-6">
+                <ul class="patient-details-list">
+                  <li><strong>Born</strong> {{ ticket.patient.dob }} ({{ getAge(ticket.patient.dob) }}y)</li>
+                  <li><strong>Gender</strong> ({{ ticket.patient.gender.slice(0,1) }})</li>
+                  <li><strong>NHS No.</strong> {{ ticket.patient.nhsNumber }}</li>
+                </ul>
+                <a class="patient-start" href="#" ng-click="start($event, ticket)"> > </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <a href="#" class="patient-list-close" ng-click="close($event)">
+        Close
+      </a>
     </div>
   </div>
 </div>
+
+

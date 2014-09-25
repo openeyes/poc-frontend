@@ -3,6 +3,14 @@
 .navbar {
   border: 0;
   margin-bottom: 0;
+  .title {
+    color: #92a4b0;
+    float: left;
+    font-size: 20px;
+    font-weight: 200;
+    margin-left: 15px;
+    margin-top: 15px;
+  }
 }
 
 .navbar-brand {

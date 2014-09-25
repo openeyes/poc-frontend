@@ -15,6 +15,7 @@ angular.module('openeyesApp')
 
       $scope.$on('$destroy', function() {
         document.body.classList.remove('has-patient-summary');
+        document.body.classList.remove('patient-list-open');
       });
       document.body.classList.add('has-patient-summary');
 
@@ -45,10 +46,15 @@ angular.module('openeyesApp')
         });
     };
 
+    this.getRandomAvatar = function() {
+      return Math.floor(Math.random() * 6) + 1;
+    };
+
     this.getTicket = function() {
       Ticket.getTicket($scope.ticketId)
         .then(function(data) {
           $scope.patient = data.data.patient;
+          $scope.patient.avatar = self.getRandomAvatar();
         }, function(data, status, headers, config) {
           console.log('Error getting patient data', data, status, headers, config);
         });
