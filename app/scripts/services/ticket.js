@@ -13,8 +13,7 @@ angular.module('openeyesApp')
 
         return $http({
           method: 'GET',
-          url: apiCall,
-          cache: true
+          url: apiCall
         });
       },
 
@@ -25,8 +24,7 @@ angular.module('openeyesApp')
 
         return $http({
           method: 'GET',
-          url: apiCall,
-          cache: true
+          url: apiCall
         });
       }
     };
