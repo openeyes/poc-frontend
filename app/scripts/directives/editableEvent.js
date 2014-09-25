@@ -27,7 +27,8 @@ angular.module('openeyesApp')
       Event.getWorkflowConfig($routeParams.workflowId)
       .then(function(workflow) {
         self.layoutConfig = workflow.data;
-        self.buildLayout($routeParams.stepIndex);
+        self.stepIndex = $routeParams.stepIndex;
+        self.buildLayout(self.stepIndex);
       }, function() {
         console.log('Unable to get current sute');
       });
@@ -77,6 +78,8 @@ angular.module('openeyesApp')
         self.getPatient(function(){
           var postObject = self.buildPostObject();
           postObject.patientId = self.patient._id.$oid;
+          postObject.stepIndex = self.stepIndex;
+          postObject.ticketId = $routeParams.ticketId;
           self.postEncounter(postObject);
         });
 
