@@ -33,7 +33,7 @@
 
   .container-fluid {
     border-bottom: 1px solid #e4e4e4;
-    height: 89px;
+    height: 94px;
   }
 
   .navbar-default {
@@ -64,6 +64,7 @@
 
     li.active a {
       background-color: #ebf9ff;
+      border-bottom: 5px solid #38b7ea;
     }
 
     a {
@@ -95,7 +96,22 @@
 
 .pres-wrapper {
   margin-top: 150px;
-  padding: 0 15px;
+  padding: 0 30px;
+
+  .sub-section {
+    margin-bottom: 30px;
+
+    p, label {
+      font-size: 20px;
+    }
+
+    .radio {
+      float: left;
+      margin-right: 15px;
+      margin-top: 10px !important;
+    }
+  }
+
 }
 
 @media (min-width: $grid-float-breakpoint) {
