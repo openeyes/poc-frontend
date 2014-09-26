@@ -4,36 +4,8 @@
 //   outline: 1px solid red;
 // }
 
-body.has-patient-summary {
-  .page-body {
-    margin-top: 159px;
-  }
-}
 
 .patient-summary {
-  left: 0;
-  position: fixed;
-  top: 58px;
-  width: 100%;
-  z-index: 1000;
-  .row {
-    background: #fff;
-    border-bottom: 1px solid #c9d3da;
-  }
-  .appointment-time {
-    background: #e3f7f9;
-    color: #02abb8;
-    display: block;
-    padding-bottom: 35px;
-    padding-top: 35px;
-    text-align: center;
-    line-height: 1;
-    font-size: 30px;
-    font-weight: 600;
-    &:hover {
-      color: #ddd;
-    }
-  }
   .patient-pic {
     margin-top: 22px;
   }
@@ -41,10 +13,10 @@ body.has-patient-summary {
     margin-top: 30px;
   }
   .patient-details-list {
-    margin-top: 40px;
+    margin-top: 44px;
   }
   .view-history {
-    margin-top: 26px;
+    margin-top: 32px;
     float: left;
   }
 }

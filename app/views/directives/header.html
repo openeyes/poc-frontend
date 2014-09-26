@@ -1,21 +1,22 @@
-<header>
+<header class="header-main">
   <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="#">OpenEyes</a>
-        <span class="title" ng-if="workflow.site && step.name">
+        <span class="title" ng-show="workflow.site && step.name">
           <!-- {{ workflow.site }} -->
            - {{ step.name }}
         </span>
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          <li ng-class="{ active: isActive('/search') }">
+          <li ng-class="{ 'has-icon': true, active: isActive('/search') }">
             <a href="/#/search">
-              <span class="icon-search">Patient Search</span>
+              <span class="glyphicon glyphicon-search"></span>
+              <span class="text-hide">Patient Search</span>
             </a>
           </li>
-          <li>
+          <li ng-show="step && step.role">
             <a href="#" ng-click="$event.preventDefault()">
               Hello, {{step.role}} <span class="caret"></span>
             </a>

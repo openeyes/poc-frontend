@@ -40,8 +40,7 @@ angular.module('openeyesApp')
     this.getTime = (function() {
       var now = Date.now();
       return function() {
-        now += (15 * 60 * 1000); //15 min
-        return Dates.getFormattedTime(now);
+        return now += (15 * 60 * 1000); //15 min
       };
     }());
 

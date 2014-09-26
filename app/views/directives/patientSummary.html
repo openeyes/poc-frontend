@@ -1,10 +1,11 @@
-<div class="patient-summary" ng-if="patient.firstName">
+<div class="header-patient patient-summary">
   <div class="container-fluid">
     <div class="row">
-      <a href="#" ng-click="openList($event)" class="col-xs-1 appointment-time">
-        10:15
+      <a href="#" ng-click="openList($event)" class="col-xs-1 menu-toggle" title="Toggle Patient List">
+        <span class="icon-lg-menu"></span>
+        <span class="icon-lg-menu_open"></span>
       </a>
-      <div class="col-xs-5 patient-info">
+      <div class="col-xs-5 patient-info" ng-if="patient.firstName">
         <img ng-src="/images/profiles/{{patient.avatar}}.png" alt="{{patient.firstName}} {{patient.surname}}" class="patient-pic" />
         <div class="patient-overview">
           <a ng-href="/#/patient/{{ patient._id.$oid }}" class="patient-name">
@@ -19,13 +20,13 @@
           </div>
         </div>
       </div>
-      <div class="col-xs-6">
+      <div class="col-xs-6" ng-if="patient.firstName">
         <ul class="patient-details-list">
           <li><strong>Born</strong> {{ patient.dob }} ({{ getAge() }}y)</li>
           <li><strong>Gender</strong> ({{ patient.gender.slice(0,1) }})</li>
           <li><strong>NHS No.</strong> {{ patient.nhsNumber }}</li>
         </ul>
-        <a href="#" class="btn btn-default view-history">View History</a>
+        <a href="#" class="btn btn-default view-history">View History <span class="caret"></span></a>
       </div>
     </div>
   </div>

@@ -1,8 +1,7 @@
 // OpenEyes vars
 
 
-$oe-sprite-icons: "icons/*.png";
-
+$oe-sprite-icons-large: "icons/large/*.png";
 
 // Bootstrap vars from here
 
@@ -56,7 +55,7 @@ $link-hover-color:      darken($link-color, 15%);
 //
 //## Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-sans-serif:  Helvetica, Arial, sans-serif;
 $font-family-serif:       Georgia, "Times New Roman", Times, serif;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
@@ -66,7 +65,7 @@ $font-size-base:          14px;
 $font-size-large:         ceil(($font-size-base * 1.25)); // ~18px
 $font-size-small:         ceil(($font-size-base * 0.85)); // ~12px
 
-$font-size-h1:            floor(($font-size-base * 2.6)); // ~36px
+$font-size-h1:            30px;
 $font-size-h2:            floor(($font-size-base * 2.15)); // ~30px
 $font-size-h3:            ceil(($font-size-base * 1.7)); // ~24px
 $font-size-h4:            ceil(($font-size-base * 1.25)); // ~18px
@@ -161,9 +160,9 @@ $table-border-color:            #dde5eb;
 
 $btn-font-weight:                normal;
 
-$btn-default-color:              #00bdcb;
+$btn-default-color:              #333;
 $btn-default-bg:                 #fff;
-$btn-default-border:             #00bdcb;
+$btn-default-border:             #ccc;
 
 $btn-primary-color:              #fff;
 $btn-primary-bg:                 $brand-primary;
