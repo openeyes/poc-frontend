@@ -63,7 +63,7 @@ angular.module('openeyesApp')
     };
 
     this.getTickets = function() {
-      Ticket.getTickets($scope.workflow._id.$oid, 0)
+      Ticket.getTickets($scope.workflow._id.$oid, $scope.stepIndex)
         .then(function(data) {
           $scope.tickets = data.data.map(function(ticket) {
             ticket.patient.avatar = self.getRandomAvatar();;
