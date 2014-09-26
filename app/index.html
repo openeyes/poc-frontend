@@ -21,30 +21,8 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <nav class="navbar navbar-default" role="navigation" ng-controller="NavCtrl">
-      <div class="container">
-        <a class="navbar-brand" href="#">OpenEyes</a>
-        <ul class="nav navbar-nav pull-right">
-          <!-- <li ng-class="{ active: isActive($index) }" ng-repeat="s in sites">
-            <a ng-click="changeSite($index)">Medical Retina Injection Suite {{ $index + 1 }}</a>
-          </li> -->
-          <li ng-class="{ active: isActive('/search') }">
-            <a href="/#/search">Patient Search</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-    <div class="container">
-      <div ng-view=""></div>
-    </div>
-
-    <div class="container">
-      <div class="footer">
-        <p>&copy; OpenEyes</p>
-      </div>
-    </div>
-
+    <oe-header></oe-header>
+    <ng-view></ng-view>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -119,6 +97,7 @@
     <script src="scripts/services/complications.js"></script>
     <script src="scripts/services/element.js"></script>
     <script src="scripts/services/ticket.js"></script>
+    <script src="scripts/services/dates.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/search.js"></script>
     <script src="scripts/controllers/patient.js"></script>
@@ -157,6 +136,8 @@
     <script src="scripts/directives/treatmentOrderView.js"></script>
     <script src="scripts/directives/injectionSiteView.js"></script>
     <script src="scripts/directives/anaestheticView.js"></script>
+    <script src="scripts/directives/header.js"></script>
+    <script src="scripts/directives/patientList.js"></script>
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/eyedraw.js -->

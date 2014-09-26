@@ -1,15 +1,13 @@
 <!-- Event view -->
 
+<oe-patient-summary></oe-patient-summary>
+<oe-patient-list></oe-patient-list>
 
-<div class="btn-group pull-right">
-  <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+<div class="container-fluid main" role="main">
+  <div class="page-body">
+    <oe-editable-event></oe-editable-event>
+    <button class="btn btn-primary block--button col-xs-6" ng-click="save()">Save event</button>
+  </div>
 </div>
 
-<h2>{{ stepName }}</h2>
-
-<oe-patient-summary></oe-patient-summary>
-
-<oe-editable-event data-event-type="laserEvent"></oe-editable-event>
-
-<button class="btn btn-primary block--button col-xs-6" ng-click="save()">Save event</button>
-
+<div class="patient-list-overlay"></div>

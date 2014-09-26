@@ -1,0 +1,22 @@
+// Buttons
+
+.btn-default {
+  &.view-history {
+    background: #3bc0c3;
+    border-radius: 30px;
+    border-color: transparent;
+    color: #ffffff;
+    font-size: 15px;
+    line-height: 17px;
+    padding: 12px 30px;
+    &:hover {
+      background: #31a7aa;
+    }
+    .caret {
+      border-top: 8px solid;
+      border-right: 4px solid transparent;
+      border-left: 4px solid transparent;
+      margin-left: 4px;
+    }
+  }
+}

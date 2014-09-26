@@ -1,36 +1,44 @@
 'use strict';
 
 angular.module('openeyesApp')
-  .controller('PatientSummaryCtrl', ['$scope', '$routeParams', 'Ticket', 'Patient', function($scope, $routeParams, Ticket, Patient){
+  .controller('PatientSummaryCtrl', ['$scope', '$routeParams', 'Ticket', 'Patient', 'Dates', function($scope, $routeParams, Ticket, Patient, Dates){
 
     var self = this;
 
     this.init = function(){
 
       $scope.patient = null;
-      $scope.ticketId = $routeParams.ticketId;
+      $scope.ticketId = $routeParams.ticketId || '5422cb723004f335a892a728'; // TODO: remove default patient id
+      $scope.getAge = this.getAge.bind(this);
+      $scope.openList = this.openList.bind(this);
+      $scope.$watch('patient', this.getPatientAllergies.bind(this));
 
-      // This is not exactly precise.
-      $scope.age = function() {
-        if (!$scope.patient.dob) {
-          return;
-        }
-        var dobTime = new Date($scope.patient.dob).getTime();
-        var age = (Date.now() - dobTime) / (1000 * 60 * 60 * 24 * 365.26);
-        return age.toFixed(0);
-      };
-
-      $scope.$watch('patient', function(patient) {
-        if (patient) {
-          self.getPatientAllergies();
-        }
+      $scope.$on('$destroy', function() {
+        document.body.classList.remove('has-patient-summary');
+        document.body.classList.remove('patient-list-open');
       });
+      document.body.classList.add('has-patient-summary');
 
       this.getTicket();
     };
 
+    this.getAge = function() {
+      if (!$scope.patient.dob) {
+        return;
+      }
+      return Dates.getAge($scope.patient.dob);
+    }
+
+    this.openList = function($event) {
+      $event.preventDefault();
+      document.body.classList.toggle('patient-list-open');
+    };
+
     this.getPatientAllergies = function() {
-       Patient.getExistingAllergies($scope.patient._id.$oid)
+      if (!$scope.patient) {
+        return;
+      }
+      Patient.getExistingAllergies($scope.patient._id.$oid)
         .then(function(data) {
           $scope.allergies = data;
         }, function() {
@@ -38,10 +46,15 @@ angular.module('openeyesApp')
         });
     };
 
+    this.getRandomAvatar = function() {
+      return Math.floor(Math.random() * 6) + 1;
+    };
+
     this.getTicket = function() {
       Ticket.getTicket($scope.ticketId)
         .then(function(data) {
           $scope.patient = data.data.patient;
+          $scope.patient.avatar = self.getRandomAvatar();
         }, function(data, status, headers, config) {
           console.log('Error getting patient data', data, status, headers, config);
         });
@@ -51,6 +64,7 @@ angular.module('openeyesApp')
   .directive('oePatientSummary', [function () {
     return {
       restrict: 'E', //E = element, A = attribute, C = class, M = comment
+      replace: true,
       scope: {},
       templateUrl: 'views/directives/patientSummary.html',
       controller: 'PatientSummaryCtrl',

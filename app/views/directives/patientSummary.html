@@ -1,35 +1,33 @@
-<section class="element panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Patient Summary</h3>
-  </div>
-  <div class="panel-body">
-    <div class="row" ng-if="patient.firstName">
-      <div class="col-xs-3">
-        {{ patient.surname | uppercase }},
-        {{ patient.firstName }}
-      </div>
-      <div class="col-xs-3">
-        Born: {{ patient.dob }} ({{ age() }}y)
-      </div>
-      <div class="col-xs-3">
-        Gender: {{ patient.gender }}
-      </div>
-      <div class="col-xs-3">
-        NHS No.: {{ patient.nhsNumber }}
-      </div>
-    </div>
+<div class="header-patient patient-summary">
+  <div class="container-fluid">
     <div class="row">
-      <div class="col-xs-12">
-        Allergies:
-        <span ng-repeat="allergy in allergies">
-          {{ allergy.name }}<span ng-show="{{ $index !== allergies.length - 1 }}">,</span>
-        </span>
+      <a href="#" ng-click="openList($event)" class="col-xs-1 menu-toggle" title="Toggle Patient List">
+        <span class="icon-lg-menu"></span>
+        <span class="icon-lg-menu_open"></span>
+      </a>
+      <div class="col-xs-5 patient-info" ng-if="patient.firstName">
+        <img ng-src="/images/profiles/{{patient.avatar}}.png" alt="{{patient.firstName}} {{patient.surname}}" class="patient-pic" />
+        <div class="patient-overview">
+          <a ng-href="/#/patient/{{ patient._id.$oid }}" class="patient-name">
+            <strong>{{ patient.surname }},</strong> {{ patient.firstName }} ({{ patient.title }})
+          </a>
+          <div class="patient-allergies" ng-show="allergies.length">
+            <span class="notification">!</span>
+            <strong>Allergies</strong>
+            <span ng-repeat="allergy in allergies">
+              {{ allergy.name }}<span ng-show="{{ $index !== allergies.length - 1 }}">,</span>
+            </span>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <a ng-href="/#/patient/{{ patientId }}">View patient summary</a>
+      <div class="col-xs-6" ng-if="patient.firstName">
+        <ul class="patient-details-list">
+          <li><strong>Born</strong> {{ patient.dob }} ({{ getAge() }}y)</li>
+          <li class="gender"><strong>Gender</strong> ({{ patient.gender.slice(0,1) }})</li>
+          <li><strong>NHS No.</strong> {{ patient.nhsNumber }}</li>
+        </ul>
+        <a href="#" class="btn btn-default view-history">View History <span class="caret"></span></a>
       </div>
     </div>
   </div>
-</section>
+</div>

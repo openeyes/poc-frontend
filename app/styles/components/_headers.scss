@@ -1,0 +1,56 @@
+// Header
+
+.header-main {}
+
+.header-patient {
+  left: 0;
+  position: fixed;
+  top: 58px;
+  width: 100%;
+  z-index: 1003;
+  box-shadow: 0 -2px 14px 1px rgba(0, 0, 0, 0.4);
+  background: #fff;
+  border-bottom: 1px solid #c9d3da;
+  .menu-toggle, .time {
+    background: #3bc0c3;
+    color: #fff;
+    display: block;
+    padding-bottom: 35px;
+    padding-top: 35px;
+    text-align: center;
+    line-height: 1;
+    font-size: 30px;
+    font-weight: 600;
+    &:hover {
+      background: #31a7aa;
+      text-decoration: none;
+    }
+  }
+  .menu-toggle {
+    .icon-lg-menu_open {
+      display: none;
+    }
+    .patient-list-open & {
+      .icon-lg-menu {
+        display: none;
+      }
+      .icon-lg-menu_open {
+        display: inline-block;
+      }
+      &:hover {
+        .icon-lg-menu {
+          display: inline-block;
+        }
+        .icon-lg-menu_open {
+          display: none;
+        }
+      }
+    }
+  }
+  &.select-patient {
+    h1 {
+      margin-top: 33px;
+      margin-left: 25px;
+    }
+  }
+}

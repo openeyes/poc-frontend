@@ -1,0 +1,75 @@
+// Patient Summary
+
+// [class*="col-"] {
+//   outline: 1px solid red;
+// }
+
+
+.patient-summary {
+  .patient-pic {
+    margin-top: 22px;
+  }
+  .patient-overview {
+    margin-top: 30px;
+  }
+  .patient-details-list {
+    margin-top: 44px;
+  }
+  .view-history {
+    margin-top: 32px;
+    float: left;
+  }
+  .patient-list-open & {
+    .container-fluid {
+      // Account for lack of scrollbar to line up the patient details with the
+      // details in the patient list.
+      padding-right: 25px;
+    }
+  }
+}
+
+.patient-pic {
+  border-radius: 30px;
+  border: 1px solid #fff;
+  float: left;
+  height: 60px;
+  margin-left: 15px;
+  width: 60px;
+}
+
+.patient-overview {
+  float: left;
+  margin-left: 10px;
+  position: relative;
+}
+
+.patient-name {
+  color: $text-color;
+  display: block;
+  font-size: 30px;
+}
+
+.patient-allergies {
+  color: #ec4867;
+  position: absolute;
+  bottom: -15px;
+  left: -28px;
+  .notification {
+    margin-right: 3px;
+  }
+}
+
+.patient-details-list {
+  font-size: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  float: left;
+  li {
+    float: left;
+    margin-right: 24px;
+    &.gender {
+      width: 86px;
+    }
+  }
+}

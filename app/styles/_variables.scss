@@ -1,3 +1,14 @@
+// OpenEyes vars
+
+
+$oe-sprite-icons-large: "icons/large/*.png";
+
+// Bootstrap vars from here
+
+
+
+
+
 // When true, asset path helpers are used, otherwise regular url() is used
 // When there no function is defined, `fn('')` is parsed as string that equals the right hand side
 // NB: in Sass 3.3 there is a native function: function-exists(twbs-font-path)
@@ -30,9 +41,9 @@ $brand-danger:          #d9534f;
 //## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-$body-bg:               #fff;
+$body-bg:               #f5f8f9;
 //** Global text color on `<body>`.
-$text-color:            $gray-dark;
+$text-color:            #273340;
 
 //** Global textual link color.
 $link-color:            $brand-primary;
@@ -44,7 +55,7 @@ $link-hover-color:      darken($link-color, 15%);
 //
 //## Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-sans-serif:  Helvetica, Arial, sans-serif;
 $font-family-serif:       Georgia, "Times New Roman", Times, serif;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
@@ -54,7 +65,7 @@ $font-size-base:          14px;
 $font-size-large:         ceil(($font-size-base * 1.25)); // ~18px
 $font-size-small:         ceil(($font-size-base * 0.85)); // ~12px
 
-$font-size-h1:            floor(($font-size-base * 2.6)); // ~36px
+$font-size-h1:            30px;
 $font-size-h2:            floor(($font-size-base * 2.15)); // ~30px
 $font-size-h3:            ceil(($font-size-base * 1.7)); // ~24px
 $font-size-h4:            ceil(($font-size-base * 1.25)); // ~18px
@@ -140,7 +151,7 @@ $table-bg-hover:                #f5f5f5;
 $table-bg-active:               $table-bg-hover;
 
 //** Border color for table and cell borders.
-$table-border-color:            #ddd;
+$table-border-color:            #dde5eb;
 
 
 //== Buttons
@@ -343,20 +354,20 @@ $container-lg:                 $container-large-desktop;
 //##
 
 // Basics of a navbar
-$navbar-height:                    50px;
+$navbar-height:                    58px;
 $navbar-margin-bottom:             $line-height-computed;
-$navbar-border-radius:             $border-radius-base;
+$navbar-border-radius:             0;
 $navbar-padding-horizontal:        floor(($grid-gutter-width / 2));
 $navbar-padding-vertical:          (($navbar-height - $line-height-computed) / 2);
 $navbar-collapse-max-height:       340px;
 
 $navbar-default-color:             #777;
-$navbar-default-bg:                #f8f8f8;
+$navbar-default-bg:                #1b2b3c;
 $navbar-default-border:            darken($navbar-default-bg, 6.5%);
 
 // Navbar links
-$navbar-default-link-color:                #777;
-$navbar-default-link-hover-color:          #333;
+$navbar-default-link-color:                #fff;
+$navbar-default-link-hover-color:          #aaa;
 $navbar-default-link-hover-bg:             transparent;
 $navbar-default-link-active-color:         #555;
 $navbar-default-link-active-bg:            darken($navbar-default-bg, 6.5%);

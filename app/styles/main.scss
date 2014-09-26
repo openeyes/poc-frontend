@@ -11,10 +11,18 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 // Components
 @import "components/scaffolding";
+@import "components/type";
+@import "components/headers";
 @import "components/footer";
 @import "components/navbar";
 @import "components/forms";
 @import "components/grid";
 @import "components/eyedraw";
 @import "components/elements";
+@import "components/icons";
+@import "components/patient-summary";
+@import "components/patient-list";
+@import "components/tables";
+@import "components/buttons";
+@import "components/page";
 @import "components/chosen";

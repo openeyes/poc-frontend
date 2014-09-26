@@ -1,0 +1,18 @@
+// Page body
+
+.page-body {
+  @extend .clearfix;
+  border: 1px solid #c9d3da;
+  background: #fff;
+  padding: 40px 106px;
+}
+
+.main {
+  padding-left: 25px;
+  padding-right: 25px;
+  margin-top: 83px;
+  margin-bottom: 25px;
+  .page-event & {
+    margin-top: 184px;
+  }
+}

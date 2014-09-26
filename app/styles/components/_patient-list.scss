@@ -1,0 +1,135 @@
+// Patient Summary
+
+$patient-list-padding-vertical: 16px;
+$patient-list-animation-slidedown-speed: 0.7s;
+
+.patient-list-container {
+  margin-top: 159px;
+  .page-event & {
+    margin-top: 0;
+    height: 0;
+    max-height: calc(100% - 159px);
+    position: fixed;
+    top: 159px;
+    width: 100%;
+    z-index: 1001;
+    overflow: hidden;
+    transform: translate3d(0,0,0);
+    transition: height $patient-list-animation-slidedown-speed;
+    .row {
+      height: 100%;
+      .patient-list {
+        height: 100%;
+      }
+      .patient-list-table-container {
+        max-height: calc(100% - 54px);
+        overflow: auto;
+      }
+    }
+    .patient-list-close {
+      display: block;
+    }
+  }
+  .patient-list-open & {
+    height: 100%;
+  }
+}
+
+body.patient-list-open {
+  overflow-y: hidden;
+}
+
+.patient-list-overlay {
+  display: none;
+  background: rgba(0, 0, 0, 0.6);
+  height: calc(100% - 159px);
+  position: fixed;
+  top: 159px;
+  width: 100%;
+  z-index: 1000;
+  .patient-list-open & {
+    display: block;
+  }
+}
+
+.patient-list {
+  border-color: #93a2ad;
+  border-width: 0 0 2px 0;
+  padding: 0;
+}
+
+.patient-list-table-container {
+  background: #fafbfc;
+}
+
+.patient-list-table {
+  border-bottom: 1px solid $table-border-color;
+  margin: 0;
+  tbody {
+    tr {
+      cursor: pointer;
+      &:hover {
+        background: #e3f7f9;
+        .patient-start {
+          display: block;
+        }
+      }
+      &:first-child {
+        td {
+          border-top: 0;
+        }
+      }
+      td {
+        font-size: 20px;
+        padding-bottom: $patient-list-padding-vertical;
+        padding-top: $patient-list-padding-vertical;
+        position: relative;
+        &:first-child {
+          border-right: 1px solid $table-border-color;
+        }
+      }
+    }
+  }
+  .patient-name {
+    float: left;
+    font-size: 22px;
+    margin-left: 76px;
+  }
+  .patient-info {
+    position: relative;
+  }
+  .patient-pic {
+    border-radius: 20px;
+    height: 40px;
+    left: 22px;
+    margin-top: -20px;
+    position: absolute;
+    top: 50%;
+    width: 40px;
+  }
+  .patient-start {
+    background: #00bdcb;
+    color: #fff;
+    display: none;
+    height: 100%;
+    padding: 18px 6px;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+.patient-list-close {
+  display: none;
+  cursor: pointer;
+  border-top: 2px solid #4c4c4c;
+  padding: 12px 0;
+  text-align: center;
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: 1px;
+  background: #506470;
+  &, &:hover {
+    color: #ffffff;
+  }
+}
