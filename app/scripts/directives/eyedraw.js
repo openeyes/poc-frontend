@@ -125,7 +125,7 @@ angular.module('openeyesApp')
       // Force wait till next digest incase data isn't available yet
       $timeout(function() {
         EyeDraw.init($scope.options);
-      }, 1000);
+      }, 2000);
     };
 
     this.edit = function(){
