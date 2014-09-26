@@ -97,12 +97,16 @@ angular.module('openeyesApp')
   })
   .controller('EyeDrawCtrl', ['$scope', '$timeout', 'Event', 'EyeDraw', 'eyedrawOptions', function($scope, $timeout, Event, EyeDraw, eyedrawOptions){
 
+    var self = this;
+
     this.init = function(attr, id){
 
       if (!attr.mode) {
         console.warn('EyeDraw: mode not set');
         return;
       }
+
+      this.loaded = false;
 
       $scope.side = attr.side;
       $scope.mode = attr.mode;
@@ -122,22 +126,31 @@ angular.module('openeyesApp')
     };
 
     this.view = function(){
-      // Force wait till next digest incase data isn't available yet
-      $timeout(function() {
-        EyeDraw.init($scope.options);
-      }, 2000);
+      // Watch model changes to init when it exists
+      // Also check the eyedraw wasn't already loaded
+      // As it updates the model we can get into an infinite loop here if we don't
+      $scope.$watch('model', function(){
+        if($scope.model && !self.loaded){
+          self.loaded = true;
+          EyeDraw.init($scope.options);
+        }
+      });
     };
 
     this.edit = function(){
       if (!$scope.model) {
         $scope.model = '[]';
       }
-      // Only initiate the eyedraw once the $scope has been applied.
-      // This is necessary as we're generating required scope vars in the same event loop.
-      $timeout(function() {
-        EyeDraw.init($scope.options, function(instance) {
-          $scope.instance = instance;
-        });
+      // Watch model changes to init when it exists
+      // Also check the eyedraw wasn't already loaded
+      // As it updates the model we can get into an infinite loop here if we don't
+      $scope.$watch('model', function() {
+        if($scope.model && !self.loaded){
+          self.loaded = true;
+          EyeDraw.init($scope.options, function(instance) {
+            $scope.instance = instance;
+          });
+        }
       });
     };
 
