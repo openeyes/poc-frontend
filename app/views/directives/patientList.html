@@ -15,7 +15,7 @@
               <td class="col-xs-6">
                 <ul class="patient-details-list">
                   <li><strong>Born</strong> {{ ticket.patient.dob }} ({{ getAge(ticket.patient.dob) }}y)</li>
-                  <li><strong>Gender</strong> ({{ ticket.patient.gender.slice(0,1) }})</li>
+                  <li class="gender"><strong>Gender</strong> ({{ ticket.patient.gender.slice(0,1) }})</li>
                   <li><strong>NHS No.</strong> {{ ticket.patient.nhsNumber }}</li>
                 </ul>
                 <a class="patient-start" href="#" ng-click="start($event, ticket)"> > </a>
