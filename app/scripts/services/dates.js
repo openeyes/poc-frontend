@@ -2,11 +2,6 @@
 
 angular.module('openeyesApp')
   .factory('Dates', [function() {
-
-    function pad(char, val) {
-      return (char + String(val)).slice(-char.length);
-    }
-
     return {
       getAge: function(dateStr){
         var age = new Date(
@@ -14,7 +9,5 @@ angular.module('openeyesApp')
         );
         return Math.abs(age.getUTCFullYear() - 1970);
       }
-
     };
-
   }]);

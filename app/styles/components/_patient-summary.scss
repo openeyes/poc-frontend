@@ -19,6 +19,13 @@
     margin-top: 32px;
     float: left;
   }
+  .patient-list-open & {
+    .container-fluid {
+      // Account for lack of scrollbar to line up the patient details with the
+      // details in the patient list.
+      padding-right: 25px;
+    }
+  }
 }
 
 .patient-pic {
@@ -61,5 +68,8 @@
   li {
     float: left;
     margin-right: 24px;
+    &.gender {
+      width: 86px;
+    }
   }
 }
