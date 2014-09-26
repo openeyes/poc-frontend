@@ -1,19 +1,19 @@
-<h2>Try it out</h2>
-
-<div class="form-group row">
-  <div class="col-xs-8 col-xs-offset-2">
-    <div class="well">
-      <p>Try a step in this workflow for a Medical Retina Injection clinic.</p>
-      <div class="radio" ng-repeat="workflow in workflows">
-        <label>
-          <input type="radio" ng-model="$parent.workflow" ng-value="workflow" />
-          At {{ workflow.site }}
-        </label>
+<div class="pres-wrapper">
+  <div class="form-group row">
+    <div class="col-xs-12">
+      <div class="well">
+        <p>Try a step in this workflow for a Medical Retina Injection clinic.</p>
+        <div class="radio" ng-repeat="workflow in workflows">
+          <label>
+            <input type="radio" ng-model="$parent.workflow" ng-value="workflow" />
+            At {{ workflow.site }}
+          </label>
+        </div>
       </div>
-    </div>
-    <div class="well">
-      <p>Select a step in the worflow.</p>
-      <a href="/#/patients/{{ workflow._id.$oid }}/{{ $index }}" ng-repeat="step in workflow.steps" class="btn btn-primary btn-lg btn-block">{{ step.name }} as a {{ step.role }}</a>
+      <div class="well clearfix">
+        <p>Select a step in the worflow.</p>
+        <a href="/#/patients/{{ workflow._id.$oid }}/{{ $index }}" ng-repeat="step in workflow.steps" class="btn btn-primary btn-lg workflow-btn">{{ step.name }} as a {{ step.role }}</a>
+      </div>
     </div>
   </div>
 </div>
