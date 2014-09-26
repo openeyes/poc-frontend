@@ -56,9 +56,17 @@
         font-weight: 200;
       }
       &.has-icon {
+        &.active {
+          > a {
+            color: #fff;
+          }
+        }
         > a {
           color: #92a4b0;
           font-size: 20px;
+          &:hover {
+            color: #fff;
+          }
         }
       }
     }
