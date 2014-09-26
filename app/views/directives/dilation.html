@@ -11,10 +11,11 @@
     <button class="btn btn-primary" type="button" ng-click="addDilation()">Add</button>
   </div>
 </div>
-<table ng-show="model.dilations.length" style="width:100%;">
+<table ng-show="model.dilations.length" class="table table-bordered">
   <tr><th>Time</th><th>Drug</th><th>Drops</th><th>Actions</th></tr>
   <tr class="" ng-repeat="d in model.dilations">
     <td><input
+      class="form-control"
       type="time" value="{{ d.time | date: 'HH:mm' }}"></td>
     <td>{{ d.drug }}</td>
     <td>

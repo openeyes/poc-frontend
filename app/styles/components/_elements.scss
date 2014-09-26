@@ -1,13 +1,24 @@
 // Event Elements
 
 .element {
+  border-bottom: 1px solid #dce1e4;
+  padding-left: 106px;
+  padding-right: 106px;
+  margin-bottom: 25px;
+  padding-bottom: 25px;
+  > .row {
+    > .col-xs-6 {
+      &:first-child {
+        // border-right: 1px solid #dce1e4;
+      }
+    }
+  }
+  &:last-child {
+    // border: 0;
+  }
   &.treatment {
     ul {
       padding-left: $grid-gutter-width / 2;
     }
   }
-}
-
-table {
-  width: 100%;
 }
