@@ -54,7 +54,6 @@ angular.module('openeyesApp')
       Ticket.getTicket($scope.ticketId)
         .then(function(data) {
           $scope.patient = data.data.patient;
-          $scope.patient.avatar = self.getRandomAvatar();
         }, function(data, status, headers, config) {
           console.log('Error getting patient data', data, status, headers, config);
         });

@@ -66,9 +66,9 @@ angular.module('openeyesApp')
       Ticket.getTickets($scope.workflow._id.$oid, $scope.stepIndex)
         .then(function(data) {
           $scope.tickets = data.data.map(function(ticket) {
-            ticket.patient.avatar = self.getRandomAvatar();
-            ticket.appointmentTime = self.getTime();
-            return ticket;
+            return angular.extend(ticket, {
+              appointmentTime: self.getTime()
+            });
           });
         }, function(data, status, headers, config) {
           console.log('Error getting patients', data, status, headers, config);
