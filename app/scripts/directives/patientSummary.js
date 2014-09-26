@@ -27,7 +27,7 @@ angular.module('openeyesApp')
         return;
       }
       return Dates.getAge($scope.patient.dob);
-    }
+    };
 
     this.openList = function($event) {
       $event.preventDefault();
