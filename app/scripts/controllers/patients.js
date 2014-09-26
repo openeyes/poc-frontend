@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('openeyesApp')
-  .controller('PatientsCtrl', ['$scope', '$routeParams', '$location', 'Event', 'Ticket', 'Dates', function ($scope, $routeParams, $location, Event, Ticket, Dates) {
+  .controller('PatientsCtrl', ['$scope', '$location', function ($scope, $location) {
 
     $scope.start = function($event, ticket) {
 
@@ -15,7 +15,7 @@ angular.module('openeyesApp')
       ].join('/');
 
       $location.path(url);
-    }
+    };
 
     document.body.classList.add('page-patients');
 
