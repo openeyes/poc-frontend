@@ -6,7 +6,7 @@
         <span class="icon-lg-menu_open"></span>
       </a>
       <div class="col-xs-5 patient-info" ng-if="patient.firstName">
-        <img ng-src="/images/profiles/{{patient.avatar}}.png" alt="{{patient.firstName}} {{patient.surname}}" class="patient-pic" />
+        <img ng-src="/images/profiles/{{patient.gender == 'Female' ? 1 : 4}}.png" alt="Chay Close" class="patient-pic" />
         <div class="patient-overview">
           <a ng-href="/#/patient/{{ patient._id.$oid }}" class="patient-name">
             <strong>{{ patient.surname }},</strong> {{ patient.firstName }} ({{ patient.title }})
