@@ -39,9 +39,7 @@ angular.module('openeyesApp')
       // this.getPatient();
 
       // Fake getting image references
-      for(var i = 1;i <= self.totalImages;i++){
-        self.imageUrls.push('/images/oct-slices/slice_' + i + '.jpg');
-      }
+      self.imageUrls = Element.getOCTBase64Images();
 
       self.loadImages();
 
