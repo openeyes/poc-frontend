@@ -11,13 +11,12 @@ angular.module('openeyesApp')
   .controller('OctSlicesViewCtrl', ['$scope', '$routeParams', 'Element', 'Ticket', 'MODEL_DOMAIN', function($scope, $routeParams, Element, Ticket, MODEL_DOMAIN){
 
     var self = this;
+    var SLICE_HEIGHT = 100;
 
-    this.images = [];
+    this.image = null;
     this.imageUrls = [];
-    this.totalImages = 10;
-    this.numImagesLoaded = 0;
     this.$rightCanvas = null;
-    this.$leftCanvase = null;
+    this.$leftCanvas = null;
 
     $scope.currentSlice = 1;
 
@@ -25,7 +24,7 @@ angular.module('openeyesApp')
 
       // Grab the right canvas to draw to
       // Could make a view per eye rather than this composite
-      self.$rightCanvas = element.find('canvas[data-side=rightEye]');
+      self.$rightCanvas = element.find('[data-side=rightEye]');
 
       $scope.model = {};
       $scope.patient = null;
@@ -39,37 +38,31 @@ angular.module('openeyesApp')
       // this.getPatient();
 
       // Fake getting image references
-      self.imageUrls = Element.getOCTImages();
+      self.imageUrl = Element.getOCTImages();
 
-      self.loadImages();
+      self.loadImage();
 
     };
 
     $scope.navToSlice = function(index){
-      self.paintImageToCanvas(self.images[index]);
+      self.paintImageToCanvas(index);
     };
 
-    this.loadImages = function(){
-      for(var i = 0;i < self.totalImages;i++){
-        var img = new Image();
-        img.src = self.imageUrls[i];
-        img.onload = self.imageLoaded;
-        self.images.push(img);
-      }
+    this.loadImage = function(){
+      self.image = new Image();
+      self.image.src = self.imageUrl[0];
+      self.image.onload = self.imageLoaded;
     };
 
     this.imageLoaded = function(){
-      self.numImagesLoaded++;
-      //  Are all images now loaded?
-      if(self.numImagesLoaded === self.totalImages){
-        $scope.navToSlice(0);
-      }
+      self.$rightCanvas.css('background-image', 'url(' + self.image.src + ')');
+      self.$rightCanvas.css('background-size', '100% auto');
+      $scope.navToSlice(0);
     };
 
-    this.paintImageToCanvas = function(image){
-      var ctx = self.$rightCanvas[0].getContext('2d');
-      // Scale image and draw to canvas
-      ctx.drawImage(image, 0, 0,512,100);
+    this.paintImageToCanvas = function(backgroundOffset){
+      var adjustment = backgroundOffset * SLICE_HEIGHT;
+      self.$rightCanvas.css('background-position-y', -adjustment + 'px');
     };
 
     // this.getPatient = function() {
