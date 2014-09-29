@@ -14,7 +14,7 @@ angular.module('openeyesApp')
     var SLICE_HEIGHT = 100;
 
     this.image = null;
-    this.imageUrls = [];
+    this.imageUrl = '';
     this.$rightCanvas = null;
     this.$leftCanvas = null;
 
@@ -38,7 +38,7 @@ angular.module('openeyesApp')
       // this.getPatient();
 
       // Fake getting image references
-      self.imageUrl = Element.getOCTImages();
+      self.imageUrl = Element.getOCTImages()[0];
 
       self.loadImage();
 
@@ -50,7 +50,7 @@ angular.module('openeyesApp')
 
     this.loadImage = function(){
       self.image = new Image();
-      self.image.src = self.imageUrl[0];
+      self.image.src = self.imageUrl;
       self.image.onload = self.imageLoaded;
     };
 
