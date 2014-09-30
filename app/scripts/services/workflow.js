@@ -5,14 +5,12 @@ angular.module('openeyesApp')
     FormComponent: {
       LaserSite: '/views/components/edit/laserSite.html',
       Procedures: '/views/components/edit/procedures.html',
-      eyedraw: '/views/components/edit/eyedraw.html',
       Treatment: '/views/components/edit/treatment.html',
       History: '/views/components/edit/history.html',
       Comorbidities: '/views/components/edit/comorbidities.html',
       VisualAcuity: '/views/components/edit/acuity.html',
       Allergies: '/views/components/edit/allergies.html',
       InjectionManagement: '/views/components/edit/injectionManagement.html',
-      allergies: '/views/components/edit/allergies.html',
       PosteriorPole: '/views/components/edit/posteriorPole.html',
       Anaesthetic: '/views/components/edit/anaesthetic.html',
       ClinicOutcome: '/views/components/edit/clinicOutcome.html',
@@ -23,9 +21,6 @@ angular.module('openeyesApp')
       TreatmentOrder: '/views/components/edit/treatmentOrder.html'
     },
     ViewComponent: {
-      laserSite: '/views/components/view/laserSite.html',
-      procedures: '/views/components/view/procedures.html',
-      eyedraw: '/views/components/view/eyedraw.html',
       VisualAcuity: '/views/components/view/acuity.html',
       History: '/views/components/view/history.html',
       TreatmentOrder: '/views/components/view/treatmentOrder.html',
