@@ -36,7 +36,7 @@ angular.module('openeyesApp')
       $scope.$on('$destroy', function() {
         $rootScope.$broadcast('patientList.close');
       });
-    }
+    };
 
     this.close = function($event) {
       $event.preventDefault();
@@ -81,7 +81,7 @@ angular.module('openeyesApp')
     this.getTicket = function() {
       return $routeParams.ticketId ? Ticket.getTicket($routeParams.ticketId)
         .then(function(response) {
-          $scope.ticket = response.data
+          $scope.ticket = response.data;
         }, function(data, status, headers, config) {
           console.log('Error getting ticket', data, status, headers, config);
         }) : true;
