@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('openeyesApp')
-  .controller('TreatmentCtrl', ['$scope', '$attrs', 'Treatment', 'Event', 'MODEL_DOMAIN', function($scope, $attrs, Treatment, Event, MODEL_DOMAIN){
+  .controller('TreatmentCtrl', ['$scope', '$attrs', 'Treatment', 'Encounter', 'MODEL_DOMAIN', function($scope, $attrs, Treatment, Encounter, MODEL_DOMAIN){
 
     var self = this;
 
@@ -11,8 +11,8 @@ angular.module('openeyesApp')
       $scope.model = {};
 
       //  Listen for save event
-      //  Broadcast by event page controller
-      $scope.$on('event.save', this.broadcastModel);
+      //  Broadcast by encounter page controller
+      $scope.$on('encounter.save', this.broadcastModel);
 
       $scope.$watch('injectionPersonnel', function(people) {
         if (people instanceof Array) {
@@ -30,7 +30,7 @@ angular.module('openeyesApp')
     };
 
     this.broadcastModel = function(){
-      Event.addToEventStack(self.getModel());
+      Encounter.addElement(self.getModel());
     };
 
     this.getModel = function(){

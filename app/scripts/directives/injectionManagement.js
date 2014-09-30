@@ -8,13 +8,13 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('InjectionManagementCtrl', ['$scope', '$attrs', 'InjectionManagement', 'Treatment', 'Event', 'MODEL_DOMAIN', function($scope, $attrs, InjectionManagement, Treatment, Event, MODEL_DOMAIN){
+  .controller('InjectionManagementCtrl', ['$scope', '$attrs', 'InjectionManagement', 'Treatment', 'Encounter', 'MODEL_DOMAIN', function($scope, $attrs, InjectionManagement, Treatment, Encounter, MODEL_DOMAIN){
 
     var self = this;
 
     this.init = function(){
 
-      $scope.$on('event.save', this.broadcastModel);
+      $scope.$on('encounter.save', this.broadcastModel);
       $scope.model = {};
       $scope.model.questions = [];
 
@@ -38,7 +38,7 @@ angular.module('openeyesApp')
     };
 
     this.broadcastModel = function(){
-      Event.addToEventStack(self.getModel());
+      Encounter.addElement(self.getModel());
     };
 
     this.getModel = function(){

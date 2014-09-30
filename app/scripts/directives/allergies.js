@@ -8,16 +8,16 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('AllergiesCtrl', ['$scope', 'Patient', 'Allergies', 'Event', 'MODEL_DOMAIN', function($scope, Patient, Allergies, Event, MODEL_DOMAIN){
+  .controller('AllergiesCtrl', ['$scope', 'Patient', 'Allergies', 'Encounter', 'MODEL_DOMAIN', function($scope, Patient, Allergies, Encounter, MODEL_DOMAIN){
 
     var self = this;
 
     this.init = function(){
       //  Listen for save event
-      //  Broadcast by event page controller
+      //  Broadcast by encounter page controller
       $scope.model = {};
       $scope.model.allergies = [];
-      $scope.$on('event.save', this.broadcastModel);
+      $scope.$on('encounter.save', this.broadcastModel);
       //  On creation populate dropdown
 
       Allergies.getAllergyMeds()
@@ -37,7 +37,7 @@ angular.module('openeyesApp')
     };
 
     this.broadcastModel = function(){
-      Event.addToEventStack(self.getModel());
+      Encounter.addElement(self.getModel());
     };
 
     this.getModel = function(){

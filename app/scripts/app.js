@@ -33,25 +33,13 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
+      .when('/patient/:workflowId/:ticketId/:stepIndex', {
+        templateUrl: 'views/encounter.html',
+        controller: 'EncounterCtrl'
+      })
       .when('/patient/:patientId', {
         templateUrl: 'views/patient.html',
         controller: 'PatientCtrl'
-      })
-      .when('/patient/:patientId/event/:eventType/create', {
-        templateUrl: 'views/event-create.html',
-        controller: 'EventCtrl'
-      })
-      .when('/patient/:workflowId/:ticketId/:stepIndex', {
-        templateUrl: 'views/event-create.html',
-        controller: 'EventCtrl'
-      })
-      .when('/patient/:patientId/event/:eventId', {
-        templateUrl: 'views/event.html',
-        controller: 'EventCtrl'
-      })
-      .when('/forms', {
-        templateUrl: 'views/forms.html',
-        controller: 'FormsCtrl'
       })
       .when('/patients/:workflowId/:stepIndex', {
         templateUrl: 'views/patients.html',

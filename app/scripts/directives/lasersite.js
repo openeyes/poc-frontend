@@ -1,19 +1,19 @@
 'use strict';
 
 angular.module('openeyesApp')
-  .controller('LaserSiteCtrl', ['$scope', 'Site', 'Event', 'MODEL_DOMAIN', function($scope, Site, Event, MODEL_DOMAIN){
+  .controller('LaserSiteCtrl', ['$scope', 'Site', 'Encounter', 'Workflow', 'MODEL_DOMAIN', function($scope, Site, Encounter, Workflow, MODEL_DOMAIN){
 
     var self = this;
 
     $scope.model = {};
-    $scope.form = Event.getForm();
-    $scope.rules = Event.getValidationRules('laserSite');
+    $scope.form = Encounter.getForm();
+    $scope.rules = Workflow.getValidationRules('laserSite');
 
     this.init = function(){
 
       //  Listen for save event
-      //  Broadcast by event page controller
-      $scope.$on('event.save', this.broadcastModel);
+      //  Broadcast by encounter page controller
+      $scope.$on('encounter.save', this.broadcastModel);
 
       //  On creation populate sites dropdown
       Site.getSites()
@@ -34,7 +34,7 @@ angular.module('openeyesApp')
     };
 
     this.broadcastModel = function(){
-      Event.addToEventStack(self.getModel());
+      Encounter.addElement(self.getModel());
     };
 
     this.getModel = function(){

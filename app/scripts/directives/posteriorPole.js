@@ -8,12 +8,12 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('PosteriorPoleCtrl', ['$scope', '$attrs', 'Event', 'MODEL_DOMAIN', function($scope, $attrs, Event, MODEL_DOMAIN){
+  .controller('PosteriorPoleCtrl', ['$scope', '$attrs', 'Encounter', 'MODEL_DOMAIN', function($scope, $attrs, Encounter, MODEL_DOMAIN){
 
     var self = this;
 
     this.init = function(){
-      $scope.$on('event.save', this.broadcastModel);
+      $scope.$on('encounter.save', this.broadcastModel);
       $scope.side = $attrs.side;
       $scope.mode = $attrs.mode;
       $scope.options = 'posterior';
@@ -24,7 +24,7 @@ angular.module('openeyesApp')
     };
 
     this.broadcastModel = function(){
-      Event.addToEventStack(self.getModel());
+      Encounter.addElement(self.getModel());
     };
 
     this.getModel = function(){

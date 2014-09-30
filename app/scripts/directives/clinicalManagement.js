@@ -8,18 +8,18 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('ClinicalManagementCtrl', ['$scope', '$attrs', 'ClinicalManagement', 'Event', 'MODEL_DOMAIN', function($scope, $attrs, ClinicalManagement, Event, MODEL_DOMAIN){
+  .controller('ClinicalManagementCtrl', ['$scope', '$attrs', 'ClinicalManagement', 'Encounter', 'MODEL_DOMAIN', function($scope, $attrs, ClinicalManagement, Encounter, MODEL_DOMAIN){
 
     var self = this;
 
     this.init = function(){
-      $scope.$on('event.save', this.broadcastModel);
+      $scope.$on('encounter.save', this.broadcastModel);
       $scope.model = {};
       this.getData();
     };
 
     this.broadcastModel = function(){
-      Event.addToEventStack(self.getModel());
+      Encounter.addElement(self.getModel());
     };
 
     this.getModel = function(){

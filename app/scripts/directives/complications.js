@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('openeyesApp')
-  .controller('ComplicationsCtrl', ['$scope', '$attrs', 'Complications', 'Event', 'MODEL_DOMAIN', function($scope, $attrs, Complications, Event, MODEL_DOMAIN){
+  .controller('ComplicationsCtrl', ['$scope', '$attrs', 'Complications', 'Encounter', 'MODEL_DOMAIN', function($scope, $attrs, Complications, Encounter, MODEL_DOMAIN){
 
     var self = this;
 
     this.init = function(attrs){
-      $scope.$on('event.save', this.broadcastModel);
+      $scope.$on('encounter.save', this.broadcastModel);
       this.eyeSide = $scope.side = attrs.side;
       $scope.model = {};
       $scope.temp = {};
@@ -14,7 +14,7 @@ angular.module('openeyesApp')
     };
 
     this.broadcastModel = function(){
-      Event.addToEventStack(self.getModel());
+      Encounter.addElement(self.getModel());
     };
 
     this.getModel = function(){

@@ -8,14 +8,14 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('ComorbiditiesCtrl', ['$scope', 'Conditions', 'Event', function($scope, Conditions, Event){
+  .controller('ComorbiditiesCtrl', ['$scope', 'Conditions', 'Encounter', function($scope, Conditions, Encounter){
 
     var self = this;
 
     this.init = function(){
       //  Listen for save event
-      //  Broadcast by event page controller
-      $scope.$on('event.save', this.broadcastModel);
+      //  Broadcast by encounter page controller
+      $scope.$on('encounter.save', this.broadcastModel);
       //  On creation populate dropdown
 
       Conditions.getComorbidities()
@@ -29,7 +29,7 @@ angular.module('openeyesApp')
     };
 
     this.broadcastModel = function(){
-      Event.addToEventStack(self.getModel());
+      Encounter.addElement(self.getModel());
     };
 
     this.getModel = function(){

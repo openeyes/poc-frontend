@@ -42,9 +42,10 @@ angular.module('openeyesApp')
       var eType = MODEL_DOMAIN + 'InjectionSite';
 
       Element.getElements($scope.patient._id.$oid, eType, today)
-        .then(function(data) {
-          $scope.rightEye = data.data[0].rightEye.data;
-          $scope.leftEye = data.data[0].leftEye.data;
+        .then(function(response) {
+          console.log('RESPONSE', response);
+          $scope.rightEye = response.data[0].rightEye.data;
+          $scope.leftEye = response.data[0].leftEye.data;
         }, function(error) {
           console.log(error);
         });

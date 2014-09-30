@@ -4,8 +4,6 @@
   "sites": "/Site",
   "siteLasers": "/Laser/?siteId=:id",
   "laserOperators": "/LaserOperator",
-  "patientEvents": "/LaserEvent/?patientId=:id",
-  "laserEvent": "/LaserEvent/:id",
   "createEncounter": "/Encounter",
   "procedures": "/Procedure",
   "workflow": "/Workflow",

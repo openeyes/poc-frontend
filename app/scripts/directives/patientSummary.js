@@ -1,21 +1,18 @@
 'use strict';
 
 angular.module('openeyesApp')
-  .controller('PatientSummaryCtrl', ['$scope', '$routeParams', 'Ticket', 'Patient', 'Dates', function($scope, $routeParams, Ticket, Patient, Dates){
-
-    var self = this;
+  .controller('PatientSummaryCtrl', ['$scope', '$routeParams', '$rootScope', 'Ticket', 'Patient', 'Dates', function($scope, $routeParams, $rootScope, Ticket, Patient, Dates){
 
     this.init = function(){
 
       $scope.patient = null;
       $scope.ticketId = $routeParams.ticketId || '5422cb723004f335a892a728'; // TODO: remove default patient id
       $scope.getAge = this.getAge.bind(this);
-      $scope.openList = this.openList.bind(this);
+      $scope.toggleList = this.toggleList.bind(this);
       $scope.$watch('patient', this.getPatientAllergies.bind(this));
 
       $scope.$on('$destroy', function() {
         document.body.classList.remove('has-patient-summary');
-        document.body.classList.remove('patient-list-open');
       });
       document.body.classList.add('has-patient-summary');
 
@@ -29,9 +26,9 @@ angular.module('openeyesApp')
       return Dates.getAge($scope.patient.dob);
     };
 
-    this.openList = function($event) {
+    this.toggleList = function($event) {
       $event.preventDefault();
-      document.body.classList.toggle('patient-list-open');
+      $rootScope.$broadcast('patientList.toggle');
     };
 
     this.getPatientAllergies = function() {

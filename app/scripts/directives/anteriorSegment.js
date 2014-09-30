@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('openeyesApp')
-  .controller('AnteriorSegmentCtrl', ['$scope', '$attrs', 'Event', 'MODEL_DOMAIN',function($scope, $attrs, Event, MODEL_DOMAIN){
+  .controller('AnteriorSegmentCtrl', ['$scope', '$attrs', 'Encounter', 'MODEL_DOMAIN',function($scope, $attrs, Encounter, MODEL_DOMAIN){
 
     var self = this;
 
@@ -13,12 +13,12 @@ angular.module('openeyesApp')
       $scope.model = {};
 
       //  Listen for save event
-      //  Broadcast by event page controller
-      $scope.$on('event.save', this.broadcastModel);
+      //  Broadcast by encounter page controller
+      $scope.$on('encounter.save', this.broadcastModel);
     };
 
     this.broadcastModel = function(){
-      Event.addToEventStack(self.getModel());
+      Encounter.addElement(self.getModel());
     };
 
     this.getModel = function(){

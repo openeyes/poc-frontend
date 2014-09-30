@@ -8,18 +8,18 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('AcuityCtrl', ['$scope', 'Acuity', 'Event', 'MODEL_DOMAIN', function($scope, Acuity, Event, MODEL_DOMAIN){
+  .controller('AcuityCtrl', ['$scope', 'Acuity', 'Encounter', 'MODEL_DOMAIN', function($scope, Acuity, Encounter, MODEL_DOMAIN){
 
     var self = this;
 
     this.init = function(attrs){
       //  Listen for save event
-      //  Broadcast by event page controller
+      //  Broadcast by encounter page controller
       this.eyeSide = attrs.side;
       $scope.model = {};
       $scope.model.readings = [];
       $scope.model.comment = '';
-      $scope.$on('event.save', this.broadcastModel);
+      $scope.$on('encounter.save', this.broadcastModel);
       //  On creation populate dropdown
 
       Acuity.getAcuityFields()
@@ -32,7 +32,7 @@ angular.module('openeyesApp')
     };
 
     this.broadcastModel = function(){
-      Event.addToEventStack(self.getModel());
+      Encounter.addElement(self.getModel());
     };
 
     this.getModel = function(){

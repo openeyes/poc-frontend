@@ -8,7 +8,7 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('PatientCtrl', ['$scope', '$routeParams', 'PatientSearch', 'Event', function ($scope, $routeParams, PatientSearch, Event) {
+  .controller('PatientCtrl', ['$scope', '$routeParams', 'PatientSearch', function ($scope, $routeParams, PatientSearch) {
 
     $scope.patient = null;
     $scope.patientId = $routeParams.patientId;

@@ -8,10 +8,10 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('TreatmentOrderCtrl', ['$scope', '$attrs', 'Treatment', 'Event', 'MODEL_DOMAIN', function($scope, $attrs, Treatment, Event, MODEL_DOMAIN){
+  .controller('TreatmentOrderCtrl', ['$scope', '$attrs', 'Treatment', 'Encounter', 'Workflow', 'MODEL_DOMAIN', function($scope, $attrs, Treatment, Encounter, Workflow, MODEL_DOMAIN){
 
-    $scope.form = Event.getForm();
-    $scope.rules = Event.getValidationRules('treatment');
+    $scope.form = Encounter.getForm();
+    $scope.rules = Workflow.getValidationRules('treatment');
     $scope.side = $attrs.side;
 
     var self = this;
@@ -23,8 +23,8 @@ angular.module('openeyesApp')
       this.eyeSide = $scope.side = attrs.side;
 
       //  Listen for save event
-      //  Broadcast by event page controller
-      $scope.$on('event.save', this.broadcastModel);
+      //  Broadcast by encounter page controller
+      $scope.$on('encounter.save', this.broadcastModel);
       //  On creation populate dropdowns
       Treatment.getPreInjectionAntiseptics()
         .then(function(data) {
@@ -63,7 +63,7 @@ angular.module('openeyesApp')
     };
 
     this.broadcastModel = function(){
-      Event.addToEventStack(self.getModel());
+      Encounter.addElement(self.getModel());
     };
 
     this.getModel = function(){

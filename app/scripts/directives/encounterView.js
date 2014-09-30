@@ -8,13 +8,13 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('EventViewCrl', ['$scope', '$compile', '$timeout', '$rootScope', 'Event', function ($scope, $compile, $timeout, $rootScope, Event) {
+  .controller('EventViewCrl', ['$scope', '$compile', '$timeout', '$rootScope', 'Encounter', function ($scope, $compile, $timeout, $rootScope, Encounter) {
 
     // var self = this;
     //  Pretend to load in some workflow config here
-    var layoutConfig = Event.getLayoutConfig('eventType1');
+    var layoutConfig = Encounter.getLayoutConfig('eventType1');
     //  Map component names that would come from the layout config
-    var componentMappings = Event.getComponentMappings('view');
+    var componentMappings = Encounter.getComponentMappings('view');
 
     this.init = function(element, attrs){
       console.log('eventView init');
@@ -39,7 +39,7 @@ angular.module('openeyesApp')
 
     return {
       restrict: 'EA', //E = element, A = attribute, C = class, M = comment
-      templateUrl: 'views/directives/eventView.html',
+      templateUrl: 'views/directives/encounterView.html',
       controller: 'EventViewCrl', //Embed a custom controller in the directive
       link: function ($scope, element, attrs, EventViewCrl) {
         EventViewCrl.init(element, attrs);

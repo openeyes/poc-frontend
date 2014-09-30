@@ -8,9 +8,9 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('MainCtrl', ['$scope', 'Event', function ($scope, Event) {
+  .controller('MainCtrl', ['$scope', 'Workflow', function ($scope, Workflow) {
 
-    Event.getWorkflowConfig()
+    Workflow.getConfig()
     .success(function(data){
       $scope.workflows = data;
     })

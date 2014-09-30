@@ -2,29 +2,31 @@
 
 /**
  * @ngdoc function
- * @name openeyesApp.controller:ConfigurableEventCtrl
+ * @name openeyesApp.controller:EncounterDirectiveCtrl
  * @description
- * # ConfigurableEventCtrl
+ * # EncounterDirectiveCtrl
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('ConfigurableEventCtrl', ['$scope', '$compile', '$timeout', '$rootScope', '$routeParams', 'Event', 'Ticket', 'WORKFLOW_DOMAIN', function ($scope, $compile, $timeout, $rootScope, $routeParams, Event, Ticket, WORKFLOW_DOMAIN) {
+  .controller('EncounterDirectiveCtrl', [
+  '$scope', '$compile', '$timeout', '$rootScope', '$routeParams', 'Encounter', 'Workflow', 'Ticket', 'WORKFLOW_DOMAIN',
+  function ($scope, $compile, $timeout, $rootScope, $routeParams, Encounter, Workflow, Ticket, WORKFLOW_DOMAIN) {
 
     var self = this;
 
     this.init = function(element){
 
       $scope.form.submitted = false;
-      $scope.validations = Event.getValidationRules();
+      $scope.validations = Workflow.getValidationRules();
 
-      Event.setForm($scope.form);
-      this.componentMappings = Event.getComponentMappings();
+      Encounter.setForm($scope.form);
+      this.componentMappings = Workflow.getComponentMappings();
       this.element = element;
 
-      //  Broadcast by event page controller
-      $scope.$on('event.save', this.save);
+      //  Broadcast by encounter page controller
+      $scope.$on('encounter.save', this.save);
 
-      Event.getWorkflowConfig($routeParams.workflowId)
+      Workflow.getConfig($routeParams.workflowId)
       .then(function(workflow) {
         self.layoutConfig = workflow.data;
         self.stepIndex = $routeParams.stepIndex;
@@ -54,7 +56,7 @@ angular.module('openeyesApp')
         var cType = mandatoryFieldSets[index].type.split(WORKFLOW_DOMAIN + '.')[1];
         //  If component found then grab template and compile and append
         if(self.componentMappings[cType].hasOwnProperty(mandatoryFieldSets[index].name)) {
-          var template = self.componentMappings[cType][mandatoryFieldSets[index].name];
+          var template = '<ng-include src="\''+self.componentMappings[cType][mandatoryFieldSets[index].name] + '\'"></ng-include>';
           var cTemplate = $compile(template)($scope);
           this.element.find('form:first').append(cTemplate);
         } else {
@@ -90,11 +92,11 @@ angular.module('openeyesApp')
       console.log(postObject);
       console.log(JSON.stringify(postObject));
       // return;
-      Event.create(postObject)
+      Encounter.create(postObject)
         .success(function(data) {
           console.log('success', data);
-          Event.clearEventStack();
-          $rootScope.$broadcast('event.save.complete', {});
+          Encounter.clearElements();
+          $rootScope.$broadcast('encounter.save.complete', {});
         })
         .error(function(data, status, headers, config) {
           console.log(data, status, headers, config);
@@ -140,13 +142,13 @@ angular.module('openeyesApp')
     };
 
     this.buildPostObject = function(){
-      var eventComponents = Event.getEventStack();
+      var elementModels = Encounter.getElements();
       var postObject = {};
       var postElements = [];
       var elements = {};
 
-      for(var i = 0;i < eventComponents.length;i++){
-        var model = eventComponents[i];
+      for(var i = 0;i < elementModels.length;i++){
+        var model = elementModels[i];
         var name = model.name;
         var modelData = model.model;
 
@@ -178,14 +180,14 @@ angular.module('openeyesApp')
     };
 
   }])
-  .directive('oeEditableEvent', function () {
+  .directive('oeEncounter', function () {
 
     return {
       restrict: 'EA', //E = element, A = attribute, C = class, M = comment
-      templateUrl: 'views/directives/editableEvent.html',
-      controller: 'ConfigurableEventCtrl', //Embed a custom controller in the directive
-      link: function ($scope, element, attrs, ConfigurableEventCtrl) {
-        ConfigurableEventCtrl.init(element, attrs);
+      templateUrl: 'views/directives/encounter.html',
+      controller: 'EncounterDirectiveCtrl', //Embed a custom controller in the directive
+      link: function ($scope, element, attrs, EncounterDirectiveCtrl) {
+        EncounterDirectiveCtrl.init(element, attrs);
       }
     };
   });

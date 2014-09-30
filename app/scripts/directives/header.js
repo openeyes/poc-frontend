@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('openeyesApp')
-  .controller('HeaderCtrl', ['$scope', '$attrs', '$location', '$routeParams', 'Event', function($scope, $attrs, $location, $routeParams, Event){
+  .controller('HeaderCtrl', ['$scope', '$attrs', '$location', '$routeParams', 'Workflow', function($scope, $attrs, $location, $routeParams, Workflow){
 
 
     this.init = function() {
@@ -23,9 +23,9 @@ angular.module('openeyesApp')
         $scope.step = null;
         return;
       }
-      Event.getWorkflowConfig($routeParams.workflowId)
-        .then(function(data){
-          $scope.workflow = data.data;
+      Workflow.getConfig($routeParams.workflowId)
+        .then(function(response){
+          $scope.workflow = response.data;
         }, function(data, status, headers, config) {
           console.log('Error getting workflow', data, status, headers, config);
         });
