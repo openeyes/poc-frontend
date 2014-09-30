@@ -3,29 +3,29 @@
 angular.module('openeyesApp')
   .constant('workflowComponentMappings', {
     FormComponent: {
-      LaserSite: '/views/components/edit/laserSite.html',
-      Procedures: '/views/components/edit/procedures.html',
+      // LaserSite: '/views/components/edit/laserSite.html',
+      // Procedures: '/views/components/edit/procedures.html',
       Treatment: '/views/components/edit/treatment.html',
-      History: '/views/components/edit/history.html',
-      Comorbidities: '/views/components/edit/comorbidities.html',
-      VisualAcuity: '/views/components/edit/acuity.html',
-      Allergies: '/views/components/edit/allergies.html',
-      InjectionManagement: '/views/components/edit/injectionManagement.html',
-      PosteriorPole: '/views/components/edit/posteriorPole.html',
-      Anaesthetic: '/views/components/edit/anaesthetic.html',
-      ClinicOutcome: '/views/components/edit/clinicOutcome.html',
-      ClinicalManagement: '/views/components/edit/clinicalManagement.html',
-      InjectionSite: '/views/components/edit/injectionSite.html',
-      Complications: '/views/components/edit/complications.html',
-      Dilation: '/views/components/edit/dilation.html',
-      TreatmentOrder: '/views/components/edit/treatmentOrder.html'
+      // History: '/views/components/edit/history.html',
+      // Comorbidities: '/views/components/edit/comorbidities.html',
+      // VisualAcuity: '/views/components/edit/acuity.html',
+      // Allergies: '/views/components/edit/allergies.html',
+      // InjectionManagement: '/views/components/edit/injectionManagement.html',
+      // PosteriorPole: '/views/components/edit/posteriorPole.html',
+      // Anaesthetic: '/views/components/edit/anaesthetic.html',
+      // ClinicOutcome: '/views/components/edit/clinicOutcome.html',
+      // ClinicalManagement: '/views/components/edit/clinicalManagement.html',
+      // InjectionSite: '/views/components/edit/injectionSite.html',
+      // Complications: '/views/components/edit/complications.html',
+      // Dilation: '/views/components/edit/dilation.html',
+      // TreatmentOrder: '/views/components/edit/treatmentOrder.html'
     },
     ViewComponent: {
-      VisualAcuity: '/views/components/view/acuity.html',
-      History: '/views/components/view/history.html',
-      TreatmentOrder: '/views/components/view/treatmentOrder.html',
-      InjectionSite: '/views/components/view/injectionSite.html',
-      Anaesthetic: '/views/components/view/anaesthetic.html'
+      // VisualAcuity: '/views/components/view/acuity.html',
+      // History: '/views/components/view/history.html',
+      // TreatmentOrder: '/views/components/view/treatmentOrder.html',
+      // InjectionSite: '/views/components/view/injectionSite.html',
+      // Anaesthetic: '/views/components/view/anaesthetic.html'
     }
   })
   .factory('Workflow', ['$http', 'workflowComponentMappings', 'ENV', function($http, workflowComponentMappings, ENV) {
