@@ -8,12 +8,9 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('OctSlicesViewCtrl', ['$scope', '$routeParams', '$timeout', 'Element', 'Ticket', 'MODEL_DOMAIN', function($scope, $routeParams, $timeout, Element, Ticket, MODEL_DOMAIN){
+  .controller('OctSlicesViewCtrl', ['$scope', '$timeout', '$element', '$attrs', 'Element', function($scope, $timeout, $element, $attrs, Element){
 
     var self = this;
-
-    var SLICE_HEIGHT = 452;
-    var SLICE_WIDTH = 588;
 
     var STEP_INITIAL_SPEED = 225;
     var STEP_VELOCITY = 75;
@@ -22,12 +19,12 @@ angular.module('openeyesApp')
 
     this.init = function(element){
 
-      this.image = element.find('.img');
-      this.tooltip = element.find('.position-tooltip');
-      this.range = element.find('.range');
+      this.image = $element.find('.img');
+      this.tooltip = $element.find('.position-tooltip');
+      this.range = $element.find('.range');
 
       this.stepSpeed = STEP_INITIAL_SPEED;
-      this.containerWidth = element.width();
+      this.containerWidth = $element.width();
       this.tooltipWidth = this.tooltip.width();
       this.rangeWidth = this.range.width();
       this.handleWidth = 50;
@@ -78,6 +75,15 @@ angular.module('openeyesApp')
       self.range.focus();
     };
 
+    this.getImageData = function() {
+      return Element.getOCTImages()
+        .then(function(response) {
+          self.imageUrl = response.data[$attrs.side][0];
+        }, function() {
+          console.log('Error getting oct images')
+        });
+    };
+
     this.positionTooltip = function() {
 
       var perc = $scope.selectedRange / $scope.max;
@@ -100,15 +106,6 @@ angular.module('openeyesApp')
 
       self.tooltip.css('left', Math.floor(px) + 'px');
     }
-
-    this.getImageData = function() {
-      return Element.getOCTImages()
-        .then(function(response) {
-          self.imageUrl = response.data[0];
-        }, function() {
-          console.log('Error getting oct images')
-        });
-    };
 
     this.positionImage = function() {
 
@@ -145,15 +142,13 @@ angular.module('openeyesApp')
   }])
   .directive('oeOctSlicesView', [function () {
     return {
-      restrict: 'EA', //E = element, A = attribute, C = class, M = comment
-      scope: {
-        data: '='
-      },
+      restrict: 'E', //E = element, A = attribute, C = class, M = comment
+      scope: {},
       replace: true,
       templateUrl: 'views/directives/octSlicesView.html',
       controller: 'OctSlicesViewCtrl', //Embed a custom controller in the directive
       link: function (scope, element, attrs, OctSlicesViewCtrl) {
-        OctSlicesViewCtrl.init(element);
+        OctSlicesViewCtrl.init();
       }
     };
   }]);

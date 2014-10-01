@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('openeyesApp')
-  .controller('OctRetinalView', ['$scope', '$routeParams', '$timeout', 'Element', 'MODEL_DOMAIN', function($scope, $routeParams, $timeout, Element, MODEL_DOMAIN){
+  .controller('OctRetinalView', ['$scope', '$attrs', 'Element', function($scope, $attrs, Element){
 
     var self = this;
 
@@ -23,7 +23,7 @@ angular.module('openeyesApp')
     this.getImageData = function() {
       return Element.getRetinalScans()
         .then(function(response) {
-          $scope.images = response.data;
+          $scope.images = response.data[$attrs.side];
         }, function() {
           console.log('Error getting retinal scans');
         });
@@ -37,7 +37,7 @@ angular.module('openeyesApp')
       templateUrl: 'views/directives/octRetinalView.html',
       controller: 'OctRetinalView', //Embed a custom controller in the directive
       link: function (scope, element, attrs, OctRetinalView) {
-        OctRetinalView.init(element);
+        OctRetinalView.init();
       }
     };
   }]);

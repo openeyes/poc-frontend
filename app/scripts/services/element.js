@@ -20,10 +20,15 @@ angular.module('openeyesApp')
       },
       getOCTImages: function(){
 
+        var images = [
+          '/images/oct-slices/sprite.jpg'
+        ];
+
         var response = {
-          data: [
-            '/images/oct-slices/sprite.jpg'
-          ]
+          data: {
+            rightEye: images,
+            leftEye: images
+          }
         };
 
         var deferred = $q.defer();
@@ -33,15 +38,20 @@ angular.module('openeyesApp')
       },
       getRetinalScans: function() {
 
+        var images = [
+          '/images/retinal-scans/1.png',
+          '/images/retinal-scans/2.png',
+          '/images/retinal-scans/3.png',
+          '/images/retinal-scans/4.png',
+          '/images/retinal-scans/5.png',
+          '/images/retinal-scans/6.png'
+        ];
+
         var response = {
-          data: [
-            '/images/retinal-scans/1.png',
-            '/images/retinal-scans/2.png',
-            '/images/retinal-scans/3.png',
-            '/images/retinal-scans/4.png',
-            '/images/retinal-scans/5.png',
-            '/images/retinal-scans/6.png'
-          ]
+          data: {
+            rightEye: images,
+            leftEye: images
+          }
         };
 
         var deferred = $q.defer();

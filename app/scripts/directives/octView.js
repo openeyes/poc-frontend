@@ -6,12 +6,23 @@ angular.module('openeyesApp')
     var self = this;
 
     this.init = function() {
-      $('.oct-nav-tabs a').click(function (e) {
+
+      var tabAnchors = angular.element('.oct-nav-tabs a');
+
+      tabAnchors.on('click', function (e) {
         e.preventDefault()
-        $(this).tab('show')
+        angular.element(this).tab('show');
+        $scope.selectedTab = tabAnchors.index(this);
+        $scope.$digest();
+      });
+
+      // We can't immediately trigger this event as it the handler will be
+      // called synchronously and we'll get $digest errors, so we wait until
+      // the current $digest is complete.
+      $timeout(function() {
+        tabAnchors.eq(0).trigger('click');
       });
     };
-
   }])
   .directive('oeOctView', [function () {
     return {
