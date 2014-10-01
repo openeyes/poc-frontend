@@ -6,6 +6,7 @@ angular.module('openeyesApp')
       // LaserSite: '/views/components/edit/laserSite.html',
       // Procedures: '/views/components/edit/procedures.html',
       Treatment: '/views/components/edit/treatment.html',
+      // Treatment: '/views/components/edit/treatment.html',
       // History: '/views/components/edit/history.html',
       // Comorbidities: '/views/components/edit/comorbidities.html',
       // VisualAcuity: '/views/components/edit/acuity.html',

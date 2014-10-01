@@ -1,2 +1,26 @@
-<div style="height:100px;width:512px;" data-side="rightEye"></div>
-<input id="test" type="range" min="1" max="10" step="1" ng-model="currentSlice" ng-change="navToSlice(currentSlice - 1)" style="width:512px;">
+
+<div class="img-slider">
+  <a class="img" href="#">
+    <span class="msg">
+      <span ng-show="loading">Loading scans, please wait...</span>
+      <span ng-show="error">Sorry, there was an error loading the scans.</span>
+    </span>
+  </a>
+  <div class="slider">
+    <a href="#" class="step step-down">
+      <span class="caret caret-left">
+        Step down
+      </span>
+    </a>
+    <input type="range" min="1" max="200" step="1" ng-model="selectedRange" ng-change="change()" />
+    <a href="#" class="step step-up">
+      <span class="caret caret-right">
+        Step up
+      </span>
+    </a>
+  </div>
+</div>
+
+<!-- <div style="height:100px;width:512px;" data-side="rightEye"></div>
+<input id="test" type="range" min="1" max="10" step="1" ng-model="currentSlice" ng-change="navToSlice(currentSlice - 1)" style="width:512px;"> -->
+

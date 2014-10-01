@@ -8,94 +8,62 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('OctSlicesViewCtrl', ['$scope', '$routeParams', 'Element', 'Ticket', 'MODEL_DOMAIN', function($scope, $routeParams, Element, Ticket, MODEL_DOMAIN){
+  .controller('OctSlicesViewCtrl', ['$scope', '$routeParams', '$timeout', 'Element', 'Ticket', 'MODEL_DOMAIN', function($scope, $routeParams, $timeout, Element, Ticket, MODEL_DOMAIN){
 
     var self = this;
-    var SLICE_HEIGHT = 100;
 
-    this.image = null;
-    this.imageUrl = '';
-    this.$rightCanvas = null;
-    this.$leftCanvas = null;
+    var SLICE_HEIGHT = 452;
+    var SLICE_WIDTH = 588;
 
-    $scope.currentSlice = 1;
+    var COLS = 20;
 
     this.init = function(element){
 
-      // Grab the right canvas to draw to
-      // Could make a view per eye rather than this composite
-      self.$rightCanvas = element.find('[data-side=rightEye]');
+      this.image = element.find('.img');
 
+      $scope.loading = true;
+      $scope.selectedRange = 1;
+      $scope.error = false;
       $scope.model = {};
-      $scope.patient = null;
 
-      // $scope.$watch('patient', function(patient) {
-      //   if (patient) {
-      //     self.getElement();
-      //   }
-      // });
-
-      // this.getPatient();
-
-      // Fake getting image references
-      self.imageUrl = Element.getOCTImages()[0];
-
-      self.loadImage();
-
+      this.loadImage();
     };
 
-    $scope.navToSlice = function(index){
-      self.paintImageToCanvas(index);
+    $scope.change = function() {
+
+      var index = ($scope.selectedRange -1);
+      var row = Math.floor(index / COLS);
+      var col = (index % COLS);
+      var top = row * SLICE_HEIGHT * -1;
+      var left = col * SLICE_WIDTH * -1;
+
+      self.image.css('background-position', left + 'px ' + top + 'px');
     };
 
     this.loadImage = function(){
-      self.image = new Image();
-      self.image.src = self.imageUrl;
-      self.image.onload = self.imageLoaded;
+
+      this.imageUrl = Element.getOCTImages()[0];
+
+      var image = new Image();
+      image.src = this.imageUrl;
+      image.onload = this.imageLoaded.bind(this);
+      image.onerror = this.imageError.bind(this);
+    };
+
+    this.imageError = function() {
+      $scope.loading = false;
+      $scope.error = true;
     };
 
     this.imageLoaded = function(){
-      self.$rightCanvas.css('background-image', 'url(' + self.image.src + ')');
-      self.$rightCanvas.css('background-size', '100% auto');
-      $scope.navToSlice(0);
+      $scope.loading = false;
+      $timeout(function() {
+        self.image.css('background-image', 'url(' + self.imageUrl + ')');
+        $scope.change();
+      });
     };
-
-    this.paintImageToCanvas = function(backgroundOffset){
-      var adjustment = backgroundOffset * SLICE_HEIGHT;
-      self.$rightCanvas.css('background-position-y', -adjustment + 'px');
-    };
-
-    // this.getPatient = function() {
-    //   Ticket.getTicket($routeParams.ticketId)
-    //     .then(function(data) {
-    //       $scope.patient = data.data.patient;
-    //     }, function(data, status, headers, config) {
-    //       console.log('Error getting patient data', data, status, headers, config);
-    //     });
-    // };
-
-    // this.getElement = function() {
-
-    //   // Request element for todays date
-    //   var today = Date.now();
-    //   var eType = MODEL_DOMAIN + 'OctSlices';
-
-    //   Element.getElements($scope.patient._id.$oid, eType, today)
-    //     .then(function(data) {
-    //       $scope.model = data.data[0];
-    //     }, function(error) {
-    //       console.log(error);
-    //     });
-    // };
 
   }])
-  /**
-   * @ngdoc function
-   * @name openeyesApp.directive:oeOctSlicesView
-   * @description
-   * # oeOctSlicesView
-   * Directive of the openeyesApp
-   */
   .directive('oeOctSlicesView', [function () {
     return {
       restrict: 'EA', //E = element, A = attribute, C = class, M = comment

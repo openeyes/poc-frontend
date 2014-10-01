@@ -1,4 +1,4 @@
-// Icons
+// Image icons sprites
 
 [class^="icon-"] {
   @include text-hide;
@@ -7,6 +7,9 @@
 }
 
 @include sprite($oe-sprite-icons-large, "icon-lg", 35px, 35px);
+
+
+// CSS icons from here
 
 .notification {
   background: #ec4867;
