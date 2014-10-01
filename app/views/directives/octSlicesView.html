@@ -1,4 +1,3 @@
-
 <div class="img-slider">
   <a class="img" href="#">
     <span class="msg">
@@ -7,20 +6,20 @@
     </span>
   </a>
   <div class="slider">
-    <a href="#" class="step step-down">
+    <div class="position-tooltip" ng-show="showTooltip">
+      <span class="cur">{{selectedRange}}</span>
+      <span class="total">/ {{max}}</span>
+    </div>
+    <a href="#" class="step step-down" ng-click="$event.preventDefault()" ng-mousedown="stepDown($event)" ng-mouseup="stopStepping()">
       <span class="caret caret-left">
         Step down
       </span>
     </a>
-    <input type="range" min="1" max="200" step="1" ng-model="selectedRange" ng-change="change()" />
-    <a href="#" class="step step-up">
+    <input type="range" class="range" min="{{min}}" max="{{max}}" step="{{step}}" ng-disabled="error" ng-model="selectedRange" ng-change="change()" ng-mouseenter="showTooltip=true" ng-mouseleave="showTooltip=false"/>
+    <a href="#" class="step step-up" ng-click="$event.preventDefault()" ng-mousedown="stepUp($event)" ng-mouseup="stopStepping()">
       <span class="caret caret-right">
         Step up
       </span>
     </a>
   </div>
 </div>
-
-<!-- <div style="height:100px;width:512px;" data-side="rightEye"></div>
-<input id="test" type="range" min="1" max="10" step="1" ng-model="currentSlice" ng-change="navToSlice(currentSlice - 1)" style="width:512px;"> -->
-
