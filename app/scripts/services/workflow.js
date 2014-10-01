@@ -22,11 +22,12 @@ angular.module('openeyesApp')
       // TreatmentOrder: '/views/components/edit/treatmentOrder.html'
     },
     ViewComponent: {
-      // VisualAcuity: '/views/components/view/acuity.html',
-      // History: '/views/components/view/history.html',
-      // TreatmentOrder: '/views/components/view/treatmentOrder.html',
-      // InjectionSite: '/views/components/view/injectionSite.html',
-      // Anaesthetic: '/views/components/view/anaesthetic.html'
+      VisualAcuity: '/views/components/view/acuity.html',
+      History: '/views/components/view/history.html',
+      TreatmentOrder: '/views/components/view/treatmentOrder.html',
+      InjectionSite: '/views/components/view/injectionSite.html',
+      Anaesthetic: '/views/components/view/anaesthetic.html',
+      OCT: 'views/components/view/oct.html'
     }
   })
   .factory('Workflow', ['$http', 'workflowComponentMappings', 'ENV', function($http, workflowComponentMappings, ENV) {

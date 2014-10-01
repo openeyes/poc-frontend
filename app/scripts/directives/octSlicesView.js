@@ -14,6 +14,7 @@ angular.module('openeyesApp')
 
     var SLICE_HEIGHT = 452;
     var SLICE_WIDTH = 588;
+
     var STEP_INITIAL_SPEED = 225;
     var STEP_VELOCITY = 75;
     var STEP_MAX_SPEED = 25;
@@ -30,6 +31,8 @@ angular.module('openeyesApp')
       this.tooltipWidth = this.tooltip.width();
       this.rangeWidth = this.range.width();
       this.handleWidth = 50;
+      this.sliceWidth = this.image.width();
+      this.sliceHeight = this.image.height();
 
       $scope.showTooltip = false;
       $scope.loading = true;
@@ -40,7 +43,8 @@ angular.module('openeyesApp')
       $scope.max = 200;
       $scope.model = {};
 
-      this.loadImage();
+      this.getImageData()
+      .then(this.loadImage.bind(this));
     };
 
     $scope.change = function() {
@@ -49,6 +53,9 @@ angular.module('openeyesApp')
     };
 
     $scope.stepDown = function() {
+      if ($scope.error) {
+        return;
+      }
       $scope.selectedRange = Math.max(Number($scope.selectedRange) - $scope.step, $scope.min);
       $scope.change();
       self.stepSpeed -= STEP_VELOCITY;
@@ -56,6 +63,9 @@ angular.module('openeyesApp')
     };
 
     $scope.stepUp = function() {
+      if ($scope.error) {
+        return;
+      }
       $scope.selectedRange = Math.min(Number($scope.selectedRange) + $scope.step, $scope.max);
       $scope.change();
       self.stepSpeed -= STEP_VELOCITY;
@@ -91,21 +101,27 @@ angular.module('openeyesApp')
       self.tooltip.css('left', Math.floor(px) + 'px');
     }
 
+    this.getImageData = function() {
+      return Element.getOCTImages()
+        .then(function(response) {
+          self.imageUrl = response.data[0];
+        }, function() {
+          console.log('Error getting oct images')
+        });
+    };
+
     this.positionImage = function() {
 
       var index = Number($scope.selectedRange) - 1;
       var row = Math.floor(index / COLS);
       var col = (index % COLS);
-      var top = row * SLICE_HEIGHT * -1;
-      var left = col * SLICE_WIDTH * -1;
+      var top = row * self.sliceHeight * -1;
+      var left = col * self.sliceWidth * -1;
 
       self.image.css('background-position', left + 'px ' + top + 'px');
     };
 
     this.loadImage = function(){
-
-      this.imageUrl = Element.getOCTImages()[0];
-
       var image = new Image();
       image.src = this.imageUrl;
       image.onload = this.imageLoaded.bind(this);
@@ -115,6 +131,7 @@ angular.module('openeyesApp')
     this.imageError = function() {
       $scope.loading = false;
       $scope.error = true;
+      $scope.$digest();
     };
 
     this.imageLoaded = function(){
@@ -129,7 +146,9 @@ angular.module('openeyesApp')
   .directive('oeOctSlicesView', [function () {
     return {
       restrict: 'EA', //E = element, A = attribute, C = class, M = comment
-      scope: {},
+      scope: {
+        data: '='
+      },
       replace: true,
       templateUrl: 'views/directives/octSlicesView.html',
       controller: 'OctSlicesViewCtrl', //Embed a custom controller in the directive

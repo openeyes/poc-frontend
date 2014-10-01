@@ -49,6 +49,13 @@ angular.module('openeyesApp')
         return el.required === true || !el.hasOwnProperty('required');
       });
 
+      // FIXME
+      mandatoryFieldSets.push({
+        label: 'OCT',
+        name: 'OCT',
+        type: 'org.openeyes.api.models.workflow.ViewComponent'
+      });
+
       //  Loop over given layout components and add into container
       for(var index = 0;index < mandatoryFieldSets.length;index++){
 

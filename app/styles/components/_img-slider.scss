@@ -1,15 +1,13 @@
 // Image slider
 
 .img-slider {
-  border: 1px solid #cbd4d9;
-  float: left;
   .img {
     background: #aaa;
     display: block;
-    height: 452px;
-    margin: 8px;
+    height: 400px;
+    margin: 7px;
     position: relative;
-    width: 588px;
+    width: 546px;
     .msg {
       color: #FFF;
       position: absolute;

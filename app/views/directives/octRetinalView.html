@@ -1,0 +1,13 @@
+<div class="img-viewer retinal-scans element-box">
+  <h3>
+    BSCAN X Plane
+  </h3>
+  <a class="img" href="#" ng-style="style">
+  </a>
+  <ul class="thumbnails">
+    <li ng-repeat="img in images">
+      <a href="#" ng-click="$event.preventDefault();select(img)" style="background-image:url('{{img}}');" ng-class="{ selected: img === selectedImage }">
+      </a>
+    </li>
+  </ul>
+</div>

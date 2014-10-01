@@ -20,11 +20,34 @@ angular.module('openeyesApp')
       },
       getOCTImages: function(){
 
-        var images = [
-          '/images/oct-slices/sprite.jpg'
-        ];
+        var response = {
+          data: [
+            '/images/oct-slices/sprite.jpg'
+          ]
+        };
 
-        return images;
+        var deferred = $q.defer();
+        deferred.resolve(response);
+
+        return deferred.promise;
+      },
+      getRetinalScans: function() {
+
+        var response = {
+          data: [
+            '/images/retinal-scans/1.png',
+            '/images/retinal-scans/2.png',
+            '/images/retinal-scans/3.png',
+            '/images/retinal-scans/4.png',
+            '/images/retinal-scans/5.png',
+            '/images/retinal-scans/6.png'
+          ]
+        };
+
+        var deferred = $q.defer();
+        deferred.resolve(response);
+
+        return deferred.promise;
       }
     };
 

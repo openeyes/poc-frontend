@@ -1,0 +1,30 @@
+<ul class="nav nav-tabs oct-nav-tabs" role="tablist">
+  <li class="active"><a href="#right" role="tab" data-toggle="tab">Right eye OCT Scan</a></li>
+  <li><a href="#left" role="tab" data-toggle="tab">Left eye OCT scan</a></li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane active" id="right">
+    <div class="row">
+      <div class="col-xs-6">
+        <oe-oct-retinal-view data-side="right"></oe-oct-retinal-view>
+      </div>
+      <div class="col-xs-6">
+        <oe-oct-slices-view data-side="right"></oe-oct-slices-view>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane" id="left">
+    <div class="row">
+      <div class="col-xs-6">
+        <oe-oct-retinal-view data-side="left"></oe-oct-retinal-view>
+      </div>
+      <div class="col-xs-6">
+        <oe-oct-slices-view data-side="left"></oe-oct-slices-view>
+      </div>
+    </div>
+  </div>
+</div>
+
+

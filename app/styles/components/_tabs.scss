@@ -1,0 +1,17 @@
+// Tabs
+
+.nav-tabs {
+  border-bottom: 1px solid #d8dfe3;
+  > li {
+    &.active {
+      > a {
+        background-color: #fff;
+        color: #0f1922;
+      }
+    }
+  }
+}
+
+.tab-content {
+  padding-top: 40px;
+}
