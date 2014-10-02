@@ -49,8 +49,16 @@ angular.module('openeyesApp')
 
         var response = {
           data: {
-            rightEye: images,
-            leftEye: images
+            rightEye: {
+              crt: '40mm',
+              st: '20mm',
+              images: images
+            },
+            leftEye: {
+              crt: '40mm',
+              st: '20mm',
+              images: images
+            }
           }
         };
 

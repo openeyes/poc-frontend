@@ -3,14 +3,24 @@ the UI components rely on the elements being visible -->
 
 
 <ul class="nav nav-tabs oct-nav-tabs" role="tablist">
-  <li><a href="#right" role="tab" data-toggle="tab">Right eye OCT Scan</a></li>
-  <li><a href="#left" role="tab" data-toggle="tab">Left eye OCT scan</a></li>
+  <li>
+    <a href="#right" role="tab" data-toggle="tab">
+      <span ng-class="selectedTab === 0 ? 'icon-tab-righteye-on' : 'icon-tab-righteye-off'"></span>
+      Right eye OCT Scan
+    </a>
+  </li>
+  <li>
+    <a href="#left" role="tab" data-toggle="tab">
+      <span ng-class="selectedTab === 1 ? 'icon-tab-lefteye-on' : 'icon-tab-lefteye-off'"></span>
+      Left eye OCT scan
+    </a>
+  </li>
 </ul>
 
 <!-- Tab panes -->
 <div class="tab-content">
   <div class="tab-pane" id="right">
-    <div class="row" ng-if="selectedTab === 0">
+    <div class="row" ng-if="hasSelected(0)">
       <div class="col-xs-6">
         <oe-oct-retinal-view data-side="rightEye"></oe-oct-retinal-view>
       </div>
@@ -20,7 +30,7 @@ the UI components rely on the elements being visible -->
     </div>
   </div>
   <div class="tab-pane" id="left">
-    <div class="row" ng-if="selectedTab === 1">
+    <div class="row" ng-if="hasSelected(1)">
       <div class="col-xs-6">
         <oe-oct-retinal-view data-side="leftEye"></oe-oct-retinal-view>
       </div>

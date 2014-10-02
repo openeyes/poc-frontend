@@ -44,7 +44,6 @@ angular.module('openeyesApp')
       Element.getElements($scope.patient._id.$oid, eType, today)
         .then(function(data) {
           $scope.model = data.data[0];
-          console.log($scope.model);
         }, function(error) {
           console.log(error);
         });

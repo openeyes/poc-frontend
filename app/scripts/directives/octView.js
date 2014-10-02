@@ -4,25 +4,33 @@ angular.module('openeyesApp')
   .controller('OctView', ['$scope', '$routeParams', '$timeout', 'Element', 'MODEL_DOMAIN', function($scope, $routeParams, $timeout, Element, MODEL_DOMAIN){
 
     var self = this;
+    var tabs;
+    var selected = [];
 
     this.init = function() {
 
-      var tabAnchors = angular.element('.oct-nav-tabs a');
+      tabs = angular.element('.oct-nav-tabs a')
+        .on('click', this.selectTab.bind(this));
 
-      tabAnchors.on('click', function (e) {
-        e.preventDefault()
-        angular.element(this).tab('show');
-        $scope.selectedTab = tabAnchors.index(this);
-        $scope.$digest();
-      });
-
-      // We can't immediately trigger this event as it the handler will be
-      // called synchronously and we'll get $digest errors, so we wait until
-      // the current $digest is complete.
       $timeout(function() {
-        tabAnchors.eq(0).trigger('click');
+        tabs.eq(0).trigger('click');
       });
     };
+
+    this.selectTab = function (e) {
+      e.preventDefault()
+      var tab = e.target;
+      angular.element(tab).tab('show');
+      $scope.selectedTab = tabs.index(tab);
+      if (!$scope.hasSelected($scope.selectedTab)) {
+        selected.push($scope.selectedTab);
+      }
+      $scope.$digest();
+    };
+
+    $scope.hasSelected = function(index) {
+      return selected.indexOf(index) !== -1;
+    }
   }])
   .directive('oeOctView', [function () {
     return {

@@ -1,5 +1,8 @@
 // Image icons sprites
 
+$oe-sprite-icons-large: "icons/large/*.png";
+$oe-sprite-icons-tab: "icons/tabs/*.png";
+
 [class^="icon-"] {
   @include text-hide;
   display: inline-block;
@@ -7,6 +10,7 @@
 }
 
 @include sprite($oe-sprite-icons-large, "icon-lg", 35px, 35px);
+@include sprite($oe-sprite-icons-tab, "icon-tab", 53px, 35px);
 
 
 // CSS icons from here

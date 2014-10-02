@@ -3,10 +3,15 @@
 .nav-tabs {
   border-bottom: 1px solid #d8dfe3;
   > li {
+    a {
+      color: #0f1922;
+      background: #e7ebed;
+    }
     &.active {
       > a {
-        background-color: #fff;
-        color: #0f1922;
+        &, &:hover {
+          background-color: #fff;
+        }
       }
     }
   }

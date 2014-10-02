@@ -9,7 +9,7 @@ angular.module('openeyesApp')
 
       $scope.selectedImage = null;
 
-      this.getImageData()
+      this.getData()
       .then($scope.select);
     };
 
@@ -20,10 +20,13 @@ angular.module('openeyesApp')
       };
     };
 
-    this.getImageData = function() {
+    this.getData = function() {
       return Element.getRetinalScans()
         .then(function(response) {
-          $scope.images = response.data[$attrs.side];
+          var data = response.data[$attrs.side];
+          $scope.images = data.images;
+          $scope.crt = data.crt;
+          $scope.st = data.st;
         }, function() {
           console.log('Error getting retinal scans');
         });
