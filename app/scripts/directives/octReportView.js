@@ -15,6 +15,7 @@ angular.module('openeyesApp')
       $scope.selectedImage = null;
       $scope.images = [];
       $scope.loaded = false;
+      $scope.side = $attrs.side;
 
       this.getPatient()
       .then(this.getElement)
