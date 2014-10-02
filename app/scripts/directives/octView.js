@@ -19,7 +19,7 @@ angular.module('openeyesApp')
 
     this.selectTab = function (e) {
       e.preventDefault()
-      var tab = e.target;
+      var tab = e.currentTarget;
       angular.element(tab).tab('show');
       $scope.selectedTab = tabs.index(tab);
       if (!$scope.hasSelected($scope.selectedTab)) {

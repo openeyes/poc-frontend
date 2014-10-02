@@ -24,7 +24,7 @@ angular.module('openeyesApp')
       this.scanInput
       .on('focus', this.startScan.bind(this))
       .on('blur', this.stopScan.bind(this))
-      .on('keypress', debounce(this.updateVal, 100))
+      .on('keypress', debounce(this.updateVal, 200))
     };
 
     $scope.scan = function() {

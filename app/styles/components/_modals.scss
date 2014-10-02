@@ -35,3 +35,13 @@
     opacity: 0.7;
   }
 }
+
+.modal {
+  &.fade .modal-dialog {
+    @include translate3d(0, 0, 0);
+    @include transition-transform(none);
+  }
+  &.in .modal-dialog {
+    @include translate3d(0, 0, 0);
+  }
+}

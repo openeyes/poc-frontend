@@ -22,8 +22,9 @@
       margin: 7px 0 7px 7px;
     }
     a {
-      background-size: 100%;
       background-position: center center;
+      background-repeat: no-repeat;
+      background-size: contain;
       border: 1px solid #edf1f2;
       display: block;
       height: 64px;
@@ -32,14 +33,14 @@
         outline: 2px solid #32abae;
         position: relative;
         &:after {
-          position: absolute;
-          content: '';
-          width: 33px;
-          height: 16px;
           background: image-url("icons/tip.png") no-repeat;
-          margin-left: -16px;
+          content: '';
+          height: 16px;
           left: 50%;
+          margin-left: -16px;
+          position: absolute;
           top: -24px;
+          width: 33px;
         }
       }
     }

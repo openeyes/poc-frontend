@@ -4,7 +4,22 @@
 
 <oe-barcode-scan model="scanValue"></oe-barcode-scan>
 
-{{scanValue}}
+<table class="table table-plain report-data" ng-show="scanValue">
+  <tbody>
+    <tr>
+      <th scope="row">Drug:</th>
+      <td>{{model.drug}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Batch number:</th>
+      <td>{{model.batchNumber}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Batch Expiry Date:</th>
+      <td>{{model.batchExpiryDate}}</td>
+    </tr>
+  </tbody>
+</table>
 
 <!--
 <div class="form-group row">
