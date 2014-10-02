@@ -1,5 +1,12 @@
+<h3>Medication</h3>
+
+<p>Use your barcode scanner to scan the injection medication to record batch details. Barcode scanner must be plugged into a USB port.</p>
+
 <oe-barcode-scan model="scanValue"></oe-barcode-scan>
 
+{{scanValue}}
+
+<!--
 <div class="form-group row">
   <label for="batch-number-{{side}}" class="col-xs-4 control-label">Batch Number:</label>
   <div class="col-xs-8">
@@ -23,6 +30,9 @@
       />
   </div>
 </div>
+-->
+
+<hr />
 
 <div class="form-group row">
   <label for="injection-person-{{side}}" class="col-xs-4 control-label">Injection Given By:</label>

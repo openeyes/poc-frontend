@@ -16,6 +16,7 @@ angular.module('openeyesApp')
     this.init = function() {
       $scope.scan = this.scan.bind(this);
       this.scanInput = $element.find('.scan-input');
+      this.modal = $element.find('.modal');
       this.bindEvents();
     };
 
@@ -23,20 +24,22 @@ angular.module('openeyesApp')
       this.scanInput
       .on('focus', function() {
         self.scanInput.val('');
-        $scope.isScanning = true;
       })
       .on('blur', function() {
         self.scanInput.val('');
         self.scanInput.attr('disabled', 'disabled');
-        $scope.isScanning = false;
+        self.modal.modal('hide');
         $scope.$apply();
       })
       .on('keypress', debounce(this.updateVal, 100))
     };
 
     this.scan = function() {
-      this.scanInput.removeAttr('disabled');
-      this.scanInput.focus();
+      this.modal.modal('show')
+      .on('shown.bs.modal', function() {
+        self.scanInput.removeAttr('disabled');
+        self.scanInput.focus();
+      });
     };
 
     this.updateVal = function(){
