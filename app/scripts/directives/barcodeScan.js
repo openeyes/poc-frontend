@@ -1,20 +1,20 @@
 'use strict';
 
 angular.module('openeyesApp')
-  .controller('BarcodeScanCtrl', ['$scope', '$element', function($scope, $element){
+  .controller('BarcodeScanCtrl', ['$scope', '$element', '$timeout', function($scope, $element, $timeout){
 
+    var timer;
     var self = this;
 
     function debounce(fn, amount) {
       var timer = 0;
       return function() {
-        clearTimeout(timer);
-        timer = setTimeout(fn, amount);
+        $timeout.cancel(timer);
+        timer = $timeout(fn, amount);
       };
     }
 
     this.init = function() {
-      $scope.scan = this.scan.bind(this);
       this.scanInput = $element.find('.scan-input');
       this.modal = $element.find('.modal');
       this.bindEvents();
@@ -22,24 +22,26 @@ angular.module('openeyesApp')
 
     this.bindEvents = function() {
       this.scanInput
-      .on('focus', function() {
-        self.scanInput.val('');
-      })
-      .on('blur', function() {
-        self.scanInput.val('');
-        self.scanInput.attr('disabled', 'disabled');
-        self.modal.modal('hide');
-        $scope.$apply();
-      })
+      .on('focus', this.startScan.bind(this))
+      .on('blur', this.stopScan.bind(this))
       .on('keypress', debounce(this.updateVal, 100))
     };
 
-    this.scan = function() {
-      this.modal.modal('show')
+    $scope.scan = function() {
+      self.modal.modal('show')
       .on('shown.bs.modal', function() {
         self.scanInput.removeAttr('disabled');
         self.scanInput.focus();
       });
+    };
+
+    this.startScan = function() {
+      this.scanInput.val('');
+    };
+
+    this.stopScan = function() {
+      this.scanInput.val('').attr('disabled', 'disabled');
+      this.modal.modal('hide');
     };
 
     this.updateVal = function(){
