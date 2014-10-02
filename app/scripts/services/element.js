@@ -55,8 +55,8 @@ angular.module('openeyesApp')
               images: images
             },
             leftEye: {
-              crt: '40mm',
-              st: '20mm',
+              crt: '140mm',
+              st: '60mm',
               images: images
             }
           }
