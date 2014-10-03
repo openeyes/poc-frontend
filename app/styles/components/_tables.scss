@@ -10,4 +10,21 @@
       }
     }
   }
+  &.table-plain {
+    th, td {
+      border: 0;
+    }
+  }
+  &.report-data {
+    width: auto;
+    th {
+      font-weight: normal;
+    }
+    .highlight {
+      background: #effafa;
+      padding: 6px;
+      font-weight: 600;
+      font-size: 20px;
+    }
+  }
 }

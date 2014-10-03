@@ -1,3 +1,27 @@
+<h3>Medication</h3>
+
+<p>Use your barcode scanner to scan the injection medication to record batch details. Barcode scanner must be plugged into a USB port.</p>
+
+<oe-barcode-scan model="scanValue"></oe-barcode-scan>
+
+<table class="table table-plain report-data" ng-show="scanValue">
+  <tbody>
+    <tr>
+      <th scope="row">Drug:</th>
+      <td>{{model.drug}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Batch number:</th>
+      <td>{{model.batchNumber}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Batch Expiry Date:</th>
+      <td>{{model.batchExpiryDate}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<!--
 <div class="form-group row">
   <label for="batch-number-{{side}}" class="col-xs-4 control-label">Batch Number:</label>
   <div class="col-xs-8">
@@ -21,6 +45,9 @@
       />
   </div>
 </div>
+-->
+
+<hr />
 
 <div class="form-group row">
   <label for="injection-person-{{side}}" class="col-xs-4 control-label">Injection Given By:</label>

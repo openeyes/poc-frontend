@@ -21,6 +21,15 @@ angular.module('openeyesApp')
         }
       });
 
+      $scope.$watch('scanValue', function(val) {
+        if (val) {
+          var parts = val.split(',');
+          $scope.model.drug = parts[0];
+          $scope.model.batchNumber = parts[1];
+          $scope.model.batchExpiryDate = parts[2];
+        }
+      });
+
       Treatment.getInjectionPersonnel()
         .then(function(data){
           $scope.injectionPersonnel = data;

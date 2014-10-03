@@ -1,0 +1,48 @@
+// Image viewer
+
+.img-viewer {
+  margin-bottom: 20px;
+  .img {
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: block;
+    height: 400px;
+    margin: 7px;
+    position: relative;
+    width: 546px;
+  }
+  .thumbnails {
+    @extend .clearfix;
+    border-top: 1px solid #cbd4d9;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      float: left;
+      margin: 7px 0 7px 7px;
+    }
+    a {
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      border: 1px solid #edf1f2;
+      display: block;
+      height: 64px;
+      width: 85px;
+      &.selected {
+        outline: 2px solid #32abae;
+        position: relative;
+        &:after {
+          background: image-url("icons/tip.png") no-repeat;
+          content: '';
+          height: 16px;
+          left: 50%;
+          margin-left: -16px;
+          position: absolute;
+          top: -24px;
+          width: 33px;
+        }
+      }
+    }
+  }
+}

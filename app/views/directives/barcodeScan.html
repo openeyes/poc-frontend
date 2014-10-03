@@ -1,0 +1,28 @@
+<div class="barcode-scan">
+  <button
+    type="button"
+    class="btn btn-new"
+    ng-click="scan()"
+    ng-disabled="isScanning"
+    style="margin:20px 0">
+    <span class="icon-md-scan"></span>
+    Scan injectors medication
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade modal-scan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        </div>
+        <div class="modal-body">
+          <input type="text" class="scan-input" disabled />
+          Scan the medication now with your barcode scanner.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

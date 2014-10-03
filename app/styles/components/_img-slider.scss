@@ -1,0 +1,105 @@
+// Image slider
+
+.img-slider {
+  .img {
+    background: #aaa;
+    display: block;
+    height: 400px;
+    margin: 7px;
+    position: relative;
+    width: 546px;
+    .msg {
+      color: #FFF;
+      position: absolute;
+      text-align: center;
+      top: 45%;
+      width: 100%;
+    }
+  }
+  .slider {
+    border-top: 1px solid #cbd4d9;
+    height: 78px;
+    position: relative;
+  }
+  .step {
+    background: #fff;
+    display: block;
+    float: left;
+    height: 100%;
+    position: relative;
+    width: 34px;
+    .caret {
+      @include text-hide;
+      border-bottom: 6px solid transparent;
+      border-top: 6px solid transparent;
+      color: #32abae;
+      left: 50%;
+      margin-left: -3px;
+      margin-top: -5px;
+      position: absolute;
+      top: 50%;
+    }
+    .caret-right {
+      border-left: 8px solid;
+    }
+    .caret-left {
+      border-right: 8px solid;
+    }
+  }
+  .step-down {
+    border-right: 1px solid #cbd4d9;
+  }
+  .step-up {
+    border-left: 1px solid #cbd4d9;
+  }
+  .position-tooltip {
+    background: linear-gradient(to bottom, #444 0%, #111 80%, #000 100%);
+    border-radius: 4px;
+    color: #fff;
+    height: 30px;
+    line-height: 30px;
+    position: absolute;
+    text-align: center;
+    top: -30px;
+    width: 70px;
+    .cur {
+      font-size: 16px;
+      font-weight: 400;
+    }
+    .total {
+      color: #949494;
+      font-size: 12px;
+    }
+    &:after {
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-top: 10px solid;
+      bottom: -8px;
+      color: #000;
+      content: '';
+      left: 50%;
+      margin-left: -12px;
+      position: absolute;
+    }
+  }
+  input[type="range"] {
+    -webkit-appearance: none;
+    background: image-url("slider/bg.png") repeat-x center, #f6f7f8;
+    float: left;
+    height: 100%;
+    width: calc(100% - 68px);
+    &:focus {
+      box-shadow: inset 0 0 2px #3bc0c3;
+      outline: none;
+    }
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      background: image-url("slider/handle-bg.png") no-repeat center center, linear-gradient(to bottom, #3bc0c3 0%, #2d9fa2 100%);
+      border-radius: 2px;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+      height: 25px;
+      position: relative;
+      width: 50px;
+    }
+  }
+}

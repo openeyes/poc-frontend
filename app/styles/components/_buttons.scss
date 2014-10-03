@@ -1,7 +1,7 @@
 // Buttons
 
-.btn-default {
-  &.view-history {
+.btn {
+  &.btn-new {
     background: #3bc0c3;
     border-radius: 30px;
     border-color: transparent;
@@ -17,6 +17,10 @@
       border-right: 4px solid transparent;
       border-left: 4px solid transparent;
       margin-left: 4px;
+    }
+    [class^="icon-"] {
+      margin-left: -10px;
+      margin-right: 10px;
     }
   }
 }

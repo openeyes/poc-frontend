@@ -43,7 +43,10 @@ angular.module('openeyesApp')
 
       Element.getElements($scope.patient._id.$oid, eType, today)
         .then(function(response) {
-          console.log('RESPONSE', response);
+          if (!response.data.length) {
+            console.warn('No data for InjectionSiteView');
+            return;
+          }
           $scope.rightEye = response.data[0].rightEye.data;
           $scope.leftEye = response.data[0].leftEye.data;
         }, function(error) {
