@@ -22,24 +22,6 @@ angular.module('openeyesApp')
           method: 'GET',
           url: apiCall
         });
-      },
-      getOCTImages: function(){
-
-        var images = [
-          '/images/oct-slices/sprite.jpg'
-        ];
-
-        var response = {
-          data: {
-            rightEye: images,
-            leftEye: images
-          }
-        };
-
-        var deferred = $q.defer();
-        deferred.resolve(response);
-
-        return deferred.promise;
       }
     };
 
