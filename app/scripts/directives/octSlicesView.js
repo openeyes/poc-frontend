@@ -8,7 +8,7 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('OctSlicesViewCtrl', ['$scope', '$timeout', '$element', '$attrs', 'Element', function($scope, $timeout, $element, $attrs, Element){
+  .controller('OctSlicesViewCtrl', ['$scope', '$timeout', '$element', '$attrs', '$routeParams', 'Element', 'Ticket', 'MODEL_DOMAIN', function($scope, $timeout, $element, $attrs, $routeParams, Element, Ticket, MODEL_DOMAIN){
 
     var self = this;
 
@@ -24,7 +24,7 @@ angular.module('openeyesApp')
       this.range = $element.find('.range');
 
       this.stepSpeed = STEP_INITIAL_SPEED;
-      this.containerWidth = $element.width();
+      this.containerWidth = $element.find('.oct-slides').width();
       this.tooltipWidth = this.tooltip.width();
       this.rangeWidth = this.range.width();
       this.handleWidth = 50;
@@ -38,9 +38,13 @@ angular.module('openeyesApp')
       $scope.step = 1;
       $scope.min = 1;
       $scope.max = 200;
+      $scope.loaded = false;
+      $scope.hasData = false;
       $scope.model = {};
+      $scope.side = $attrs.side;
 
-      this.getImageData()
+      this.getPatient()
+      .then(this.getImageData)
       .then(this.loadImage.bind(this));
     };
 
@@ -75,12 +79,32 @@ angular.module('openeyesApp')
       self.range.focus();
     };
 
+    this.getPatient = function() {
+      return Ticket.getTicket($routeParams.ticketId)
+        .then(function(data) {
+          $scope.patient = data.data.patient;
+        }, function(data, status, headers, config) {
+          console.log('Error getting patient data', data, status, headers, config);
+        });
+    };
+
     this.getImageData = function() {
-      return Element.getOCTImages()
+
+      var today = Date.now();
+      var eType = MODEL_DOMAIN + 'OCTScan';
+
+      return Element.getElements($scope.patient._id.$oid, eType, today)
         .then(function(response) {
-          self.imageUrl = response.data[$attrs.side][0];
-        }, function() {
-          console.log('Error getting oct images')
+          var data = response.data.filter(function(data) {
+            return data.eye + 'Eye' === $attrs.side
+          })[0];
+          if (data) {
+            self.imageUrl = '/images/oct-slices/54229a9f6c5873493a28b3b8.jpg';
+            $scope.hasData = true;
+          }
+          $scope.loaded = true;
+        }, function(error) {
+          console.log(error);
         });
     };
 
@@ -119,16 +143,24 @@ angular.module('openeyesApp')
     };
 
     this.loadImage = function(){
-      var image = new Image();
-      image.src = this.imageUrl;
-      image.onload = this.imageLoaded.bind(this);
-      image.onerror = this.imageError.bind(this);
+      if (this.imageUrl) {
+        // alert(this.imageUrl);
+        var image = new Image();
+        image.src = this.imageUrl;
+        image.onload = function() {
+          $scope.$apply(this.imageLoaded());
+        }.bind(this);
+        image.onerror = function() {
+          $scope.$apply(this.imageError());
+        }.bind(this);
+      } else {
+        this.imageError();
+      }
     };
 
     this.imageError = function() {
       $scope.loading = false;
       $scope.error = true;
-      $scope.$digest();
     };
 
     this.imageLoaded = function(){

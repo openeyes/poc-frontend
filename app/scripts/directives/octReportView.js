@@ -25,6 +25,10 @@ angular.module('openeyesApp')
 
     $scope.select = function(image) {
 
+      if (!$scope.images.length) {
+        return;
+      }
+
       $scope.selectedImage = image || $scope.images[0];
 
       var img = new Image();
