@@ -1,8 +1,8 @@
 <div>
-  <div class="retinal-scans" ng-if="loaded && images.length">
+  <div class="retinal-scans" ng-show="loaded && images.length">
     <div class="img-viewer element-box">
       <h3>
-        BSCAN X Plane
+        TopCon Report
       </h3>
       <a class="img" href="#" ng-style="style">
       </a>
@@ -26,7 +26,7 @@
       </tbody>
     </table>
   </div>
-  <div ng-if="loaded && !images.length">
+  <div ng-show="loaded && !images.length">
     <span class="glyphicon glyphicon-info-sign"></span>
     No report data available for this patient ({{side}})
   </div>
