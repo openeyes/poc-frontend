@@ -67,7 +67,7 @@ angular.module('openeyesApp')
 
     this.getElement = function() {
 
-      var today = Date.now();
+      var today = new Date('Oct 02 2014 14:03:03 GMT+0100').getTime();
       var eType = MODEL_DOMAIN + 'TopconReport';
 
       return Element.getElements($scope.patient._id.$oid, eType, today)
