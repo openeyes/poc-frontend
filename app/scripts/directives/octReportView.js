@@ -66,7 +66,7 @@ angular.module('openeyesApp')
     };
 
     this.getElement = function() {
-      // TODO: This is hack as we currenctly have no way to paginate scans. Will
+      // NOTE: This is hack as we currenctly have no way to paginate scans. Will
       // need to add in some kind of pagination method
       // var today = Date.now();
       var today = new Date('Oct 02 2014 14:03:03 GMT+0100').getTime();
