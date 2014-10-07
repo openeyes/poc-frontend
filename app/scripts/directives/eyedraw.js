@@ -147,9 +147,14 @@ angular.module('openeyesApp')
       $scope.$watch('model', function() {
         if($scope.model && !self.loaded){
           self.loaded = true;
-          EyeDraw.init($scope.options, function(instance) {
-            $scope.instance = instance;
-          });
+
+          $timeout(function(){
+            EyeDraw.init($scope.options, function(instance) {
+              $scope.instance = instance;
+            });
+          }, 1000);
+
+
         }
       });
     };
