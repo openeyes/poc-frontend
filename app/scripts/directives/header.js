@@ -31,6 +31,12 @@ angular.module('openeyesApp')
         });
     };
 
+    //TODO: remove temporary event handler.
+    //This is prevents the search button being clicked
+    $scope.preventClickEvent = function($event){
+      $event.preventDefault();
+    };
+
   }])
   .directive('oeHeader', [function () {
     return {

@@ -11,7 +11,7 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <li ng-class="{ 'has-icon': true, active: isActive('/search') }">
-            <a href="/#/search">
+            <a href="/#/search" ng-click="preventClickEvent($event)">
               <span class="glyphicon glyphicon-search"></span>
               <span class="text-hide">Patient Search</span>
             </a>
