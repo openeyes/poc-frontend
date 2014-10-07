@@ -1,10 +1,15 @@
 // Type
 
 h1, h2 {
-  font-weight: 400;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, arial, sans-serif;
+  font-weight: normal;
 }
 
 h1, h2 {
   margin: 0 0 30px 0;
   padding: 0;
+}
+
+p{
+	font-family: "Helvetica Neue", Helvetica, arial, sans-serif;
 }

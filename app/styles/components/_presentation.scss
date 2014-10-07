@@ -1,0 +1,47 @@
+.pres-wrapper {
+  margin-top: 50px;
+/*  padding: 0 30px;*/
+
+  .sub-section {
+    margin: 0 auto 55px auto;
+    width: 1280px;
+    padding-top: 100px;
+    padding-bottom: 125px;
+    background: url(../images/presentation/icon-down-arrow.png) no-repeat center bottom;
+    p, label, dd, dt {
+      font-size: 20px;
+    }
+    dl{
+      border-top: 1px solid #eee;
+    }
+    dt{
+      padding-top: 10px;
+    }
+    dd{
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+    .radio {
+      float: left;
+      margin-right: 15px;
+      margin-top: 10px !important;
+    }
+    h2{
+      font-size: 40px;
+      color: #0f6fb9;
+    }
+  }
+
+  .last-section{
+    background: none;
+  }
+
+  .sub-section-wrapper{
+    background: #fff;
+  }
+
+  .intro-wrapper{
+    background: #f5f8f9;
+  }
+
+}

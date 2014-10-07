@@ -1,22 +1,113 @@
 <div class="pres-wrapper">
-  <div class="form-group row">
-    <div class="col-xs-12">
-      <div class="sub-section clearfix">
-        <p>Try a step in this workflow for a Medical Retina Injection Clinic</p>
-        <div class="radio" ng-repeat="workflow in workflows">
-          <label>
-            <input type="radio" ng-model="$parent.workflow" ng-value="workflow" />
-            At {{ workflow.site }}
-          </label>
+  <div class="intro-wrapper">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="sub-section clearfix">
+          <h2 id="intro-section">Introduction</h2>
+          <p>A key challenge with the existing OpenEyes platform is that the speed of development is slowing down over time and the current technical architecture does not allow us to speed up by adding more people.</p>
+
+          <p>The OpenEyes Project Board asked us to evaluate the pros and cons of a temporary pause in new development work so that we can address some of the technological constraints. We recommended a seven week Technical Proof of Concept (PoC) to prove or disprove five technical concepts which we believe could be key to the future of OpenEyes.</p>
+
+          <p>This has allowed us to confidently evaluate the potential benefits in pausing to re-platform and re-architect OpenEyes, whilst also positioning us to recommend a viable transition route from the current technology to the new technology.</p>
         </div>
       </div>
-      <div class="clearfix sub-section">
-        <a href="/#/patients/{{ workflow._id.$oid }}/{{ $index }}" ng-repeat="step in workflow.steps" class="btn btn-primary btn-lg workflow-btn">{{ step.name }} as a {{ step.role }}</a>
-      </div>
-      <!-- <div class="sub-section">
-        <button class="btn btn-primary btn-lg workflow-btn workflow-btn-light">View the </button>
-      </div> -->
     </div>
   </div>
-</div>
 
+  <div class="sub-section-wrapper">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="sub-section clearfix">
+          <h2 id="problems-section">Problems to solve</h2>
+          <dl>
+            <dt>Scalability of the development team</dt>
+            <dd>Enabled by a service layer architecture.</dd>
+
+            <dt>Development speed</dt> 
+            <dd>Increased by de-coupling modules of functionality and developing in Java based language JVM such as Scala; furthermore by Angular as a front-end.</dd>
+
+            <dt>Workflow, Clinical scalability, Configurability and Deployment in multiple organisations</dt>
+            <dd>The steps a patient must go through for their treatment, their workflow, is defined by user role, location and speciality. Configure clinic workflows using our Workflow API to reflect your organisation’s practises.</dd> 
+
+            <dt>Modularity</dt>
+            <dd>Workflows are built comprising of modular elements which can easily be added, ordered and removed.</dd>
+
+            <dt>Integration</dt>
+            <dd>The language choice XXX allows us to access integration libraries which enable the proof of concept to easily connect to other Moorfields systems.</dd>
+
+            <dt>Platform scalability</dt>
+            <dd>HTTP API, service layer architecture.</dd>
+
+            <dt>Rapid prototyping</dt>
+            <dd>TBD</dd>
+
+            <dt>Reporting</dt>
+            <dd>TBD</dd>
+
+            <dt>Future clients</dt>
+            <dd>TBD</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-section-wrapper">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="sub-section clearfix">
+          <h2 id="tech-section">Tech components to explore</h2>
+          <p>HTTP API Android, iOS, Web, XX, YY</p>
+
+          <p>Angular as a frontend</p>
+
+          <p>Document data store</p>
+
+          <p>Scala – statically typed language</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-section-wrapper">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="sub-section clearfix">
+          <h2 id="workflow-section">Workflow</h2>
+          <p>The solutions identified are illustrated here in a single example patient journey for Age Related Macular Degeneration. This is for demonstration purposes only and represents a high level understanding of the process a patient may go through. </p>
+
+          <p>This proof of concept should not be taken as a new design for OpenEyes, but as an illustration of what the re-architecture enables. The design applied is used simply to highlight key calls to action, and is not indicative of a rebrand or redesign which would come as part of the process for re-architecting OpenEyes as a whole.</p>
+
+          <p>The majority of patients at the Medical Retinal Injection Suite of Moorfields Eye hospital are repeat patients with Age Related Macular degeneration (60%) and their course of treatment involves several retinal injections. Nearly all of these patients will have treatment at the injection suite.</p>
+
+          <p>In this demo, our patient has been advised to return for probable treatment in a continued effort to stabilise her condition at the Moorfields Eye Hospital Medical Retinal Injection clinic. </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-section-wrapper">
+    <div class="form-group row">
+      <div class="col-xs-12">
+        <div class="sub-section last-section clearfix">
+          <h2 class="hidden" id="try-section">Try it out</h2>
+          <p>Try a step in this workflow for a Medical Retina Injection Clinic</p>
+          <div class="radio" ng-repeat="workflow in workflows">
+            <label>
+              <input type="radio" ng-model="$parent.workflow" ng-value="workflow" />
+              At {{ workflow.site }}
+            </label>
+          </div>
+        
+          <div class="clearfix">
+            <a href="/#/patients/{{ workflow._id.$oid }}/{{ $index }}" ng-repeat="step in workflow.steps" class="btn btn-primary btn-lg workflow-btn">{{ step.name }} as a {{ step.role }}</a>
+          </div>
+          <!-- <div class="sub-section">
+            <button class="btn btn-primary btn-lg workflow-btn workflow-btn-light">View the </button>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
