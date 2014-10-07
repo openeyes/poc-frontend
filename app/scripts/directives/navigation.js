@@ -6,21 +6,11 @@ angular.module('openeyesApp')
 
     this.init = function() {
 
-      $scope.currentSlide = 0;
-    
-      // $scope.$on('$routeChangeSuccess', );
-  
-      $scope.isActive = function () {
-        // return location === $location.path();
-      };
-
-      //detect click event on nav item
-
-        //scroll page to correct Heading area
-
-        //set active item on the navigation item
-
-        //remove active state from current item
+      $scope.currentSlide = 1; 
+      $scope.activeListItem = {};
+      $scope.anchorID = "#intro-section";  
+      
+      //TODO: Specified interactions for manual scroll and key events
 
       //detect scroll action of page. Debounce method inside barcodeScan directive
 
@@ -43,21 +33,26 @@ angular.module('openeyesApp')
 
         //set new active state
 
-
-
       $scope.setActiveSlide = function(slideNo, $event) {
-        $scope.resetNavigation();
         $scope.currentSlide = slideNo; 
-        $($event.currentTarget).parent().addClass('active');
-        console.log($scope.currentSlide);
-    
-        //add className to nav item
+        $scope.activeListItem = $event.currentTarget;
       };
 
-      $scope.resetNavigation = function(){
-        $scope.currentSlide = 0;
-        //remove classname from all items
-      }
+      //call active slide when page loads to set intro as beginning
+      $scope.setActiveSlide(1, {currentTarget:'a#intro'});
+
+      $scope.$watch('currentSlide', function(oldVal, newVal){       
+        $("nav").find('.active').removeClass("active");
+        $($scope.activeListItem).parent().addClass('active');
+        $scope.anchorID = $($scope.activeListItem).attr('href');
+
+        //basic checking to prevent watch running on load
+        if(oldVal !== newVal){
+          $('html, body').animate({
+              scrollTop: ($($scope.anchorID).offset().top-180)
+          },500);
+        }
+      });
 
     };
 
@@ -68,15 +63,7 @@ angular.module('openeyesApp')
       templateUrl: 'views/directives/navigation.html',
       controller: 'NavigationCtrl',
       link: function ($scope, element, attrs, NavigationCtrl) {
-        NavigationCtrl.init();  
-        console.log("val in dir", $scope.currentSlide); //this value does exist, but watch isn't triggering when it changes. 
-
-        $scope.$watch($scope.currentSlide, function(){
-          //watch function not being triggered?
-          console.log("watch no", $scope.currentSlide);
-          var activeList = $(element).find('.active');
-          activeList.removeClass(".active");
-        })
+        NavigationCtrl.init();         
       }
     };
   }]);
