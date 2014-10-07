@@ -147,9 +147,15 @@ angular.module('openeyesApp')
       $scope.$watch('model', function() {
         if($scope.model && !self.loaded){
           self.loaded = true;
-          EyeDraw.init($scope.options, function(instance) {
-            $scope.instance = instance;
-          });
+          //  Needed to ensure that control elements inside ng-repeat have been
+          //  rendered so that eyedraw events are correctly bound.
+          $timeout(function(){
+            EyeDraw.init($scope.options, function(instance) {
+              $scope.instance = instance;
+            });
+          }, 1000);
+
+
         }
       });
     };
