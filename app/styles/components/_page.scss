@@ -17,9 +17,13 @@
   margin-top: 83px;
   margin-bottom: 25px;
   .page-encounter & {
-    margin-top: 184px;
+    margin-top: 222px;
+    @media (max-width: $screen-lg) {
+      margin-top: 300px;
+    }
   }
 }
+
 
 
 

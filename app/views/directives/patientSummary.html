@@ -1,14 +1,16 @@
 <div class="header-patient patient-summary">
   <div class="container-fluid">
     <div class="row">
-      <a href="#" ng-click="toggleList($event)" class="col-xs-1 menu-toggle" title="Toggle Patient List">
-        <span class="icon-lg-menu"></span>
-        <span class="icon-lg-menu_open"></span>
-      </a>
-      <div class="col-xs-5 patient-info" ng-if="patient.firstName">
+     <!--  <div class="patient-menu"> -->
+        <a href="#" ng-click="toggleList($event)" class="menu-toggle patient-menu-toggle" title="Toggle Patient List">
+          <span class="icon-lg-menu"></span>
+          <span class="icon-lg-menu_open"></span>
+        </a>
+    <!--   </div> -->
+      <div class="patient-info col-xs-6" ng-if="patient.firstName">
         <img ng-src="/images/profiles/{{patient.gender == 'Female' ? 1 : 4}}.png" alt="Chay Close" class="patient-pic" />
         <div class="patient-overview">
-          <a ng-href="/#/patient/{{ patient._id.$oid }}" class="patient-name">
+          <a ng-href="/#/patient/{{ patient._id.$oid }}" class="patient-name" ng-click="$event.preventDefault()">
             <strong>{{ patient.surname }},</strong> {{ patient.firstName }} ({{ patient.title }})
           </a>
           <div class="patient-allergies" ng-show="allergies.length">
@@ -20,13 +22,13 @@
           </div>
         </div>
       </div>
-      <div class="col-xs-6" ng-if="patient.firstName">
+      <div class="patient-details col-xs-6" ng-if="patient.firstName">
         <ul class="patient-details-list">
           <li><strong>Born</strong> {{ patient.dob }} ({{ getAge() }}y)</li>
           <li class="gender"><strong>Gender</strong> ({{ patient.gender.slice(0,1) }})</li>
           <li><strong>NHS No.</strong> {{ patient.nhsNumber }}</li>
         </ul>
-        <a href="#" class="btn btn-default btn-new view-history">View History <span class="caret"></span></a>
+        <a href="#" class="btn btn-default btn-new view-history" ng-click="$event.preventDefault()">View History <span class="caret"></span></a>
       </div>
     </div>
   </div>

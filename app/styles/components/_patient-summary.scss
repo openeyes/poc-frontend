@@ -4,20 +4,25 @@
 //   outline: 1px solid red;
 // }
 
+.patient-menu-toggle{
+  position: absolute;
+  height: 100%;
+  width: 105px;
+}
 
 .patient-summary {
   .patient-pic {
     margin-top: 22px;
+    margin-left: 105px;
   }
-  .patient-overview {
-    margin-top: 30px;
-  }
+
   .patient-details-list {
     margin-top: 44px;
   }
   .view-history {
     margin-top: 32px;
-    float: left;
+    margin-bottom: 16px;
+    float: right;
   }
   .patient-list-open & {
     .container-fluid {
@@ -33,27 +38,25 @@
   border: 1px solid #fff;
   float: left;
   height: 60px;
-  margin-left: 15px;
+
   width: 60px;
 }
 
 .patient-overview {
-  float: left;
   margin-left: 10px;
-  position: relative;
+  margin-top: 30px;
 }
 
 .patient-name {
   color: $text-color;
-  display: block;
+  display: inline;
   font-size: 30px;
+  margin-left: 16px;
 }
 
 .patient-allergies {
   color: #ec4867;
-  position: absolute;
-  bottom: -15px;
-  left: -28px;
+  margin:16px 0 16px 170px;
   .notification {
     margin-right: 3px;
   }
@@ -68,6 +71,7 @@
   li {
     float: left;
     margin-right: 24px;
+    margin-bottom: 12px;
     &.gender {
       width: 86px;
     }
