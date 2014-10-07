@@ -31,6 +31,10 @@ angular.module('openeyesApp')
         });
     };
 
+    $scope.preventClickEvent = function($event){
+      $event.preventDefault();
+    };
+
   }])
   .directive('oeHeader', [function () {
     return {
