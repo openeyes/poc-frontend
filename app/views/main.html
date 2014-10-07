@@ -99,7 +99,7 @@
           </div>
         
           <div class="clearfix">
-            <a href="/#/patients/{{ workflow._id.$oid }}/{{ $index }}" ng-repeat="step in workflow.steps" class="btn btn-primary btn-lg workflow-btn">{{ step.name }} as a {{ step.role }}</a>
+            <a href="/#/patients/{{ workflow._id.$oid }}/{{ $index }}" ng-repeat="step in workflow.steps" class="btn btn-primary btn-lg workflow-btn"> Step {{$index +1}} - {{ step.name }} as a {{ step.role }}</a>
           </div>
           <!-- <div class="sub-section">
             <button class="btn btn-primary btn-lg workflow-btn workflow-btn-light">View the </button>
