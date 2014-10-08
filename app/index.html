@@ -23,18 +23,15 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div ng-controller="JoyrideCtrl">
-        <div ng-joy-ride="startJoyRide" config="config" on-finish="onFinish()"  on-skip="onFinish()"></div>
-        <div ng-controller="LandingCtrl">
-            
-            <header class="header-pres" ng-if="landing">
-                <oe-navigation></oe>
-            </header>
-          <oe-header ng-if="!landing"></oe-header>
-        </div>
-        <ng-view></ng-view>
-
+    
+    <div ng-controller="LandingCtrl">
+        
+        <header class="header-pres" ng-if="landing">
+            <oe-navigation></oe>
+        </header>
+      <oe-header ng-if="!landing"></oe-header>
     </div>
+    <ng-view></ng-view>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
