@@ -1,10 +1,9 @@
 // Modals
-
 .modal-dialog{
-  margin: 200px auto;
+  margin: 100px auto;
 }
 
-.modal-scan {
+.modal {
   @media (min-width: 768px) {
     .modal-dialog {
       width: 500px;
@@ -14,6 +13,8 @@
     background: #1b2b3c;
     border-radius: 0;
     border: 1px solid #3bc0c3;
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
     color: #fff;
     .close {
       color: #fff;
@@ -22,21 +23,51 @@
     }
   }
   .modal-body {
-    background: image-url("scan/barcode-scanner.png") no-repeat center 130px;
     font-size: 20px;
     font-weight: 400;
-    padding: 260px 112px 180px 112px;
+    padding: 260px 112px 80px 112px;
     text-align: center;
   }
+
+  .modal-text {
+    margin-bottom: 90px;
+  }
+
   .modal-header {
     border: 0;
   }
+
+  &.modal-scan {
+
+    .modal-body {
+      background: image-url("scan/barcode-scanner.png") no-repeat center 130px;
+    }
+
+    .modal-content {
+      background-color: #3bc0c3;
+      border: 0;
+    }
+  }
+
+  // Vision Assessment
+  &.modal-confirm {
+
+    .modal-body {
+      background: image-url("icons/dialogs/assess.png") no-repeat center 130px;
+    }
+
+    .modal-content {
+      background-color: #4dbd74;
+      border: 0;
+    }
+  }
+
 }
 
 .modal-backdrop {
   background-color: #1b2b3c;
   &.in {
-    opacity: 0.7;
+    opacity: 0.9;
   }
 }
 
@@ -47,5 +78,16 @@
   }
   &.in .modal-dialog {
     @include translate3d(0, 0, 0);
+  }
+}
+
+.btn-confirm {
+  background-color: #1b2b3c;
+  border-radius: 22px;
+  font-size: 15px;
+  padding: 10px 35px;
+
+  &:hover {
+    color: #fff;
   }
 }
