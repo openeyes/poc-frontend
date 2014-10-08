@@ -12,7 +12,6 @@ angular.module('openeyesApp')
 
   	//determine which variant on the form page we are on before assigning scope object
     var locationPath = parseInt($location.$$path.slice(-1),10);
-    console.log(locationPath);
 
     var config0 = [{      
       type: "element",
@@ -36,10 +35,29 @@ angular.module('openeyesApp')
       selector: "#joyride-complete",
       heading: 'Step Complete',
       placement: 'top',
-      text: "<span class='joyride-txt'>Great! Your patient’s Vision Assessment is complete.</span><br><span class='joyride-txt'>Click Save to complete this step in the clinic workflow.</span><br><span class='joyride-txt'>The patient has now moved into the next step of their treatment at the Clinic</span>"
+      text: "<span class='joyride-txt'>Great! Your patient’s Vision Assessment is complete.</span><br><span class='joyride-txt'>Click Save to complete this step in the clinic workflow.</span>"
+    },{
+      type:"function",
+      fn: joyrideTriggerModal
+    },{
+      type: "element",
+      selector: "#joyride-modal-button",
+      placement: 'right',
+      text: "<span class='joyride-txt'>The patient has now moved into the next step of their treatment at the Clinic</span><br><span class='joyride-txt'>Continue the workflow as the Doctor Optometrist</span>"
+    },{
+      type: "function",
+      fn: joyrideTriggerNext
     }];
 
-    
+    function joyrideTriggerModal(){
+      $("#joyride-complete").trigger("click");
+    }
+
+    function joyrideTriggerNext(){
+      var oid = $location.$$path.substring(9, 33);
+      $location.path( "/patients/"+oid+"/1" );
+      $('.modal').modal('hide')
+    }
 
     var config1 = [{      
       type: "title",
@@ -62,15 +80,13 @@ angular.module('openeyesApp')
       case 2: $scope.config = config2; 
       break;
     }
-  
-    console.log($scope.config);
 
-    $timeout(waitForDom, 1000);
+    $timeout(waitForDom, 500);
     function waitForDom(){
       $scope.startJoyRide = true;
     }
 
-    $timeout(removeCurtain, 2000);
+    $timeout(removeCurtain, 1000);
     function removeCurtain(){
       $("#ng-curtain").remove();
     }

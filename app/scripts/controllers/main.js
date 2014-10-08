@@ -13,9 +13,6 @@ angular.module('openeyesApp')
     Workflow.getConfig()
     .success(function(data){
       $scope.workflows = data;
-      var $oid = data[0]._id.$oid;
-      //set dynamic variables of paths in joyride config
-      $rootScope.$broadcast('joyride.config', $oid);
     })
     .error(function(data, status, headers, config) {
       console.log('Error getting workflow', data, status, headers, config);

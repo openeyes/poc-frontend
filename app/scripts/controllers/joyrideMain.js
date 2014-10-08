@@ -31,8 +31,15 @@ angular.module('openeyesApp')
       heading: "Configurable",
       placement: "right",
       text: "<span class='joyride-txt'>The steps a patient must go through for their treatment, their workflow, is configured by user role and location.</span><br><span class='joyride-txt'>User roles and login with permissions would be implemented going forward from this proof of concept.</span><br><span>Click to view Moorfield Eye Hospitals Workflow and select the first step in the patient’s visit to the Medical Retina Injection Clinic.</span>"
+    },{
+      type:"function",
+      fn: joyrideTriggerNext
     }];
     
+    function joyrideTriggerNext(){
+      $("#workflow0").trigger("click");
+    }
+
     $scope.beginJoyRide = function(){
       $scope.startJoyRide = true;
     };

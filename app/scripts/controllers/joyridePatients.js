@@ -17,22 +17,27 @@ angular.module('openeyesApp')
       type: "element",
       selector: ".navbar-brand",
       placement: 'bottom',
-      text: "<span class='joyride-txt'>Click the logo to go back to the start page at any time</span>",
-      curtainClass: 'hideCurtain'
+      text: "<span class='joyride-txt'>Click the logo to go back to the start page at any time</span>"
     },{      
       type: "element",
-      selector: "#joyride-close .patient-pic",
+      selector: "#joyride-0 .patient-pic",
       heading: 'Patient List',
       placement: 'bottom',
-      text: "<span class='joyride-txt'>The patient list is live and updated as patients attend the Clinic. Each Clinician has their own Patient List.</span><br><span class='joyride-txt'>Click on your next patient to assess their vision.</span>",
-      curtainClass: 'hideCurtain'
+      text: "<span class='joyride-txt'>The patient list is live and updated as patients attend the Clinic. Each Clinician has their own Patient List.</span><br><span class='joyride-txt'>Click on your next patient to assess their vision.</span>"
+    },{
+      type: "function",
+      fn: joyrideTriggerNext
     }];
 
     var config1 = [{      
       type: "title",
-      selector: '.nav-bar',
-      heading: "Test Item 2",
-      text: "As an administrator, you can easily configure configure clinic workflows to reflect your organisation’s practices."
+      selector: '#joyride-0 .patient-pic',
+      heading: "Patient List",
+      placement: 'bottom',
+      text: "<span class='joyride-txt'>Your patient has had their OCT scan, and now moved to the next step in their care - Assessment for Macular Degeneration</span><br><span class='joyride-txt'>Click on your next patient to complete your Assessment for Macular Degeneration.</span>"
+    },{
+      type: "function",
+      fn: joyrideTriggerNext
     }];
 
     var config2 = [{      
@@ -49,6 +54,10 @@ angular.module('openeyesApp')
       break;
       case 2: $scope.config = config2; 
       break;
+    }
+
+    function joyrideTriggerNext(){
+      $("#joyride-0").trigger("click");
     }
 
   
