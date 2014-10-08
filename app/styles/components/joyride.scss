@@ -1,0 +1,10 @@
+//JOYRIDE OVERRIDE - Removes the curtain. ID specificity means that 
+//it can't be removed with the joyride curtain custom class option. 
+
+#ng-curtain{
+  background: transparent;
+}
+
+.joyride-txt{
+	display: block;
+}

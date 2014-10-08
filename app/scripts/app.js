@@ -16,6 +16,7 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
+    'ngJoyRide',
     'localytics.directives',
     'config'
   ])

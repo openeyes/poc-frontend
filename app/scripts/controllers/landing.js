@@ -17,6 +17,8 @@ angular.module('openeyesApp')
       self.setLanding();
     });
 
+    
+
     this.setLanding = function(){
       if($location.url() === '/'){
         $scope.landing = true;
@@ -26,4 +28,7 @@ angular.module('openeyesApp')
     };
 
     this.setLanding();
+
+    
+
   }]);
