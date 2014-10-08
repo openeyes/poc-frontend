@@ -3,7 +3,6 @@
 angular.module('openeyesApp')
   .controller('BarcodeScanCtrl', ['$scope', '$element', '$timeout', function($scope, $element, $timeout){
 
-    var timer;
     var self = this;
 
     function debounce(fn, amount) {
@@ -24,7 +23,7 @@ angular.module('openeyesApp')
       this.scanInput
       .on('focus', this.startScan.bind(this))
       .on('blur', this.stopScan.bind(this))
-      .on('keypress', debounce(this.updateVal, 200))
+      .on('keypress', debounce(this.updateVal, 200));
     };
 
     $scope.scan = function() {

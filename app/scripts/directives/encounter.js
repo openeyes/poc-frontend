@@ -9,8 +9,8 @@
  */
 angular.module('openeyesApp')
   .controller('EncounterDirectiveCtrl', [
-  '$scope', '$compile', '$timeout', '$rootScope', '$routeParams', 'Encounter', 'Workflow', 'Ticket', 'WORKFLOW_DOMAIN',
-  function ($scope, $compile, $timeout, $rootScope, $routeParams, Encounter, Workflow, Ticket, WORKFLOW_DOMAIN) {
+  '$scope', '$compile', '$timeout', '$rootScope', '$routeParams', '$window', 'Encounter', 'Workflow', 'Ticket', 'WORKFLOW_DOMAIN',
+  function ($scope, $compile, $timeout, $rootScope, $routeParams, $window, Encounter, Workflow, Ticket, WORKFLOW_DOMAIN) {
 
     var self = this;
 
@@ -22,6 +22,7 @@ angular.module('openeyesApp')
       Encounter.setForm($scope.form);
       this.componentMappings = Workflow.getComponentMappings();
       this.element = element;
+      this.$modal = element.find('.modal');
 
       //  Broadcast by encounter page controller
       $scope.$on('encounter.save', this.save);
@@ -31,9 +32,20 @@ angular.module('openeyesApp')
         self.layoutConfig = workflow.data;
         self.stepIndex = $routeParams.stepIndex;
         self.buildLayout(self.stepIndex);
+        self.setConfirmationValues(self.stepIndex);
       }, function() {
         console.log('Unable to get current sute');
       });
+    };
+
+    this.setConfirmationValues = function(stepIndex){
+
+      var steps = self.layoutConfig.steps;
+      $scope.stepNameShort = steps[stepIndex].name;
+      stepIndex++;
+      // Set some next step variable for confirmation dialog
+      var nextStep = stepIndex < steps.length ? steps[stepIndex] : false;
+      console.log(nextStep);
     };
 
     this.buildLayout = function(stepIndex){
@@ -89,18 +101,19 @@ angular.module('openeyesApp')
     };
 
     this.postEncounter = function(postObject){
-      console.log(postObject);
-      console.log(JSON.stringify(postObject));
-      // return;
       Encounter.create(postObject)
         .success(function(data) {
           console.log('success', data);
           Encounter.clearElements();
-          $rootScope.$broadcast('encounter.save.complete', {});
+          self.showConfirmation();
         })
         .error(function(data, status, headers, config) {
           console.log(data, status, headers, config);
         });
+    };
+
+    this.showConfirmation = function(){
+      self.$modal.modal('show');
     };
 
     this.getPatient = function(callback){
@@ -177,6 +190,13 @@ angular.module('openeyesApp')
 
       postObject.elements = postElements;
       return postObject;
+    };
+
+    $scope.backToPatientList = function(){
+      self.$modal.modal('hide')
+        .on('hidden.bs.modal', function() {
+          $window.history.back();
+        });
     };
 
   }])

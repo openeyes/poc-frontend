@@ -17,7 +17,7 @@ angular.module('openeyesApp')
     var STEP_MAX_SPEED = 25;
     var COLS = 20; // sprite montage columns
 
-    this.init = function(element){
+    this.init = function(){
 
       this.image = $element.find('.img');
       this.tooltip = $element.find('.position-tooltip');
@@ -98,7 +98,7 @@ angular.module('openeyesApp')
       return Element.getElements($scope.patient._id.$oid, eType, today)
         .then(function(response) {
           var data = response.data.filter(function(data) {
-            return data.eye + 'Eye' === $attrs.side
+            return data.eye + 'Eye' === $attrs.side;
           })[0];
           if (data) {
             self.imageUrl = '/images/oct-slices/54229a9f6c5873493a28b3b8.jpg';
@@ -131,7 +131,7 @@ angular.module('openeyesApp')
       px += (self.containerWidth - self.rangeWidth) / 2;
 
       self.tooltip.css('left', Math.floor(px) + 'px');
-    }
+    };
 
     this.positionImage = function() {
 
