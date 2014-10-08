@@ -3,7 +3,6 @@
 angular.module('openeyesApp')
   .controller('OctRetinalView', ['$scope', '$attrs', '$routeParams', '$animate', '$element', 'Element', 'Ticket', 'MODEL_DOMAIN', function($scope, $attrs, $routeParams, $animate, $element, Element, Ticket, MODEL_DOMAIN){
 
-    var self = this;
     var containerWidth;
 
     this.init = function() {
@@ -75,7 +74,7 @@ angular.module('openeyesApp')
       return Element.getElements($scope.patient._id.$oid, eType, today)
         .then(function(response) {
           $scope.model = response.data.filter(function(data) {
-            return data.eye + 'Eye' === $attrs.side
+            return data.eye + 'Eye' === $attrs.side;
           })[0];
           $scope.loaded = true;
         }, function(error) {
