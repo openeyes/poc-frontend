@@ -10,13 +10,6 @@
 angular.module('openeyesApp')
   .controller('JoyridePatientsCtrl', ['$scope', '$rootScope', '$location', function ($scope,  $rootScope, $location) {
 
-    console.log('hey');
-
-    // $scope.config = [{
-    //   type: "title",
-    //   heading: "Test Item 1",
-    //   text: "As an administrator, you can easily configure configure clinic workflows to reflect your organisation’s practices."
-    // }];
 
     var config0 = [{      
       type: "title",
