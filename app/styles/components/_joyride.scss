@@ -8,3 +8,14 @@
 .joyride-txt{
 	display: block;
 }
+
+.ng-joyride.popover{
+	z-index: 20000;
+	font-size: 14px;
+}
+
+.ng-joyride-element-non-static{
+	box-shadow: none !important;
+	background: none;
+	position: static;
+}

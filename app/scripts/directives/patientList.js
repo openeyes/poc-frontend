@@ -112,6 +112,11 @@ angular.module('openeyesApp')
       controller: 'PatientListCtrl',
       link: function ($scope, element, attr, PatientListCtrl) {
         PatientListCtrl.init();
+
+        //abitrary watch variable to provoke removal of Joyride curtain
+        $scope.$watch('stepIndex', function(){
+          $("#ng-curtain").remove();
+        });
       }
     };
   }]);

@@ -1,3 +1,7 @@
+<div ng-controller="JoyrideEncounterCtrl">
+  <div ng-joy-ride="startJoyRide" config="config" on-finish="onFinish()"  on-skip="onFinish()"></div>
+</div>
+
 <!-- Event view -->
 
 <oe-patient-summary></oe-patient-summary>
@@ -6,7 +10,7 @@
 <div class="container-fluid main" role="main">
   <div class="page-body">
     <oe-encounter></oe-encounter>
-    <button class="btn btn-primary block--button col-xs-6" ng-click="save()">Save event</button>
+    <button class="btn btn-primary block--button col-xs-6" ng-click="save()"  id="joyride-complete">Save event</button>
   </div>
 </div>
 
