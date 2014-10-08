@@ -1,9 +1,8 @@
 'use strict';
 
 angular.module('openeyesApp')
-  .controller('OctView', ['$scope', '$routeParams', '$timeout', 'Element', 'MODEL_DOMAIN', function($scope, $routeParams, $timeout, Element, MODEL_DOMAIN){
+  .controller('OctView', ['$scope', '$routeParams', '$timeout', function($scope, $routeParams, $timeout){
 
-    var self = this;
     var tabs;
     var selected = [];
 
@@ -18,7 +17,7 @@ angular.module('openeyesApp')
     };
 
     this.selectTab = function (e) {
-      e.preventDefault()
+      e.preventDefault();
       var tab = e.currentTarget;
       angular.element(tab).tab('show');
       $scope.selectedTab = tabs.index(tab);
@@ -30,7 +29,7 @@ angular.module('openeyesApp')
 
     $scope.hasSelected = function(index) {
       return selected.indexOf(index) !== -1;
-    }
+    };
   }])
   .directive('oeOctView', [function () {
     return {
