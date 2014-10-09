@@ -8,7 +8,7 @@ angular.module('openeyesApp')
 
       $scope.currentSlide = 1; 
       $scope.activeListItem = {};
-      $scope.anchorID = "#intro-section";  
+      $scope.anchorID = '#intro-section';  
       
       //TODO: Specified interactions for manual scroll and key events
 
@@ -42,7 +42,7 @@ angular.module('openeyesApp')
       $scope.setActiveSlide(1, {currentTarget:'a#intro'});
 
       $scope.$watch('currentSlide', function(oldVal, newVal){       
-        $("nav").find('.active').removeClass("active");
+        $('nav').find('.active').removeClass('active');
         $($scope.activeListItem).parent().addClass('active');
         $scope.anchorID = $($scope.activeListItem).attr('href');
 
