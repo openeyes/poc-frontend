@@ -1,6 +1,6 @@
 <div class="form-group">
   <label class="control-label col-xs-2">
-    Status:
+    Status
   </label>
   <div class="col-xs-4">
     <select class="form-control" ng-model="status" ng-options="obj.label for obj in statuses">
@@ -9,8 +9,8 @@
 </div>
 
 <div class="form-group" ng-show="status.followUp">
-  <label class="control-label col-xs-2">
-    Follow-up:
+  <label class="control-label col-xs-12">
+    Book follow up appointment for
   </label>
   <div class="col-xs-2">
     <select class="form-control" ng-model="quantity" ng-options="obj.label for obj in quantities"></select>
@@ -18,19 +18,11 @@
   <div class="col-xs-2">
     <select class="form-control" ng-model="period" ng-options="obj.label for obj in periods"></select>
   </div>
-  <div class="col-xs-4">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" ng-model="communityPatient" />
-        Patient suitable for community patient tariff
-      </label>
-    </div>
-  </div>
 </div>
 
 <div class="form-group" ng-show="status.followUp">
-  <label class="control-label col-xs-2">
-    Role:
+  <label class="control-label col-xs-12">
+    Clinical rule
   </label>
   <div class="col-xs-4">
     <select class="form-control" ng-model="role" ng-options="obj.label for obj in roles">
@@ -38,5 +30,16 @@
   </div>
   <div class="col-xs-4">
     <input type="text" class="form-control" ng-model="otherRole" ng-show="role.other" placeholder="Enter other role..." />
+  </div>
+</div>
+
+<div class="form-group" ng-show="status.followUp">
+  <div class="col-xs-12">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" ng-model="communityPatient" />
+        Patient suitable for community patient tariff
+      </label>
+    </div>
   </div>
 </div>
