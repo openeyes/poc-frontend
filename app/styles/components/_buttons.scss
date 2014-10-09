@@ -43,6 +43,28 @@
   width: 100%;
 }
 
-.btn-primary {
+.btn-primary {}
 
+.btn-add {
+  background-color: transparent;
+  color: #506470;
+  padding-left: 0;
+  font-size: 15px;
+  font-weight: bold;
+  &:focus,
+  &:active,
+  &:active:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  &:hover {
+    color: #62d4dd;
+  }
+  &:before {
+    content: '+';
+    color: #62d4dd;
+    font-size: 24px;
+    padding: 5px 5px 5px 0;
+  }
 }
