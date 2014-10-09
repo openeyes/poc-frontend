@@ -7,12 +7,20 @@
 
 .joyride-txt{
 	display: block;
-	color: #333 !important;
+	color: #595959 !important;
+}
+
+#pop-over-text{
+	padding: 8px 16px 0;
 }
 
 .ng-joyride.popover{
 	z-index: 20000;
 	font-size: 14px;
+	width: 340px;
+	max-width: 320px;
+	padding: 0;
+	border: 0;
 }
 
 .ng-joyride-element-non-static, .ng-joyride-element-static{
@@ -28,3 +36,86 @@
 .element.form.ng-joyride-element-static{
 	background: none
 }
+
+.ng-joyride a{
+	color: #31a7aa;
+	font-size: 16px;
+	i{
+		font-size: 22px;
+		color: #3bc0c3;
+		top: 4px;
+		left: 4px;
+	}
+}
+
+.ng-joyride hr{
+	border-top: 1px solid #b6c2c9;
+}
+
+.ng-joyride h3.popover-title{
+	background: #3bc0c3;
+	font-family: "HelveticaNeue-Bold", "Helvetica Neue Bold", Helvetica, arial;
+	font-size: 20px;
+	padding: 16px 18px;
+}
+
+.ng-joyride.popover .popover-content{
+	padding: 16px 18px;
+	width: auto;
+}
+
+.ng-joyride .btn{
+	border-radius: 22px !important;
+	padding: 2px 12px;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.ng-joyride .btn.nextBtn{
+	background: #3bc0c3;
+	border: 2px solid #3bc0c3;
+	color: #fff;
+}
+
+.ng-joyride .btn.prevBtn{
+	background: #fff;
+	border: 2px solid #b6c2c9;
+	color: #31a7aa;
+}
+
+.glyphicon-chevron-right, .glyphicon-chevron-left{
+	font-family: none;
+	width: 6px;
+	height: 7px;
+	top: -1px;
+	border: 0;
+}
+
+.glyphicon-chevron-right{
+	background: url(../images/presentation/icon-next.png) no-repeat 0 0;
+	margin-left: 5px;
+}
+
+.glyphicon-chevron-left{
+	background: url(../images/presentation/icon-prev.png) no-repeat 0 0;
+	margin-right: 5px;
+}
+
+
+.glyphicon-chevron-right:before, .glyphicon-chevron-left:before{
+	content: ""
+}
+
+.ng-joyride .popover-content .col-md-4{
+	padding: 0 0 0 11px;
+	width: 25%;
+}
+.ng-joyride .popover-content .col-md-8{
+	width: 75%;
+	padding: 0 15px 0 0;
+}
+
+.ng-joyride.popover.bottom > .arrow:after{
+	background: #3bc0c3;
+}
+

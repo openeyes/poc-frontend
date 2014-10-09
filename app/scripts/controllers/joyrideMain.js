@@ -43,6 +43,7 @@ angular.module('openeyesApp')
     $scope.beginJoyRide = function(){
       $scope.startJoyRide = true;
       $rootScope.stopJoyRide = false;
+      console.log($rootScope.stopJoyRide, $scope.startJoyRide)
     };
 
     $scope.$on('joyride.start', $scope.beginJoyRide);

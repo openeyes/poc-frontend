@@ -15,6 +15,7 @@ angular.module('openeyesApp')
 
     var config0 = [{      
       type: "element",
+      heading: 'Navigation',
       selector: ".navbar-brand",
       placement: 'bottom',
       text: "<span class='joyride-txt'>Click the logo to go back to the start page at any time</span>"

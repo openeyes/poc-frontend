@@ -28,6 +28,7 @@ angular.module('openeyesApp')
     },{
       type: "element",
       selector: "#joyride-acuity",
+      heading: 'Continue',
       placement: 'top',
       text: "<span class='joyride-txt'>Complete the remaining form to record the patient’s vision assessment.</span>"
     },{      
@@ -41,6 +42,7 @@ angular.module('openeyesApp')
       fn: joyrideTriggerModal
     },{
       type: "element",
+      heading: 'Complete'
       selector: "#joyride-modal-button",
       placement: 'right',
       text: "<span class='joyride-txt'>The patient has now moved into the next step of their treatment at the Clinic</span><br><span class='joyride-txt'>Continue the workflow as the Doctor Optometrist</span>"
@@ -69,6 +71,7 @@ angular.module('openeyesApp')
       text: "<span class='joyride-txt'>Topcon 3DOCT report is integrated to assist assessment for Macular Degeneration through the TopCon Report API.</span><br><span class='joyride-txt'>This integration removes the need for manual entry of content from one application to another.</span>"
     },{      
       type: "element",
+      heading: 'continue',
       selector: '#joyride-topcon',
       placement: 'top',
       text: "<span class='joyride-txt'>Complete the remaining form to prepare the patient for injection.</span>"
@@ -83,6 +86,7 @@ angular.module('openeyesApp')
       fn: joyrideTriggerModal
     },{
       type: "element",
+      heading: 'Complete',
       selector: "#joyride-modal-button",
       placement: 'right',
       text: "<span class='joyride-txt'>The patient has now completed their assessment.</span><br><span class='joyride-txt'>Continue the workflow as the injecting nurse.</span>"
