@@ -28,6 +28,12 @@
         "./chosen.jquery.js",
         "./chosen.css"
       ]
+    },
+    "ng-joyride": {
+      "main": [
+        "./ng-joyride.js",
+        "./ng-joyride.css"
+      ]
     }
   }
 }
