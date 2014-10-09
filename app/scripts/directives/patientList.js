@@ -115,7 +115,7 @@ angular.module('openeyesApp')
 
         //abitrary watch variable to provoke removal of Joyride curtain
         $scope.$watch('stepIndex', function(){
-          $("#ng-curtain").remove();
+          $('#ng-curtain').remove();
         });
       }
     };
