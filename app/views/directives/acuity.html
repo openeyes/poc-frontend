@@ -1,31 +1,32 @@
-<div class="form-group row" ng-hide="model.readings.length">
-  <div class="col-xs-2">
-    <span>Not Recorded</span>
-  </div>
-  <div class="col-xs-5">
-    <input type="checkbox">
-    <label for="">Unable to assess</label>
-  </div>
-  <div class="col-xs-5">
-    <input type="checkbox">
-    <label for="">Eye missing</label>
-  </div>
-</div>
-
-<div class="form-group row" ng-repeat="am in model.readings">
-  <div class="col-xs-4">
-    <select class="" ng-model="model.readings[$index].value" ng-options="m as m for m in measurements">
-      <option value="">--Measurement--</option>
-    </select>
-  </div>
-  <div class="col-xs-4">
-    <select class="" ng-model="model.readings[$index].correction" ng-options="c as c for c in corrections">
-      <option value="">--Correction--</option>
-    </select>
-  </div>
-  <div class="col-xs-4">
-    <button class="btn btn-default btn-xs" ng-click="removeRow($index)">Remove</button>
+<div class="eye-side-marker"></div>
+<div class="element-content dotted-bottom">
+  <div class="form-group row">
+    <div class="col-xs-3">
+      <input type="checkbox">
+      <label for="">Unable to assess</label>
+    </div>
+    <div class="col-xs-3">
+      <input type="checkbox">
+      <label for="">Eye missing</label>
+    </div>
   </div>
 </div>
+<div class="element-content">
+  <div class="form-group row" ng-repeat="am in model.readings">
+    <div class="col-xs-2">
+      <select class="form-control" ng-model="model.readings[$index].value" ng-options="m as m for m in measurements">
+        <option value="">--Measurement--</option>
+      </select>
+    </div>
+    <div class="col-xs-6">
+      <select class="form-control" ng-model="model.readings[$index].correction" ng-options="c as c for c in corrections">
+        <option value="">--Correction--</option>
+      </select>
+    </div>
+    <div class="col-xs-4">
+      <button class="btn btn-default btn-xs" ng-click="removeRow($index)">Remove</button>
+    </div>
+  </div>
 
-<button class="btn btn-primary" type="button" ng-click="addRow()">Add</button>
+  <button class="btn btn-add" type="button" ng-click="addRow()">Add another score</button>
+</div>

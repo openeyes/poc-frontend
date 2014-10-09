@@ -17,7 +17,10 @@ angular.module('openeyesApp')
       //  Broadcast by encounter page controller
       this.eyeSide = attrs.side;
       $scope.model = {};
-      $scope.model.readings = [];
+      $scope.model.readings = [{
+        value: 0,
+        correction: ''
+      }];
       $scope.model.comment = '';
       $scope.$on('encounter.save', this.broadcastModel);
       //  On creation populate dropdown
