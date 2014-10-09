@@ -15,8 +15,16 @@
 	font-size: 14px;
 }
 
-.ng-joyride-element-non-static{
+.ng-joyride-element-non-static, .ng-joyride-element-static{
 	box-shadow: none !important;
-	background: none;
 	position: static;
+	z-index: 2;
+}
+
+.form-group.row.ng-joyride-element-static, 
+#joyride-history-title, #joyride-workflow,
+.element-box.ng-joyride-element-static,
+.barcode-scan.ng-joyride-element-static,
+.element.form.ng-joyride-element-static{
+	background: none
 }

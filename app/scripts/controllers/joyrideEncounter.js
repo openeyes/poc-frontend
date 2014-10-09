@@ -28,7 +28,7 @@ angular.module('openeyesApp')
     },{
       type: "element",
       selector: "#joyride-acuity",
-      placement: 'bottom',
+      placement: 'top',
       text: "<span class='joyride-txt'>Complete the remaining form to record the patient’s vision assessment.</span>"
     },{      
       type: "element",
@@ -76,11 +76,11 @@ angular.module('openeyesApp')
       type: "element",
       selector: '#joyride-complete',
       heading: "Step Complete",
-      placement: 'top',
+      placement: 'right', //this isn't appearing in the correct place?
       text: "<span class='joyride-txt'>Great! Your patient is ready for their injection.</span><br><span class='joyride-txt'>Click Save to complete this step in the clinic workflow.</span>"
     },{
       type:"function",
-      fn: joyrideTriggerModal1
+      fn: joyrideTriggerModal
     },{
       type: "element",
       selector: "#joyride-modal-button",
@@ -110,7 +110,7 @@ angular.module('openeyesApp')
       type: "element",
       selector: "#joyride-treatment",
       heading: "Barcode Scanner Integration",
-      placement: 'right',
+      placement: 'top',
       text: "<span class='joyride-txt'>This example of scanner integration reduces risk of human error and the time spent preparing the injection.</span>"
     },{
       type: "element",
@@ -122,10 +122,12 @@ angular.module('openeyesApp')
       type: "element",
       selector: '#joyride-complete',
       heading: "Step Complete",
-      placement: 'top',
+      placement: 'top', 
       text: "<span class='joyride-txt'>Great! Your patient is ready for their injection.</span><br><span class='joyride-txt'>Click Save to complete this step in the clinic workflow.</span>"
+    },{
+      type:"function",
+      fn: joyrideEndDemonstration
     }];
-
 
     function joyrideTriggerBarcode(){
       $("#joyride-barcode-button").trigger("click");      
@@ -135,8 +137,11 @@ angular.module('openeyesApp')
       $("#joyride-complete").trigger("click");
     }
 
-    function joyrideTriggerModal1(){
-      $('.modal').modal('show');
+    function joyrideEndDemonstration(){
+      $scope.startJoyRide = false;
+      $scope.onFinish();
+      $rootScope.stopJoyRide = true;
+      $("#joyride-complete").trigger("click");
     }
 
     function joyrideTriggerNext0(){
@@ -162,7 +167,9 @@ angular.module('openeyesApp')
 
     $timeout(waitForDom, 500);
     function waitForDom(){
-      $scope.startJoyRide = true;
+      if(!$rootScope.stopJoyRide){
+        $scope.startJoyRide = true;
+      }
     }
 
     $timeout(removeCurtain, 1000);
