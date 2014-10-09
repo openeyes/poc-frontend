@@ -15,13 +15,13 @@ angular.module('openeyesApp')
 
     var config0 = [{      
       type: "element",
-      selector: "#joyride-pic",
+      selector: "#joyride-history",
       heading: 'Modularity',
       placement: 'bottom',
       text: "<span class='joyride-txt'>Workflows are built comprising of modular elements, for example “History”, “Visual Acuity”.</span><br><span class='joyride-txt'>These modules can easily be ordered, removed and new modules added to configure the workflow from the configuration file.</span>"
     },{      
       type: "element",
-      selector: "#joyride-history",
+      selector: "#joyride-allergies",
       heading: 'Clinical Scalability',
       placement: 'bottom',
       text: "<span class='joyride-txt'>Based on the requirements of this step in the patient’s care, and the user role, the user interface is reduced to only the functionality that is required.</span><br><span class='joyride-txt'>This enables the solution to scale to meet the needs of other clinics in a way that does not expose the user to any increased complexity.</span>"
@@ -99,9 +99,9 @@ angular.module('openeyesApp')
       text: "<span class='joyride-txt'>Workflow service supports both “views” of data and data entry.</span><br><span class='joyride-txt'>Here you can see a summary of information from previous steps in the clinic workflow.</span><br><span class='joyride-txt'>Select your injection site</span>"
     },{
       type: "element",
-      selector: "#joyride-barcode-button",
+      selector: "#joyride-barcode",
       heading: "Barcode Scanner Integration",
-      placement: 'right',
+      placement: 'top',
       text: "<span class='joyride-txt'>The nurse can easily capture the necessary details of the injection medication by scanning the label.</span><br><span class='joyride-txt'>Click to scan your medication. You will need a barcode for this step.</span>"
     },{
       type: 'function', 
