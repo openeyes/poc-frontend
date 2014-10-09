@@ -45,18 +45,22 @@
 
 .btn-primary {}
 
-.btn-add {
-  background-color: transparent;
-  color: #506470;
-  padding-left: 0;
-  font-size: 15px;
-  font-weight: bold;
+.btn-add,
+.btn-remove {
   &:focus,
   &:active,
   &:active:focus {
     outline: none;
     box-shadow: none;
   }
+}
+
+.btn-add {
+  background-color: transparent;
+  color: #506470;
+  padding-left: 0;
+  font-size: 15px;
+  font-weight: bold;
 
   &:hover {
     color: #62d4dd;
@@ -66,5 +70,16 @@
     color: #62d4dd;
     font-size: 24px;
     padding: 5px 5px 5px 0;
+  }
+}
+
+.btn-remove {
+  height: 28px;
+  margin-top: 3px;
+  width: 27px;
+  background:transparent image-url('icons/forms/delete.png') center top no-repeat;
+
+  &:hover {
+    background-position: center 100%;
   }
 }
