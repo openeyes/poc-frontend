@@ -14,6 +14,10 @@ angular.module('openeyesApp')
       $('#workflow0').trigger('click');
     }
 
+    $scope.onFinish = function(){
+      $rootScope.stopJoyRide = true;
+    };
+
   	$scope.config = [{
       type: 'location_change',
       path: '/'
@@ -39,12 +43,4 @@ angular.module('openeyesApp')
       type:'function',
       fn: joyrideTriggerNext
     }];
-    
-    $scope.beginJoyRide = function(){
-      $scope.startJoyRide = true;
-      $rootScope.stopJoyRide = false;
-    };
-
-    $scope.$on('joyride.start', $scope.beginJoyRide);
-
   }]);

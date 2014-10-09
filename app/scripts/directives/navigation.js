@@ -52,11 +52,6 @@ angular.module('openeyesApp')
               scrollTop: ($($scope.anchorID).offset().top-180)
           },500);
         }
-
-        //once user has navigated to last item then trigger Joyride
-        if($scope.currentSlide === 5){
-          $rootScope.$broadcast('joyride.start', {});
-        }
        
       });
 

@@ -17,6 +17,10 @@ angular.module('openeyesApp')
       $('#joyride-0').trigger('click');
     }
 
+    $scope.onFinish = function(){
+      $rootScope.stopJoyRide = true;
+    };
+
     var config0 = [{      
       type: 'element',
       heading: 'Navigation',

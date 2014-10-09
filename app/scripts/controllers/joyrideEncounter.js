@@ -40,6 +40,10 @@ angular.module('openeyesApp')
       $('.modal').modal('hide');
     }
 
+    $scope.onFinish = function(){
+      $rootScope.stopJoyRide = true;
+    };
+
     var config0 = [{      
       type: 'element',
       selector: '#joyride-history',
