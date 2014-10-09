@@ -16,7 +16,7 @@ angular.module('openeyesApp')
       });
     };
 
-    this.selectTab = function (e) {
+    this.selectTab = function(e) {
       e.preventDefault();
       var tab = e.currentTarget;
       angular.element(tab).tab('show');

@@ -10,12 +10,27 @@
 angular.module('openeyesApp')
   .controller('ClinicOutcomeCtrl', ['$scope', '$attrs', 'ClinicOutcome', 'Encounter', 'MODEL_DOMAIN', function($scope, $attrs, ClinicOutcome, Encounter, MODEL_DOMAIN){
 
+    var tabs;
     var self = this;
 
     this.init = function(){
+      tabs = angular.element('.clinc-outcome-nav-tabs a')
+        .on('click', this.selectTab.bind(this));
+
       $scope.$on('encounter.save', this.broadcastModel);
       $scope.model = {};
       this.getData();
+    };
+
+    this.selectTab = function(e) {
+      e.preventDefault();
+      var tab = e.currentTarget;
+      angular.element(tab).tab('show');
+      $scope.selectedTab = tabs.index(tab);
+      if (!$scope.hasSelected($scope.selectedTab)) {
+        selected.push($scope.selectedTab);
+      }
+      $scope.$digest();
     };
 
     this.broadcastModel = function(){
