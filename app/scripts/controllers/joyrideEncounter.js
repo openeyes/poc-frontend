@@ -42,7 +42,7 @@ angular.module('openeyesApp')
       fn: joyrideTriggerModal
     },{
       type: "element",
-      heading: 'Complete'
+      heading: 'Complete',
       selector: "#joyride-modal-button",
       placement: 'right',
       text: "<span class='joyride-txt'>The patient has now moved into the next step of their treatment at the Clinic</span><br><span class='joyride-txt'>Continue the workflow as the Doctor Optometrist</span>"
@@ -79,7 +79,7 @@ angular.module('openeyesApp')
       type: "element",
       selector: '#joyride-complete',
       heading: "Step Complete",
-      placement: 'right', //this isn't appearing in the correct place?
+      placement: 'top', //this isn't appearing in the correct place?
       text: "<span class='joyride-txt'>Great! Your patient is ready for their injection.</span><br><span class='joyride-txt'>Click Save to complete this step in the clinic workflow.</span>"
     },{
       type:"function",
@@ -122,12 +122,15 @@ angular.module('openeyesApp')
       heading: "Role based workflow",
       placement: 'right',
       text: "<span class='joyride-txt'>User login is used to identify the injecting Nurse.</span><br><span class='joyride-txt'>Should there be more than one Clinician present, the name can easily be changed through the dropdown.</span>"
-    },{      
+    },{
+      type:"function",
+      fn: joyrideTriggerModal
+    },{
       type: "element",
-      selector: '#joyride-complete',
-      heading: "Step Complete",
-      placement: 'top', 
-      text: "<span class='joyride-txt'>Great! Your patient is ready for their injection.</span><br><span class='joyride-txt'>Click Save to complete this step in the clinic workflow.</span>"
+      heading: 'Step Complete',
+      selector: "#joyride-modal-button",
+      placement: 'right',
+      text: "<span class='joyride-txt'>The patient has now completed their assessment.</span><br><span class='joyride-txt'>Continue the workflow as the injecting nurse.</span>"
     },{
       type:"function",
       fn: joyrideEndDemonstration
@@ -143,9 +146,9 @@ angular.module('openeyesApp')
 
     function joyrideEndDemonstration(){
       $scope.startJoyRide = false;
-      $scope.onFinish();
       $rootScope.stopJoyRide = true;
-      $("#joyride-complete").trigger("click");
+      $('.modal').modal('hide');
+      $location.path( "/" );
     }
 
     function joyrideTriggerNext0(){

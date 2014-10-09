@@ -116,6 +116,9 @@
 }
 
 .ng-joyride.popover.bottom > .arrow:after{
-	background: #3bc0c3;
+	border-top-color: transparent;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	border-bottom-color: #3bc0c3;
 }
 
