@@ -64,11 +64,10 @@ angular.module('openeyesApp')
     function joyrideTriggerNext(){
       $("#joyride-0").trigger("click");
     }
-
-  
+    
     $timeout(waitForDom, 500);
     function waitForDom(){
-      if(!$rootScope.stopJoyRide){
+      if($rootScope.stopJoyRide === false){
         $scope.startJoyRide = true;
       }
     }

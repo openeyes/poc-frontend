@@ -174,7 +174,7 @@ angular.module('openeyesApp')
 
     $timeout(waitForDom, 500);
     function waitForDom(){
-      if(!$rootScope.stopJoyRide){
+      if($rootScope.stopJoyRide === false){
         $scope.startJoyRide = true;
       }
     }
