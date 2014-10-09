@@ -1,20 +1,22 @@
 <section class="element form">
   <h2>Treatment</h2>
-  <div class="row">
-    <div class="col-xs-6">
-      <div class="form-group" oe-validate ng-class="{ 'has-error': hasError() }">
-        <label for="procedure-right" class="col-xs-4 control-label">Procedures:</label>
-        <div class="col-xs-8">
-          <oe-procedure-selection data-id="procedure-right" data-side="rightEye" data-name="procedureRight"></oe-procedure-selection>
+  <div class="element-content">
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="form-group" oe-validate ng-class="{ 'has-error': hasError() }">
+          <label for="procedure-right" class="col-xs-4 control-label">Procedures:</label>
+          <div class="col-xs-8">
+            <oe-procedure-selection data-id="procedure-right" data-side="rightEye" data-name="procedureRight"></oe-procedure-selection>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-xs-6">
-      <div class="form-group" oe-validate ng-class="{ 'has-error': hasError() }">
-        <label for="procedure-left" class="col-xs-4 control-label">Procedures:</label>
-        <div class="col-xs-8">
-          <oe-procedure-selection data-id="procedure-left" data-side="leftEye" data-name="procedureLeft"></oe-procedure-selection>
-        </div>
+      <div class="col-xs-6">
+        <div class="form-group" oe-validate ng-class="{ 'has-error': hasError() }">
+          <label for="procedure-left" class="col-xs-4 control-label">Procedures:</label>
+          <div class="col-xs-8">
+            <oe-procedure-selection data-id="procedure-left" data-side="leftEye" data-name="procedureLeft"></oe-procedure-selection>
+          </div>
+      </div>
     </div>
   </div>
 </section>
