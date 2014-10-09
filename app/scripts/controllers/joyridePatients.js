@@ -8,7 +8,7 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('JoyridePatientsCtrl', ['$scope', '$rootScope', '$location', function ($scope,  $rootScope, $location) {
+  .controller('JoyridePatientsCtrl', ['$scope', '$rootScope', '$location', '$timeout', function ($scope,  $rootScope, $location, $timeout) {
 
     //determine which variant on the patients list page we are on before assigning scope object
     var locationPath = parseInt($location.$$path.slice(-1),10);
@@ -30,7 +30,7 @@ angular.module('openeyesApp')
     }];
 
     var config1 = [{      
-      type: "title",
+      type: "element",
       selector: '#joyride-0 .patient-pic',
       heading: "Patient List",
       placement: 'bottom',
@@ -41,9 +41,13 @@ angular.module('openeyesApp')
     }];
 
     var config2 = [{      
-      type: "title",
-      heading: "Test Item 2",
-      text: "As an administrator, you can easily configure configure clinic workflows to reflect your organisation’s practices."
+      type: "element",
+      selector: '#joyride-0 .patient-pic',
+      heading: "Patient List",
+      text: "<span class='joyride-txt'>Your patient has now moved to the next step in their care - Injection.</span><br><span class='joyride-txt'>Click on your next patient to complete your Injection.</span>"
+    },{
+      type: "function",
+      fn: joyrideTriggerNext
     }];
 
 
@@ -61,6 +65,9 @@ angular.module('openeyesApp')
     }
 
   
-    $scope.startJoyRide = true;
+    $timeout(waitForDom, 500);
+    function waitForDom(){
+      $scope.startJoyRide = true;
+    }
 
   }]);
