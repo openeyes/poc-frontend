@@ -8,14 +8,19 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('ClinicOutcomeCtrl', ['$scope', '$attrs', 'ClinicOutcome', 'Encounter', 'MODEL_DOMAIN', function($scope, $attrs, ClinicOutcome, Encounter, MODEL_DOMAIN){
+  .controller('ClinicOutcomeCtrl', ['$scope', '$attrs', '$timeout', 'ClinicOutcome', 'Encounter', 'MODEL_DOMAIN', function($scope, $attrs, $timeout, ClinicOutcome, Encounter, MODEL_DOMAIN){
 
-    var tabs;
+    // var selected = [];
     var self = this;
+    var tabs;
 
     this.init = function(){
       tabs = angular.element('.clinc-outcome-nav-tabs a')
         .on('click', this.selectTab.bind(this));
+
+      $timeout(function() {
+        tabs.eq(0).trigger('click');
+      });
 
       $scope.$on('encounter.save', this.broadcastModel);
       $scope.model = {};
@@ -27,9 +32,7 @@ angular.module('openeyesApp')
       var tab = e.currentTarget;
       angular.element(tab).tab('show');
       $scope.selectedTab = tabs.index(tab);
-      if (!$scope.hasSelected($scope.selectedTab)) {
-        selected.push($scope.selectedTab);
-      }
+      $scope.status = $scope.statuses[$scope.selectedTab];
       $scope.$digest();
     };
 
@@ -38,7 +41,6 @@ angular.module('openeyesApp')
     };
 
     this.getModel = function(){
-
       if($scope.status){
         $scope.model.status = $scope.status.label;
       }

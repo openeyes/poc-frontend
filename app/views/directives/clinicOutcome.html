@@ -9,25 +9,16 @@
       Follow up
     </a>
   </li>
-  <li class="empty-tab">
+  <li>
     <a href="#clinc-outcome-discharge" role="tab" data-toggle="tab">
       Discharge
     </a>
   </li>
 </ul>
 
-  <!-- <div class="form-group">
-    <label class="control-label col-xs-2">
-      Status
-    </label>
-    <div class="col-xs-4">
-      <select class="form-control" ng-model="status" ng-options="obj.label for obj in statuses">
-      </select>
-    </div>
-  </div> -->
 <div class="tab-content check-tab-content">
   <div class="tab-pane" id="clinc-outcome-follow-up">
-    <div class="element-content">
+    <div class="element-content dotted-bottom">
       <div class="form-group">
         <label class="control-label col-xs-12">
           Book follow up appointment for
@@ -39,7 +30,9 @@
           <select class="form-control" ng-model="period" ng-options="obj.label for obj in periods"></select>
         </div>
       </div>
+    </div>
 
+    <div class="element-content">
       <div class="form-group">
         <label class="control-label col-xs-12">
           Clinical rule
@@ -65,5 +58,10 @@
       </div>
     </div>
   </div>
-  <div class="tab-pane" id="clinc-outcome-discharge"></div>
+
+  <div class="tab-pane" id="clinc-outcome-discharge">
+    <div class="element-content">
+      Following treatment patient will be discharged.
+    </div>
+  </div>
 </div>

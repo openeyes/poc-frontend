@@ -61,8 +61,12 @@
     padding-top: 0;
     .element-content {
       border-top: 1px solid $border-gray;
-      padding-bottom: 40px;
-      padding-top: 40px;
+      padding-bottom: 25px;
+      padding-top: 25px;
+    }
+    .element-content + .element-content {
+      border-top: 0;
+      padding-top: 0;
     }
   }
 }
