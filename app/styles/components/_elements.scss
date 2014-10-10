@@ -81,6 +81,10 @@
 
 
 
+.label-top {
+  display: block;
+}
+
 
 // Sided element styles
 
@@ -96,7 +100,7 @@
 .eye-side-marker {
   background-color: #f2f4f5;
   height: 25px;
-  margin:1px 1px 20px 1px;
+  margin:1px 1px 30px 1px;
   position: relative;
   &:after {
     background: transparent image-url('icons/forms/left-eye.png') center center no-repeat;
@@ -109,6 +113,14 @@
     left: 50%;
     margin-left: -15px;
   }
+}
+
+.eye-side-marker + .element-content {
+  padding-top: 20px;
+}
+
+.eye-side-marker + .dotted-bottom {
+  padding-top: 0;
 }
 
 .col-eye-side:first-child .eye-side-marker:after {
