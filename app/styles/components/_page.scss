@@ -21,9 +21,9 @@ body{
   margin-top: 83px;
   margin-bottom: 25px;
   .page-encounter & {
-    margin-top: 250px;
+    margin-top: 200px;
     @media (max-width: $screen-lg) {
-      margin-top: 300px;
+      margin-top: 250px;
     }
   }
 }
