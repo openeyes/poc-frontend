@@ -3,17 +3,18 @@
 angular.module('openeyesApp')
   .controller('NavigationCtrl', ['$scope', '$location', '$timeout', function($scope, $location, $timeout){
 
-    this.init = function() {
+    this.init = function(element) {
 
       $scope.activeListItem = {};
 
       //TODO: Specified interactions for manual scroll and key events
 
-      //detect scroll action of page. Debounce method inside barcodeScan directive
 
         //if section changes remove active state of current page
         //set active state of page
 
+
+      //TODO: Specified interactions for manual scroll and key events
       //detect arrow down key  -> key events bind in controller in barcode
 
         //scroll page to next section
@@ -41,7 +42,7 @@ angular.module('openeyesApp')
         $location.hash(anchor);
 
         $('html, body').animate({
-          scrollTop: ($('#' + anchor).offset().top - 180)
+          scrollTop: ($('#' + anchor).offset().top )
         }, 500);
 
         event.preventDefault();
@@ -59,7 +60,7 @@ angular.module('openeyesApp')
         if($scope.currentHash !== ''){
           $timeout(function(){ //gross timeout hack to force sections to be loaded
             $('html, body').animate({
-              scrollTop: ($('#' + anchor).offset().top - 180)
+              scrollTop: ($('#' + anchor).offset().top )
             }, 500);
           }, 100);
         }else{
@@ -86,7 +87,7 @@ angular.module('openeyesApp')
       templateUrl: 'views/directives/navigation.html',
       controller: 'NavigationCtrl',
       link: function ($scope, element, attrs, NavigationCtrl) {
-        NavigationCtrl.init();
+        NavigationCtrl.init(element);
       }
     };
   }]);

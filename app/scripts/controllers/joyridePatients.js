@@ -54,6 +54,7 @@ angular.module('openeyesApp')
       type: 'element',
       selector: '#joyride-0 .patient-pic',
       heading: 'Patient List',
+      placement: 'bottom',
       text: '<span class="joyride-txt">Your patient has now moved to the next step in their care - Injection.</span><br><span class="joyride-txt">Click on your next patient to complete your Injection.</span>'
     },{
       type: 'function',

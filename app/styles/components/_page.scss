@@ -1,4 +1,8 @@
 // Page body
+body{
+  position: relative;
+}
+
 
 .page-body {
   @extend .clearfix;
@@ -17,7 +21,7 @@
   margin-top: 83px;
   margin-bottom: 25px;
   .page-encounter & {
-    margin-top: 220px;
+    margin-top: 250px;
     @media (max-width: $screen-lg) {
       margin-top: 300px;
     }
