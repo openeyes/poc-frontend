@@ -3,12 +3,19 @@
 
   .sub-section {
     margin: 0 auto 55px auto;
-    width: 1140px;
-    padding-top: 100px;
-    padding-bottom: 125px;
+    width: 1040px;
+    padding-top: 130px;
+    padding-bottom: 175px;
     background: url(../images/presentation/icon-down-arrow.png) no-repeat center bottom;
-    p, label, dd, dt {
+    p, label, dd, dt, ul > li, label {
       font-size: 20px;
+    }
+    .check-box-label {
+      font-size: 18px;
+      font-weight: normal;
+      margin-left: 15px;
+      position: relative;
+      top: 2px;
     }
     dl{
       border-top: 1px solid #eee;
@@ -27,8 +34,44 @@
     }
     h2{
       font-size: 40px;
+      margin-bottom: 50px;
       color: #0f6fb9;
     }
+  }
+
+  .target-architecture{
+    padding-top: 50px;
+    width: 800px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .workflow-details{
+    margin-top: 50px;
+    li{
+      padding: 5px;
+    }
+  }
+
+  .clinic-location{
+    margin-top: 50px;
+    
+  }
+
+   .workflow-buttons{
+    clear: both;
+   }
+
+  .clinic-controls{
+    margin: 0 0 30px;
+  }
+
+  .workflow-btn{
+    margin-bottom: 25px;
+  }
+
+  .guided-tour, .api-btn{
+    margin: 20px 0;
   }
 
   .last-section{
