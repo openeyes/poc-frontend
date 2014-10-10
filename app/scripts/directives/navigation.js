@@ -6,7 +6,7 @@ angular.module('openeyesApp')
     this.init = function() {
 
       $scope.activeListItem = {};
-      
+
       //TODO: Specified interactions for manual scroll and key events
 
       //detect scroll action of page. Debounce method inside barcodeScan directive
@@ -39,18 +39,17 @@ angular.module('openeyesApp')
         //scroll to id
 
         $location.hash(anchor);
-        
+
         $('html, body').animate({
-          scrollTop: ($("#"+anchor).offset().top-180)
-        },500);
-       
+          scrollTop: ($('#' + anchor).offset().top - 180)
+        }, 500);
+
         event.preventDefault();
-      }
+      };
 
       //scroll user to anchor in page if you deeplink in with an anchor
       $scope.detectAnchorOnLoad = function(anchor){
-
-        var activeItem = $("a[href='#"+anchor+"']");
+        var activeItem = $('a[href="#' + anchor + '"]');
 
         //set active nav state
         $scope.setNavState(activeItem);
@@ -60,38 +59,34 @@ angular.module('openeyesApp')
         if($scope.currentHash !== ''){
           $timeout(function(){ //gross timeout hack to force sections to be loaded
             $('html, body').animate({
-              scrollTop: ($("#"+anchor).offset().top-180)
-            },500);
-          },100)
+              scrollTop: ($('#' + anchor).offset().top - 180)
+            }, 500);
+          }, 100);
         }else{
-          $scope.setNavState($("a[href='#intro-section']"));
+          $scope.setNavState($('a[href="#intro-section"]'));
         }
-      }
+      };
 
       $scope.setNavState = function(activeItem){
         $('nav').find('.active').removeClass('active');
         $(activeItem).parent().addClass('active');
-      }
+      };
 
       //get current hash location from location.path and set active item if its not root '/''
       $scope.currentHash = $location.hash();
-      
+
       if($scope.currentHash !== '/'){
         $scope.detectAnchorOnLoad($scope.currentHash);
-      }      
-
+      }
     };
-
   }])
   .directive('oeNavigation', [function () {
     return {
       restrict: 'E',
       templateUrl: 'views/directives/navigation.html',
       controller: 'NavigationCtrl',
-      link: function ($scope, element, attrs, NavigationCtrl, $timeout) {
-        NavigationCtrl.init();     
+      link: function ($scope, element, attrs, NavigationCtrl) {
+        NavigationCtrl.init();
       }
-
-
     };
   }]);
