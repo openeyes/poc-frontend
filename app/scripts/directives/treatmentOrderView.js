@@ -27,7 +27,6 @@ angular.module('openeyesApp')
     };
 
     this.getPatient = function() {
-      console.log('getPatient');
       Ticket.getTicket($routeParams.ticketId)
         .then(function(data) {
           $scope.patient = data.data.patient;
