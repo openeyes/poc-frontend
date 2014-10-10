@@ -1,37 +1,45 @@
 <div class="eye-side-marker"></div>
 <div class="element-content dotted-bottom">
   <div class="form-group row">
-    <label class="col-xs-4 control-label">
-      Anaesthetic Type:
-    </label>
-    <div class="col-xs-8">
-      <label class="radio-inline" ng-repeat="type in types">
+    <div class="col-xs-12">
+      <label class="control-label">
+        Type
+      </label>
+      <select class="form-control" ng-model="selectedAnaestheticType" ng-options="obj.label for obj in types | orderBy:'label'">
+        <option value="">--Please select--</option>
+      </select>
+      <!-- <label class="radio-inline" ng-repeat="type in types">
         <input type="radio" ng-model="model.anaestheticType" ng-value="type.label" />
         {{type.label}}
-      </label>
+      </label> -->
     </div>
   </div>
 </div>
 <div class="element-content dotted-bottom">
   <div class="form-group row">
-    <label class="col-xs-4 control-label">
-      Anaesthetic Delivery:
-    </label>
-    <div class="col-xs-8">
-      <label class="radio-inline"  ng-repeat="delivery in deliveries">
+    <div class="col-xs-12">
+      <label class="control-label">
+        Delivery
+      </label>
+      <select class="form-control" ng-model="selectedDelivery" ng-options="obj.label for obj in deliveries | orderBy:'label'">
+        <option value="">--Please select--</option>
+      </select>
+<!--       <label class="radio-inline"  ng-repeat="delivery in deliveries">
         <input type="radio" ng-model="model.delivery" ng-value="delivery.label" />
         {{delivery.label}}
-      </label>
+      </label> -->
     </div>
   </div>
 </div>
 <div class="element-content">
   <div class="form-group row">
-    <label class="col-xs-4 control-label">
-      Anaesthetic Agent:
-    </label>
-    <div class="col-xs-8">
-      <select class="form-control" ng-model="selectedAgent" ng-options="obj.label for obj in agents | orderBy:'label'"></select>
+    <div class="col-xs-12">
+      <label class="control-label">
+        Agent
+      </label>
+      <select class="form-control" ng-model="selectedAgent" ng-options="obj.label for obj in agents | orderBy:'label'">
+        <option value="">--Please select--</option>
+      </select>
     </div>
   </div>
 </div>
