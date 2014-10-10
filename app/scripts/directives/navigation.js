@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('openeyesApp')
-  .controller('NavigationCtrl', ['$scope', '$attrs', '$rootScope',  function($scope, $attrs, $rootScope){
+  .controller('NavigationCtrl', ['$scope', function($scope){
 
 
     this.init = function() {

@@ -14,7 +14,8 @@ angular.module('openeyesApp')
       $('#workflow0').trigger('click');
     }
 
-    $scope.onFinish = function(){
+    $scope.onSkip = function(){
+      console.log('skip method in mainCtrl');
       $rootScope.stopJoyRide = true;
     };
 
@@ -23,19 +24,19 @@ angular.module('openeyesApp')
       path: '/'
     },{
       type: 'element',
-      selector: '#workflow0',
+      selector: '#joyride-workflows',
       heading: 'Configurable',
       placement: 'right',
       text: 'As an administrator, you can easily configure configure clinic workflows to reflect your organisation’s practices.'
     },{
       type: 'element',
-      selector: '#workflow1',
+      selector: '#joyride-workflows',
       heading: 'Configurable',
       placement: 'right',
       text: '<span class="joyride-txt">A separate configuration file with the designed workflow informs the user interface what functionality to enable where.</span><br><span>Click to see Northwick Park Hospital’s workflow.</span>'
     },{
       type: 'element',
-      selector: '#workflow2',
+      selector: '#joyride-workflows',
       heading: 'Configurable',
       placement: 'right',
       text: '<span class="joyride-txt">The steps a patient must go through for their treatment, their workflow, is configured by user role and location.</span><br><span class="joyride-txt">User roles and login with permissions would be implemented going forward from this proof of concept.</span><br><span>Click to view Moorfield Eye Hospitals Workflow and select the first step in the patient’s visit to the Medical Retina Injection Clinic.</span>'

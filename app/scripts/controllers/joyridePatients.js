@@ -17,7 +17,8 @@ angular.module('openeyesApp')
       $('#joyride-0').trigger('click');
     }
 
-    $scope.onFinish = function(){
+    $scope.onSkip = function(){
+      console.log('skip method in patientCtrl');
       $rootScope.stopJoyRide = true;
     };
 
@@ -67,6 +68,8 @@ angular.module('openeyesApp')
       case 2: $scope.config = config2; 
       break;
     }
+
+    console.log('in list stop', $rootScope.stopJoyRide);
 
     function waitForDom(){
       if($rootScope.stopJoyRide === false){

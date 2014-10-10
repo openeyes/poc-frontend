@@ -10,7 +10,8 @@ angular.module('openeyesApp')
       $('#ng-curtain').remove();
     }
 
-    $scope.onFinish = function(){
+    $scope.onSkip = function(){
+      console.log('skip method in joyrideCtrl');
       $rootScope.stopJoyRide = true;
       $scope.joyrideState = false;
     };
@@ -21,15 +22,18 @@ angular.module('openeyesApp')
         $scope.startJoyRide = true;
         $rootScope.stopJoyRide = false;
         $timeout(removeCurtain, 500); //Need to disable this on all screens to allow users to select other controls
+
+        console.log('switch stop', $rootScope.stopJoyRide);
       }else{
         //cancel existing popups on screen
+        console.log('state changing in switchCtrl and setting to false');
         $scope.startJoyRide = false;
         $rootScope.stopJoyRide = true;
 
         //trigger skip button
         $('.skipBtn').trigger('click');
       }
-    }
+    };
   }])
   .directive('oeJoyrideSwitch', [function () {
     return {
