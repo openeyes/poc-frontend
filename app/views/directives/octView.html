@@ -21,21 +21,22 @@ the UI components rely on the elements being visible -->
 <div class="tab-content">
   <div class="tab-pane" id="oct-right">
     <div class="row" ng-if="hasSelected(0)">
-      <div class="col-xs-6">
-        <oe-oct-report-view data-side="rightEye"></oe-oct-report-view>
-      </div>
-      <div class="col-xs-6">
+      <div class="col-xs-6" id="joyride-dicom">
         <oe-oct-slices-view data-side="rightEye"></oe-oct-slices-view>
       </div>
+      <div class="col-xs-6" id="joyride-topcon">
+        <oe-oct-report-view data-side="rightEye"></oe-oct-report-view>
+      </div>
+      
     </div>
   </div>
   <div class="tab-pane" id="oct-left">
     <div class="row" ng-if="hasSelected(1)">
       <div class="col-xs-6">
-        <oe-oct-report-view data-side="leftEye"></oe-oct-report-view>
+        <oe-oct-slices-view data-side="leftEye"></oe-oct-slices-view>
       </div>
       <div class="col-xs-6">
-        <oe-oct-slices-view data-side="leftEye"></oe-oct-slices-view>
+        <oe-oct-report-view data-side="leftEye"></oe-oct-report-view>
       </div>
     </div>
   </div>

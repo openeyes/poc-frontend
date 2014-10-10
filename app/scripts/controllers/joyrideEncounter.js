@@ -26,7 +26,7 @@ angular.module('openeyesApp')
       $scope.startJoyRide = false;
       $rootScope.stopJoyRide = true;
       $('.modal').modal('hide');
-      $location.path( '/' );
+      $location.url( '/#intro-section' );
     }
 
     function joyrideTriggerNext0(){
@@ -185,17 +185,15 @@ angular.module('openeyesApp')
       break;
     }
 
-//is start joy ride state set to false and setting the directive to false triggering a change in the global?
-
     function waitForDom(){
       //why is this set to true when you hit this page? 
       //console.log('value of global in encounter stop', $rootScope.stopJoyRide, $scope.startJoyRide);
       if($rootScope.stopJoyRide === false){
-        //console.log("should be starting?")
+        // console.log('should be starting?');
         $scope.startJoyRide = true;
       }
     }
-    $timeout(waitForDom, 500);
+    $timeout(waitForDom, 1000);
 
     function removeCurtain(){
       $('#ng-curtain').remove();
