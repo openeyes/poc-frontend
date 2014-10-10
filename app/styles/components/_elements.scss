@@ -148,3 +148,50 @@
 canvas + input[type=text] {
   visibility: hidden;
 }
+
+.view-1-2 {
+  width: 49%;
+  float: left;
+  min-height: 168px;
+  margin-right: 1%;
+}
+
+.view-right {
+  margin-left: 1%;
+  margin-right: 0;
+}
+
+.icon-right-eye,
+.icon-left-eye {
+  background: transparent image-url('icons/forms/right-eye.png') center center no-repeat;
+  display: block;
+  width: 53px;
+  height: 35px;
+}
+
+.icon-left-eye {
+  background-image: image-url('icons/forms/left-eye.png');
+}
+
+
+.padded-table {
+
+  margin-top: -30px;
+
+  .header-row {
+    background-color: #eff2f3;
+  }
+
+  tr,
+  .header-row + tr > td,
+  td:first-child,
+  td:last-child,
+  th {
+    border-top: 0 !important;
+  }
+
+  td {
+    border-top: 1px dashed #c9d3da !important;
+  }
+
+}
