@@ -88,6 +88,14 @@ body.patient-list-open {
           border-right: 1px solid $table-border-color;
         }
       }
+      .patient-time{
+        width: 110px;
+        display: inline-block;
+        float: left;
+        padding-top: 20px ;
+        padding-bottom: 20px ;
+      }
+
     }
   }
   .patient-name {
@@ -118,6 +126,7 @@ body.patient-list-open {
     top: 0;
   }
 }
+
 
 .patient-list-close {
   display: none;
