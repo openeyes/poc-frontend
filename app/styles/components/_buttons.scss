@@ -41,6 +41,10 @@
   font-size: 26px;
   padding: 20px;
   width: 100%;
+
+  &:hover {
+    background-color: #3eb266;
+  }
 }
 
 .btn-primary {}
