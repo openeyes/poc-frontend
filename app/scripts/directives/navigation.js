@@ -1,14 +1,11 @@
 'use strict';
 
 angular.module('openeyesApp')
-  .controller('NavigationCtrl', ['$scope', function($scope){
-
+  .controller('NavigationCtrl', ['$scope', '$location', '$timeout', function($scope, $location, $timeout){
 
     this.init = function() {
 
-      $scope.currentSlide = 1; 
       $scope.activeListItem = {};
-      $scope.anchorID = '#intro-section';  
       
       //TODO: Specified interactions for manual scroll and key events
 
@@ -33,27 +30,55 @@ angular.module('openeyesApp')
 
         //set new active state
 
-      $scope.setActiveSlide = function(slideNo, $event) {
-        $scope.currentSlide = slideNo; 
-        $scope.activeListItem = $event.currentTarget;
-      };
+      $scope.setActiveSlide = function(event){
 
-      //call active slide when page loads to set intro as beginning
-      $scope.setActiveSlide(1, {currentTarget:'a#intro'});
+        var anchor = $(event.currentTarget).attr('href').slice(1);
 
-      $scope.$watch('currentSlide', function(oldVal, newVal){       
-        $('nav').find('.active').removeClass('active');
-        $($scope.activeListItem).parent().addClass('active');
-        $scope.anchorID = $($scope.activeListItem).attr('href');
+        //set active nav state
+        $scope.setNavState(event.currentTarget);
+        //scroll to id
 
-        //basic checking to prevent watch running on load
-        if(oldVal !== newVal){
-          $('html, body').animate({
-              scrollTop: ($($scope.anchorID).offset().top-180)
-          },500);
-        }
+        $location.hash(anchor);
+        
+        $('html, body').animate({
+          scrollTop: ($("#"+anchor).offset().top-180)
+        },500);
        
-      });
+        event.preventDefault();
+      }
+
+      //scroll user to anchor in page if you deeplink in with an anchor
+      $scope.detectAnchorOnLoad = function(anchor){
+
+        var activeItem = $("a[href='#"+anchor+"']");
+
+        //set active nav state
+        $scope.setNavState(activeItem);
+
+        $location.hash(anchor);
+
+        if($scope.currentHash !== ''){
+          $timeout(function(){ //gross timeout hack to force sections to be loaded
+            $('html, body').animate({
+              scrollTop: ($("#"+anchor).offset().top-180)
+            },500);
+          },100)
+        }else{
+          $scope.setNavState($("a[href='#intro-section']"));
+        }
+      }
+
+      $scope.setNavState = function(activeItem){
+        $('nav').find('.active').removeClass('active');
+        $(activeItem).parent().addClass('active');
+      }
+
+      //get current hash location from location.path and set active item if its not root '/''
+      $scope.currentHash = $location.hash();
+      
+      if($scope.currentHash !== '/'){
+        $scope.detectAnchorOnLoad($scope.currentHash);
+      }      
 
     };
 
@@ -63,8 +88,10 @@ angular.module('openeyesApp')
       restrict: 'E',
       templateUrl: 'views/directives/navigation.html',
       controller: 'NavigationCtrl',
-      link: function ($scope, element, attrs, NavigationCtrl) {
-        NavigationCtrl.init();         
+      link: function ($scope, element, attrs, NavigationCtrl, $timeout) {
+        NavigationCtrl.init();     
       }
+
+
     };
   }]);
