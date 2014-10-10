@@ -34,6 +34,16 @@
   border: 0;
 }
 
+.api-btn {
+  float: left;
+  clear: left;
+  margin-bottom: 15px;
+  border-radius: 30px;
+  background-color: #fff;
+  border: 2px solid #b6c2c9;
+  color: #3fb9eb;
+}
+
 
 .block--button {
   background-color: #4dbd74;
@@ -41,6 +51,10 @@
   font-size: 26px;
   padding: 20px;
   width: 100%;
+
+  &:hover {
+    background-color: #3eb266;
+  }
 }
 
 .btn-primary {}
@@ -82,4 +96,9 @@
   &:hover {
     background-position: center top;
   }
+}
+
+.btn-lg{
+  font-size: 20px;
+  padding: 12px 30px 9px;
 }
