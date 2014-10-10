@@ -1,57 +1,63 @@
 <!-- case class TreatmentOrderSide(preAntiseptic: String, preSkinCleanser: String, preIopLoweringTherapy: List[String], drug: String,
                               sequenceNumber: Int, injectionTime: String, postIopLoweringTherapy: List[String]) -->
 
-<div class="row">
-  <div class="col-xs-6">
-    <table class="table">
-      <tr><th>Name</th><th>Value</th></tr>
-      <tr>
-        <td>Pre-Antiseptic</td><td>{{ model.rightEye.preAntiseptic }}</td>
-      </tr>
-      <tr>
-        <td>Pre-Skin Cleanser</td><td>{{ model.rightEye.preSkinCleanser }}</td>
-      </tr>
-      <tr ng-if="model.rightEye.preIopLoweringTherapy">
-        <td>Pre-Iop Lowering Therapy</td><td><span ng-repeat="item in model.rightEye.preIopLoweringTherapy">{{ item }}</span></td>
-      </tr>
-      <tr>
-        <td>Drug</td><td>{{ model.rightEye.drug }}</td>
-      </tr>
-      <tr>
-        <td>Sequence Number</td><td>{{ model.rightEye.sequenceNumber }}</td>
-      </tr>
-      <tr>
-        <td>Injection Time</td><td>{{ model.rightEye.injectionTime }}</td>
-      </tr>
-      <tr ng-if="model.rightEye.postIopLoweringTherapy">
-        <td>Post-Iop Lowering Therapy</td><td><span ng-repeat="item in model.rightEye.postIopLoweringTherapy">{{ item }}</span></td>
-      </tr>
-    </table>
+<div class="clearfix">
+  <div class="col-eye-side">
+    <div class="eye-side-marker"></div>
+    <div class="element-content">
+      <table class="table view-table">
+        <tr><th>Name</th><th>Value</th></tr>
+        <tr>
+          <td>Pre-Antiseptic</td><td>{{ model.rightEye.preAntiseptic }}</td>
+        </tr>
+        <tr>
+          <td>Pre-Skin Cleanser</td><td>{{ model.rightEye.preSkinCleanser }}</td>
+        </tr>
+        <tr ng-if="model.rightEye.preIopLoweringTherapy">
+          <td>Pre-Iop Lowering Therapy</td><td><span ng-repeat="item in model.rightEye.preIopLoweringTherapy">{{ item }}</span></td>
+        </tr>
+        <tr>
+          <td>Drug</td><td>{{ model.rightEye.drug }}</td>
+        </tr>
+        <tr>
+          <td>Sequence Number</td><td>{{ model.rightEye.sequenceNumber }}</td>
+        </tr>
+        <tr>
+          <td>Injection Time</td><td>{{ model.rightEye.injectionTime }}</td>
+        </tr>
+        <tr ng-if="model.rightEye.postIopLoweringTherapy">
+          <td>Post-Iop Lowering Therapy</td><td><span ng-repeat="item in model.rightEye.postIopLoweringTherapy">{{ item }}</span></td>
+        </tr>
+      </table>
+    </div>
   </div>
-  <div class="col-xs-6">
-    <table class="table">
-      <tr><th>Name</th><th>Value</th></tr>
-      <tr>
-        <td>Pre-Antiseptic</td><td>{{ model.leftEye.preAntiseptic }}</td>
-      </tr>
-      <tr>
-        <td>Pre-Skin Cleanser</td><td>{{ model.leftEye.preSkinCleanser }}</td>
-      </tr>
-      <tr ng-if="model.leftEye.preIopLoweringTherapy">
-        <td>Pre-Iop Lowering Therapy</td><td><span ng-repeat="item in model.leftEye.preIopLoweringTherapy">{{ item }}</span></td>
-      </tr>
-      <tr>
-        <td>Drug</td><td>{{ model.leftEye.drug }}</td>
-      </tr>
-      <tr>
-        <td>Sequence Number</td><td>{{ model.leftEye.sequenceNumber }}</td>
-      </tr>
-      <tr>
-        <td>Injection Time</td><td>{{ model.leftEye.injectionTime }}</td>
-      </tr>
-      <tr ng-if="model.leftEye.postIopLoweringTherapy">
-        <td>Post-Iop Lowering Therapy</td><td><span ng-repeat="item in model.leftEye.postIopLoweringTherapy">{{ item }}</span></td>
-      </tr>
-    </table>
+  <div class="col-eye-side">
+    <div class="eye-side-marker"></div>
+    <div class="element-content">
+      <table class="table view-table">
+        <tr><th>Name</th><th>Value</th></tr>
+        <tr>
+          <td>Pre-Antiseptic</td><td>{{ model.leftEye.preAntiseptic }}</td>
+        </tr>
+        <tr>
+          <td>Pre-Skin Cleanser</td><td>{{ model.leftEye.preSkinCleanser }}</td>
+        </tr>
+        <tr ng-if="model.leftEye.preIopLoweringTherapy">
+          <td>Pre-Iop Lowering Therapy</td><td><span ng-repeat="item in model.leftEye.preIopLoweringTherapy">{{ item }}</span></td>
+        </tr>
+        <tr>
+          <td>Drug</td><td>{{ model.leftEye.drug }}</td>
+        </tr>
+        <tr>
+          <td>Sequence Number</td><td>{{ model.leftEye.sequenceNumber }}</td>
+        </tr>
+        <tr>
+          <td>Injection Time</td><td>{{ model.leftEye.injectionTime }}</td>
+        </tr>
+        <tr ng-if="model.leftEye.postIopLoweringTherapy">
+          <td>Post-Iop Lowering Therapy</td><td><span ng-repeat="item in model.leftEye.postIopLoweringTherapy">{{ item }}</span></td>
+        </tr>
+      </table>
+    </div>
   </div>
 </div>

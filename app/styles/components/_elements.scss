@@ -4,9 +4,7 @@
   border: 1px solid $border-gray;
   border-radius: 5px;
   background-color: #fff;
-  // padding-left: 30px;
-  // padding-right: 30px;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   padding-bottom: 25px;
   &.no-padding {
     padding: 0;
@@ -202,6 +200,13 @@ canvas + input[type=text] {
   th,
   td {
     text-align: center;
+  }
+
+}
+
+.view-table {
+  td {
+    border-top-color: #c3eaec !important;
   }
 
 }

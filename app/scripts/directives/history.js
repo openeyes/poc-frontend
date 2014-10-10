@@ -26,8 +26,6 @@ angular.module('openeyesApp')
         }, function(error) {
           console.log(error);
         });
-
-
     };
 
     this.broadcastModel = function(){
@@ -46,7 +44,6 @@ angular.module('openeyesApp')
       $scope.model.text += ' ' + slug.label.toLowerCase() + ',';
       $scope[slugModel] = '';
     };
-
   }])
   /**
    * @ngdoc function

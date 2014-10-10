@@ -100,7 +100,7 @@ angular.module('openeyesApp')
             },
             {
               id: 1,
-              label: '1 month'
+              label: '2-3 days'
             },
             {
               id: 1,
@@ -112,7 +112,7 @@ angular.module('openeyesApp')
             },
             {
               id: 1,
-              label: '2-3 days'
+              label: '1 month'
             },
             {
               id: 1,

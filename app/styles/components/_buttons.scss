@@ -87,10 +87,10 @@
   height: 28px;
   margin-top: 3px;
   width: 27px;
-  background:transparent image-url('icons/forms/delete.png') center top no-repeat;
+  background:transparent image-url('icons/forms/delete.png') center 100% no-repeat;
 
   &:hover {
-    background-position: center 100%;
+    background-position: center top;
   }
 }
 
