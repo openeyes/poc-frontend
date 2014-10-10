@@ -1,89 +1,91 @@
-<div class="form-group row">
-  <div class="col-xs-4">
-    <span class="control-label">Treatment:</span>
-  </div>
-  <div class="col-xs-8">
+<div class="eye-side-marker"></div>
+<div class="element-content dotted-bottom">
+  <div class="form-group row">
+    <div class="col-xs-8">
     <div class="checkbox">
       <label>
         <input type="checkbox" ng-model="noTreatment" />
-        No treatment
+        No treatment required
       </label>
     </div>
   </div>
+  </div>
 </div>
 
-<div ng-show="noTreatment">
+<div class="element-content">
+  <div ng-show="noTreatment">
 
-  <div class="form-group row">
-    <label class="col-xs-4 control-label">Reason for no treatment:</label>
-    <div class="col-xs-8">
-      <select ng-model="model.reasonForNoTreatment" ng-options="obj.label for obj in noTreatmentReasons | orderBy:'order'" class="form-control"></select>
+    <div class="form-group row">
+      <label class="col-xs-4 control-label">Reason for no treatment:</label>
+      <div class="col-xs-8">
+        <select ng-model="model.reasonForNoTreatment" ng-options="obj.label for obj in noTreatmentReasons | orderBy:'order'" class="form-control"></select>
+      </div>
     </div>
+
+    <div class="form-group row" ng-show="model.reasonForNoTreatment.other">
+      <label class="col-xs-4 control-label">Please provide other reason for no treatment:</label>
+      <div class="col-xs-8">
+        <textarea ng-model="model.reasonForNoTreatmentOther" class="form-control" rows="3"></textarea>
+      </div>
+    </div>
+
   </div>
 
-  <div class="form-group row" ng-show="model.reasonForNoTreatment.other">
-    <label class="col-xs-4 control-label">Please provide other reason for no treatment:</label>
-    <div class="col-xs-8">
-      <textarea ng-model="model.reasonForNoTreatmentOther" class="form-control" rows="3"></textarea>
+  <div ng-show="!noTreatment">
+    <div class="form-group row">
+      <div class="col-xs-12">
+        <label class="control-label">
+          Diagnosis:
+        </label>
+        <oe-diagnosis-selection ng-model="selectedDiagnosis"></oe-diagnosis-selection>
+      </div>
     </div>
-  </div>
-
-</div>
-
-<div ng-show="!noTreatment">
-  <div class="form-group row">
-    <label class="col-xs-4 control-label">
-      Diagnosis:
-    </label>
-    <div class="col-xs-8">
-      <oe-diagnosis-selection ng-model="selectedDiagnosis"></oe-diagnosis-selection>
+    <div class="form-group row" ng-show="selectedDiagnosis && selectedDiagnosis.hasSecondary">
+      <div class="col-xs-12">
+        <label class="control-label">
+          Secondary to:
+        </label>
+        <oe-diagnosis-selection ng-model="diagnosisSecondaryTo" secondary-to="selectedDiagnosis"></oe-diagnosis-selection>
+      </div>
     </div>
-  </div>
-  <div class="form-group row" ng-show="selectedDiagnosis && selectedDiagnosis.hasSecondary">
-    <label class="col-xs-4 control-label">
-      Secondary to:
-    </label>
-    <div class="col-xs-8">
-      <oe-diagnosis-selection ng-model="diagnosisSecondaryTo" secondary-to="selectedDiagnosis"></oe-diagnosis-selection>
+
+    <oe-injection-questions ng-model="model.questions" diagnosis="selectedDiagnosis" secondary-to-diagnosis="diagnosisSecondaryTo"></oe-injection-questions>
+
+    <div class="form-group row">
+      <div class="col-xs-12">
+        <label class="control-label">
+          Intended Treatment:
+        </label>
+        <select
+          chosen
+          disable-search="true"
+          data-placeholder="Select a treatment..."
+          ng-model="intendedTreatment"
+          ng-options="treatment.label for treatment in treatments | orderBy:'order'"
+          >
+        </select>
+      </div>
     </div>
-  </div>
 
-  <oe-injection-questions ng-model="model.questions" diagnosis="selectedDiagnosis" secondary-to-diagnosis="diagnosisSecondaryTo"></oe-injection-questions>
-
-  <div class="form-group row">
-    <label class="col-xs-4 control-label">
-      Intended Treatment:
-    </label>
-    <div class="col-xs-8">
-      <select
-        chosen
-        disable-search="true"
-        data-placeholder="Select a treatment..."
-        ng-model="intendedTreatment"
-        ng-options="treatment.label for treatment in treatments | orderBy:'order'"
-        >
-      </select>
+    <div class="form-group row">
+      <div class="col-xs-12">
+        <label class="control-label">
+          Risks:
+        </label>
+        <oe-risks-selection ng-model="risks" data-placeholder="Select risks..."></oe-risks-selection>
+      </div>
     </div>
-  </div>
 
-  <div class="form-group row">
-    <label class="col-xs-4 control-label">
-      Risks:
-    </label>
-    <div class="col-xs-8">
-      <oe-risks-selection ng-model="risks" data-placeholder="Select risks..."></oe-risks-selection>
+    <div class="form-group row">
+      <div class="col-xs-12">
+        <label class="control-label">
+          Comments:
+        </label>
+        <textarea class="form-control" rows="3" ng-model="model.comment" placeholder="Enter comments..."></textarea>
+      </div>
     </div>
-  </div>
 
-  <div class="form-group row">
-    <label class="col-xs-4 control-label">
-      Comments:
-    </label>
-    <div class="col-xs-8">
-      <textarea class="form-control" rows="3" ng-model="model.comment" placeholder="Enter comments..."></textarea>
-    </div>
   </div>
-
 </div>
 
 

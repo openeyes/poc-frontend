@@ -22,13 +22,18 @@
           </div>
         </div>
       </div>
+
       <div class="patient-details col-xs-6" ng-if="patient.firstName">
-        <ul class="patient-details-list">
-          <li><strong>Born</strong> {{ patient.dob }} ({{ getAge() }}y)</li>
-          <li class="gender"><strong>Gender</strong> ({{ patient.gender.slice(0,1) }})</li>
-          <li><strong>NHS No.</strong> {{ patient.nhsNumber }}</li>
-        </ul>
-        <a href="#" class="btn btn-default btn-new view-history" ng-click="$event.preventDefault()">View History <span class="caret"></span></a>
+        <div class="col-xs-9">
+          <ul class="patient-details-list">
+            <li><strong>Born</strong> {{ patient.dob }} ({{ getAge() }}y)</li>
+            <li class="gender"><strong>Gender</strong> ({{ patient.gender.slice(0,1) }})</li>
+            <li><strong>NHS No.</strong> {{ patient.nhsNumber }}</li>
+          </ul>
+        </div>
+        <div class="col-xs-3">
+          <a href="#" class="btn btn-default btn-new view-history" ng-click="$event.preventDefault()">View History <span class="caret"></span></a>
+        </div>
       </div>
     </div>
   </div>

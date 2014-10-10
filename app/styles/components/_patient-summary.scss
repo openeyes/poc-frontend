@@ -8,6 +8,7 @@
   position: absolute;
   height: 100%;
   width: 105px;
+  z-index: 3;
 }
 
 .patient-summary {
@@ -38,8 +39,9 @@
   border: 1px solid #fff;
   float: left;
   height: 60px;
-
+  position: relative;
   width: 60px;
+  z-index: 1;
 }
 
 .patient-overview {
@@ -51,12 +53,16 @@
   color: $text-color;
   display: inline;
   font-size: 30px;
-  margin-left: 16px;
+  margin-left: 5px;
 }
 
 .patient-allergies {
   color: #ec4867;
-  margin:16px 0 16px 170px;
+  left: -20px;
+  // margin: 0 0 10px 170px;
+  position: relative;
+  top: -8px;
+  z-index: 2;
   .notification {
     margin-right: 3px;
   }

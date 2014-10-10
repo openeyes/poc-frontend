@@ -2,19 +2,14 @@
 <!-- case class VisualAcuitySide(readings: List[VisualAcuityReading], comment: Option[String]) -->
 <!-- case class VisualAcuityReading(value: Int, correction: String) -->
 <div class="row">
-  <div class="col-xs-6">
-    <table class="table">
-      <tr><th>Value</th><th>Correction</th></tr>
+  <div class="col-xs-12">
+    <table class="table padded-table">
+      <tr class="header-row"><th></th><th></th><th>Value</th><th>Correction</th><th></th></tr>
       <tr ng-repeat="r in model.rightEye.readings">
-        <td>{{ r.value }}</td><td>{{ r.correction }}</td>
+        <td></td><td><span class="icon-right-eye"></span></td><td>{{ r.value }}</td><td>{{ r.correction }}</td><td></td>
       </tr>
-    </table>
-  </div>
-  <div class="col-xs-6">
-    <table class="table">
-      <tr><th>Value</th><th>Correction</th></tr>
       <tr ng-repeat="r in model.leftEye.readings">
-        <td>{{ r.value }}</td><td>{{ r.correction }}</td>
+        <td></td><td><span class="icon-left-eye"></span></td><td>{{ r.value }}</td><td>{{ r.correction }}</td><td></td>
       </tr>
     </table>
   </div>

@@ -28,6 +28,12 @@ angular.module('openeyesApp')
       if($scope.selectedAgent){
         $scope.model.agent = $scope.selectedAgent.label;
       }
+      if($scope.selectedAnaestheticType){
+        $scope.model.anaestheticType = $scope.selectedAnaestheticType.label;
+      }
+      if($scope.selectedDelivery){
+        $scope.model.delivery = $scope.selectedDelivery.label;
+      }
 
       return {
         name: MODEL_DOMAIN + 'Anaesthetic',
