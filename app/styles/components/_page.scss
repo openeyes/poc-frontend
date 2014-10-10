@@ -1,4 +1,8 @@
 // Page body
+body{
+  position: relative;
+}
+
 
 .page-body {
   @extend .clearfix;
