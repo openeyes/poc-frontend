@@ -1,6 +1,4 @@
-<div ng-controller="JoyrideMainCtrl">
-  <div ng-joy-ride="startJoyRide" config="config" on-finish="onFinish()"  on-skip="onFinish()"></div>
-</div>
+
 
 <div class="pres-wrapper">
   <div class="intro-wrapper">
@@ -90,21 +88,34 @@
     </div>
   </div>
 
+
+
   <div class="sub-section-wrapper">
     <div class="form-group row">
       <div class="col-xs-12">
         <div class="sub-section last-section clearfix">
           <p id="try-section">Try a step in this workflow for a Medical Retina Injection Clinic</p>
-          <div class="radio" ng-repeat="workflow in workflows">
-            <label>
-              <input type="radio" ng-model="$parent.workflow" ng-value="workflow" />
-              At {{ workflow.site }}
-            </label>
+          <div class="col-xs-8" id="joyride-workflows">
+            <div class="radio" ng-repeat="workflow in workflows">
+              <label>
+                <input type="radio" ng-model="$parent.workflow" ng-value="workflow" />
+                At {{ workflow.site }}
+              </label>
+            </div>
+          
+            <div class="clearfix">
+              <a href="/#/patients/{{ workflow._id.$oid }}/{{ $index }}" id="workflow{{$index}}" ng-repeat="step in workflow.steps" class="btn btn-primary btn-lg workflow-btn"> Step {{$index +1}} - {{ step.name }} as a {{ step.role }}</a>
+            </div>
           </div>
-        
-          <div class="clearfix">
-            <a href="/#/patients/{{ workflow._id.$oid }}/{{ $index }}" id="workflow{{$index}}" ng-repeat="step in workflow.steps" class="btn btn-primary btn-lg workflow-btn"> Step {{$index +1}} - {{ step.name }} as a {{ step.role }}</a>
+
+          <div ng-controller="JoyrideMainCtrl" class="col-xs-12" >
+            <div ng-joy-ride="startJoyRide" config="config" on-finish="onFinish()"  on-skip="onSkip()">
+              <oe-joyride-switch>
+                <input type="checkbox" ng-model="startJoyRide" name="joyrideSwitch" ng-change="SetJoyrideState(startJoyRide)"> Guided tour
+              </oe-joyride-switch>  
+            </div>
           </div>
+
           <!-- <div class="sub-section">
             <button class="btn btn-primary btn-lg workflow-btn workflow-btn-light">View the </button>
           </div> -->
@@ -112,5 +123,5 @@
       </div>
     </div>
   </div>
-
 </div>
+

@@ -7,7 +7,6 @@ angular.module('openeyesApp')
     var selected = [];
 
     this.init = function() {
-
       tabs = angular.element('.oct-nav-tabs a')
         .on('click', this.selectTab.bind(this));
 
@@ -16,7 +15,7 @@ angular.module('openeyesApp')
       });
     };
 
-    this.selectTab = function (e) {
+    this.selectTab = function(e) {
       e.preventDefault();
       var tab = e.currentTarget;
       angular.element(tab).tab('show');

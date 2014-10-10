@@ -1,16 +1,21 @@
 // Event Elements
 
 .element {
-  border: 1px solid #dce2e5;
+  border: 1px solid $border-gray;
   border-radius: 5px;
   background-color: #fff;
   // padding-left: 30px;
   // padding-right: 30px;
   margin-bottom: 25px;
   padding-bottom: 25px;
-
+  &.no-padding {
+    padding: 0;
+    > h2 {
+      margin: 0;
+    }
+  }
   > h2 {
-    border-bottom: 1px solid #c9d3da;
+    border-bottom: 1px solid $border-gray;
     padding: 10px 40px;
   }
 
@@ -76,6 +81,10 @@
 
 
 
+.label-top {
+  display: block;
+}
+
 
 // Sided element styles
 
@@ -91,7 +100,7 @@
 .eye-side-marker {
   background-color: #f2f4f5;
   height: 25px;
-  margin:1px 1px 20px 1px;
+  margin:1px 1px 30px 1px;
   position: relative;
   &:after {
     background: transparent image-url('icons/forms/left-eye.png') center center no-repeat;
@@ -104,6 +113,14 @@
     left: 50%;
     margin-left: -15px;
   }
+}
+
+.eye-side-marker + .element-content {
+  padding-top: 20px;
+}
+
+.eye-side-marker + .dotted-bottom {
+  padding-top: 0;
 }
 
 .col-eye-side:first-child .eye-side-marker:after {

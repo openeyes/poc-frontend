@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('openeyesApp')
-  .controller('NavigationCtrl', ['$scope', '$attrs', '$rootScope',  function($scope, $attrs, $rootScope){
+  .controller('NavigationCtrl', ['$scope', function($scope){
 
 
     this.init = function() {
@@ -51,11 +51,6 @@ angular.module('openeyesApp')
           $('html, body').animate({
               scrollTop: ($($scope.anchorID).offset().top-180)
           },500);
-        }
-
-        //once user has navigated to last item then trigger Joyride
-        if($scope.currentSlide === 5){
-          $rootScope.$broadcast('joyride.start', {});
         }
        
       });

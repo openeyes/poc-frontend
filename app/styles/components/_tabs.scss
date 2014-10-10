@@ -17,6 +17,56 @@
   }
 }
 
+.check-tabs {
+  background: #e7ebed;
+  border: 0;
+  // border-bottom: 1px solid $border-gray;
+  > li {
+    border-bottom: 1px solid $border-gray;
+    label {
+      background: #e7ebed;
+      border: 0;
+      border-right: 1px solid $border-gray;
+      display: block;
+      padding: 20px 40px;
+      position: relative;
+      margin: 0;
+    }
+    a,
+    a:hover {
+      border: 0;
+      border-radius: 0;
+      border-right: 1px solid $border-gray;
+      margin: 0;
+      padding: 20px 40px;
+    }
+    &.active {
+      border: 0;
+      border-bottom: 1px solid #fff;
+      a,
+      a:hover {
+        border: 0;
+        border-right: 1px solid $border-gray;
+      }
+      &.empty-tab {
+        border-bottom: 1px solid $border-gray;
+      }
+    }
+  }
+}
+
 .tab-content {
   padding-top: 40px;
+  &.check-tab-content {
+    padding-top: 0;
+    .element-content {
+      border-top: 1px solid $border-gray;
+      padding-bottom: 25px;
+      padding-top: 25px;
+    }
+    .element-content + .element-content {
+      border-top: 0;
+      padding-top: 0;
+    }
+  }
 }
