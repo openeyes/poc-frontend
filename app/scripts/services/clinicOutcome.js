@@ -12,7 +12,6 @@ angular.module('openeyesApp')
 
     return {
       getStatuses: function() {
-
         var data = [
           {
             label: 'Follow-up',

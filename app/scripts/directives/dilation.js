@@ -17,7 +17,11 @@ angular.module('openeyesApp')
       //  Broadcast by encounter page controller
       this.eyeSide = attrs.side;
       $scope.model = {};
-      $scope.model.dilations = [];
+      $scope.model.dilations = [{
+        time: '',
+        drug: '',
+        drops: ''
+      }];
       $scope.$on('encounter.save', this.broadcastModel);
       //  On creation populate dropdown
 
@@ -44,24 +48,21 @@ angular.module('openeyesApp')
 
     // $scope methods
     $scope.addDilation = function(){
-      if(!$scope.currentDilationMed){
-        return;
-      }
       //  Add to model
       $scope.model.dilations.push({
-        time: Date.now(),
-        drug: $scope.currentDilationMed,
-        drops: 1
+        time: '',
+        drug: '',
+        drops: ''
       });
       //  Remove from dropdown
-      $scope.dilationMeds.splice($scope.dilationMeds.indexOf($scope.currentDilationMed), 1);
+      // $scope.dilationMeds.splice($scqope.dilationMeds.indexOf($scope.currentDilationMed), 1);
       //  Reset dropdown
-      $scope.currentDilationMed = '';
+      // $scope.currentDilationMed = '';
     };
 
     $scope.removeRow = function(index){
       //  Add back into dropdown
-      $scope.dilationMeds.push($scope.model.dilations[index].drug);
+      // $scope.dilationMeds.push($scope.model.dilations[index].drug);
       //  Remove from list
       $scope.model.dilations.splice(index, 1);
 

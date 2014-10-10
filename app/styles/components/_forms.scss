@@ -10,6 +10,8 @@
 
 .control-label {
   @extend label;
+  padding-bottom: 7px;
+  padding-top: 7px;
 }
 
 // Validation states
