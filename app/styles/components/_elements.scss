@@ -178,6 +178,11 @@ canvas + input[type=text] {
 
   margin-top: -30px;
 
+  .icon-right-eye,
+  .icon-left-eye {
+    float: left;
+  }
+
   .header-row {
     background-color: #eff2f3;
   }
@@ -192,6 +197,11 @@ canvas + input[type=text] {
 
   td {
     border-top: 1px dashed #c9d3da !important;
+  }
+
+  th,
+  td {
+    text-align: center;
   }
 
 }
