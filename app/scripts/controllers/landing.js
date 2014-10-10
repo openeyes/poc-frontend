@@ -18,11 +18,30 @@ angular.module('openeyesApp')
     });
 
     this.setLanding = function(){
-      if($location.url() === '/'){
-        $scope.landing = true;
-      } else {
-        $scope.landing = false;
+
+      switch($location.url()){
+        case '/': $scope.landing = true;
+        break;
+        case '/#intro-section': $scope.landing = true;
+        break;
+        case '/#problems-section': $scope.landing = true;
+        break;
+        case '/#tech-section': $scope.landing = true;
+        break;
+        case '/#workflow-section': $scope.landing = true;
+        break;
+        case '/#try-section': $scope.landing = true;
+        break;
+        default: $scope.landing = false;
+        break;
       }
+
+
+      // if($location.url() === '/'){
+      //   $scope.landing = true;
+      // } else {
+      //   $scope.landing = false;
+      // }
     };
 
     this.setLanding();
