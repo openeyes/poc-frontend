@@ -15,7 +15,7 @@ angular.module('openeyesApp')
     }
 
     $scope.onSkip = function(){
-      console.log('skip method in mainCtrl');
+      //console.log('skip method in mainCtrl');
       $rootScope.stopJoyRide = true;
     };
 

@@ -22,7 +22,7 @@ angular.module('openeyesApp')
     }
 
     function joyrideEndDemonstration(){
-      console.log('end demonstration method in encounterCtrl');
+      //console.log('end demonstration method in encounterCtrl');
       $scope.startJoyRide = false;
       $rootScope.stopJoyRide = true;
       $('.modal').modal('hide');
@@ -42,7 +42,7 @@ angular.module('openeyesApp')
     }
 
     $scope.onSkip = function(){
-      console.log('skip method in encounterCtrl');
+      //console.log('skip method in encounterCtrl');
       $rootScope.stopJoyRide = true;
     };
 
@@ -191,7 +191,7 @@ angular.module('openeyesApp')
       //why is this set to true when you hit this page? 
       //console.log('value of global in encounter stop', $rootScope.stopJoyRide, $scope.startJoyRide);
       if($rootScope.stopJoyRide === false){
-        console.log("should be starting?")
+        //console.log("should be starting?")
         $scope.startJoyRide = true;
       }
     }
