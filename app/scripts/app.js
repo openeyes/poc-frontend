@@ -45,10 +45,11 @@ angular
       .when('/patients/:workflowId/:stepIndex', {
         templateUrl: 'views/patients.html',
         controller: 'PatientsCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
       });
+      // .otherwise({
+
+      //   redirectTo: '/'
+      // });
 
     // To allow CORS and ajax with http auth
     if(ENV.name === 'dist') {
@@ -60,3 +61,4 @@ angular
   }])
   .constant('MODEL_DOMAIN', 'org.openeyes.api.models.')
   .constant('WORKFLOW_DOMAIN', 'org.openeyes.api.models.workflow');
+
