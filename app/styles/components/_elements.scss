@@ -1,16 +1,21 @@
 // Event Elements
 
 .element {
-  border: 1px solid #dce2e5;
+  border: 1px solid $border-gray;
   border-radius: 5px;
   background-color: #fff;
   // padding-left: 30px;
   // padding-right: 30px;
   margin-bottom: 25px;
   padding-bottom: 25px;
-
+  &.no-padding {
+    padding: 0;
+    > h2 {
+      margin: 0;
+    }
+  }
   > h2 {
-    border-bottom: 1px solid #c9d3da;
+    border-bottom: 1px solid $border-gray;
     padding: 10px 40px;
   }
 
