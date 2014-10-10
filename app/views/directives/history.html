@@ -20,7 +20,7 @@
     </select>
   </div>
   <div class="col-xs-2">
-    <select class="form-control" ng-model="durationSlug" ng-options="obj.label for obj in slugs.duration | orderBy:'label'" ng-change="addSlug(durationSlug, 'durationSlug')">
+    <select class="form-control" ng-model="durationSlug" ng-options="obj.label for obj in slugs.duration" ng-change="addSlug(durationSlug, 'durationSlug')">
       <option value="">--Duration--</option>
     </select>
   </div>
