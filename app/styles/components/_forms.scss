@@ -36,3 +36,25 @@
 .radio-inline {
   margin-right: 10px;
 }
+
+
+.error-validation{
+  color: #ec4867;
+  font-weight: bold;
+  margin: 6px 0;
+  text-align: center;
+  display: none;
+  opacity: 1;
+}
+
+.error-validation.show-validation{
+  display: block;
+}
+
+.error-validation.fadeout-validation{
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+  
+
