@@ -8,7 +8,7 @@
         </a>
     <!--   </div> -->
       <div class="patient-info col-xs-6" ng-if="patient.firstName">
-        <img ng-src="/images/profiles/{{patient.gender == 'Female' ? 1 : 4}}.png" alt="Chay Close" class="patient-pic" />
+        <img ng-src="{{ patient.avatarUrl }}" alt="Chay Close" class="patient-pic" />
         <div class="patient-overview">
           <a ng-href="/#/patient/{{ patient._id.$oid }}" class="patient-name" ng-click="$event.preventDefault()">
             <strong>{{ patient.surname }},</strong> {{ patient.firstName }} ({{ patient.title }})
