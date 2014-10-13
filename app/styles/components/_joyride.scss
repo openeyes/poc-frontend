@@ -1,5 +1,5 @@
-//JOYRIDE OVERRIDE - Removes the curtain. ID specificity means that 
-//it can't be removed with the joyride curtain custom class option. 
+//JOYRIDE OVERRIDE - Removes the curtain. ID specificity means that
+//it can't be removed with the joyride curtain custom class option.
 
 #ng-curtain{
   background: transparent;
@@ -31,7 +31,7 @@
 	z-index: 2;
 }
 
-.form-group.row.ng-joyride-element-static, 
+.form-group.row.ng-joyride-element-static,
 #joyride-history-title, #joyride-workflow,
 .element-box.ng-joyride-element-static,
 .barcode-scan.ng-joyride-element-static,
@@ -87,28 +87,34 @@
 	display: none;
 }
 
-.glyphicon-chevron-right, .glyphicon-chevron-left{
-	font-family: none;
-	width: 6px;
-	height: 7px;
-	top: -1px;
-	border: 0;
+.ng-joyride.popover {
+
+  .glyphicon-chevron-right, .glyphicon-chevron-left{
+    font-family: none;
+    width: 6px;
+    height: 7px;
+    top: -1px;
+    border: 0;
+  }
+
+  .glyphicon-chevron-right{
+    background: url(../images/presentation/icon-next.png) no-repeat 0 0;
+    margin-left: 5px;
+  }
+
+  .glyphicon-chevron-left{
+    background: url(../images/presentation/icon-prev.png) no-repeat 0 0;
+    margin-right: 5px;
+  }
+
+
+  .glyphicon-chevron-right:before, .glyphicon-chevron-left:before{
+    content: "";
+  }
+
 }
 
-.glyphicon-chevron-right{
-	background: url(../images/presentation/icon-next.png) no-repeat 0 0;
-	margin-left: 5px;
-}
 
-.glyphicon-chevron-left{
-	background: url(../images/presentation/icon-prev.png) no-repeat 0 0;
-	margin-right: 5px;
-}
-
-
-.glyphicon-chevron-right:before, .glyphicon-chevron-left:before{
-	content: "";
-}
 
 .ng-joyride .popover-content .col-md-4{
 	padding: 0 0 0 11px;
