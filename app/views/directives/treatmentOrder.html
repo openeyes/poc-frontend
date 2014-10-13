@@ -35,10 +35,10 @@
   </div>
 
   <div class="form-group row">
-    <div class="col-xs-12">
-      <input type="checkbox" ng-model="model.hasPreInjectionLoweringTherapy">
-      <label for="site" class="control-label">Pre Injection IOP Lowering Therapy Required</label>
-
+    <div class="col-xs-12 checkbox">
+      <label for="site" class="control-label">
+        <input type="checkbox" ng-model="model.hasPreInjectionLoweringTherapy">Pre Injection IOP Lowering Therapy Required
+      </label>
     </div>
   </div>
 
@@ -94,12 +94,13 @@
   </div>
 
   <div class="form-group row">
-    <div class="col-xs-12">
+    <div class="col-xs-12 checkbox">
+      <label for="site" class="control-label">
       <input
         type="checkbox"
         ng-model="model.hasPostInjectionLoweringTherapy"
-        >
-      <label for="site" class="control-label">Post Injection IOP Lowering Therapy Required</label>
+        >Post Injection IOP Lowering Therapy Required
+      </label>
     </div>
   </div>
 
