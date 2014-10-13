@@ -18,7 +18,9 @@
     <div class="form-group row">
       <label class="col-xs-4 control-label">Reason for no treatment:</label>
       <div class="col-xs-8">
-        <select ng-model="model.reasonForNoTreatment" ng-options="obj.label for obj in noTreatmentReasons | orderBy:'order'" class="form-control"></select>
+        <select ng-model="model.reasonForNoTreatment" ng-options="obj.label for obj in noTreatmentReasons | orderBy:'order'" class="form-control">
+          <option value="">-- Please select --</option>
+        </select>
       </div>
     </div>
 
@@ -63,6 +65,7 @@
           ng-model="intendedTreatment"
           ng-options="treatment.label for treatment in treatments | orderBy:'order'"
           >
+          
         </select>
       </div>
     </div>

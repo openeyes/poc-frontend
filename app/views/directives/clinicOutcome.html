@@ -24,10 +24,14 @@
           Book follow up appointment for
         </label>
         <div class="col-xs-2">
-          <select class="form-control" ng-model="quantity" ng-options="obj.label for obj in quantities"></select>
+          <select class="form-control" ng-model="quantity" ng-options="obj.label for obj in quantities">
+            <option value="">-- Please select --</option>
+          </select>
         </div>
         <div class="col-xs-2">
-          <select class="form-control" ng-model="period" ng-options="obj.label for obj in periods"></select>
+          <select class="form-control" ng-model="period" ng-options="obj.label for obj in periods">
+            <option value="">-- Please select --</option>
+          </select>
         </div>
       </div>
     </div>
@@ -39,6 +43,7 @@
         </label>
         <div class="col-xs-4">
           <select class="form-control" ng-model="role" ng-options="obj.label for obj in roles">
+            <option value="">-- Please select --</option>
           </select>
         </div>
         <div class="col-xs-4">

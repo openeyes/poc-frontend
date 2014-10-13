@@ -62,3 +62,7 @@
   opacity: 0;
   transition: opacity 1s ease-in-out;
 }  
+
+.form-control, .chosen-container-multi .chosen-choices, .chosen-container-single .chosen-single{
+  box-shadow: 0 0 0 0 ;
+}
