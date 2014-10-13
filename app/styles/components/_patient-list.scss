@@ -41,7 +41,8 @@ body.patient-list-open {
 
 .patient-list-overlay {
   display: none;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(27, 43, 60, 0.8);
+
   height: calc(100% - 159px);
   position: fixed;
   top: 159px;
