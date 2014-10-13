@@ -147,14 +147,12 @@
   &:first-child {
     border-right: 1px solid #c9d3da;
   }
-
 }
 
 .dotted-bottom {
   border-bottom: 1px dotted #c9d3da;
   padding-bottom: 15px;
 }
-
 
 canvas + input[type=text] {
   visibility: hidden;
