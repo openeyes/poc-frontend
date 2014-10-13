@@ -8,7 +8,7 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('AllergiesCtrl', ['$scope', 'Patient', 'Allergies', 'Encounter', 'MODEL_DOMAIN', function($scope, Patient, Allergies, Encounter, MODEL_DOMAIN){
+  .controller('AllergiesCtrl', ['$scope', '$routeParams', 'Patient', 'Allergies', 'Encounter', 'Element', 'Ticket', 'MODEL_DOMAIN', function($scope, $routeParams, Patient, Allergies, Encounter, Element, Ticket, MODEL_DOMAIN){
 
     var self = this;
 
@@ -18,22 +18,44 @@ angular.module('openeyesApp')
       $scope.model = {};
       $scope.model.allergies = [];
       $scope.$on('encounter.save', this.broadcastModel);
+
+      $scope.$watch('patient', function(patient) {
+        if (patient) {
+          self.getPatientAllergies();
+        }
+      });
       //  On creation populate dropdown
 
       Allergies.getAllergyMeds()
         .then(function(data) {
           $scope.allergies = data;
-          Patient.getExistingAllergies('TEST_ID')
-            .then(function(data) {
-              $scope.model.allergies = data;
-              self.pruneExistingAllergies();
-            }, function(error) {
-              console.log(error);
-            });
+          self.getPatient();
         }, function(error) {
           console.log(error);
         });
 
+    };
+
+    this.getPatientAllergies = function(){
+      var eType = MODEL_DOMAIN + 'VisualAcuity';
+
+      Element.getElements($scope.patient._id.$oid, eType, null)
+        .then(function(data) {
+          $scope.model.allergies = data.data;
+          self.pruneExistingAllergies();
+        }, function(error) {
+          console.log(error);
+          $scope.model.allergies = [];
+        });
+    };
+
+    this.getPatient = function() {
+      Ticket.getTicket($routeParams.ticketId)
+        .then(function(data) {
+          $scope.patient = data.data.patient;
+        }, function(data, status, headers, config) {
+          console.log('Error getting patient data', data, status, headers, config);
+        });
     };
 
     this.broadcastModel = function(){
