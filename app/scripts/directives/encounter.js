@@ -45,7 +45,7 @@ angular.module('openeyesApp')
       stepIndex++;
       // Set some next step variable for confirmation dialog
       var nextStep = stepIndex < steps.length ? steps[stepIndex] : false;
-      console.log(nextStep);
+      //console.log(nextStep);
     };
 
     this.buildLayout = function(stepIndex){
@@ -82,10 +82,13 @@ angular.module('openeyesApp')
 
         $scope.form.submitted = true;
 
-        if ($scope.form.$invalid) {
-          self.scrollToField(
-            self.getFirstErrorField($scope.form.$error)
-          );
+        if ($scope.form.$invalid) {          
+          //TODO: scrollTo functionality currently not working on error state
+          //Commented out to allow error handler to trigger in postEncounter
+
+          // self.scrollToField(
+          //   self.getFirstErrorField($scope.form.$error)
+          // );
           return;
         }
 
@@ -108,6 +111,7 @@ angular.module('openeyesApp')
           self.showConfirmation();
         })
         .error(function(data, status, headers, config) {
+          $rootScope.$broadcast('error.invalidForm');
           console.log(data, status, headers, config);
         });
     };

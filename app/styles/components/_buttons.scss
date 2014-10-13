@@ -8,7 +8,7 @@
     color: #ffffff;
     font-size: 15px;
     line-height: 17px;
-    padding: 12px 30px;
+    padding: 13px 30px;
     &:hover {
       background: #31a7aa;
     }
@@ -51,9 +51,11 @@
   font-size: 26px;
   padding: 20px;
   width: 100%;
+  border-color: #4dbd74;
 
   &:hover {
     background-color: #3eb266;
+    border-color: #3eb266;
   }
 }
 

@@ -13,9 +13,11 @@
     .check-box-label {
       font-size: 18px;
       font-weight: normal;
+      input[type="checkbox"] {
+        top: 3px;
+      }
       margin-left: 15px;
-      position: relative;
-      top: 2px;
+  
     }
     dl{
       border-top: 1px solid #eee;
@@ -73,8 +75,11 @@
     margin-bottom: 25px;
   }
 
-  .guided-tour, .api-btn{
+  .api-btn{
     margin: 20px 0;
+  }
+  .guided-tour{
+    padding-left: 0;
   }
 
   .last-section{

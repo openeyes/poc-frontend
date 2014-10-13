@@ -13,16 +13,16 @@
 
 .patient-summary {
   .patient-pic {
-    margin-top: 22px;
+    margin-top: 10px;
     margin-left: 105px;
   }
 
   .patient-details-list {
-    margin-top: 44px;
+    margin-top: 36px;
   }
   .view-history {
-    margin-top: 32px;
-    margin-bottom: 16px;
+    margin-top: 24px;
+    margin-bottom: 24px;
     float: right;
   }
   .patient-list-open & {
@@ -35,26 +35,25 @@
 }
 
 .patient-pic {
-  border-radius: 30px;
+  border-radius: 50%;
   border: 1px solid #fff;
   float: left;
-  height: 60px;
+  height: 70px;
   position: relative;
-  width: 60px;
+  width: 70px;
   z-index: 1;
 }
 
 .patient-overview {
-  padding-bottom: 8px;
   margin-left: 10px;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .patient-name {
 
-  @media screen and (max-width: 1415px){
-    font-size: 20px;
-  }
+  // @media screen and (max-width: 1415px){
+  //   font-size: 20px;
+  // }
 
   color: $text-color;
   display: inline;
@@ -64,9 +63,9 @@
 
 .patient-allergies {
 
-  @media screen and (max-width: 1415px){
-    top: -5px;
-  }
+  // @media screen and (max-width: 1415px){
+  //   top: -5px;
+  // }
 
   color: #ec4867;
   left: -20px;
@@ -79,25 +78,30 @@
   }
 }
 
-.patient-details-list {
+.patient-summary .patient-details-list {
 
-  @media screen and (max-width: 1415px){
+  @media screen and (max-width: 1300px){
     font-size: 13px;
-    margin-top: 30px !important;
+    margin-top: 20px !important;
     padding-bottom: 18px;
   }
 
-  font-size: 16px;
+  li {
+    @media screen and (max-width: 1300px){
+      float: none;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.patient-details-list {
+
+  font-size: 15px;
   list-style: none;
   margin: 0;
   padding: 0;
   float: left;
   li {
-
-    @media screen and (max-width: 1415px){
-      float: none;
-      margin-bottom: 0;
-    }
 
     float: left;
     margin-right: 20px;
