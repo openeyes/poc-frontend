@@ -34,6 +34,14 @@
     appearance: none;
   }
 
+  .checkbox-wrapper {
+    float: left;
+
+    & + .checkbox-wrapper {
+      margin-left: 50px;
+    }
+  }
+
   input[type=checkbox] {
 
   }

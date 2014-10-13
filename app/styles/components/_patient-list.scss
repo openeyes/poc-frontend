@@ -4,13 +4,13 @@ $patient-list-padding-vertical: 16px;
 $patient-list-animation-slidedown-speed: 0.7s;
 
 .patient-list-container {
-  margin-top: 159px;
+  margin-top: 155px;
   .page-encounter & {
     margin-top: 0;
     height: 0;
     max-height: calc(100% - 159px);
     position: fixed;
-    top: 159px;
+    top: 155px;
     width: 100%;
     z-index: 1001;
     overflow: hidden;
@@ -120,10 +120,17 @@ body.patient-list-open {
     color: #fff;
     display: none;
     height: 100%;
-    padding: 18px 6px;
+    padding: 27px 6px 18px 9px;
     position: absolute;
     right: 0;
     top: 0;
+
+    .chevron-right {
+      display: block;
+      background:transparent image-url('icons/right-chevron.png') center center no-repeat;
+      height: 14px;
+      width: 8px;
+    }
   }
 }
 
