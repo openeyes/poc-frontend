@@ -46,16 +46,19 @@
     display: block;
   }
 
-  .workflow-details{
+  .workflow-details, .intro-details{
     margin-top: 50px;
     li{
       padding: 5px;
     }
   }
 
+  .intro-details{
+    margin-bottom: 50px;
+  }
+
   .clinic-location{
     margin-top: 50px;
-    
   }
 
    .workflow-buttons{
