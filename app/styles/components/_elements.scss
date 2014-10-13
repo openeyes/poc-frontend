@@ -1,6 +1,7 @@
 // Event Elements
 
 .element {
+  clear: both;
   border: 1px solid $border-gray;
   border-radius: 5px;
   background-color: #fff;
@@ -160,15 +161,17 @@ canvas + input[type=text] {
 }
 
 .view-1-2 {
-  width: 49%;
+  width: 50%;
   float: left;
   min-height: 168px;
-  margin-right: 1%;
 }
 
-.view-right {
-  margin-left: 1%;
-  margin-right: 0;
+.view-left .element{
+  margin-right: 5px;
+}
+
+.view-right .element{
+  margin-left: 5px;
 }
 
 .icon-right-eye,
