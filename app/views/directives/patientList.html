@@ -7,7 +7,7 @@
             <tr ng-repeat="ticket in tickets" ng-click="start($event, ticket)">
               <td class="patient-time text-center">{{ ticket.appointmentTime | date:'HH:mm'}}</td>
               <td class="col-xs-6 " id="joyride-{{$index}}">
-                <img ng-src="/images/profiles/{{ticket.patient.gender == 'Female' ? 1 : 4}}.png" alt="Chay Close" class="patient-pic" />
+                <img ng-src="{{ ticket.patient.avatarUrl }}" alt="" class="patient-pic" />
                 <span class="patient-name">
                   <strong class="ng-binding">{{ ticket.patient.surname }},</strong> {{ ticket.patient.firstName }} ({{ ticket.patient.title }})
                 </span>
