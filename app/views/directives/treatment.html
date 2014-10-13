@@ -5,23 +5,24 @@
 
 <oe-barcode-scan model="scanValue"></oe-barcode-scan>
 
-<table class="table table-plain report-data" ng-show="scanValue">
-  <tbody>
-    <tr>
-      <th scope="row">Drug:</th>
-      <td>{{model.drug}}</td>
-    </tr>
-    <tr>
-      <th scope="row">Batch number:</th>
-      <td>{{model.batchNumber}}</td>
-    </tr>
-    <tr>
-      <th scope="row">Batch Expiry Date:</th>
-      <td>{{model.batchExpiryDate}}</td>
-    </tr>
-  </tbody>
-</table>
-
+<div class="report-data-flash" ng-show="scanValue">
+  <table class="table table-plain report-data" >
+    <tbody>
+      <tr>
+        <th scope="row">Drug:</th>
+        <td>{{model.drug}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Batch number:</th>
+        <td>{{model.batchNumber}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Batch Expiry Date:</th>
+        <td>{{model.batchExpiryDate}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 <!--
 <div class="form-group row">
   <label for="batch-number-{{side}}" class="col-xs-4 control-label">Batch Number:</label>

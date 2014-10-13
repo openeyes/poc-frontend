@@ -5,3 +5,13 @@
     opacity: 0;
   }
 }
+
+.report-data-flash{
+	background: #e3f7f9;
+}
+
+.report-data-flash.fadeout{
+	transition: all linear 3s;
+	background: #fff;
+	
+}
