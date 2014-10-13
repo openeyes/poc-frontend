@@ -78,7 +78,7 @@
   }
 }
 
-.patient-details-list {
+.patient-summary .patient-details-list {
 
   @media screen and (max-width: 1300px){
     font-size: 13px;
@@ -86,17 +86,22 @@
     padding-bottom: 18px;
   }
 
+  li {
+    @media screen and (max-width: 1300px){
+      float: none;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.patient-details-list {
+
   font-size: 15px;
   list-style: none;
   margin: 0;
   padding: 0;
   float: left;
   li {
-
-    @media screen and (max-width: 1300px){
-      float: none;
-      margin-bottom: 0;
-    }
 
     float: left;
     margin-right: 20px;
