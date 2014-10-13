@@ -61,6 +61,24 @@
     padding-right: 40px;
   }
 
+  .tabbed-element-heading{
+    margin-bottom: 0;
+  }
+
+  .tabbed-element-content{
+    padding-left: 0;
+    padding-right: 0;
+    .nav{
+      background: #f6f7f8;
+      padding-left: 40px;
+      padding-top: 30px;
+    }
+    .tab-content {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+  }
+
   .element-content + .element-content {
     margin-top: 20px;
   }
