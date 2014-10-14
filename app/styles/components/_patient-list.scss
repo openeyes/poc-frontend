@@ -4,13 +4,12 @@ $patient-list-padding-vertical: 16px;
 $patient-list-animation-slidedown-speed: 0.7s;
 
 .patient-list-container {
-  margin-top: 142px;
   .page-encounter & {
     margin-top: 0;
     height: 0;
     max-height: calc(100% - 159px);
     position: fixed;
-    top: 140px;
+    top: 142px;
     width: 100%;
     z-index: 1001;
     overflow: hidden;
@@ -33,6 +32,15 @@ $patient-list-animation-slidedown-speed: 0.7s;
   .patient-list-open & {
     height: 100%;
   }
+}
+
+//BOOTSTRAP AFFIX POSITIONS
+.patient-list-container.affix-containers{
+  margin-top: 97px;
+} 
+.page-encounter .patient-list-container.affix-containers{
+  top: 94px;
+  margin-top: 0;
 }
 
 body.patient-list-open {
@@ -90,7 +98,7 @@ body.patient-list-open {
         }
       }
       .patient-time{
-        width: 110px;
+        width: 93px;
         display: inline-block;
         float: left;
         padding-top: 20px ;
