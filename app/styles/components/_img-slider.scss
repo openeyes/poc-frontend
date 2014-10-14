@@ -1,20 +1,23 @@
 // Image slider
 
 .img-slider {
+  .msg {
+    background: #333;
+    color: #FFF;
+    text-align: center;
+    height: 400px;
+    width: 546px;
+    display: block;
+    padding-top: 185px;
+    margin: 7px;
+  }
   .img {
-    background: #aaa;
+    background: #333;
     display: block;
     height: 400px;
     margin: 7px;
     position: relative;
     width: 546px;
-    .msg {
-      color: #FFF;
-      position: absolute;
-      text-align: center;
-      top: 45%;
-      width: 100%;
-    }
   }
   .slider {
     border-top: 1px solid #cbd4d9;

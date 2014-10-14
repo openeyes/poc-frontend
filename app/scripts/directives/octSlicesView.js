@@ -46,6 +46,7 @@ angular.module('openeyesApp')
       this.getPatient()
       .then(this.getImageData)
       .then(this.loadImage.bind(this));
+
     };
 
     $scope.change = function() {
