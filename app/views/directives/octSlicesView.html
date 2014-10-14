@@ -1,28 +1,32 @@
 <div>
-  <div class="img-slider oct-slides element-box" ng-show="loaded && hasData"  >
+  <div class="img-slider oct-slides element-box"  >
     <h3>DICOM image slices</h3>
-    <a class="img" href="#">
-      <span class="msg">
-        <span ng-show="loading">Loading scans, please wait...</span>
-        <span ng-show="error">Sorry, there was an error loading the scans.</span>
-      </span>
-    </a>
-    <div class="slider">
-      <div class="position-tooltip" ng-show="showTooltip">
-        <span class="cur">{{selectedRange}}</span>
-        <span class="total">/ {{max}}</span>
+
+    <span class="msg" ng-hide="loaded && hasData">
+      <span ng-show="loading">Loading scans, please wait...</span>
+      <span ng-show="error">Sorry, there was an error loading the scans.</span>
+    </span>
+
+    <div ng-show="loaded && hasData">
+      <a class="img" href="#">
+      </a>
+      <div class="slider">
+        <div class="position-tooltip" ng-show="showTooltip">
+          <span class="cur">{{selectedRange}}</span>
+          <span class="total">/ {{max}}</span>
+        </div>
+        <a href="#" class="step step-down" ng-click="$event.preventDefault()" ng-mousedown="stepDown($event)" ng-mouseup="stopStepping()">
+          <span class="caret caret-left">
+            Step down
+          </span>
+        </a>
+        <input type="range" class="range" min="{{min}}" max="{{max}}" step="{{step}}" ng-disabled="error" ng-model="selectedRange" ng-change="change()" ng-mouseenter="showTooltip=true" ng-mouseleave="showTooltip=false"/>
+        <a href="#" class="step step-up" ng-click="$event.preventDefault()" ng-mousedown="stepUp($event)" ng-mouseup="stopStepping()">
+          <span class="caret caret-right">
+            Step up
+          </span>
+        </a>
       </div>
-      <a href="#" class="step step-down" ng-click="$event.preventDefault()" ng-mousedown="stepDown($event)" ng-mouseup="stopStepping()">
-        <span class="caret caret-left">
-          Step down
-        </span>
-      </a>
-      <input type="range" class="range" min="{{min}}" max="{{max}}" step="{{step}}" ng-disabled="error" ng-model="selectedRange" ng-change="change()" ng-mouseenter="showTooltip=true" ng-mouseleave="showTooltip=false"/>
-      <a href="#" class="step step-up" ng-click="$event.preventDefault()" ng-mousedown="stepUp($event)" ng-mouseup="stopStepping()">
-        <span class="caret caret-right">
-          Step up
-        </span>
-      </a>
     </div>
   </div>
   <div ng-show="loaded && !hasData">
