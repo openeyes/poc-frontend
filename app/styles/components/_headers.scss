@@ -19,7 +19,7 @@
     padding-top: 30px;
     text-align: center;
     line-height: 1;
-    font-size: 30px;
+    font-size: 28px;
     font-weight: 600;
     height: 93px;
     &:hover {
@@ -61,4 +61,11 @@
     float: left;
   }
 
+}
+
+.header-patient.select-patient.affix-top{}
+.header-patient.select-patient.affix{
+  top: 48px;
+  width: 100%;
+  position: fixed;
 }
