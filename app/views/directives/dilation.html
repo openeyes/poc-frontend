@@ -56,7 +56,7 @@
         type="time" value="{{ d.time | date: 'HH:mm' }}">
     </div>
     <div class="col-xs-2 col-btn-remove">
-      <button class="btn btn-remove" ng-click="removeRow($index)"></button>
+      <button class="btn btn-remove" ng-if="$index > 0" ng-click="removeRow($index)"></button>
     </div>
   </div>
   <button class="btn btn-add" type="button" ng-click="addDilation()">Add another score</button>

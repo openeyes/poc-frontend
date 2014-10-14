@@ -39,7 +39,7 @@
       </select>
     </div>
     <div class="col-xs-4 col-btn-remove">
-      <button class="btn btn-remove" ng-click="removeRow($index)"></button>
+      <button class="btn btn-remove" ng-if="$index > 0" ng-click="removeRow($index)"></button>
     </div>
   </div>
   <button class="btn btn-add" type="button" ng-click="addRow()">Add another score</button>
