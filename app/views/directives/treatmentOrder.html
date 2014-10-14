@@ -61,7 +61,7 @@
         oe-name="drug-{{side}}"
         ng-model="temp.selectedDrug"
         ng-options="obj.label for obj in drugs | orderBy:'label'"
-        oe-validate-rules="rules['drug-'+side]"
+ 
       >
         <option value="">--Please select--</option>
       </select>
@@ -75,7 +75,7 @@
         id="number-injections-{{side}}"
         ng-model="model.sequenceNumber"
         oe-name="number-injections-{{side}}"
-        oe-validate-rules="rules['number-injections-'+side]"
+        
         />
       <oe-validate-msg></oe-validate-msg>
     </div>
@@ -87,7 +87,7 @@
         id="injection-time-{{side}}"
         ng-model="temp.injectionTime"
         oe-name="injection-time-{{side}}"
-        oe-validate-rules="rules['injection-time-'+side]"
+        
         />
       <oe-validate-msg></oe-validate-msg>
     </div>
