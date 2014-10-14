@@ -34,7 +34,7 @@ angular.module('openeyesApp')
         $(element).siblings().removeClass('affix-containers');
       });
     };
-
+    
     this.getAge = function() {
       if (!$scope.patient.dob) {
         return;

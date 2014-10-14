@@ -40,6 +40,7 @@ $patient-list-animation-slidedown-speed: 0.7s;
 } 
 .page-encounter .patient-list-container.affix-containers{
   top: 94px;
+  margin-top: 0;
 }
 
 body.patient-list-open {
