@@ -9,7 +9,7 @@
     </li>
   </ul>
 </div>
-<div class="form-group row" id="joyride-allergies">
+<div class="form-group row" id="joyride-allergies" ng-show="model.allergies.length">
   <div class="col-xs-12">
     <!-- <button class="btn-tag">Latex<span class="glyphicon glyphicon-remove"></span></button> -->
     <button class="btn-tag" ng-click="removeRow(a)" ng-repeat="a in model.allergies | orderBy:'name'">{{ a.name }}<span class="glyphicon glyphicon-remove"></span></button>
