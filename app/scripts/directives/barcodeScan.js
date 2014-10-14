@@ -13,11 +13,10 @@ angular.module('openeyesApp')
       };
     }
 
-    this.init = function(element) {
+    this.init = function() {
       this.scanInput = $element.find('.scan-input');
       this.modal = $element.find('.modal');
       this.bindEvents();
-      this.element = element;
     };
 
     this.bindEvents = function() {
@@ -49,6 +48,7 @@ angular.module('openeyesApp')
       $scope.$apply();
       self.scanInput.blur();
 
+      //TODO: refactor out jquery selector for linked elem
       $('.report-data-flash').addClass('fadeout');
     };
   }])
@@ -61,7 +61,7 @@ angular.module('openeyesApp')
       templateUrl: 'views/directives/barcodeScan.html',
       controller: 'BarcodeScanCtrl', //Embed a custom controller in the directive
       link: function (scope, element, attrs, BarcodeScanCtrl) {
-        BarcodeScanCtrl.init(element);
+        BarcodeScanCtrl.init();
       }
     };
   }]);

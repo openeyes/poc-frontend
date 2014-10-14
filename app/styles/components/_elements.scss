@@ -61,6 +61,24 @@
     padding-right: 40px;
   }
 
+  .tabbed-element-heading{
+    margin-bottom: 0;
+  }
+
+  .tabbed-element-content{
+    padding-left: 0;
+    padding-right: 0;
+    .nav{
+      background: #f6f7f8;
+      padding-left: 40px;
+      padding-top: 30px;
+    }
+    .tab-content {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+  }
+
   .element-content + .element-content {
     margin-top: 20px;
   }
@@ -147,14 +165,12 @@
   &:first-child {
     border-right: 1px solid #c9d3da;
   }
-
 }
 
 .dotted-bottom {
   border-bottom: 1px dotted #c9d3da;
   padding-bottom: 15px;
 }
-
 
 canvas + input[type=text] {
   visibility: hidden;
@@ -168,10 +184,12 @@ canvas + input[type=text] {
 
 .view-left .element{
   margin-right: 5px;
+  min-height: 250px;
 }
 
 .view-right .element{
   margin-left: 5px;
+  min-height: 250px;
 }
 
 .icon-right-eye,

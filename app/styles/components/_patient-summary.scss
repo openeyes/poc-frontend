@@ -7,14 +7,14 @@
 .patient-menu-toggle{
   position: absolute;
   height: 100%;
-  width: 105px;
+  width: 93px;
   z-index: 3;
 }
 
 .patient-summary {
   .patient-pic {
     margin-top: 10px;
-    margin-left: 105px;
+    margin-left: 95px;
   }
 
   .patient-details-list {
@@ -80,14 +80,14 @@
 
 .patient-summary .patient-details-list {
 
-  @media screen and (max-width: 1300px){
+  @media screen and (max-width: 1270px){
     font-size: 13px;
     margin-top: 20px !important;
     padding-bottom: 18px;
   }
 
   li {
-    @media screen and (max-width: 1300px){
+    @media screen and (max-width: 1270px){
       float: none;
       margin-bottom: 0;
     }
@@ -104,7 +104,7 @@
   li {
 
     float: left;
-    margin-right: 20px;
+    margin-right: 15px;
     margin-bottom: 12px;
     &.gender {
       width: 86px;
