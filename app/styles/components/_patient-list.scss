@@ -34,6 +34,13 @@ $patient-list-animation-slidedown-speed: 0.7s;
     height: 100%;
   }
 }
+.patient-list-container.affix-containers{
+  margin-top: 97px;
+} 
+
+.page-encounter .patient-list-container.affix-containers{
+  top: 94px;
+}
 
 body.patient-list-open {
   overflow-y: hidden;

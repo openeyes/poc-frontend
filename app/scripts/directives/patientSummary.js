@@ -3,7 +3,8 @@
 angular.module('openeyesApp')
   .controller('PatientSummaryCtrl', ['$scope', '$routeParams', '$rootScope', 'Ticket', 'Patient', 'Dates', function($scope, $routeParams, $rootScope, Ticket, Patient, Dates){
 
-    this.init = function(){
+    this.init = function(element){
+      var self = this;
 
       $scope.patient = null;
       $scope.ticketId = $routeParams.ticketId || '5422cb723004f335a892a728'; // TODO: remove default patient id
@@ -16,7 +17,22 @@ angular.module('openeyesApp')
       });
       document.body.classList.add('has-patient-summary');
 
+      this.element = element;
       this.getTicket();
+      this.affixSummary(element);
+    };
+
+    this.affixSummary = function(element){
+   
+      $(element).affix({offset: { top: 48 }});
+
+      $(element).on('affixed.bs.affix', function(){
+        $(element).siblings().addClass('affix-containers');
+      });
+
+      $(element).on('affixed-top.bs.affix', function(){
+        $(element).siblings().removeClass('affix-containers');
+      });
     };
 
     this.getAge = function() {
@@ -49,11 +65,11 @@ angular.module('openeyesApp')
 
     this.getTicket = function() {
       Ticket.getTicket($scope.ticketId)
-        .then(function(data) {
-          $scope.patient = data.data.patient;
-        }, function(data, status, headers, config) {
-          console.log('Error getting patient data', data, status, headers, config);
-        });
+      .then(function(data) {
+        $scope.patient = data.data.patient;
+      }, function(data, status, headers, config) {
+        console.log('Error getting patient data', data, status, headers, config);
+      });
     };
 
   }])
@@ -65,7 +81,7 @@ angular.module('openeyesApp')
       templateUrl: 'views/directives/patientSummary.html',
       controller: 'PatientSummaryCtrl',
       link: function ($scope, element, attr, PatientSummaryCtrl) {
-        PatientSummaryCtrl.init();
+        PatientSummaryCtrl.init(element);
       }
     };
   }]);
