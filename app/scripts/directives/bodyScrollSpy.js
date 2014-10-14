@@ -6,16 +6,12 @@ angular.module('openeyesApp')
     this.init = function(element){
       $(element).scrollspy({ target: '.scrollspy-nav' })
 
-
       $scope.$on('scrollspy.start', function(){
-        console.log('event trigger')
         $(element).scrollspy({ target: '.scrollspy-nav' })
-
         $(element).scrollspy('refresh')
       });
 
       $scope.$on('scrollspy.stop', function(){
-        console.log('event stopped')
         $(element).scrollspy({ target: '' })
         $(element).scrollspy('refresh')
       });
