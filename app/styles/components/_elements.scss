@@ -266,7 +266,7 @@ canvas + input[type=text] {
     outline: none;
   }
 
-  &.inuse {
+  &.in-use {
     background-color: #cbd4d9;
 
     .selection-list {
@@ -305,7 +305,7 @@ canvas + input[type=text] {
     }
 
     width: 150px;
-    transition: width 1s, z-index 1s;
+    transition: width .5s;
   }
 
   input[type=text] {

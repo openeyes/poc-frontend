@@ -1,7 +1,7 @@
-<div class="element-top-right selection-component" ng-class="{open: openSelection, inuse: inuse}" tabindex="-1" ng-blur="exitField()">
+<div class="element-top-right selection-component" ng-class="{open: openSelection}" tabindex="-1" ng-blur="exitField()">
   <div class="selection-controls">
     <button class="btn-list" type="button" ng-click="openSelection = true"><span class="glyphicon glyphicon-plus"></span>Add an allergy</button>
-    <input type="text" ng-model="filterText" ng-change="inuse = true" ng-blur="exitField()" placeholder="Search...">
+    <input type="text" ng-model="filterText" ng-blur="exitField()" placeholder="Search...">
   </div>
   <ul class="selection-list">
     <li class="selection-item" ng-click="addAllergy(a)" ng-repeat="a in allergies | filter:filterText | orderBy:'toString()'">

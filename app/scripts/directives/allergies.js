@@ -19,7 +19,10 @@ angular.module('openeyesApp')
       $scope.model.allergies = [];
       $scope.$on('encounter.save', this.broadcastModel);
       $scope.openSelection = false;
+      $scope.inUse = false;
       self.$selectionFilter = $element.find('.selection-component input[type=text]');
+      self.$selectionList = $element.find('.selection-list');
+      self.$selectionComponent = $element.find('.selection-component');
 
       //  When the patient is found get the patient allergies
       $scope.$watch('patient', function(patient) {
@@ -30,8 +33,15 @@ angular.module('openeyesApp')
 
       //  Focus the search input field when the button is triggered
       $scope.$watch('openSelection', function(openSelection){
+        console.log('openSelection triggered', openSelection);
         if(openSelection){
           self.$selectionFilter.focus();
+          $timeout(function(){
+            self.$selectionComponent.addClass('in-use');
+            // self.$selectionList.show();
+          }, 500);
+        } else {
+          self.$selectionComponent.removeClass('in-use');
         }
       });
 
@@ -107,7 +117,7 @@ angular.module('openeyesApp')
     $scope.exitField = function(){
 
       $timeout(function(){
-        if($element.find('.selection-component:focus').length === 0){
+        if(($element.find('.selection-component:focus').length === 0) && ($element.find('.selection-component input[type=text]:focus').length === 0)){
           $scope.inuse = false;
           $scope.openSelection = false;
           $scope.filterText = '';
