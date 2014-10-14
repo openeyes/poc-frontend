@@ -104,3 +104,56 @@
   font-size: 20px;
   padding: 12px 30px 9px;
 }
+
+.btn-tag {
+  padding: 8px 30px 8px 20px;
+  border: 0;
+  border-radius: 30px;
+  background-color: #f05050;
+  color: #fff;
+  margin-right: 15px;
+  position: relative;
+
+  &:active,
+  &:focus,
+  &:active:focus {
+    outline: none;
+  }
+
+  &:hover {
+    background-color: #cb3d3d;
+    color: #fff;
+    text-decoration: none;
+
+    > span {
+      color: #aa3737;
+    }
+  }
+
+  > span {
+    color: #c64040;
+    position: absolute;
+    right: 12px;
+    top: 13px;
+    font-size: 12px;
+  }
+}
+
+.btn-list {
+  padding: 7px 20px 7px 20px;
+  border: 1px solid #b6c2c9;
+  border-radius: 30px;
+  background-color: #fff;
+  color: #31a7aa;
+
+  &:hover {
+    background-color: #31a7aa;
+    border-color: #31a7aa;
+    color: #fff;
+  }
+
+  span {
+    margin-left: -5px;
+    margin-right: 5px;
+  }
+}

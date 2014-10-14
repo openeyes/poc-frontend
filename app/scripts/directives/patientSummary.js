@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('openeyesApp')
-  .controller('PatientSummaryCtrl', ['$scope', '$routeParams', '$rootScope', 'Ticket', 'Patient', 'Dates', function($scope, $routeParams, $rootScope, Ticket, Patient, Dates){
+  .controller('PatientSummaryCtrl', ['$scope', '$routeParams', '$rootScope', 'Ticket', 'Patient', 'Dates', 'Element', 'MODEL_DOMAIN', function($scope, $routeParams, $rootScope, Ticket, Patient, Dates, Element, MODEL_DOMAIN){
 
     this.init = function(element){
       var self = this;
@@ -51,11 +51,16 @@ angular.module('openeyesApp')
       if (!$scope.patient) {
         return;
       }
-      Patient.getExistingAllergies($scope.patient._id.$oid)
+
+      var eType = MODEL_DOMAIN + 'Allergies';
+
+      Element.getElements($scope.patient._id.$oid, eType, null)
         .then(function(data) {
-          $scope.allergies = data;
-        }, function() {
-          console.log('Error getting allergies');
+          if(data.data.length){
+            $scope.allergies = data.data[0].allergies;
+          }
+        }, function(error) {
+          console.log(error);
         });
     };
 

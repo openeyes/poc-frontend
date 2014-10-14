@@ -24,7 +24,7 @@ angular.module('openeyesApp')
         break;
         case '/#intro-section': $scope.landing = true;
         break;
-        case '/#problems-section': $scope.landing = true;
+        case '/#benefits-section': $scope.landing = true;
         break;
         case '/#tech-section': $scope.landing = true;
         break;

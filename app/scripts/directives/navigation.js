@@ -1,35 +1,17 @@
 'use strict';
 
 angular.module('openeyesApp')
-  .controller('NavigationCtrl', ['$scope', '$location', '$timeout', function($scope, $location, $timeout){
+  .controller('NavigationCtrl', ['$scope', '$rootScope', '$location', '$timeout', function($scope, $rootScope, $location, $timeout){
+
+    var self = this;
 
     this.init = function(element) {
 
-      $scope.activeListItem = {};
-
-      //TODO: Specified interactions for manual scroll and key events
-
-
-        //if section changes remove active state of current page
-        //set active state of page
-
-
-      //TODO: Specified interactions for manual scroll and key events
-      //detect arrow down key  -> key events bind in controller in barcode
-
-        //scroll page to next section
-
-        //remove current active state
-
-        //set new active state
-
-      //detect arrow up key
-
-        //scroll page to previous section
-
-        //remove current active state
-
-        //set new active state
+      this.element = element;
+      this.navbar = $(element).find('.navbar');
+      
+      //set scrollspy target for scrollscy directive to pick up
+      $(self.navbar).addClass('scrollspy-nav');
 
       $scope.setActiveSlide = function(event){
 
@@ -37,13 +19,19 @@ angular.module('openeyesApp')
 
         //set active nav state
         $scope.setNavState(event.currentTarget);
-        //scroll to id
-
-        $location.hash(anchor);
+        $location.hash(anchor); //scroll to id
+        
+        $(self.navbar).removeClass('scrollspy-nav');
+        $rootScope.$broadcast('scrollspy.stop'); 
 
         $('html, body').animate({
           scrollTop: ($('#' + anchor).offset().top )
-        }, 500);
+        }, 500,
+              function(){
+                $(self.navbar).addClass('scrollspy-nav');
+                $rootScope.$broadcast('scrollspy.start'); 
+                 //callback called twice? 
+              });
 
         event.preventDefault();
       };
@@ -58,10 +46,18 @@ angular.module('openeyesApp')
         $location.hash(anchor);
 
         if($scope.currentHash !== ''){
+          $(self.navbar).removeClass('scrollspy-nav');
+          $rootScope.$broadcast('scrollspy.stop');
+          
           $timeout(function(){ //gross timeout hack to force sections to be loaded
-            $('html, body').animate({
-              scrollTop: ($('#' + anchor).offset().top )
-            }, 500);
+            $('html, body').animate(
+              {scrollTop: ($('#' + anchor).offset().top )},
+              500,
+              function(){
+                $(self.navbar).addClass('scrollspy-nav');
+                $rootScope.$broadcast('scrollspy.start'); 
+              }
+            );
           }, 100);
         }else{
           $scope.setNavState($('a[href="#intro-section"]'));
@@ -69,7 +65,7 @@ angular.module('openeyesApp')
       };
 
       $scope.setNavState = function(activeItem){
-        $('nav').find('.active').removeClass('active');
+        $(self.element).find('.active').removeClass('active');
         $(activeItem).parent().addClass('active');
       };
 
@@ -87,7 +83,7 @@ angular.module('openeyesApp')
       templateUrl: 'views/directives/navigation.html',
       controller: 'NavigationCtrl',
       link: function ($scope, element, attrs, NavigationCtrl) {
-        NavigationCtrl.init(element);
+        NavigationCtrl.init();
       }
     };
   }]);
