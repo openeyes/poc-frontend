@@ -105,7 +105,7 @@ angular.module('openeyesApp')
 
     this.postEncounter = function(postObject){
       Encounter.create(postObject)
-        .success(function(data) {
+        .success(function() {
           Encounter.clearElements();
           self.showConfirmation();
         })
