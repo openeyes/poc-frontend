@@ -1,11 +1,6 @@
 // Header
 
-.header-main {}
-
 .header-patient {
- /* left: 0;*/
- /* position: fixed;*/
- /* top: 46px;*/
   width: 100%;
   z-index: 1003;
   box-shadow: 0 -2px 10px 1px rgba(0, 0, 0, 0.2);
@@ -63,7 +58,7 @@
 
 }
 
-.header-patient.select-patient.affix-top{}
+//BOOTSTRAP AFFIX POSITION
 .header-patient.select-patient.affix{
   top: 0;
   width: 100%;

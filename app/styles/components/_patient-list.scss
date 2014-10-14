@@ -4,7 +4,6 @@ $patient-list-padding-vertical: 16px;
 $patient-list-animation-slidedown-speed: 0.7s;
 
 .patient-list-container {
-/*  margin-top: 142px;*/
   .page-encounter & {
     margin-top: 0;
     height: 0;
@@ -34,10 +33,11 @@ $patient-list-animation-slidedown-speed: 0.7s;
     height: 100%;
   }
 }
+
+//BOOTSTRAP AFFIX POSITIONS
 .patient-list-container.affix-containers{
   margin-top: 97px;
 } 
-
 .page-encounter .patient-list-container.affix-containers{
   top: 94px;
 }
