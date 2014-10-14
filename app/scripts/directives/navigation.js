@@ -3,7 +3,7 @@
 angular.module('openeyesApp')
   .controller('NavigationCtrl', ['$scope', '$location', '$timeout', function($scope, $location, $timeout){
 
-    this.init = function(element) {
+    this.init = function() {
 
       $scope.activeListItem = {};
 
@@ -87,7 +87,7 @@ angular.module('openeyesApp')
       templateUrl: 'views/directives/navigation.html',
       controller: 'NavigationCtrl',
       link: function ($scope, element, attrs, NavigationCtrl) {
-        NavigationCtrl.init(element);
+        NavigationCtrl.init();
       }
     };
   }]);
