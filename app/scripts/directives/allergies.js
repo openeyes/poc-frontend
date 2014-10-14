@@ -8,7 +8,7 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('AllergiesCtrl', ['$scope', '$routeParams', 'Patient', 'Allergies', 'Encounter', 'Element', 'Ticket', 'MODEL_DOMAIN', function($scope, $routeParams, Patient, Allergies, Encounter, Element, Ticket, MODEL_DOMAIN){
+  .controller('AllergiesCtrl', ['$scope', '$routeParams', '$timeout', '$element', 'Patient', 'Allergies', 'Encounter', 'Element', 'Ticket', 'MODEL_DOMAIN', function($scope, $routeParams, $timeout, $element, Patient, Allergies, Encounter, Element, Ticket, MODEL_DOMAIN){
 
     var self = this;
 
@@ -18,14 +18,24 @@ angular.module('openeyesApp')
       $scope.model = {};
       $scope.model.allergies = [];
       $scope.$on('encounter.save', this.broadcastModel);
+      $scope.openSelection = false;
+      self.$selectionFilter = $element.find('.selection-component input[type=text]');
 
+      //  When the patient is found get the patient allergies
       $scope.$watch('patient', function(patient) {
         if (patient) {
           self.getPatientAllergies();
         }
       });
-      //  On creation populate dropdown
 
+      //  Focus the search input field when the button is triggered
+      $scope.$watch('openSelection', function(openSelection){
+        if(openSelection){
+          self.$selectionFilter.focus();
+        }
+      });
+
+      //  On creation populate dropdown
       Allergies.getAllergyMeds()
         .then(function(data) {
           $scope.allergies = data;
@@ -79,13 +89,11 @@ angular.module('openeyesApp')
     };
 
     // $scope methods
-    $scope.addAllergy = function(){
+    $scope.addAllergy = function(allergy){
       //  Add to model
-      $scope.model.allergies.push({name: $scope.currentAllergy, comment: ''});
+      $scope.model.allergies.push({name: allergy, comment: ''});
       //  Remove from dropdown
-      $scope.allergies.splice($scope.allergies.indexOf($scope.currentAllergy), 1);
-      //  Reset dropdown
-      $scope.currentAllergy = '';
+      $scope.allergies.splice($scope.allergies.indexOf(allergy), 1);
     };
 
     $scope.removeRow = function(allergy){
@@ -94,6 +102,18 @@ angular.module('openeyesApp')
       $scope.allergies.push($scope.model.allergies[index].name);
       //  Remove from list
       $scope.model.allergies.splice(index, 1);
+    };
+
+    $scope.exitField = function(){
+
+      $timeout(function(){
+        if($element.find('.selection-component:focus').length === 0){
+          $scope.inuse = false;
+          $scope.openSelection = false;
+          $scope.filterText = '';
+        }
+      },100);
+
     };
 
   }])

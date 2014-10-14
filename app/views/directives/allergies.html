@@ -1,39 +1,17 @@
+<div class="element-top-right selection-component" ng-class="{open: openSelection, inuse: inuse}" tabindex="-1" ng-blur="exitField()">
+  <div class="selection-controls">
+    <button class="btn-list" type="button" ng-click="openSelection = true"><span class="glyphicon glyphicon-plus"></span>Add an allergy</button>
+    <input type="text" ng-model="filterText" ng-change="inuse = true" ng-blur="exitField()" placeholder="Search...">
+  </div>
+  <ul class="selection-list">
+    <li class="selection-item" ng-click="addAllergy(a)" ng-repeat="a in allergies | filter:filterText | orderBy:'toString()'">
+      {{ a }}<span class="glyphicon glyphicon-plus"></span>
+    </li>
+  </ul>
+</div>
 <div class="form-group row" id="joyride-allergies">
-  <div class="col-xs-6">
-    <strong>Allergies</strong>
-  </div>
-  <div class="col-xs-6">
-    <strong>Actions</strong>
+  <div class="col-xs-12">
+    <!-- <button class="btn-tag">Latex<span class="glyphicon glyphicon-remove"></span></button> -->
+    <button class="btn-tag" ng-click="removeRow(a)" ng-repeat="a in model.allergies | orderBy:'name'">{{ a.name }}<span class="glyphicon glyphicon-remove"></span></button>
   </div>
 </div>
-
-<div class="form-group row" ng-repeat="a in model.allergies | orderBy:'name'">
-  <div class="col-xs-6">
-    {{ a.name }}
-  </div>
-  <div class="col-xs-6">
-    <button class="btn btn-default btn-xs" ng-click="removeRow(a)">Remove</button>
-  </div>
-</div>
-
-<div class="form-group row">
-  <div class="col-xs-6">
-    <button class="btn btn-primary" type="button" ng-click="addMode = !addMode">Add</button>
-  </div>
-</div>
-
-
-
-<div class="form-group row" ng-show="addMode">
-  <div class="col-xs-6">
-    Add allergy
-  </div>
-  <div class="col-xs-6">
-    <select class="form-control" ng-model="currentAllergy" ng-options="m as m for m in allergies | orderBy:'toString()'" ng-change="addAllergy()">
-      <option value="">--Allergy--</option>
-    </select>
-  </div>
-</div>
-
-
-
