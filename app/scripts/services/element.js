@@ -15,8 +15,13 @@ angular.module('openeyesApp')
 
         var apiCall = ENV.host + ENV.apiEndpoints.getElements
           .replace(':patientId', patientId)
-          .replace(':elementType', eType)
-          .replace(':date', date);
+          .replace(':elementType', eType);
+
+        if(date){
+          apiCall = apiCall.replace(':date', date);
+        } else {
+          apiCall = apiCall.replace('&date=:date', '');
+        }
 
         return $http({
           method: 'GET',

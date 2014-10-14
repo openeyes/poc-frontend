@@ -83,7 +83,7 @@ angular.module('openeyesApp')
       templateUrl: 'views/directives/navigation.html',
       controller: 'NavigationCtrl',
       link: function ($scope, element, attrs, NavigationCtrl) {
-        NavigationCtrl.init(element);
+        NavigationCtrl.init();
       }
     };
   }]);

@@ -8,6 +8,7 @@
   box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.1);
   margin-bottom: 10px;
   padding-bottom: 25px;
+  position: relative;
   &.no-padding {
     padding: 0;
     > h2 {
@@ -247,3 +248,103 @@ canvas + input[type=text] {
 .col-btn-remove{
   padding-left: 0;
 }
+
+.element-top-right {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  z-index: 1;
+}
+
+
+.selection-component {
+  background-color: transparent;
+
+  &:focus,
+  &:active,
+  &:focus:active {
+    outline: none;
+  }
+
+  &.inuse {
+    background-color: #cbd4d9;
+
+    .selection-list {
+      display: block;
+    }
+  }
+
+  &.open {
+
+    .selection-controls {
+      .btn-list {
+        width: 350px;
+        opacity: 0;
+      }
+
+      input[type=text] {
+        width: 350px;
+        z-index: 1;
+      }
+    }
+  }
+
+}
+
+.selection-controls {
+  padding: 10px 10px 8px;
+  position: relative;
+
+  input[type=text],
+  .btn-list {
+
+    &:focus,
+    &:active,
+    &:focus:active {
+      outline: none;
+    }
+
+    width: 146px;
+    transition: width 1s, z-index 1s;
+  }
+
+  input[type=text] {
+    border: 1px solid #cbd4d9;
+    border-radius: 30px;
+    padding: 7px 10px;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    z-index: -1;
+  }
+}
+
+.selection-list {
+  background-color: #fff;
+  display: none;
+  list-style-type: none;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-left: 0;
+}
+
+.selection-item {
+  border-top: 1px solid #b6c2c9;
+  padding: 8px 15px;
+
+  &:hover {
+    background-color: #e8f6f6;
+    cursor: pointer;
+  }
+
+  &:first-child {
+    border-top: 0;
+  }
+
+  span {
+    float: right;
+    color: #31a7aa;
+  }
+
+}
+
