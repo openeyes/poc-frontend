@@ -21,7 +21,6 @@ angular.module('openeyesApp')
       $scope.openSelection = false;
       $scope.inUse = false;
       self.$selectionFilter = $element.find('.selection-component input[type=text]');
-      self.$selectionList = $element.find('.selection-list');
       self.$selectionComponent = $element.find('.selection-component');
 
       //  When the patient is found get the patient allergies
@@ -38,7 +37,6 @@ angular.module('openeyesApp')
           self.$selectionFilter.focus();
           $timeout(function(){
             self.$selectionComponent.addClass('in-use');
-            // self.$selectionList.show();
           }, 500);
         } else {
           self.$selectionComponent.removeClass('in-use');
