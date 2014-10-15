@@ -61,8 +61,10 @@ angular.module('openeyesApp')
 
       Element.getElements($scope.patient._id.$oid, eType, null)
         .then(function(data) {
-          $scope.model.allergies = data.data[0].allergies;
-          self.pruneExistingAllergies();
+          if(data.data.length > 0){
+            $scope.model.allergies = data.data[0].allergies;
+            self.pruneExistingAllergies();
+          }
         }, function(error) {
           console.log(error);
           $scope.model.allergies = [];
