@@ -8,7 +8,9 @@
  * Controller of the openeyesApp
  */
 angular.module('openeyesApp')
-  .controller('MainCtrl', ['$scope', '$rootScope', 'Workflow', function ($scope, $rootScope, Workflow) {
+  .controller('MainCtrl', ['$scope', '$rootScope', 'Workflow', 'ENV', function ($scope, $rootScope, Workflow, ENV) {
+
+    $scope.apiHost = ENV.host;
 
     Workflow.getConfig()
     .success(function(data){
@@ -19,7 +21,7 @@ angular.module('openeyesApp')
     });
 
     $scope.$watch('workflows', function(workflows) {
-      
+
       if (workflows instanceof Array && workflows.length) {
         // Set default workflow
         $scope.workflow = workflows[0];
