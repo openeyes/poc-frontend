@@ -347,8 +347,14 @@ canvas + input[type=text] {
   }
 
 }
+.eldisabled {
+  opacity: 0.3;
+  select,
+  button {
+    pointer-events: none;
+  }
+}
 
 .history-text:first-letter{
   text-transform: capitalize;
 }
-

@@ -4,21 +4,18 @@
     <div class="col-xs-12">
       <div class="checkbox-wrapper checkbox">
         <label for="">
-          <input type="checkbox">Unable to assess
+          <input type="checkbox" ng-model="unableToAccess" ng-change="change()">Unable to assess
         </label>
       </div>
       <div class="checkbox-wrapper checkbox">
         <label for="">
-          <input type="checkbox">Eye missing
+          <input type="checkbox" ng-model="eyeMissing" ng-change="change()">Eye missing
         </label>
       </div>
     </div>
-    <!-- <div class="col-xs-6">
-
-    </div> -->
   </div>
 </div>
-<div class="element-content">
+<div class="element-content" ng-class="{ eldisabled:disableScores }">
   <div class="row label-row">
     <div class="col-xs-2">
       <label for="" class="label-top">Score</label>
