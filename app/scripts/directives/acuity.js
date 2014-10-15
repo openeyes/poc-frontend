@@ -47,6 +47,15 @@ angular.module('openeyesApp')
     };
 
     // $scope methods
+    $scope.change = function() {
+      if($scope.unableToAccess || $scope.eyeMissing){
+        $scope.disableScores = true
+
+      }else{
+        $scope.disableScores = false
+      }
+    };
+
     $scope.addRow = function(){
       $scope.model.readings.push({
         value: 0,

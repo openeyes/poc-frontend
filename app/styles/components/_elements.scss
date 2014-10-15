@@ -348,3 +348,10 @@ canvas + input[type=text] {
 
 }
 
+.eldisabled {
+  opacity: 0.3;
+  select,
+  button {
+    pointer-events: none;
+  }
+}
