@@ -46,8 +46,6 @@ angular.module('openeyesApp')
       $scope.progress = 0;
       $scope.disable = true;
 
-      console.log('init of slices')
-
       this.getPatient()
       .then(this.getImageData)
       .then(this.loadImage.bind(this));
@@ -161,32 +159,13 @@ angular.module('openeyesApp')
       if (this.imageUrl) {
 
         imageRequest = new XMLHttpRequest();
-        // imageRequest.onloadstart = self.showProgressBar;
         imageRequest.onprogress = self.updateProgressBar;
         imageRequest.onload = self.imageLoaded;
         imageRequest.onerror = self.imageError;
-        // imageRequest.onloadend = self.hideProgressBar;
         imageRequest.open("GET", this.imageUrl, true);
         imageRequest.overrideMimeType('text/plain; charset=x-user-defined'); 
         imageRequest.send(null);
-
-
-
-        // alert(this.imageUrl);
-        // var image = new Image();
-        // image.src = this.imageUrl;
         
-        // image.onload = function() {
-        //   $scope.$apply(this.imageLoaded());
-        // }.bind(this);
-        // image.onerror = function() {
-        //   $scope.$apply(this.imageError());
-        // }.bind(this);
-        // //TODO: Have to use XHR to load in image to use this technique
-        // image.onprogress = function(event){
-        //   $scope.$apply(this.updateProgressBar(event));
-        //   // self.updateProgressBar(event);
-        // }.bind(this);
       } else {
         this.imageError();
       }

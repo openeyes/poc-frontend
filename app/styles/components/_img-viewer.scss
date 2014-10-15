@@ -2,6 +2,19 @@
 
 .img-viewer {
   margin-bottom: 20px;
+  .msg {
+    background: #333;
+    color: #FFF;
+    text-align: center;
+    height: 400px;
+    width: 546px;
+    display: block;
+    padding-top: 185px;
+    margin: 7px;
+    span{
+      display: block;
+    }
+  }
   .img {
     background-position: center center;
     background-repeat: no-repeat;
