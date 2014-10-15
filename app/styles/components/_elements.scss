@@ -163,14 +163,18 @@
   padding-bottom: 25px;
   width: 50%;
 
-  &:first-child {
-    border-right: 1px solid #c9d3da;
-  }
+  // &:first-child {
+  //   border-right: 1px solid #c9d3da;
+  // }
 }
 
 .dotted-bottom {
   border-bottom: 1px dotted #c9d3da;
   padding-bottom: 15px;
+}
+
+.fake-middle-border {
+  background: url('/images/fake-border.gif') repeat-y top center
 }
 
 canvas + input[type=text] {
