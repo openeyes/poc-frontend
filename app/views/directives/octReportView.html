@@ -1,31 +1,38 @@
 <div>
-  <div class="retinal-scans" ng-show="loaded && images.length">
+  <div class="retinal-scans">
     <div class="img-viewer element-box">
       <h3>
         TopCon Report
       </h3>
-      <a class="img" href="#" ng-style="style">
-      </a>
-      <ul class="thumbnails">
-        <li ng-repeat="img in images">
-          <a href="#" ng-click="$event.preventDefault();select(img)" style="background-image:url('{{img}}');" ng-class="{ selected: img === selectedImage }">
-          </a>
-        </li>
-      </ul>
+
+      <div class="msg" ng-hide="loaded && images.length">
+        <span>Loading scans, please wait...</span>
+        <span ng-show="loaded && !images.length">Sorry, there was an error loading the scans.</span>
+      </div>
+      <div ng-show="loaded && images.length">
+        <a class="img" href="#" ng-style="style"></a>
+
+        <ul class="thumbnails">
+          <li ng-repeat="img in images">
+            <a href="#" ng-click="$event.preventDefault();select(img)" style="background-image:url('{{img}}');" ng-class="{ selected: img === selectedImage }">
+            </a>
+          </li>
+        </ul>
+      
+        <table class="table table-plain report-data">
+          <tbody>
+            <tr>
+              <th scope="row">Maximum central retinal thickness of</th>
+              <td><span class="highlight">{{model.crt}}&micro;m</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Central Subfocus thickness of</th>
+              <td><span class="highlight">{{model.sft}}&micro;m</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <table class="table table-plain report-data">
-      <tbody>
-        <tr>
-          <th scope="row">Maximum central retinal thickness of</th>
-          <td><span class="highlight">{{model.crt}}&micro;m</span></td>
-        </tr>
-        <tr>
-          <th scope="row">Central Subfocus thickness of</th>
-          <td><span class="highlight">{{model.sft}}&micro;m</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
   <div ng-show="loaded && !images.length">
     <span class="glyphicon glyphicon-info-sign"></span>
     No report data available for this patient ({{side}})
