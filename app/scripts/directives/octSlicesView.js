@@ -22,6 +22,7 @@ angular.module('openeyesApp')
       this.image = $element.find('.img');
       this.tooltip = $element.find('.position-tooltip');
       this.range = $element.find('.range');
+      this.progress = $element.find('.progress');
 
       this.stepSpeed = STEP_INITIAL_SPEED;
       this.containerWidth = $element.find('.oct-slides').width();
@@ -42,11 +43,14 @@ angular.module('openeyesApp')
       $scope.hasData = false;
       $scope.model = {};
       $scope.side = $attrs.side;
+      $scope.progress = 0;
+      $scope.disable = true;
+
+      console.log('init of slices')
 
       this.getPatient()
       .then(this.getImageData)
       .then(this.loadImage.bind(this));
-
     };
 
     $scope.change = function() {
@@ -105,7 +109,7 @@ angular.module('openeyesApp')
             self.imageUrl = '/images/oct-slices/54229a9f6c5873493a28b3b8.jpg';
             $scope.hasData = true;
           }
-          $scope.loaded = true;
+          
         }, function(error) {
           console.log(error);
         });
@@ -145,17 +149,44 @@ angular.module('openeyesApp')
       self.image.css('background-position', left + 'px ' + top + 'px');
     };
 
+    this.updateProgressBar = function(event){
+      if (event.lengthComputable){
+        $scope.progress = event.loaded / event.total * 100;
+        $scope.$apply();
+      }
+    };
+
     this.loadImage = function(){
+      var imageRequest; 
       if (this.imageUrl) {
+
+        imageRequest = new XMLHttpRequest();
+        // imageRequest.onloadstart = self.showProgressBar;
+        imageRequest.onprogress = self.updateProgressBar;
+        imageRequest.onload = self.imageLoaded;
+        imageRequest.onerror = self.imageError;
+        // imageRequest.onloadend = self.hideProgressBar;
+        imageRequest.open("GET", this.imageUrl, true);
+        imageRequest.overrideMimeType('text/plain; charset=x-user-defined'); 
+        imageRequest.send(null);
+
+
+
         // alert(this.imageUrl);
-        var image = new Image();
-        image.src = this.imageUrl;
-        image.onload = function() {
-          $scope.$apply(this.imageLoaded());
-        }.bind(this);
-        image.onerror = function() {
-          $scope.$apply(this.imageError());
-        }.bind(this);
+        // var image = new Image();
+        // image.src = this.imageUrl;
+        
+        // image.onload = function() {
+        //   $scope.$apply(this.imageLoaded());
+        // }.bind(this);
+        // image.onerror = function() {
+        //   $scope.$apply(this.imageError());
+        // }.bind(this);
+        // //TODO: Have to use XHR to load in image to use this technique
+        // image.onprogress = function(event){
+        //   $scope.$apply(this.updateProgressBar(event));
+        //   // self.updateProgressBar(event);
+        // }.bind(this);
       } else {
         this.imageError();
       }
@@ -164,10 +195,13 @@ angular.module('openeyesApp')
     this.imageError = function() {
       $scope.loading = false;
       $scope.error = true;
+      $scope.disable = true;
     };
 
     this.imageLoaded = function(){
+      $scope.loaded = true;
       $scope.loading = false;
+      $scope.disable = false;
       $timeout(function() {
         self.image.css('background-image', 'url(' + self.imageUrl + ')');
         $scope.change();
