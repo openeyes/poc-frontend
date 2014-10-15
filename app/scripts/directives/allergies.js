@@ -57,11 +57,11 @@ angular.module('openeyesApp')
     };
 
     this.getPatientAllergies = function(){
-      var eType = MODEL_DOMAIN + 'VisualAcuity';
+      var eType = MODEL_DOMAIN + 'Allergies';
 
       Element.getElements($scope.patient._id.$oid, eType, null)
         .then(function(data) {
-          $scope.model.allergies = data.data;
+          $scope.model.allergies = data.data[0].allergies;
           self.pruneExistingAllergies();
         }, function(error) {
           console.log(error);
