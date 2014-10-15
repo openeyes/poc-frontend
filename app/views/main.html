@@ -135,7 +135,7 @@
                 </span>
               </div>
               <div class="workflow-button-wrapper">
-              <a href="/#/patients/{{ workflow._id.$oid }}/{{ $index }}" id="workflow{{$index}}" class="btn btn-primary btn-lg workflow-btn">{{ step.name }} as a {{ step.role }}</a>
+              <a href="/#/patients/{{ workflow._id.$oid }}/{{ $index }}" id="workflow{{$index}}" class="btn btn-primary btn-lg workflow-btn">{{ step.name }} as a {{ step.role }} <span class="caret"></span></a>
               </div>
             </div>
             
@@ -151,7 +151,7 @@
             </div>
           </div>
           <div>
-            <a href="{{ apiHost }}/docs" class="btn btn-primary btn-lg api-btn">View the API</a>
+            <a href="{{ apiHost }}/docs" class="btn btn-primary btn-lg api-btn">View the API<span class="caret"></span></a>
           </div>
 
 

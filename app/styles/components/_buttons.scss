@@ -25,24 +25,7 @@
   }
 }
 
-.workflow-btn {
-  float: left;
-  clear: left;
-  margin-bottom: 15px;
-  border-radius: 30px;
-  background-color: #3fb9eb;
-  border: 0;
-}
 
-.api-btn {
-  float: left;
-  clear: left;
-  margin-bottom: 15px;
-  border-radius: 30px;
-  background-color: #becfdb;
-  border: 2px solid #becfdb;
-  color: #fff;
-}
 
 
 .block--button {
@@ -155,6 +138,43 @@
   span {
     margin-left: -5px;
     margin-right: 5px;
+  }
+}
+
+.workflow-btn {
+  float: left;
+  clear: left;
+  margin-bottom: 15px;
+  border-radius: 30px;
+  background-color: #3fb9eb;
+  border: 0;
+  padding-right: 15px;
+  .caret{
+    color: #fff;
+    border-bottom: 4px solid transparent;
+    border-top: 4px solid transparent;
+    border-left: 8px solid;
+    margin-left: 10px;
+  }
+}
+
+
+
+.api-btn {
+  float: left;
+  clear: left;
+  margin-bottom: 15px;
+  border-radius: 30px;
+  background-color: #becfdb;
+  border: 2px solid #becfdb;
+  color: #fff;
+  padding-right: 15px;
+  .caret{
+    color: #fff;
+    border-bottom: 4px solid transparent;
+    border-top: 4px solid transparent;
+    border-left: 8px solid;
+    margin-left: 15px;
   }
 }
 
