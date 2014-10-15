@@ -135,26 +135,44 @@
     }
   }
 
-}
-
-/*.hover-list{
-  li{
-    position: relative;
+  .workflow-buttons{
+    padding-left: 20px;
+    background: url("../images/presentation/workflow-border.png") 34px 0 no-repeat;
   }
-  .hover-txt{
-    z-index: 100;
-    padding: 15px;
-    font-size: 16px;
-    display: none;
-    position: absolute;
-    top: -20px;
-    left: 20px;
-    background: #ebf9ff;
-    border: 1px solid #0f6fb9;
-    color: #0f6fb9;
-
+  .workflow-item{
+    width: 1000px;
+    clear: both;
+    margin: 20px;
   }
-  li:hover .hover-txt{
+
+  .workflow-button-wrapper{
+    float: left;
+    width: 800px;
+  }
+
+  .workflow-disc{
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
     display: block;
+    text-align: center;
   }
-}*/
+  .workflow-no{
+    background: #fff;
+    color: #becfdb;
+    height: 42px;
+    width: 42px;
+    font-weight: bold;
+    line-height: 42px;
+    font-size: 18px;
+    box-shadow: inset 0 -1px 2px rgba(100,100,100,0.2);
+    margin-top: 4px;
+    margin-left: 4px;
+    
+  }
+  .workflow-disc-border{
+    margin: 0 10px 0 -30px;
+    float: left;
+    background: linear-gradient(#becfdb 0%, #fafafa 100%);
+  }
+}
