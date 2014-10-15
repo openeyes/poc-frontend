@@ -348,3 +348,7 @@ canvas + input[type=text] {
 
 }
 
+.history-text:first-letter{
+  text-transform: capitalize;
+}
+
