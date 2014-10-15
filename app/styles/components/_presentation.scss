@@ -96,3 +96,25 @@
   }
 
 }
+
+.hover-list{
+  li{
+    position: relative;
+  }
+  .hover-txt{
+    z-index: 100;
+    padding: 15px;
+    font-size: 16px;
+    display: none;
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    background: #ebf9ff;
+    border: 1px solid #0f6fb9;
+    color: #0f6fb9;
+   /* width: 400px;*/
+  }
+  li:hover .hover-txt{
+    display: block;
+  }
+}
