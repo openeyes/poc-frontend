@@ -6,14 +6,26 @@
       <div class="col-xs-12">
         <div class="sub-section clearfix" id="intro-section">
           <h2>Introduction</h2>
-          <p>The MEH Project Board asked us to evaluate the pros and cons of a temporary pause in new development work so that we can address some of the problems facing the product within its current architecture. Some of the primary issues are listed below, and you can rollover each one for more detail: </p>
-          <ul class="intro-details hover-list">
-            <li>Slow development speed <span class="hover-txt">The development team cannot scale up as <strong>modules are interdependent</strong></span></li>
-            <li>Inefficient development <span class="hover-txt"><strong>Change in clinical workflows has widespread implications</strong>, making development inefficient</span></li>
-            <li>Little configurability <span class="hover-txt">The solution is not easily configured to meet customers’ requirements, including Moorfields’ satellites</span></li>
-            <li>Lack of integration with other systems <span class="hover-txt">Having the information that is needed in one place, such as imaging, is <strong>not currently possible</strong></span></li>
-            <li>Difficult to deploy and to support <span class="hover-txt"><strong>Costly to configure, deploy and support</strong> in different clinical environments due to lack of configurability</span></li>
-            <li>User experience is hindered by the architecture <span class="hover-txt">User journeys are not representative of behaviour as <strong>role based, patient centric workflows are not supported</strong></span></li>
+          <p>The MEH Project Board asked us to evaluate the pros and cons of a temporary pause in new development work so that we can address some of the problems facing the product within its current architecture. Some of the primary issues are listed below, and you can click each one for more detail: </p>
+          <ul class="intro-details">
+            
+            <li oe-clickable-list><span class="glyphicon"></span>Slow development speed 
+            <span class="detail-txt">The development team cannot scale up as <strong>modules are interdependent</strong></span></li>
+            
+            <li oe-clickable-list><span class="glyphicon"></span>Inefficient development 
+            <span class="detail-txt"><strong>Change in clinical workflows has widespread implications</strong>, making development inefficient</span></li>
+            
+            <li oe-clickable-list><span class="glyphicon"></span>Little configurability 
+            <span class="detail-txt">The solution is not easily configured to meet customers’ requirements, including Moorfields’ satellites</span></li>
+            
+            <li oe-clickable-list><span class="glyphicon"></span>Lack of integration with other systems 
+            <span class="detail-txt">Having the information that is needed in one place, such as imaging, is <strong>not currently possible</strong></span></li>
+            
+            <li oe-clickable-list><span class="glyphicon"></span>Difficult to deploy and to support 
+            <span class="detail-txt"><strong>Costly to configure, deploy and support</strong> in different clinical environments due to lack of configurability</span></li>
+            
+            <li oe-clickable-list><span class="glyphicon"></span>User experience is hindered by the architecture 
+              <span class="detail-txt">User journeys are not representative of behaviour as <strong>role based, patient centric workflows are not supported</strong></span></li>
           </ul>
           <p>We recommended a seven week Technical Proof of Concept (PoC) to prove or disprove five technical concepts which we believe could be key to the future of OpenEyes, and formulate platform migration options.</p>
         </div>
@@ -27,7 +39,7 @@
         <div class="sub-section clearfix" id="tech-section">
           <h2>Architecture</h2>
           <p>The PoC architecture, which we believe is needed in order to address some of the problems faced by the OpenEyes development team, is made up of the following components:</p>
-          <ul class="intro-details">
+          <ul class="architecture-details">
             <li>Application Frontend: built in AngularJS, which is a JavaScript framework maintained by Google. It has a very active user base for contributions and is set up to aid separation of concerns, so enables modularity.</li>
             <li>JVM Based Service Layer: XXX</li>
             <li>Document data store: YYY</li>
@@ -44,24 +56,25 @@
       <div class="col-xs-12">
         <div class="sub-section clearfix" id="benefits-section">
           <h2>Benefits target architecture enables</h2>
-          <dl>
-            <dt>Scalability of the development team</dt>
-            <dd>Enabled by a service layer architecture, with different teams working on different areas in parallel.</dd>
+          <ul class="intro-details">
+         
+            <li oe-clickable-list><span class="glyphicon"></span>Scalability of the development team
+            <span class="detail-txt">Enabled by a service layer architecture, with different teams working on different areas in parallel.</span></li>
 
-            <dt>Development speed</dt>
-            <dd>Increased by de-coupling modules of functionality and developing in Java-based language such as Scala; furthermore by using Angular as a front-end.</dd>
+            <li oe-clickable-list><span class="glyphicon"></span>Development speed
+            <span class="detail-txt">Increased by de-coupling modules of functionality and developing in Java-based language such as Scala; furthermore by using Angular as a front-end.</span></li>
 
-            <dt>Workflow, Clinical scalability, Configurability and Deployment in multiple organisations</dt>
-            <dd>Workflow defined by user role, location and speciality. Supports MEH transformation programme, allowing clinic workflows to be configured using our Workflow API to reflect practises of/within different organisations.</dd>
+            <li oe-clickable-list><span class="glyphicon"></span>Workflow, Clinical scalability, Configurability and Deployment in multiple organisations
+            <span class="detail-txt">Workflow defined by user role, location and speciality. Supports MEH transformation programme, allowing clinic workflows to be configured using our Workflow API to reflect practises of/within different organisations.</span></li> 
 
-            <dt>Modularity</dt>
-            <dd>Workflows are built comprising of modular elements which can easily be added, ordered and removed.</dd>
+            <li oe-clickable-list><span class="glyphicon"></span>Modularity
+            <span class="detail-txt">Workflows are built comprising of modular elements which can easily be added, ordered and removed.</span></li>
 
-            <dt>Integration</dt>
-            <dd>Technology choices give access to integration libraries which enable the proof of concept to easily connect to other systems and devices.</dd>
+            <li oe-clickable-list><span class="glyphicon"></span>Integration
+            <span class="detail-txt">Technology choices give access to integration libraries which enable the proof of concept to easily connect to other systems and devices.</span></li>
 
-            <dt>Platform scalability</dt>
-            <dd>HTTP API, service layer architecture.</dd>
+            <li oe-clickable-list><span class="glyphicon"></span>Platform scalability
+            <span class="detail-txt">HTTP API, service layer architecture.</span></li>
 
           </dl>
         </div>
