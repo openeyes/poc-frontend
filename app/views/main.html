@@ -31,11 +31,11 @@
             <dt>Scalability of the development team</dt>
             <dd>Enabled by a service layer architecture.</dd>
 
-            <dt>Development speed</dt> 
+            <dt>Development speed</dt>
             <dd>Increased by de-coupling modules of functionality and developing in Java based language JVM such as Scala; furthermore by Angular as a front-end.</dd>
 
             <dt>Workflow, Clinical scalability, Configurability and Deployment in multiple organisations</dt>
-            <dd>The steps a patient must go through for their treatment, their workflow, is defined by user role, location and speciality. Configure clinic workflows using our Workflow API to reflect your organisation’s practises.</dd> 
+            <dd>The steps a patient must go through for their treatment, their workflow, is defined by user role, location and speciality. Configure clinic workflows using our Workflow API to reflect your organisation’s practises.</dd>
 
             <dt>Modularity</dt>
             <dd>Workflows are built comprising of modular elements which can easily be added, ordered and removed.</dd>
@@ -96,7 +96,7 @@
           <h2>Try it out</h2>
 
           <div class="clinic-location" >
-            
+
             <div class="col-xs-7 clinic-controls clearfix" id="joyride-workflows">
               <p>Try a step in this workflow for a Medical Retina Injection Clinic</p>
               <div class="radio" ng-repeat="workflow in workflows">
@@ -118,14 +118,14 @@
                 <label class="check-box-label">
                   <input type="checkbox" ng-model="startJoyRide" name="joyrideSwitch" ng-change="SetJoyrideState(startJoyRide)">Select guided tour
                 </label>
-              </oe-joyride-switch>  
+              </oe-joyride-switch>
             </div>
           </div>
           <div>
-            <a href=""class="btn btn-primary btn-lg api-btn">View the API</a>
+            <a href="{{ apiHost }}/docs" class="btn btn-primary btn-lg api-btn">View the API</a>
           </div>
-            
-        
+
+
         </div>
       </div>
     </div>
