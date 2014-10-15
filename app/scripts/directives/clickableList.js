@@ -19,7 +19,6 @@ angular.module('openeyesApp')
   }])
   .directive('oeClickableList', [function() {
     return {
-      scope: {},
       restrict: 'A',
       controller: 'ClickableListCtrl',
       link: function($scope, element, attr, ClickableListCtrl) {
