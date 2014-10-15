@@ -48,15 +48,10 @@
     display: block;
   }
 
-  .workflow-details, .intro-details{
-    margin-top: 50px;
+  .workflow-details{
     li{
       padding: 5px;
     }
-  }
-
-  .intro-details{
-    margin-bottom: 50px;
   }
 
   .clinic-location{
@@ -95,23 +90,45 @@
     background: #f5f8f9;
   }
 
-}
+  .intro-details{
+    list-style: none;
+    margin: 50px 0;
+    padding: 0;
+    border-top: 1px solid #e8e8e8;
+  }
 
-.intro-details{
-  list-style: none;
-}
+  .clickable{
+    display: block;
+    font-weight: bold;
+    padding: 10px;
+    border-bottom: 1px solid #e8e8e8;
+    .glyphicon{
+      font-size: 15px;
+      color: #00bdcb;
+      margin-left: -5px;
+      margin-right: 10px;
+    }
+    .glyphicon:before {
+      content: "\2212";
+    }
+    .detail-txt{
+      font-weight: normal;
+      display: block;
+      margin-left: 20px; 
+    }
+  }
 
-.clickable{
+  .clickable.closed{
+    .glyphicon:before {
+      content: "\2b";
+      
+    }
+    .detail-txt{
+      display: none;
+    }
+  }
 
 }
-.clickable.closed .detail-txt{
-  display: none;
-}
-
-.clickable .detail-txt{
-  display: block;
-}
-
 
 /*.hover-list{
   li{
