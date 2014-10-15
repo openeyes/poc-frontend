@@ -97,20 +97,20 @@ angular.module('openeyesApp')
     //,
     {      
       type: 'element',
-      selector: '#joyride-dicom',
-      heading: 'DICOM Image Slices',
-      placement: 'top',
-      text: '<span class="joyride-txt">DICOM image slices are integrated to assist the Optometrist in their assessment for Macular Degeneration. This is enabled by the Java Virtual Machine with built in DICOM image libraries.</span>'
-    },{      
-      type: 'element',
       selector: '#joyride-topcon',
       heading: 'TopCon Report API',
       placement: 'top',
       text: '<span class="joyride-txt">Topcon 3DOCT report is integrated to assist assessment for Macular Degeneration through the TopCon Report API.</span><br><span class="joyride-txt">This integration removes the need for manual entry of content from one application to another.</span>'
     },{      
       type: 'element',
+      selector: '#joyride-dicom',
+      heading: 'DICOM Image Slices',
+      placement: 'top',
+      text: '<span class="joyride-txt">DICOM image slices are integrated to assist the Optometrist in their assessment for Macular Degeneration. This is enabled by the Java Virtual Machine with built in DICOM image libraries.</span>'
+    },{      
+      type: 'element',
       heading: 'continue',
-      selector: '#joyride-topcon',
+      selector: '#joyride-dicom',
       placement: 'top',
       text: '<span class="joyride-txt">Complete the remaining form to prepare the patient for injection.</span>'
     },{      
