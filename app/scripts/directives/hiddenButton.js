@@ -1,13 +1,15 @@
 'use strict';
 
 angular.module('openeyesApp')
-  .controller('HiddenButtonCtrl', ['$scope',function($scope){
+  .controller('HiddenButtonCtrl', ['$scope', '$location', function($scope, $location){
 
-    this.init = function($scope, element){
+    this.init = function(element){
       
-      $scope.hideModal = function(){
+      $scope.backToMenu = function(){
         console.log("clicked");
         $('.modal').modal('hide');
+
+        $location.url( '/#intro-section' );
       }
     };
 
@@ -18,8 +20,8 @@ angular.module('openeyesApp')
       scope: {},
       restrict: 'A',
       controller: 'HiddenButtonCtrl',
-      link: function(scope, element, attr, HiddenButtonCtrl) {
-        HiddenButtonCtrl.init(scope, element);
+      link: function(element, attr, HiddenButtonCtrl) {
+        HiddenButtonCtrl.init(element);
       }
     };
   }]);
