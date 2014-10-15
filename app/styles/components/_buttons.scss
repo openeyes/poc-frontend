@@ -157,3 +157,19 @@
     margin-right: 5px;
   }
 }
+
+.hidden-btn{
+  position: absolute;
+  bottom: -65px;
+  right: 15px;
+  z-index: 1051;
+  background: #3bc0c3;
+  border-radius: 30px;
+  border-color: transparent;
+  color: #ffffff;
+  opacity: 0;
+}
+.hidden-btn:hover{
+  opacity: 1;
+  color: #ffffff;
+}

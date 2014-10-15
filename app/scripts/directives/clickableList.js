@@ -8,16 +8,12 @@ angular.module('openeyesApp')
     this.init = function(element){
       //set item to closed
       this.element = element;
-
-      // //set closed background class
-      // $(element).find('.detail-txt').hide();
       $(element).addClass('closed');
       $(element).addClass('clickable');
-
-      //toggle event handler on click to show and change icon
-      $(element).click(function() {
-        $( this ).toggleClass( 'closed');
-      });
+      
+      $scope.toggleClose = function($event){
+        $( $event.target ).toggleClass( 'closed')
+      }
 
     };
   }])
