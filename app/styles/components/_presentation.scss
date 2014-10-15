@@ -43,7 +43,7 @@
 
   .target-architecture{
     padding-top: 50px;
-    width: 800px;
+    width: 1016px;
     margin: 0 auto;
     display: block;
   }
@@ -97,7 +97,23 @@
 
 }
 
-.hover-list{
+.intro-details{
+  list-style: none;
+}
+
+.clickable{
+
+}
+.clickable.closed .detail-txt{
+  display: none;
+}
+
+.clickable .detail-txt{
+  display: block;
+}
+
+
+/*.hover-list{
   li{
     position: relative;
   }
@@ -112,9 +128,9 @@
     background: #ebf9ff;
     border: 1px solid #0f6fb9;
     color: #0f6fb9;
-   /* width: 400px;*/
+
   }
   li:hover .hover-txt{
     display: block;
   }
-}
+}*/
