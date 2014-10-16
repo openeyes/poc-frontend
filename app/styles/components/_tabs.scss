@@ -1,23 +1,57 @@
 // Tabs
 
 .nav-tabs {
-  border-bottom: 1px solid #d8dfe3;
+  border-bottom: 1px solid $border-gray;
   > li {
     a {
+      border-radius: 0;
       color: #0f1922;
-      background: #c6d2d9;
-      margin-right: 5px;
+      background: #f6f8f8;
+      margin-right: 0;
+      border: 0;
+      font-size: 16px;
+      padding: 18px 40px;
+      border-right: 1px solid $border-gray;
+      border-bottom: 1px solid $border-gray;
       &:hover{
         background-color: #fff;
+        border: 0;
+        border-right: 1px solid $border-gray;
+        border-bottom: 1px solid $border-gray;
+
+      }
+      .tab-shadow{
+        width: 2px;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        background: #edf0f1;
+      } 
+      .tab-shadow-right{
+        right: 0;
+      }
+      .tab-shadow-left{
+        left: 0px;
       }
     }
     &.active {
       > a {
+        border: 0;
+        border-right: 1px solid $border-gray;
+        border-bottom: 1px solid #fff;
+        position: relative;
         &, &:hover {
           background-color: #fff;
+          border: 0;
+          border-right: 1px solid $border-gray;
+          border-bottom: 1px solid #fff;
         }
+        .tab-shadow {display: none}
       }
+
     }
+
   }
 }
 
@@ -32,7 +66,7 @@
       border: 0;
       border-right: 1px solid $border-gray;
       display: block;
-      padding: 20px 40px;
+      padding: 21px 40px 21px;
       position: relative;
       margin: 0;
     }
@@ -60,7 +94,7 @@
 }
 
 .tab-content {
-  padding-top: 40px;
+/*  padding-top: 40px;*/
   &.check-tab-content {
     padding-top: 0;
     .element-content {
