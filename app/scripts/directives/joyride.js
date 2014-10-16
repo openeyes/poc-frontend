@@ -8,22 +8,17 @@ angular.module('openeyesApp')
     }
 
     $scope.onSkip = function(){
-      //console.log('skip method in joyrideCtrl');
       $rootScope.stopJoyRide = true;
       $scope.joyrideState = false;
     };
-
 
     $scope.SetJoyrideState = function(joyrideState){
       if(joyrideState){
         $scope.startJoyRide = true;
         $rootScope.stopJoyRide = false;
         $timeout(removeCurtain, 500); //Need to disable this on all screens to allow users to select other controls
-
-        //console.log('switch stop', $rootScope.stopJoyRide);
       }else{
         //cancel existing popups on screen
-        //console.log('state changing in switchCtrl and setting to false');
         $scope.startJoyRide = false;
         $rootScope.stopJoyRide = true;
 

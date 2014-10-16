@@ -77,8 +77,16 @@ angular.module('openeyesApp')
         $scope.startJoyRide = true;
       }
     }
-    
     $timeout(waitForDom, 500);
+
+    function removeCurtain(){
+      angular.element('#ng-curtain').remove();
+    }
+    $timeout(removeCurtain, 1000);
+
+
+    
+    
     
 
   }]);
