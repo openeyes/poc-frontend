@@ -6,7 +6,8 @@
       <div class="col-xs-12">
         <div class="sub-section clearfix" id="intro-section">
           <h2>Introduction</h2>
-          <p>The MEH Project Board asked us to evaluate the pros and cons of a temporary pause in new development work so that we can address some of the problems facing the product within its current architecture. Some of the primary issues are listed below, and you can click each one for more detail: </p>
+          <p>The Moorfields Eye Hospital Project Board asked the OpenEyes team to evaluate the impact of a temporary pause in new development work. The purpose of this scheduled break is to address some of the challenges facing the product within its current architecture.</p>
+          <p>The primary issues are listed below, please click on each issue for more detail: </p>
           <ul class="intro-details">
 
             <li oe-clickable-list ng-click='toggleClose($event)' ng-click='toggleClose($event)'><span class="glyphicon"></span>Slow development speed
@@ -15,7 +16,7 @@
             <li oe-clickable-list ng-click='toggleClose($event)'><span class="glyphicon"></span>Inefficient development
             <span class="detail-txt"><strong>Change in clinical workflows has widespread implications</strong>, making development inefficient</span></li>
 
-            <li oe-clickable-list ng-click='toggleClose($event)'><span class="glyphicon"></span>Little configurability
+            <li oe-clickable-list ng-click='toggleClose($event)'><span class="glyphicon"></span>Reduced configurability
             <span class="detail-txt">The solution is not easily configured to meet customers’ requirements, including Moorfields’ satellites</span></li>
 
             <li oe-clickable-list ng-click='toggleClose($event)'><span class="glyphicon"></span>Lack of integration with other systems
@@ -27,7 +28,7 @@
             <li oe-clickable-list ng-click='toggleClose($event)'><span class="glyphicon"></span>User experience is hindered by the architecture
               <span class="detail-txt">User journeys are not representative of behaviour as <strong>role based, patient centric workflows are not supported</strong></span></li>
           </ul>
-          <p>We recommended a seven week Technical Proof of Concept (PoC) to prove or disprove five technical concepts which we believe could be key to the future of OpenEyes, and formulate platform migration options.</p>
+          <p>The OpenEyes team recommended a 7 week Proof of Concept exercise to highlight a range of technical concepts that will provide the architectural solution OpenEyes needs to overcome these challenges.</p>
         </div>
       </div>
     </div>
@@ -38,20 +39,23 @@
       <div class="col-xs-12">
         <div class="sub-section clearfix" id="tech-section">
           <h2>Architecture</h2>
-          <p>The PoC architecture, which we believe is needed in order to address some of the problems faced by the OpenEyes development team, is made up of the following components:</p>
+          <p>This is a high level view of the target architecture we have demonstrated in the Proof of Concept.</p>
           
           <img src="/images/presentation/target-architecture.png" class="target-architecture"/>
+
+          <p>It is comprised of the following key components. Click on each component to find out more.</p>
 
           <ul class="architecture-details">
 
             <li oe-clickable-list ng-click='toggleClose($event)'><span class="glyphicon"></span>Application Frontend
-            <span class="detail-txt">built in AngularJS, which is a JavaScript framework maintained by Google. It has a very active user base for contributions and is set up to aid separation of concerns, so enables modularity.</span></li>
+            <span class="detail-txt">Built in Angular, which is a JavaScript framework maintained by Google. It has a very active user base for contributions and is set up to facilitate separation of concerns, so enables modularity. Allows multiple clients on multiple devices (tablet, PC, mobile)</span></li>
 
             <li oe-clickable-list ng-click='toggleClose($event)'><span class="glyphicon"></span>JVM Based Service Layer
-            <span class="detail-txt">xxx</span></li>
+            <span class="detail-txt">A service orientated architecture allows developers to work in parallel, makes it easier to accommodate change and integrate with other systems and devices.</span></li>
             
             <li oe-clickable-list ng-click='toggleClose($event)'><span class="glyphicon"></span>Document data store
-            <span class="detail-txt">yyy</span></li>
+            <span class="detail-txt">Efficient information storage putting the patient at the centre of care, providing a view of the patient rather than the condition
+</span></li>
           </ul>
         </div>
       </div>
@@ -63,6 +67,8 @@
       <div class="col-xs-12">
         <div class="sub-section clearfix" id="benefits-section">
           <h2>Benefits target architecture enables</h2>
+
+          <p>Please click on each benefit for more detail:</p>
           <ul class="intro-details">
 
             <li oe-clickable-list ng-click='toggleClose($event)'><span class="glyphicon"></span>Scalability of the development team
@@ -81,7 +87,7 @@
             <span class="detail-txt">Technology choices give access to integration libraries which enable the proof of concept to easily connect to other systems and devices.</span></li>
 
             <li oe-clickable-list ng-click='toggleClose($event)'><span class="glyphicon"></span>Platform scalability
-            <span class="detail-txt">HTTP API, service layer architecture.</span></li>
+            <span class="detail-txt">A service oriented architecture with an HTTP API at the centre provides a more scalable platform which can be built upon without breaking other components</span></li>
 
           </ul>
         </div>
@@ -96,9 +102,9 @@
       <div class="col-xs-12">
         <div class="sub-section clearfix" id="workflow-section">
           <h2>Workflow</h2>
-          <p>We have demonstrated this architecture through a patient journey that is not well represented in OpenEyes today: a patient with Age Related Macular Degeneration.</p>
+          <p>The benefits of this architecture are showcased through an example patient journey that is not well defined in OpenEyes today: a patient with Age Related Macular Degeneration.</p>
 
-          <p>This patient accounts for 60% of patients at the Medical Retina Injection suite. Over the course of their care during a visit, the patient meets several different clinicians at the following steps:</p>
+          <p>This journey is representative of 60% of patients at the Medical Retina Injection Clinic. Over the course of their care during a visit, the patient meets several different clinicians in the following steps:</p>
 
           <ul class="workflow-details">
             <li>Registration</li>
@@ -108,9 +114,8 @@
             <li>Injection</li>
           </ul>
 
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi.</p>
+          <p><em>Please note:</em></p>
+          <p><em>This patient journey is solely intended to showcase the platform for the re-architecture and is not ready to be launched for use by Clinicians. It is NOT intended to show a redesign or rebrand, this will be one of the top priorities for the next phase of the project.</em></p>
         </div>
       </div>
     </div>
@@ -127,7 +132,8 @@
           <div class="clinic-location" >
 
             <div class="col-xs-7 clinic-controls clearfix" id="joyride-workflows">
-              <p>Try a step in this workflow for a Medical Retina Injection Clinic</p>
+              <p>Try a step in this workflow for the Medical Retina Injection Clinic, or you can take a guided tour through the demo.</p>
+              <p>Clicking on the links below will take you to a new browser window, you may return to this page at any time.</p>
               <div class="workflow-radio-btns">
                 <div class="radio" ng-repeat="workflow in workflows">
                   <label>
@@ -147,7 +153,7 @@
                 </span>
               </div>
               <div class="workflow-button-wrapper">
-              <a href="/#/patients/{{ workflow._id.$oid }}/{{ $index }}" id="workflow{{$index}}" class="btn btn-primary btn-lg workflow-btn">{{ step.name }} as a {{ step.role }} <span class="caret"></span></a>
+              <a href="/#/patients/{{ workflow._id.$oid }}/{{ $index }}" id="workflow{{$index}}" class="btn btn-primary btn-lg workflow-btn" target="_blank">{{ step.name }} as a {{ step.role }} <span class="caret"></span></a>
               </div>
             </div>
 
@@ -165,6 +171,9 @@
           <div>
             <a href="{{ apiHost }}/docs" class="btn btn-primary btn-lg api-btn" target="_blank">View the API<span class="caret"></span></a>
           </div>
+
+          <p><em>Please note:</em></p>
+          <p><em>This demonstration is best viewed on the latest Chrome browser, using a 15-inch screen running OSX 10.9.5 or higher.</em></p>
 
 
         </div>
