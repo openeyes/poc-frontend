@@ -39,11 +39,20 @@
         <div class="sub-section clearfix" id="tech-section">
           <h2>Architecture</h2>
           <p>The PoC architecture, which we believe is needed in order to address some of the problems faced by the OpenEyes development team, is made up of the following components:</p>
-          <ul class="architecture-details">
-            <li>Application Frontend: built in AngularJS, which is a JavaScript framework maintained by Google. It has a very active user base for contributions and is set up to aid separation of concerns, so enables modularity.</li>
-            <li>JVM Based Service Layer: XXX</li>
-            <li>Document data store: YYY</li>
+          
           <img src="/images/presentation/target-architecture.png" class="target-architecture"/>
+
+          <ul class="architecture-details">
+
+            <li oe-clickable-list ng-click='toggleClose($event)'><span class="glyphicon"></span>Application Frontend
+            <span class="detail-txt">built in AngularJS, which is a JavaScript framework maintained by Google. It has a very active user base for contributions and is set up to aid separation of concerns, so enables modularity.</span></li>
+
+            <li oe-clickable-list ng-click='toggleClose($event)'><span class="glyphicon"></span>JVM Based Service Layer
+            <span class="detail-txt">xxx</span></li>
+            
+            <li oe-clickable-list ng-click='toggleClose($event)'><span class="glyphicon"></span>Document data store
+            <span class="detail-txt">yyy</span></li>
+          </ul>
         </div>
       </div>
     </div>
@@ -74,7 +83,7 @@
             <li oe-clickable-list ng-click='toggleClose($event)'><span class="glyphicon"></span>Platform scalability
             <span class="detail-txt">HTTP API, service layer architecture.</span></li>
 
-          </dl>
+          </ul>
         </div>
       </div>
     </div>
@@ -99,6 +108,9 @@
             <li>Injection</li>
           </ul>
 
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi.</p>
         </div>
       </div>
     </div>
