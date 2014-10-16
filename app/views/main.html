@@ -135,10 +135,10 @@
                 </span>
               </div>
               <div class="workflow-button-wrapper">
-              <a href="/#/patients/{{ workflow._id.$oid }}/{{ $index }}" id="workflow{{$index}}" class="btn btn-primary btn-lg workflow-btn">{{ step.name }} as a {{ step.role }} <span class="caret"></span></a>
+              <a href="/#/patients/{{ workflow._id.$oid }}/{{ $index }}" id="workflow{{$index}}" target="_blank" class="btn btn-primary btn-lg workflow-btn">{{ step.name }} as a {{ step.role }} <span class="caret"></span></a>
               </div>
             </div>
-            
+
           </div>
 
           <div ng-controller="JoyrideMainCtrl" class="col-xs-12 guided-tour" >
