@@ -23,7 +23,7 @@ angular.module('openeyesApp')
         $rootScope.stopJoyRide = true;
 
         //trigger skip button
-        $('.skipBtn').trigger('click');
+        angular.element('.skipBtn').trigger('click');
       }
     };
   }])

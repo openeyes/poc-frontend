@@ -47,9 +47,8 @@ angular.module('openeyesApp')
       $scope.model = self.scanInput.val();
       $scope.$apply();
       self.scanInput.blur();
-      
-      //TODO: refactor out jquery selector for linked elem
-      $('.report-data-flash').addClass('fadeout');
+
+      angular.element('.report-data-flash').addClass('fadeout');
     };
   }])
   .directive('oeBarcodeScan', [function () {

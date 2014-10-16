@@ -84,9 +84,4 @@ angular.module('openeyesApp')
     }
     $timeout(removeCurtain, 1000);
 
-
-    
-    
-    
-
   }]);

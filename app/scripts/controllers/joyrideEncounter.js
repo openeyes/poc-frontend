@@ -14,31 +14,31 @@ angular.module('openeyesApp')
     var locationPath = parseInt($location.$$path.slice(-1),10);
 
     function joyrideTriggerBarcode(){
-      $('#joyride-barcode-button').trigger('click');      
+      angular.element('#joyride-barcode-button').trigger('click');      
     }
 
     function joyrideTriggerModal(){
-      $('#joyride-complete').trigger('click');
+      angular.element('#joyride-complete').trigger('click');
     }
 
     function joyrideEndDemonstration(){
       //console.log('end demonstration method in encounterCtrl');
       $scope.startJoyRide = false;
       $rootScope.stopJoyRide = true;
-      $('.modal').modal('hide');
+      angular.element('.modal').modal('hide');
       $location.url( '/#intro-section' );
     }
 
     function joyrideTriggerNext0(){
       var oid = $location.$$path.substring(9, 33);
       $location.path( '/patients/'+oid+'/1' );
-      $('.modal').modal('hide');
+      angular.element('.modal').modal('hide');
     }
 
     function joyrideTriggerNext1(){
       var oid = $location.$$path.substring(9, 33);
       $location.path( '/patients/'+oid+'/2' );
-      $('.modal').modal('hide');
+      angular.element('.modal').modal('hide');
     }
 
     $scope.onSkip = function(){
@@ -109,7 +109,7 @@ angular.module('openeyesApp')
       text: '<span class="joyride-txt">DICOM image slices are integrated to assist the Optometrist in their assessment for Macular Degeneration. This is enabled by the Java Virtual Machine with built in DICOM image libraries.</span>'
     },{      
       type: 'element',
-      heading: 'continue',
+      heading: 'Continue',
       selector: '#joyride-dicom',
       placement: 'top',
       text: '<span class="joyride-txt">Complete the remaining form to prepare the patient for injection.</span>'
@@ -194,7 +194,7 @@ angular.module('openeyesApp')
     $timeout(waitForDom, 1000);
 
     function removeCurtain(){
-      $('#ng-curtain').remove();
+      angular.element('#ng-curtain').remove();
     }
     $timeout(removeCurtain, 1000);
     
