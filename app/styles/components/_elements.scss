@@ -70,7 +70,7 @@
     padding-left: 0;
     padding-right: 0;
     .nav{
-      background: #f6f7f8;
+      background: #ecf0f1;
       padding-left: 40px;
       padding-top: 30px;
     }
@@ -98,6 +98,22 @@
     }
   }
 }
+
+.icon-oct-eye{
+  width: 53px;
+  height: 35px;
+  @include text-hide;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.oct-left-eye{
+  background: transparent image-url('icons/forms/oct-left-eye.png') center center no-repeat;
+}
+.oct-right-eye{
+  background: transparent image-url('icons/forms/oct-right-eye.png') center center no-repeat;
+}
+
 
 .element-box {
   border: 1px solid #cbd4d9;
