@@ -33,10 +33,11 @@
 }
 
 .header-pres {
-
   .nav-wrapper{
-    width: 1140px;
     margin: 0 auto;
+    max-width: 1140px;
+    min-width: 1000px;
+    width: 100%;
   }
   .container-fluid {
     border-bottom: 1px solid #e4e4e4;

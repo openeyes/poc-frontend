@@ -1,12 +1,21 @@
 .pres-wrapper {
   margin-top: 50px;
+  overflow-x: hidden;
 
   .sub-section {
-    margin: 0 auto 55px auto;
-    width: 1040px;
-    padding-top: 130px;
-    padding-bottom: 115px;
     background: url(../images/presentation/icon-down-arrow.png) no-repeat center bottom;
+    margin: 0 auto 55px;
+    max-width: 1040px;
+    min-width: 1000px;
+    padding-bottom: 115px;
+    padding-top: 130px;
+    width: 100%;
+
+    @media (max-width: 1078px) {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
     p, label, dd, dt, ul > li {
       font-size: 20px;
     }
@@ -116,7 +125,7 @@
     .detail-txt{
       padding: 9px 0 8px 0;
       display: block;
-      margin-left: 20px; 
+      margin-left: 20px;
       color: #888;
       strong{
         font-weight: normal;
@@ -128,7 +137,7 @@
   .clickable.closed{
     .glyphicon:before {
       content: "\2b";
-      
+
     }
     .detail-txt{
       display: none;
@@ -138,7 +147,7 @@
   .clinic-controls label{
     color: #00a9b5;
   }
-  
+
   .workflow-buttons{
     padding-left: 20px;
     background: url("../images/presentation/workflow-border.png") 24px 0 no-repeat;
@@ -172,7 +181,7 @@
     box-shadow: inset 0 -1px 2px rgba(100,100,100,0.3);
     margin-top: 5px;
     margin-left: 5px;
-    
+
   }
   .workflow-disc-border{
     margin: 0 10px 0 -30px;
