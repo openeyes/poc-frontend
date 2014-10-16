@@ -128,9 +128,9 @@
           <h2>Try it out</h2>
 
           <div class="clinic-location" >
-
-            <div class="col-xs-7 clinic-controls clearfix" id="joyride-workflows">
               <p>Try a step in this workflow for the Medical Retina Injection Clinic, or you can take a guided tour through the demo.</p>
+            <div class="col-xs-7 clinic-controls clearfix" id="joyride-workflows">
+
               <div class="workflow-radio-btns">
                 <div class="radio" ng-repeat="workflow in workflows">
                   <label>
@@ -142,7 +142,7 @@
             </div>
           </div>
 
-          <div class="workflow-buttons clearfix">
+          <div class="workflow-buttons clearfix col-xs-12">
             <div class="workflow-item clearfix" ng-repeat="step in workflow.steps" >
               <div class="workflow-disc-border workflow-disc">
                 <span class="workflow-no workflow-disc">
@@ -156,7 +156,7 @@
 
           </div>
 
-          <div ng-controller="JoyrideMainCtrl" class="col-xs-12 guided-tour" >
+          <div ng-controller="JoyrideMainCtrl" class="col-xs-12 guided-tour clearfix" >
             <div ng-joy-ride="startJoyRide" config="config" on-finish="onFinish()" on-skip="onSkip()">
               <oe-joyride-switch class="checkbox">
                 <label class="check-box-label">
@@ -165,11 +165,12 @@
               </oe-joyride-switch>
             </div>
           </div>
-          <div>
-            <a href="{{ apiHost }}/docs" class="btn btn-primary btn-lg api-btn" target="_blank">View the API<span class="caret"></span></a>
+          <div class='col-xs-12 api-btn-container'>
+            <p class="api-txt">You can view the API documentation and try it out here.</p>
+            <p><a href="{{ apiHost }}/docs" class="btn btn-primary btn-lg api-btn" target="_blank">View the API<span class="caret"></span></a></p>
           </div>
 
-          <div class="disclaimer">
+          <div class="col-xs-12 disclaimer">
 
             <p><em>Please note:</em></p>
             <p><em>This demonstration is best viewed on the latest Chrome browser, using a 15-inch screen running OSX 10.9.5 or higher.</em></p>
