@@ -23,8 +23,9 @@
       color: #525252;
     }
     .check-box-label {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: normal;
+      color: #00a9b5;
       input[type="checkbox"] {
         top: 3px;
       }
@@ -49,14 +50,24 @@
     display: block;
   }
 
+
+
   .workflow-details, .architecture-details{
-    margin: 30px 0 0 -20px;
+    margin: 30px 0 30px -20px;
   }
 
-  .workflow-details li{
-    padding: 8px 0;
+  .architecture-details{
+    list-style: none;
+    margin: 40px 0;
+    padding: 0;
+    border-top: 1px solid #e8e8e8;
   }
 
+  .workflow-details{
+    li{
+      padding: 8px 0;
+    }
+  }
   .clinic-location{
     margin-top: 50px;
   }
@@ -188,4 +199,8 @@
     float: left;
     background: linear-gradient(#becfdb 0%, #fafafa 100%);
   }
+}
+
+.disclaimer{
+  clear: both;
 }
