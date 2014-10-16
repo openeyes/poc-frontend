@@ -17,7 +17,7 @@
       <a class="img" href="#">
       </a>
     </div>
-  
+
     <div ng-class="loaded ? '' : 'disabled'" class="slider">
       <div class="position-tooltip" ng-show="showTooltip">
         <span class="cur">{{selectedRange}}</span>
@@ -29,14 +29,15 @@
         </span>
       </a>
       <input type="range" class="range" min="{{min}}" max="{{max}}" step="{{step}}" ng-disabled="disable" ng-model="selectedRange" ng-change="change()" ng-mouseenter="showTooltip=true" ng-mouseleave="showTooltip=false"/>
+      <div class="position-mask"></div>
       <a href="#" class="step step-up" ng-click="$event.preventDefault()" ng-mousedown="stepUp($event)" ng-mouseup="stopStepping()">
         <span class="caret caret-right">
           Step up
         </span>
       </a>
     </div>
-   
-    
+
+
   </div>
   <div ng-show="loaded && !hasData">
     <span class="glyphicon glyphicon-info-sign"></span>

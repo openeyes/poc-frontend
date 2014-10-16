@@ -25,16 +25,14 @@
   }
 }
 
-
-
-
-.block--button {
+.block-button {
   background-color: #31a7aa;
+  border-color: #31a7aa;
+  border-radius: 0;
   display: block;
   font-size: 26px;
   padding: 20px;
   width: 100%;
-  border-color: #31a7aa;
 
   &:hover {
     background-color: #3bc0c3;
