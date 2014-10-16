@@ -23,6 +23,7 @@ angular.module('openeyesApp')
       this.tooltip = $element.find('.position-tooltip');
       this.range = $element.find('.range');
       this.progress = $element.find('.progress');
+      this.$positionMask = $element.find('.position-mask');
 
       this.stepSpeed = STEP_INITIAL_SPEED;
       this.containerWidth = $element.find('.oct-slides').width();
@@ -54,6 +55,7 @@ angular.module('openeyesApp')
     $scope.change = function() {
       self.positionImage();
       self.positionTooltip();
+      self.positionMask();
     };
 
     $scope.stepDown = function() {
@@ -111,6 +113,17 @@ angular.module('openeyesApp')
         }, function(error) {
           console.log(error);
         });
+    };
+
+    this.positionMask = function(){
+      var perc = $scope.selectedRange / $scope.max;
+      var px = 0;
+
+      px += self.rangeWidth * perc;
+      px -= (perc * self.handleWidth);
+      px += self.handleWidth/2;
+
+      self.$positionMask.css('width', Math.floor(px) + 'px');
     };
 
     this.positionTooltip = function() {
