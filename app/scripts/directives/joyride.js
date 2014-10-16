@@ -4,7 +4,7 @@ angular.module('openeyesApp')
   .controller('JoyrideSwitchCtrl', ['$scope', '$attrs', '$rootScope', '$timeout',  function($scope, $attrs, $rootScope, $timeout){
 
     function removeCurtain(){
-      $('#ng-curtain').remove();
+      angular.element('#ng-curtain').remove();
     }
 
     $scope.onSkip = function(){
