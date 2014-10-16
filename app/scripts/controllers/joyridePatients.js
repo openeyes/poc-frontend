@@ -14,11 +14,10 @@ angular.module('openeyesApp')
     var locationPath = parseInt($location.$$path.slice(-1),10);
 
     function joyrideTriggerNext(){
-      $('#joyride-0').trigger('click');
+      angular.element('#joyride-0').trigger('click');
     }
 
     $scope.onSkip = function(){
-      //console.log('skip method in patientCtrl');
       $rootScope.stopJoyRide = true;
     };
 

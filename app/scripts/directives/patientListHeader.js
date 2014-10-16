@@ -3,16 +3,16 @@
 angular.module('openeyesApp')
   .controller('PatientListHeaderCtrl', [function(){
     this.init = function(element){
-      $(element).affix({
+      element.affix({
         offset: { top: 48 }
       });
 
-      $(element).on('affixed.bs.affix', function(){
-        $(element).siblings().addClass('affix-containers');
+      element.on('affixed.bs.affix', function(){
+        element.siblings().addClass('affix-containers');
       });
 
-      $(element).on('affixed-top.bs.affix', function(){
-        $(element).siblings().removeClass('affix-containers');
+      element.on('affixed-top.bs.affix', function(){
+        element.siblings().removeClass('affix-containers');
       });
     };
   }])
