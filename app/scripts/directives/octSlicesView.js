@@ -29,7 +29,7 @@ angular.module('openeyesApp')
       this.containerWidth = $element.find('.oct-slides').width();
       this.tooltipWidth = this.tooltip.width();
       this.rangeWidth = this.range.width();
-      this.handleWidth = 50;
+      this.handleWidth = 42;
       this.sliceWidth = this.image.width();
       this.sliceHeight = this.image.height();
 
