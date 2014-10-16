@@ -40,7 +40,7 @@
         <div class="sub-section clearfix" id="tech-section">
           <h2>Architecture</h2>
           <p>This is a high level view of the target architecture we have demonstrated in the Proof of Concept.</p>
-          
+
           <img src="/images/presentation/target-architecture.png" class="target-architecture"/>
 
           <ul class="architecture-details">
@@ -50,7 +50,7 @@
 
             <li oe-clickable-list ng-click='toggleClose($event)'><span class="glyphicon"></span>JVM Based Service Layer
             <span class="detail-txt">A service orientated architecture allows developers to work in parallel, makes it easier to accommodate change and integrate with other systems and devices.</span></li>
-            
+
             <li oe-clickable-list ng-click='toggleClose($event)'><span class="glyphicon"></span>Document data store
             <span class="detail-txt">Efficient information storage putting the patient at the centre of care, providing a view of the patient rather than the condition
 </span></li>
@@ -131,7 +131,6 @@
 
             <div class="col-xs-7 clinic-controls clearfix" id="joyride-workflows">
               <p>Try a step in this workflow for the Medical Retina Injection Clinic, or you can take a guided tour through the demo.</p>
-              <p>Clicking on the links below will take you to a new browser window, you may return to this page at any time.</p>
               <div class="workflow-radio-btns">
                 <div class="radio" ng-repeat="workflow in workflows">
                   <label>
@@ -151,7 +150,7 @@
                 </span>
               </div>
               <div class="workflow-button-wrapper">
-              <a href="/#/patients/{{ workflow._id.$oid }}/{{ $index }}" id="workflow{{$index}}" class="btn btn-primary btn-lg workflow-btn" target="_blank">{{ step.name }} as a {{ step.role }} <span class="caret"></span></a>
+              <a href="/#/patients/{{ workflow._id.$oid }}/{{ $index }}" id="workflow{{$index}}" class="btn btn-primary btn-lg workflow-btn">{{ step.name }} as a {{ step.role }} <span class="caret"></span></a>
               </div>
             </div>
 
