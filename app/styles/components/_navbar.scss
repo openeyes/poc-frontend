@@ -65,13 +65,13 @@
       &:hover {
         background-color: #ebf9ff !important;
       }
-
     }
 
     li.active a {
       background-color: #ebf9ff;
       position: relative;
     }
+
     li.active a:after{
       content: '';
       position: absolute;
@@ -79,15 +79,12 @@
       right: 0;
       bottom: -5px;
       border-bottom: 5px solid #38b7ea;
-    } 
-    
+    }
 
     a {
       color: #273340 !important;
     }
-
   }
-
 }
 
 .navbar-brand-pres {

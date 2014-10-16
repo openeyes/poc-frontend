@@ -3,18 +3,15 @@
 angular.module('openeyesApp')
   .controller('ClickableListCtrl', ['$scope',function($scope){
 
-    var self = this;
-
     this.init = function(element){
       //set item to closed
       this.element = element;
       $(element).addClass('closed');
       $(element).addClass('clickable');
-      
-      $scope.toggleClose = function($event){
-        $( $event.target ).toggleClass( 'closed')
-      }
 
+      $scope.toggleClose = function($event){
+        $( $event.target ).toggleClass( 'closed');
+      };
     };
   }])
   .directive('oeClickableList', [function() {

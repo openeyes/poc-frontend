@@ -47,8 +47,8 @@ angular.module('openeyesApp')
       $scope.disable = true;
 
       this.getPatient()
-      .then(this.getImageData)
-      .then(this.loadImage.bind(this));
+        .then(this.getImageData)
+        .then(this.loadImage.bind(this));
     };
 
     $scope.change = function() {
@@ -107,7 +107,7 @@ angular.module('openeyesApp')
             self.imageUrl = '/images/oct-slices/54229a9f6c5873493a28b3b8.jpg';
             $scope.hasData = true;
           }
-          
+
         }, function(error) {
           console.log(error);
         });
@@ -155,17 +155,17 @@ angular.module('openeyesApp')
     };
 
     this.loadImage = function(){
-      var imageRequest; 
+      var imageRequest;
       if (this.imageUrl) {
 
         imageRequest = new XMLHttpRequest();
         imageRequest.onprogress = self.updateProgressBar;
         imageRequest.onload = self.imageLoaded;
         imageRequest.onerror = self.imageError;
-        imageRequest.open("GET", this.imageUrl, true);
-        imageRequest.overrideMimeType('text/plain; charset=x-user-defined'); 
+        imageRequest.open('GET', this.imageUrl, true);
+        imageRequest.overrideMimeType('text/plain; charset=x-user-defined');
         imageRequest.send(null);
-        
+
       } else {
         this.imageError();
       }

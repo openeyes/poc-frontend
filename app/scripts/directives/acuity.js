@@ -49,10 +49,9 @@ angular.module('openeyesApp')
     // $scope methods
     $scope.change = function() {
       if($scope.unableToAccess || $scope.eyeMissing){
-        $scope.disableScores = true
-
+        $scope.disableScores = true;
       }else{
-        $scope.disableScores = false
+        $scope.disableScores = false;
       }
     };
 
