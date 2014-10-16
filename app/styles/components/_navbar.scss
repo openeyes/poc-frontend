@@ -105,6 +105,11 @@
       margin-left: 15px;
     }
   }
+
+  @media (max-width: 1078px) {
+    width: 200px;
+    background-size: 100% auto;
+  }
 }
 
 
