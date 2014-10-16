@@ -28,7 +28,7 @@ angular.module('openeyesApp')
     };
 
     this.getModel = function(){
-      console.log($scope.model);
+      // console.log($scope.model);
       return {
         name: MODEL_DOMAIN + 'PosteriorPole',
         subPath: $scope.side,
