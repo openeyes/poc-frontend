@@ -1,5 +1,23 @@
 // EyeDraw
 
+.eye-draw-interactive, .eye-draw-data{
+	float: left;
+}
+
+.eye-draw-interactive{
+	width: 50%;
+	@media (max-width: 1400px) {
+		width: 58.3333333333%;
+	}
+}
+
+.eye-draw-data{
+	width: 50%;
+	@media (max-width: 1400px) {
+		width: 41.6666666667%;
+	}
+}
+
 .ed-widget {
   padding-top: 0.8rem;
   .label {
@@ -11,4 +29,35 @@
 
 .ed-selected-doodle-select {
   width: 100%;
+}
+
+
+//Injection site
+.injection-site-data .injection-control{
+	margin-right: 20px;
+}
+
+.injection-site-interactive, .injection-site-data{
+	float: left;
+}
+
+
+.injection-site-interactive{
+	width: 33%;
+	@media (max-width: 1400px) {
+		width: 50%;
+	}
+	@media (max-width: 2000px) {
+		width: 58.3333333333%;
+	}
+}
+
+.injection-site-data{
+	width: 66%;
+	@media (max-width: 1400px) {
+		width: 50%;
+	}
+	@media (max-width: 2000px) {
+		width: 41.6666666667%;
+	}
 }
