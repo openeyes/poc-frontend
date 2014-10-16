@@ -46,3 +46,9 @@ select[chosen] {
     }
   }
 }
+
+.chosen-container-single .chosen-search input[type="text"],
+.chosen-container .chosen-drop,
+.chosen-container-active.chosen-with-drop .chosen-single{
+  border-color: #c9d3da;
+}

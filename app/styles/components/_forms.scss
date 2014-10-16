@@ -1,3 +1,8 @@
+input, select, textarea{
+  border: 1px solid #c9d3da;
+}
+
+
 .search-form {
   margin: 20px 0;
 }
@@ -74,6 +79,8 @@
   transition: opacity 1s ease-in-out;
 }  
 
+
 .form-control, .chosen-container-multi .chosen-choices, .chosen-container-single .chosen-single{
-  box-shadow: 0 0 0 0 ;
+  box-shadow: 0 0 0 0;
+  border-color: #c9d3da;
 }
