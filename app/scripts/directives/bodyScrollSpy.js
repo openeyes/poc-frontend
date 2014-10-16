@@ -1,19 +1,21 @@
 'use strict';
 
 angular.module('openeyesApp')
-  .controller('BodyScrollSpyCtrl', ['$scope',function($scope){
+  .controller('BodyScrollSpyCtrl', ['$scope', function($scope){
 
     this.init = function(element){
-      $(element).scrollspy({ target: '.scrollspy-nav' })
+      element.scrollspy({
+        target: '.scrollspy'
+      });
 
       $scope.$on('scrollspy.start', function(){
-        $(element).scrollspy({ target: '.scrollspy-nav' })
-        $(element).scrollspy('refresh')
+        $('.scrollspy').addClass('scrollspy');
+        element.scrollspy('refresh');
       });
 
       $scope.$on('scrollspy.stop', function(){
-        $(element).scrollspy({ target: '' })
-        $(element).scrollspy('refresh')
+        $('.scrollspy').removeClass('scrollspy');
+        element.scrollspy('refresh');
       });
     };
   }])
