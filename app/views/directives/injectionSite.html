@@ -1,9 +1,9 @@
 <div class="row">
-  <div class="col-xs-8">
+  <div class="injection-site-interactive">
     <oe-eyedraw instance="eyedrawInstance" ng-model="model.data" data-side="{{side}}" options="{{options}}" mode="{{mode}}"></oe-eyedraw>
   </div>
-  <div class="col-xs-4">
-    <div class="form-group vertical">
+  <div class="injection-site-data">
+    <div class="form-group vertical injection-control">
       <label class="control-label">Lens status:</label>
       <select class="form-control" ng-model="lensStatus" ng-options="obj.label for obj in statuses" ng-change="updateLensStatus()">
       </select>
