@@ -71,12 +71,13 @@
     padding-right: 0;
     .nav{
       background: #ecf0f1;
-      padding-left: 40px;
-      padding-top: 30px;
+/*      padding-left: 40px;
+      padding-top: 30px;*/
     }
     .tab-content {
       padding-left: 40px;
       padding-right: 40px;
+      padding-top: 40px;
     }
   }
 
@@ -105,12 +106,13 @@
   @include text-hide;
   display: inline-block;
   vertical-align: middle;
+  margin-right: 5px;
 }
 
-.oct-left-eye{
+.oct-left-eye .icon-oct-eye{
   background: transparent image-url('icons/forms/oct-left-eye.png') center center no-repeat;
 }
-.oct-right-eye{
+.oct-right-eye .icon-oct-eye{
   background: transparent image-url('icons/forms/oct-right-eye.png') center center no-repeat;
 }
 
