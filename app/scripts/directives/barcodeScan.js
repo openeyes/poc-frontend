@@ -47,7 +47,7 @@ angular.module('openeyesApp')
       $scope.model = self.scanInput.val();
       $scope.$apply();
       self.scanInput.blur();
-
+      //set display to fade after the data has been inserted into the page
       angular.element('.report-data-flash').addClass('fadeout');
     };
   }])
