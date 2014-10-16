@@ -6,6 +6,8 @@ angular.module('openeyesApp')
     var self = this;
 
     this.init = function(element){
+
+      
       
       $scope.backToMenu = function(){
         $('.modal').on('hidden.bs.modal', self.goBackToMenu)

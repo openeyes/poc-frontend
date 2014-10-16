@@ -5,10 +5,13 @@
     margin: 0 auto 55px auto;
     width: 1040px;
     padding-top: 130px;
-    padding-bottom: 175px;
+    padding-bottom: 115px;
     background: url(../images/presentation/icon-down-arrow.png) no-repeat center bottom;
-    p, label, dd, dt, ul > li, label {
+    p, label, dd, dt, ul > li {
       font-size: 20px;
+    }
+    p, label{
+      color: #525252;
     }
     .check-box-label {
       font-size: 18px;
@@ -17,17 +20,6 @@
         top: 3px;
       }
       margin-left: 15px;
-  
-    }
-    dl{
-      border-top: 1px solid #eee;
-    }
-    dt{
-      padding-top: 10px;
-    }
-    dd{
-      padding-bottom: 10px;
-      border-bottom: 1px solid #eee;
     }
     .radio {
       float: left;
@@ -35,9 +27,9 @@
       margin-top: 10px !important;
     }
     h2{
-      font-size: 40px;
-      margin-bottom: 50px;
-      color: #0188be;
+      font-size: 38px;
+      margin-bottom: 40px;
+      color: #128abb;
     }
   }
 
@@ -49,21 +41,29 @@
   }
 
   .workflow-details, .architecture-details{
-    li{
-      padding: 5px;
-    }
+    margin: 30px 0 0 -20px;
+  }
+
+  .workflow-details li{
+    padding: 8px 0;
   }
 
   .clinic-location{
     margin-top: 50px;
   }
 
-   .workflow-buttons{
+  .workflow-radio-btns{
+    margin-top: 40px;
+    padding-left: 16px;
+  }
+  .workflow-buttons{
     clear: both;
-   }
+  }
 
   .clinic-controls{
     margin: 0 0 30px;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .workflow-btn{
@@ -71,7 +71,7 @@
   }
 
   .api-btn{
-    margin: 20px 0;
+    margin: 45px 0;
   }
   .guided-tour{
     padding-left: 0;
@@ -86,13 +86,13 @@
     background: #fff;
   }
 
-  .intro-wrapper{
+  .odd-section-wrapper{
     background: #f5f8f9;
   }
 
   .intro-details{
     list-style: none;
-    margin: 50px 0;
+    margin: 40px 0;
     padding: 0;
     border-top: 1px solid #e8e8e8;
   }
@@ -100,13 +100,13 @@
   .clickable{
     cursor: pointer;
     display: block;
-    font-weight: bold;
-    padding: 10px;
-    color: #00a9b6;
+
+    padding: 9px 9px 7px 9px;
+    color: #00a9b5;
     border-bottom: 1px solid #e8e8e8;
     .glyphicon{
       font-size: 15px;
-      color: #00a9b6;
+      color: #00a9b5;
       margin-left: -5px;
       margin-right: 10px;
     }
@@ -114,7 +114,7 @@
       content: "\2212";
     }
     .detail-txt{
-      font-weight: normal;
+      padding: 9px 0 8px 0;
       display: block;
       margin-left: 20px; 
       color: #888;
@@ -135,26 +135,48 @@
     }
   }
 
-}
-
-/*.hover-list{
-  li{
-    position: relative;
+  .clinic-controls label{
+    color: #00a9b5;
   }
-  .hover-txt{
-    z-index: 100;
-    padding: 15px;
-    font-size: 16px;
-    display: none;
-    position: absolute;
-    top: -20px;
-    left: 20px;
-    background: #ebf9ff;
-    border: 1px solid #0f6fb9;
-    color: #0f6fb9;
-
+  
+  .workflow-buttons{
+    padding-left: 20px;
+    background: url("../images/presentation/workflow-border.png") 24px 0 no-repeat;
   }
-  li:hover .hover-txt{
+  .workflow-item{
+    width: 1000px;
+    clear: both;
+    margin: 20px 20px 20px 10px;
+  }
+
+  .workflow-button-wrapper{
+    float: left;
+    width: 800px;
+  }
+
+  .workflow-disc{
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
     display: block;
+    text-align: center;
   }
-}*/
+  .workflow-no{
+    background: #fff;
+    color: #becfdb;
+    height: 40px;
+    width: 40px;
+    font-weight: bold;
+    line-height: 40px;
+    font-size: 18px;
+    box-shadow: inset 0 -1px 2px rgba(100,100,100,0.3);
+    margin-top: 5px;
+    margin-left: 5px;
+    
+  }
+  .workflow-disc-border{
+    margin: 0 10px 0 -30px;
+    float: left;
+    background: linear-gradient(#becfdb 0%, #fafafa 100%);
+  }
+}
