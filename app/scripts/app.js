@@ -46,8 +46,7 @@ angular
         templateUrl: 'views/patients.html',
         controller: 'PatientsCtrl'
       });
-      // .otherwise({
-
+      // .otherwise({ /* default route removed to allow for anchor deep linking in landing page */
       //   redirectTo: '/'
       // });
 

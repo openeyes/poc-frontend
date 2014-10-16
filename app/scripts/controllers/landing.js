@@ -18,7 +18,7 @@ angular.module('openeyesApp')
     });
 
     this.setLanding = function(){
-
+      //assign landing header based on whether the path matches any anchors on landing page or root
       switch($location.url()){
         case '/': $scope.landing = true;
         break;
@@ -35,13 +35,6 @@ angular.module('openeyesApp')
         default: $scope.landing = false;
         break;
       }
-
-
-      // if($location.url() === '/'){
-      //   $scope.landing = true;
-      // } else {
-      //   $scope.landing = false;
-      // }
     };
 
     this.setLanding();
