@@ -5,16 +5,16 @@ angular.module('openeyesApp')
 
     this.init = function(element){
       element.scrollspy({
-        target: '.scrollspy'
+        target: '.navbar-scrollspy'
       });
 
       $scope.$on('scrollspy.start', function(){
-        $('.scrollspy').addClass('scrollspy');
+        $('.navbar').addClass('navbar-scrollspy');
         element.scrollspy('refresh');
       });
 
       $scope.$on('scrollspy.stop', function(){
-        $('.scrollspy').removeClass('scrollspy');
+        $('.navbar').removeClass('navbar-scrollspy');
         element.scrollspy('refresh');
       });
     };
