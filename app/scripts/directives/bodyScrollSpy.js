@@ -9,12 +9,12 @@ angular.module('openeyesApp')
       });
 
       $scope.$on('scrollspy.start', function(){
-        $('.navbar').addClass('navbar-scrollspy');
+        angular.element('.navbar').addClass('navbar-scrollspy');
         element.scrollspy('refresh');
       });
 
       $scope.$on('scrollspy.stop', function(){
-        $('.navbar').removeClass('navbar-scrollspy');
+        angular.element('.navbar').removeClass('navbar-scrollspy');
         element.scrollspy('refresh');
       });
     };

@@ -14,8 +14,8 @@ angular.module('openeyesApp')
     };
 
     $scope.animateScroll = function(href){
-      $('html, body').animate(
-        {scrollTop: ($('#' + href).offset().top )},
+      angular.element('html, body').animate(
+        { scrollTop: angular.element('#' + href).offset().top },
         500,
         function(){
           $rootScope.$broadcast('scrollspy.start');
@@ -27,11 +27,11 @@ angular.module('openeyesApp')
     $scope.detectAnchorOnLoad = function(href){
       if(href === '/'){ return; }
 
-      var activeLink = $('a[href="#' + href + '"]');
+      var activeLink = angular.element('a[href="#' + href + '"]');
       $scope.setNavState(activeLink, href);
 
       if($scope.currentHash === ''){
-        $scope.setNavState($('a[href="#intro-section"]'));
+        $scope.setNavState(angular.element('a[href="#intro-section"]'));
         return;
       }
 
@@ -47,7 +47,7 @@ angular.module('openeyesApp')
       e.preventDefault();
       $rootScope.$broadcast('scrollspy.stop');
 
-      var link = $(e.currentTarget);
+      var link = angular.element(e.currentTarget);
       var href = link.attr('href').slice(1);
 
       $scope.setNavState(link, href);
