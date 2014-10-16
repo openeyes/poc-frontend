@@ -19,6 +19,14 @@ angular.module('openeyesApp')
       $rootScope.stopJoyRide = true;
     };
 
+    if($rootScope.stopJoyRide === false){
+      $scope.startJoyRide = true
+    }else{
+      $scope.startJoyRide = false
+    }
+
+    
+
   	$scope.config = [{
       type: 'location_change',
       path: '/'

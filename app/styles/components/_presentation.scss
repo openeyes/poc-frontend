@@ -37,7 +37,7 @@
     h2{
       font-size: 40px;
       margin-bottom: 50px;
-      color: #0188be;
+      color: #128abb;
     }
   }
 
@@ -86,7 +86,7 @@
     background: #fff;
   }
 
-  .intro-wrapper{
+  .odd-section-wrapper{
     background: #f5f8f9;
   }
 
@@ -100,13 +100,13 @@
   .clickable{
     cursor: pointer;
     display: block;
-    font-weight: bold;
+
     padding: 10px;
-    color: #3fb9eb;
+    color: #00a9b5;
     border-bottom: 1px solid #e8e8e8;
     .glyphicon{
       font-size: 15px;
-      color: #3fb9eb;
+      color: #00a9b5;
       margin-left: -5px;
       margin-right: 10px;
     }
@@ -114,7 +114,7 @@
       content: "\2212";
     }
     .detail-txt{
-      font-weight: normal;
+
       display: block;
       margin-left: 20px; 
       color: #888;
@@ -133,6 +133,10 @@
     .detail-txt{
       display: none;
     }
+  }
+
+  .clinic-controls label{
+    color: #00a9b5;
   }
   
   .workflow-buttons{
@@ -160,14 +164,14 @@
   .workflow-no{
     background: #fff;
     color: #becfdb;
-    height: 42px;
-    width: 42px;
+    height: 40px;
+    width: 40px;
     font-weight: bold;
-    line-height: 42px;
+    line-height: 40px;
     font-size: 18px;
-    box-shadow: inset 0 -1px 2px rgba(100,100,100,0.2);
-    margin-top: 4px;
-    margin-left: 4px;
+    box-shadow: inset 0 -1px 2px rgba(100,100,100,0.3);
+    margin-top: 5px;
+    margin-left: 5px;
     
   }
   .workflow-disc-border{
