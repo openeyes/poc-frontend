@@ -5,11 +5,9 @@ angular.module('openeyesApp')
 
     var self = this;
 
-    this.init = function(){
-      $scope.backToMenu = function(){
-        $('.modal').on('hidden.bs.modal', self.goBackToMenu);
-        $('.modal').modal('hide');
-      };
+    $scope.backToMenu = function(){
+      $('.modal').on('hidden.bs.modal', self.goBackToMenu);
+      $('.modal').modal('hide');
     };
 
     this.goBackToMenu = function(){
@@ -22,7 +20,7 @@ angular.module('openeyesApp')
       restrict: 'E',
       controller: 'HiddenButtonCtrl',
       link: function(scope, element, attr, HiddenButtonCtrl) {
-        HiddenButtonCtrl.init();
+        
       }
     };
   }]);
