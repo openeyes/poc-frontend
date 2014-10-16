@@ -14,11 +14,10 @@ angular.module('openeyesApp')
     var locationPath = parseInt($location.$$path.slice(-1),10);
 
     function joyrideTriggerNext(){
-      $('#joyride-0').trigger('click');
+      angular.element('#joyride-0').trigger('click');
     }
 
     $scope.onSkip = function(){
-      //console.log('skip method in patientCtrl');
       $rootScope.stopJoyRide = true;
     };
 
@@ -77,8 +76,11 @@ angular.module('openeyesApp')
         $scope.startJoyRide = true;
       }
     }
-    
     $timeout(waitForDom, 500);
-    
+
+    function removeCurtain(){
+      angular.element('#ng-curtain').remove();
+    }
+    $timeout(removeCurtain, 1000);
 
   }]);
