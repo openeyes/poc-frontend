@@ -3,9 +3,6 @@
 angular.module('openeyesApp')
   .controller('JoyrideSwitchCtrl', ['$scope', '$attrs', '$rootScope', '$timeout',  function($scope, $attrs, $rootScope, $timeout){
 
-    this.init = function(){
-    };
-
     function removeCurtain(){
       $('#ng-curtain').remove();
     }
@@ -40,7 +37,6 @@ angular.module('openeyesApp')
       restrict: 'E', //E = element, A = attribute, C = class, M = comment
       controller: 'JoyrideSwitchCtrl',
       link: function ($scope, element, attr, JoyrideSwitchCtrl) {
-        JoyrideSwitchCtrl.init();
       }
     };
   }]);
