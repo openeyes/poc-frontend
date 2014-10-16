@@ -39,10 +39,17 @@ angular.module('openeyesApp')
     };
 
     this.getModel = function(){
+      // If disabled clear the model for passing
+      // So that only a filled in eye gets saved
+      var m = $scope.model;
+      if($scope.disableScores){
+        m = false;
+      }
+
       return {
         name: MODEL_DOMAIN + 'VisualAcuity',
         subPath: this.eyeSide,
-        model: $scope.model
+        model: m
       };
     };
 
