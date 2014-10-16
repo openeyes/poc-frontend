@@ -116,11 +116,13 @@
 
             <div class="col-xs-7 clinic-controls clearfix" id="joyride-workflows">
               <p>Try a step in this workflow for a Medical Retina Injection Clinic</p>
-              <div class="radio" ng-repeat="workflow in workflows">
-                <label>
-                  <input type="radio" ng-model="$parent.workflow" ng-value="workflow" ng-click="setSessionWorkflow($index)" />
-                  At {{ workflow.site }}
-                </label>
+              <div class="workflow-radio-btns">
+                <div class="radio" ng-repeat="workflow in workflows">
+                  <label>
+                    <input type="radio" ng-model="$parent.workflow" ng-value="workflow" ng-click="setSessionWorkflow($index)" />
+                    At {{ workflow.site }}
+                  </label>
+                </div>
               </div>
             </div>
           </div>
