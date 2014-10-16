@@ -1,5 +1,23 @@
 // EyeDraw
 
+.eye-draw-interactive, .eye-draw-data{
+	float: left;
+}
+
+.eye-draw-interactive{
+	width: 50%;
+	@media (max-width: 1400px) {
+		width: 58.3333333333%;
+	}
+}
+
+.eye-draw-data{
+	width: 50%;
+	@media (max-width: 1400px) {
+		width: 41.6666666667%;
+	}
+}
+
 .ed-widget {
   padding-top: 0.8rem;
   .label {
