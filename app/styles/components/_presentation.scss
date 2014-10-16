@@ -50,15 +50,17 @@
     display: block;
   }
 
+
+
+  .workflow-details, .architecture-details{
+    margin: 30px 0 30px -20px;
+  }
+
   .architecture-details{
     list-style: none;
     margin: 40px 0;
     padding: 0;
     border-top: 1px solid #e8e8e8;
-  }
-
-  .workflow-details, .architecture-details{
-    margin: 30px 0 30px -20px;
   }
 
   .workflow-details{
@@ -197,4 +199,8 @@
     float: left;
     background: linear-gradient(#becfdb 0%, #fafafa 100%);
   }
+}
+
+.disclaimer{
+  clear: both;
 }
