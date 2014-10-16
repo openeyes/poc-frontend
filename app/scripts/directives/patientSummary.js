@@ -4,8 +4,6 @@ angular.module('openeyesApp')
   .controller('PatientSummaryCtrl', ['$scope', '$routeParams', '$rootScope', 'Ticket', 'Patient', 'Dates', 'Element', 'MODEL_DOMAIN', function($scope, $routeParams, $rootScope, Ticket, Patient, Dates, Element, MODEL_DOMAIN){
 
     this.init = function(element){
-      var self = this;
-
       $scope.patient = null;
       $scope.ticketId = $routeParams.ticketId || '5422cb723004f335a892a728'; // TODO: remove default patient id
       $scope.getAge = this.getAge.bind(this);
@@ -23,7 +21,7 @@ angular.module('openeyesApp')
     };
 
     this.affixSummary = function(element){
-   
+
       $(element).affix({offset: { top: 48 }});
 
       $(element).on('affixed.bs.affix', function(){
@@ -34,7 +32,7 @@ angular.module('openeyesApp')
         $(element).siblings().removeClass('affix-containers');
       });
     };
-    
+
     this.getAge = function() {
       if (!$scope.patient.dob) {
         return;

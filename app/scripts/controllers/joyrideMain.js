@@ -20,12 +20,10 @@ angular.module('openeyesApp')
     };
 
     if($rootScope.stopJoyRide === false){
-      $scope.startJoyRide = true
+      $scope.startJoyRide = true;
     }else{
-      $scope.startJoyRide = false
+      $scope.startJoyRide = false;
     }
-
-    
 
   	$scope.config = [{
       type: 'location_change',

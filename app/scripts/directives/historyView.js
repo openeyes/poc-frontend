@@ -48,7 +48,6 @@ angular.module('openeyesApp')
           console.log(error);
         });
     };
-
   }])
   /**
    * @ngdoc function

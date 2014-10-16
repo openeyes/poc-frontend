@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('openeyesApp')
-  .controller('PatientListHeaderCtrl', ['$scope',function($scope){
-
+  .controller('PatientListHeaderCtrl', [function(){
     this.init = function(element){
-
-      $(element).affix({offset: { top: 48 }});
+      $(element).affix({
+        offset: { top: 48 }
+      });
 
       $(element).on('affixed.bs.affix', function(){
         $(element).siblings().addClass('affix-containers');
@@ -14,7 +14,6 @@ angular.module('openeyesApp')
       $(element).on('affixed-top.bs.affix', function(){
         $(element).siblings().removeClass('affix-containers');
       });
-
     };
   }])
   .directive('oePatientListHeader', [function() {
